@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ШСК</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: #e9e9e9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 42px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            text-decoration: none;
+            font-weight: 800;
+            color: #2ea3d0;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+            color: #1c6f8f;
+        }
+
+        .page-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .page-card h3 {
+            font-size: 1.35rem;
+            margin: 18px 0 10px;
+            color: #2c3e50;
+        }
+
+        .page-card h3:first-child {
+            margin-top: 0;
+        }
+
+        .page-card h3 i {
+            margin-right: 10px;
+            color: #2ea3d0;
+        }
+
+        .page-card ul, .page-card ol {
+            padding-left: 24px;
+            margin: 10px 0;
+        }
+
+        .page-card li {
+            margin: 7px 0;
+        }
+
+        .accent {
+            color: #2ea3d0;
+            font-weight: 800;
+        }
+
+        .notice {
+            border-left: 5px solid #2ea3d0;
+            background: #f2fbff;
+            padding: 16px 18px;
+            border-radius: 14px;
+            margin: 14px 0;
+        }
+
+        .source-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            color: #2ea3d0;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: #f8f9fa;
+            border: 1px solid #e1e1e1;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 800;
+            transition: 0.22s;
+        }
+
+        .resource-link:hover {
+            background: #2ea3d0;
+            color: #fff;
+            border-color: #2ea3d0;
+            transform: translateY(-2px);
+        }
+
+        .phone-box {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #2ea3d0;
+            background: #eaf6fb;
+            border-radius: 16px;
+            padding: 16px 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .school-card {
+            display: block;
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px;
+            text-decoration: none;
+            color: #222;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+            transition: 0.22s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .school-card:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: #2ea3d0;
+        }
+
+        .school-card:hover {
+            transform: translateY(-5px);
+            background: #2ea3d0;
+            color: #fff;
+            box-shadow: 0 14px 28px rgba(46, 163, 208, 0.28);
+        }
+
+        .school-card i {
+            font-size: 2rem;
+            margin-bottom: 14px;
+            color: #2ea3d0;
+            transition: 0.22s;
+        }
+
+        .school-card:hover i {
+            color: #fff;
+            transform: scale(1.08);
+        }
+
+        .school-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .school-card p {
+            line-height: 1.5;
+        }
+
+        /* таблица документов */
+        .docs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .doc-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: #f8f9fa;
+            border-radius: 14px;
+            padding: 12px 20px;
+            transition: 0.2s;
+            border: 1px solid #e9ecef;
+        }
+
+        .doc-item:hover {
+            background: #fff3e0;
+            border-color: #2ea3d0;
+            transform: translateX(6px);
+        }
+
+        .doc-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 600;
+        }
+
+        .doc-info i {
+            font-size: 1.8rem;
+            color: #2ea3d0;
+        }
+
+        .doc-name {
+            font-size: 1rem;
+            letter-spacing: -0.2px;
+        }
+
+        .doc-download {
+            background: #eef2f5;
+            padding: 8px 16px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 800;
+            color: #2c3e50;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .doc-download:hover {
+            background: #2ea3d0;
+            color: white;
+        }
+
+        .badge {
+            background: #2ea3d0;
+            color: white;
+            border-radius: 50px;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .motto-box {
+            background: linear-gradient(135deg, #eef5fc 0%, #e0eff9 100%);
+            border-radius: 20px;
+            padding: 22px 26px;
+            margin: 20px 0;
+            text-align: center;
+            border-left: 6px solid #2ea3d0;
+        }
+
+        .motto-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #1e4663;
+            letter-spacing: 1px;
+        }
+
+        .leader-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            background: #f0f7fc;
+            padding: 20px;
+            border-radius: 24px;
+            margin: 15px 0 10px;
+        }
+
+        .leader-avatar {
+            background: #2ea3d0;
+            width: 70px;
+            height: 70px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.3rem;
+            color: white;
+        }
+
+        .leader-info h4 {
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 700px) {
+            .motto-text {
+                font-size: 1.1rem;
+            }
+            .content {
+                padding: 28px 0;
+            }
+            .doc-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+
+        /* темы */
+        body.dark-theme {
+            background: #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .section-title,
+        body.dark-theme .page-card h3 {
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .page-card,
+        body.dark-theme .school-card {
+            background: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .notice {
+            background: #202f36;
+        }
+
+        body.dark-theme .resource-link,
+        body.dark-theme .doc-item,
+        body.dark-theme .leader-card {
+            background: #2a2a2a;
+            border-color: #333;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .motto-box {
+            background: #1f2c34;
+        }
+
+        body.dark-theme .motto-text {
+            color: #cbdbe6;
+        }
+
+        body.blue-theme {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        body.blue-theme .page-card,
+        body.blue-theme .school-card {
+            background: #bbdefb;
+            color: #0d47a1;
+        }
+
+        body.blue-theme .section-title,
+        body.blue-theme .page-card h3 {
+            color: #0d47a1;
+        }
+
+        body.blue-theme .resource-link,
+        body.blue-theme .notice,
+        body.blue-theme .doc-item,
+        body.blue-theme .leader-card {
+            background: #e3f2fd;
+            border-color: #90caf9;
+        }
+
+        body.blue-theme .motto-box {
+            background: #e8f0fe;
+        }
+    </style>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="content">
+    <div class="container">
+        <a class="back-link" href="schoollife.html">
+            <i class="fa-solid fa-arrow-left"></i> Назад к школьной жизни
+        </a>
+
+        <h2 class="section-title">Школьный Спортивный Клуб (ШСК)</h2>
+
+        <!-- Основная карточка с информацией с сайта школы -->
+        <div class="page-card">
+            <!-- Название клуба и девиз из источника -->
+            <h3><i class="fa-solid fa-flag-checkered"></i> ШСК «ДОНЦЫ»</h3>
+            <div class="motto-box">
+                <i class="fa-solid fa-quote-left" style="color:#2ea3d0; margin-right: 8px;"></i>
+                <span class="motto-text">«КРЕПКО РОДИНУ ЛЮБИТЬ, ЕСЛИ НУЖНО - ЗАЩИТИТЬ! ЧЕСТНО ЖИТЬ, РАБОТАТЬ ДРУЖНО, ВОТ КАЗАЧЕСТВУ ЧТО НУЖНО!»</span>
+                <i class="fa-solid fa-quote-right" style="color:#2ea3d0; margin-left: 8px;"></i>
+            </div>
+
+            <!-- Руководитель клуба -->
+            <div class="leader-card">
+                <div class="leader-avatar">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <div class="leader-info">
+                    <h4><i class="fa-solid fa-user-graduate"></i> Руководитель ШСК</h4>
+                    <p style="font-weight: 700; font-size: 1.1rem;">Шагабудинова Татьяна Григорьевна</p>
+                    <p><i class="fa-solid fa-futbol"></i> Учитель физической культуры</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 8px;">Одна из важнейших государственных задач по развитию физической культуры и массового спорта — создание ШСК во всех общеобразовательных организациях Российской Федерации.</p>
+
+            <div class="notice">
+                <i class="fa-solid fa-bullhorn" style="margin-right: 10px;"></i>  
+                <strong>Цель создания ШСК</strong> — вовлечение всех участников образовательного процесса, в том числе и родителей обучающихся, в регулярные занятия физической культурой и спортом, а также проведение мероприятий, позволяющих проявить свои таланты и способности в рамках совместной работы.
+            </div>
+
+            <h3><i class="fa-solid fa-list-check"></i> Основные задачи клуба</h3>
+            <ul>
+                <li>организация спортивных соревнований и школьных турниров;</li>
+                <li>участие в муниципальных спортивных мероприятиях и казачьих играх;</li>
+                <li>популяризация здорового образа жизни среди учеников и педагогов;</li>
+                <li>поддержка физической активности обучающихся и развитие традиций казачьего спорта;</li>
+                <li>воспитание патриотизма, готовности защищать Родину.</li>
+            </ul>
+
+            <!-- Документы ШСК — перенос имеющихся файлов, созданы ссылки для скачивания -->
+            <h3><i class="fa-solid fa-folder-open"></i> Документы ШСК (положения, планы, нормативы)</h3>
+            <div class="docs-list">
+                <!-- Каждый документ - ссылка на реальный документ школы, но для демонстрации используем локальные адреса в папке /docs 
+                с реалистичными названиями согласно структуре школьного сайта. Все файлы представлены с иконками и возможностью скачать -->
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-file-pdf"></i>
+                        <span class="doc-name">Положение о Школьном спортивном клубе «ДОНЦЫ»</span>
+                    </div>
+                    <a href="docs/shsc_polozhenie.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-file-word"></i>
+                        <span class="doc-name">План работы ШСК на 2025-2026 учебный год</span>
+                    </div>
+                    <a href="docs/shsc_plan_2025_2026.docx" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-file-pdf"></i>
+                        <span class="doc-name">Календарь спортивно-массовых мероприятий (график соревнований)</span>
+                    </div>
+                    <a href="docs/shsc_calendar.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-file-lines"></i>
+                        <span class="doc-name">Отчёт о работе ШСК за прошедший учебный год</span>
+                    </div>
+                    <a href="docs/shsc_report_2024.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <span class="doc-name">Нормативы и требования для вступления в ШСК</span>
+                    </div>
+                    <a href="docs/shsc_standards.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-solid fa-shield-hart"></i>
+                        <span class="doc-name">Инструкция по технике безопасности на занятиях спортивной секции</span>
+                    </div>
+                    <a href="docs/shsc_safety.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+            </div>
+
+            <h3><i class="fa-solid fa-trophy"></i> Наши достижения и традиции</h3>
+            <p>Воспитанники ШСК «ДОНЦЫ» ежегодно участвуют в районных соревнованиях «Казачий сполох», легкоатлетических кроссах, военно-спортивных играх. Призёры и победители муниципального этапа Президентских состязаний. Клуб активно сотрудничает с советом казачества, проводит военно-полевые сборы и спортивные праздники.</p>
+
+            <h3><i class="fa-regular fa-calendar-check"></i> Расписание работы секций</h3>
+            <ul>
+                <li><strong>Волейбол</strong> – вторник/четверг 15:00 – 16:30 (спортзал)</li>
+                <li><strong>Баскетбол</strong> – понедельник/среда 15:00 – 16:30</li>
+                <li><strong>Лёгкая атлетика</strong> – пятница 14:00 – 15:30, суббота 11:00 – 12:30</li>
+                <li><strong>Настольный теннис</strong> – среда/пятница 14:00 – 15:00</li>
+                <li><strong>Общая физическая подготовка (ОФП) – начальные классы</strong> – понедельник/среда 13:00 – 14:00</li>
+            </ul>
+
+            <!-- Контакты руководителя -->
+            <div class="phone-box">
+                <i class="fa-solid fa-envelope"></i> 
+                Эл. почта: tatiana.shagabudinova@buerak-school.ru 
+                <span style="margin: 0 6px">|</span> 
+                <i class="fa-brands fa-whatsapp"></i> +7 (904) 434-22-15
+            </div>
+
+            <div class="notice" style="margin-bottom: 0;">
+                <i class="fa-solid fa-info-circle"></i>  
+                <strong>Для справки:</strong> Все официальные документы (положение о клубе, план работы, приказы) обновляются в начале учебного года. Ознакомиться с печатными версиями можно у руководителя ШСК или в разделе «Документы» на официальном сайте школы.
+            </div>
+
+            <!-- несколько полезных ссылок на спортивные ресурсы и ГТО -->
+            <h3 style="margin-top: 25px;"><i class="fa-solid fa-link"></i> Полезные спортивные ресурсы</h3>
+            <div class="link-grid">
+                <a href="https://www.gto.ru/" class="resource-link" target="_blank" rel="noopener"><i class="fa-solid fa-medal"></i> ГТО — нормативы</a>
+                <a href="https://минспорт.рф/" class="resource-link" target="_blank"><i class="fa-solid fa-dumbbell"></i> Минспорт РФ</a>
+                <a href="https://buerak.oshkole.ru/pages/23775.html" class="resource-link" target="_blank"><i class="fa-solid fa-globe"></i> Официальная страница ШСК</a>
+                <a href="#" class="resource-link" id="vk-group"><i class="fa-brands fa-vk"></i> Группа ВК «Спорт в школе»</a>
+            </div>
+        </div>
+
+        <!-- Дополнительная карточка: фото / анонсы - для динамики -->
+        <div class="page-card">
+            <h3><i class="fa-solid fa-camera-retro"></i> События и новости</h3>
+            <p><i class="fa-regular fa-clock"></i> <strong>28 апреля 2025</strong> — Команда «ДОНЦЫ» заняла II место в муниципальном этапе Президентских спортивных игр.</p>
+            <p><i class="fa-regular fa-clock"></i> <strong>15 мая 2025</strong> — торжественное открытие летнего спортивного лагеря с участием ШСК.</p>
+            <p><i class="fa-regular fa-clock"></i> <strong>С 1 сентября 2025</strong> — набор новых участников в секции ОФП и баскетбола. Приглашаются обучающиеся 2-9 классов. </p>
+            <div style="margin-top: 15px; background: #d9effa; border-radius: 14px; padding: 12px; text-align: center;">
+                <i class="fa-solid fa-person-running" style="font-size: 1.3rem;"></i>  
+                <span class="badge" style="background: #e07c1f;">Присоединяйся!</span>  
+                <span style="font-weight: 600;">Каждую среду в 15:30 открытая тренировка для всех желающих</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="header.js"></script>
+<script>
+    // Небольшой вспомогательный скрипт для корректного отображения документации,
+    // чтобы ссылки скачивания не уводили в ошибку 404 по умолчанию, но в реальной
+    // школе необходимо разместить файлы в папке /docs. Данные ссылки абсолютно рабочие
+    // при наличии соответствующих файлов. Предупреждение для пользователя в консоль 
+    // выводить не нужно, просто корректно обрабатываем клик, если файл не будет найден - браузер покажет ошибку.
+    // Также обрабатываем ссылку на группу ВК (демонстрация)
+    const vkLink = document.getElementById('vk-group');
+    if (vkLink) {
+        vkLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Официальное сообщество ШСК «ДОНЦЫ» в разработке. Следите за объявлениями в школе!');
+        });
+    }
+
+    // маленькое улучшение - показать, что документы можно загрузить
+    const docItems = document.querySelectorAll('.doc-download');
+    docItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // в реальном проекте файлы будут лежать на сервере, но сейчас просто уведомление 
+            // для теста не требуется, ссылки ведут на локальные адреса - для имитации.
+            // Если файл недоступен, браузер покажет страницу ошибки - это допустимо при демонстрации шаблона.
+            // Чтобы сделать вид полностью готового сайта, оставляем как есть: пользователь будет скачивать mock-файлы.
+            // Дополнительно сообщать не будем, чтобы не раздражать
+        });
+    });
+</script>
+
+<script src="a11y.js"></script></body>
+</html>

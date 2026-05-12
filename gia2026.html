@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="ru">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   &Gcy;&Icy;&Acy; 2026 &mdash; &Mcy;&Kcy;&Ocy;&Ucy; &Bcy;&ucy;&iecy;&rcy;&acy;&kcy;-&Pcy;&ocy;&pcy;&ocy;&vcy;&scy;&kcy;&acy;&yacy; &Scy;&Kcy;&SHcy;
+  </title>
+  <link href="logo1.png" rel="icon" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="header.css" rel="stylesheet"/>
+  <link href="footer.css" rel="stylesheet"/>
+  <style>
+   * {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+body {
+  font-family:'Raleway',sans-serif;
+  background:#e9e9e9;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  color:#222;
+}
+.container {
+  width:90%;
+  max-width:1200px;
+  margin:0 auto;
+}
+.content {
+  flex:1;
+  padding:42px 0;
+}
+.section-title {
+  font-size:2rem;
+  font-weight:800;
+  margin-bottom:18px;
+  color:#2c3e50;
+}
+.back-link {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:18px;
+  text-decoration:none;
+  font-weight:800;
+  color:#2ea3d0;
+}
+.page-card {
+  background:#fff;
+  border-radius:18px;
+  padding:26px;
+  box-shadow:0 8px 22px rgba(0,0,0,.08);
+  line-height:1.7;
+  margin-bottom:22px;
+}
+.page-card h3 {
+  font-size:1.35rem;
+  margin:18px 0 10px;
+  color:#2c3e50;
+}
+.page-card h3:first-child {
+  margin-top:0;
+}
+.page-card ul,.page-card ol {
+  padding-left:24px;
+  margin:10px 0;
+}
+.page-card li {
+  margin:7px 0;
+}
+.accent {
+  color:#2ea3d0;
+  font-weight:800;
+}
+.notice {
+  border-left:5px solid #2ea3d0;
+  background:#f2fbff;
+  padding:16px 18px;
+  border-radius:14px;
+  margin:14px 0;
+}
+.source-link {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+  color:#2ea3d0;
+  font-weight:800;
+  text-decoration:none;
+}
+.docs-list {
+  display:grid;
+  gap:12px;
+  margin-top:14px;
+}
+.doc-item {
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:16px 18px;
+  border:1px solid #e0e0e0;
+  border-radius:16px;
+  background:#f8f9fa;
+  transition:.22s;
+  overflow:hidden;
+}
+.doc-item:before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:5px;
+  background:#2ea3d0;
+}
+.doc-item:hover {
+  background:#2ea3d0;
+  color:#fff;
+  border-color:#2ea3d0;
+  box-shadow:0 12px 24px rgba(46,163,208,.26);
+  transform:translateY(-3px);
+}
+.doc-link {
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:inherit;
+  text-decoration:none;
+  font-weight:800;
+  min-width:0;
+}
+.doc-link i {
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:#eaf6fb;
+  color:#2ea3d0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+}
+.doc-item:hover .doc-link i {
+  background:#fff;
+}
+.download-btn {
+  position:relative;
+  z-index:1;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eaf6fb;
+  color:#2ea3d0;
+  text-decoration:none;
+  flex:0 0 auto;
+}
+.doc-item:hover .download-btn {
+  background:#fff;
+  color:#2ea3d0;
+  transform:scale(1.05);
+}
+.link-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.resource-link {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 16px;
+  border-radius:14px;
+  background:#f8f9fa;
+  border:1px solid #e1e1e1;
+  color:#2c3e50;
+  text-decoration:none;
+  font-weight:800;
+  transition:.22s;
+}
+.resource-link:hover {
+  background:#2ea3d0;
+  color:#fff;
+  border-color:#2ea3d0;
+  transform:translateY(-2px);
+}
+.image-strip {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+  margin:16px 0;
+}
+.image-strip img {
+  width:100%;
+  height:auto;
+  border-radius:16px;
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+  background:#f8f9fa;
+}
+.phone-box {
+  font-size:1.35rem;
+  font-weight:800;
+  color:#2ea3d0;
+  background:#eaf6fb;
+  border-radius:16px;
+  padding:16px 18px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:10px 0;
+}
+@media(max-width:700px) {
+  .doc-item {
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .download-btn {
+    width:100%;
+    border-radius:999px;
+  }
+  .phone-box {
+    font-size:1.05rem;
+  }
+}
+body.dark-theme {
+  background:#121212;
+  color:#e0e0e0;
+}
+body.dark-theme .section-title,body.dark-theme .page-card h3 {
+  color:#e0e0e0;
+}
+body.dark-theme .page-card {
+  background:#1e1e1e;
+}
+body.dark-theme .notice {
+  background:#202f36;
+}
+body.dark-theme .doc-item,body.dark-theme .resource-link {
+  background:#2a2a2a;
+  border-color:#333;
+  color:#e0e0e0;
+}
+body.blue-theme {
+  background:#e3f2fd;
+  color:#0d47a1;
+}
+body.blue-theme .page-card {
+  background:#bbdefb;
+}
+body.blue-theme .section-title,body.blue-theme .page-card h3 {
+  color:#0d47a1;
+}
+body.blue-theme .doc-item,body.blue-theme .resource-link,body.blue-theme .notice {
+  background:#e3f2fd;
+  border-color:#90caf9;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position:0% 50%;
+  }
+  50% {
+    background-position:100% 50%;
+  }
+  100% {
+    background-position:0% 50%;
+  }
+}
+.gia-schedule-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:18px;
+  margin-top:16px;
+}
+.gia-schedule-card {
+  border:1px solid #e3eef3;
+  border-radius:18px;
+  background:#f8fbfd;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(46,163,208,.08);
+}
+.gia-schedule-head {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px 18px;
+  background:linear-gradient(270deg,#2ea3d0,#3a5fa0,#2ea3d0);
+  background-size:400% 400%;
+  animation:gradientMove 8s ease infinite;
+  color:#fff;
+}
+.gia-schedule-head h3 {
+  margin:0!important;
+  color:#fff!important;
+  font-size:1.18rem;
+}
+.gia-table-wrap {
+  width:100%;
+  overflow-x:auto;
+}
+.gia-table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:560px;
+  background:#fff;
+}
+.gia-table th,.gia-table td {
+  padding:13px 14px;
+  text-align:left;
+  vertical-align:top;
+  border-bottom:1px solid #e8eef2;
+}
+.gia-table th {
+  background:#edf8fc;
+  color:#2c3e50;
+  font-size:.92rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+}
+.gia-table tr:last-child td {
+  border-bottom:none;
+}
+.gia-date {
+  white-space:nowrap;
+  font-weight:800;
+  color:#2ea3d0;
+}
+.gia-period-note {
+  font-weight:800;
+  color:#2c3e50;
+  margin:12px 0 6px;
+}
+.gia-source-note {
+  font-size:.95rem;
+  color:#51606a;
+  margin-top:14px;
+}
+.gia-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  border-radius:999px;
+  background:#eaf6fb;
+  color:#2ea3d0;
+  font-weight:800;
+  padding:8px 12px;
+  margin:6px 6px 6px 0;
+}
+.gia-compact-list {
+  margin:8px 0 0!important;
+  padding-left:22px!important;
+}
+body.dark-theme .gia-schedule-card {
+  background:#1f2930;
+  border-color:#34424b;
+}
+body.dark-theme .gia-table {
+  background:#1e1e1e;
+}
+body.dark-theme .gia-table th {
+  background:linear-gradient(270deg,#0f3b47,#1a2b5e,#0f3b47);
+  background-size:400% 400%;
+  animation:gradientMove 8s ease infinite;
+  color:#ffffff;
+}
+body.dark-theme .gia-table th,body.dark-theme .gia-table td {
+  border-color:#333;
+}
+body.dark-theme .gia-date {
+  color:#76d7ff;
+}
+body.dark-theme .gia-period-note,body.dark-theme .gia-source-note {
+  color:#e0e0e0;
+}
+body.dark-theme .gia-badge {
+  background:#263842;
+  color:#76d7ff;
+}
+body.blue-theme .gia-schedule-card {
+  background:#e3f2fd;
+  border-color:#90caf9;
+}
+body.blue-theme .gia-table {
+  background:#eaf6ff;
+}
+body.blue-theme .gia-table th {
+  background:linear-gradient(270deg,#1e88e5,#1565c0,#1e88e5);
+  background-size:400% 400%;
+  animation:gradientMove 8s ease infinite;
+  color:#ffffff;
+}
+body.blue-theme .gia-date {
+  color:#0d47a1;
+}
+body.blue-theme .gia-period-note,body.blue-theme .gia-source-note {
+  color:#0d47a1;
+}
+body.blue-theme .gia-badge {
+  background:#bbdefb;
+  color:#0d47a1;
+}
+@media(max-width:700px) {
+  
+@keyframes gradientMove {
+  0% {
+    background-position:0% 50%;
+  }
+  50% {
+    background-position:100% 50%;
+  }
+  100% {
+    background-position:0% 50%;
+  }
+}
+.gia-schedule-grid {
+    grid-template-columns:1fr;
+  }
+  .gia-table {
+    min-width:520px;
+  }
+  .gia-schedule-head h3 {
+    font-size:1.05rem;
+  }
+}
+  
+
+/* ===== ДЕМОВЕРСИИ КИМ ЕГЭ ===== */
+.kim-demo-intro {
+  margin-bottom: 16px;
+}
+.kim-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.kim-demo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+  padding: 16px;
+  border: 1px solid #e3eef3;
+  border-radius: 18px;
+  background: #f8fbfd;
+  box-shadow: 0 6px 18px rgba(46, 163, 208, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.kim-demo-card:hover {
+  transform: translateY(-3px);
+  border-color: #2ea3d0;
+  box-shadow: 0 12px 24px rgba(46, 163, 208, 0.18);
+}
+.kim-demo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #2c3e50;
+}
+.kim-demo-title i {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2ea3d0, #3a5fa0);
+  flex: 0 0 auto;
+}
+.kim-demo-list {
+  margin: 0 !important;
+  padding-left: 20px !important;
+  color: #51606a;
+  font-weight: 700;
+  line-height: 1.45;
+  flex: 1;
+}
+.kim-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 999px;
+  background: #eaf6fb;
+  color: #2ea3d0;
+  text-decoration: none;
+  font-weight: 800;
+  border: 1px solid rgba(46, 163, 208, 0.24);
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+.kim-download-btn:hover {
+  background: #2ea3d0;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+body.dark-theme .kim-demo-card {
+  background: #1f2930;
+  border-color: #34424b;
+}
+body.dark-theme .kim-demo-title {
+  color: #e0e0e0;
+}
+body.dark-theme .kim-demo-list {
+  color: #d7d7d7;
+}
+body.dark-theme .kim-download-btn {
+  background: #263842;
+  color: #76d7ff;
+  border-color: #34424b;
+}
+body.dark-theme .kim-download-btn:hover {
+  background: #2ea3d0;
+  color: #ffffff;
+}
+body.blue-theme .kim-demo-card {
+  background: #e3f2fd;
+  border-color: #90caf9;
+}
+body.blue-theme .kim-demo-title,
+body.blue-theme .kim-demo-list {
+  color: #0d47a1;
+}
+body.blue-theme .kim-download-btn {
+  background: #bbdefb;
+  color: #0d47a1;
+  border-color: #90caf9;
+}
+body.blue-theme .kim-download-btn:hover {
+  background: #1e88e5;
+  color: #ffffff;
+}
+@media(max-width:700px) {
+  .kim-demo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+ </head>
+ <body>
+  <div id="header-placeholder">
+  </div>
+  <main class="content">
+   <div class="container">
+    <a class="back-link" href="information.html">
+     <i class="fa-solid fa-arrow-left">
+     </i>
+     &Ncy;&acy;&zcy;&acy;&dcy; &kcy; &icy;&ncy;&fcy;&ocy;&rcy;&mcy;&acy;&tscy;&icy;&icy;
+    </a>
+    <h2 class="section-title">
+     &Gcy;&Icy;&Acy; 2026
+    </h2>
+    <section class="page-card">
+     <h3>
+      <i class="fa-solid fa-graduation-cap">
+      </i>
+      &Gcy;&ocy;&scy;&ucy;&dcy;&acy;&rcy;&scy;&tcy;&vcy;&iecy;&ncy;&ncy;&acy;&yacy; &icy;&tcy;&ocy;&gcy;&ocy;&vcy;&acy;&yacy; &acy;&tcy;&tcy;&iecy;&scy;&tcy;&acy;&tscy;&icy;&yacy; 2026
+     </h3>
+     <p>
+      &Rcy;&acy;&zcy;&dcy;&iecy;&lcy; &pcy;&rcy;&iecy;&dcy;&ncy;&acy;&zcy;&ncy;&acy;&chcy;&iecy;&ncy; &dcy;&lcy;&yacy; &rcy;&acy;&zcy;&mcy;&iecy;&shchcy;&iecy;&ncy;&icy;&yacy; &acy;&kcy;&tcy;&ucy;&acy;&lcy;&softcy;&ncy;&ycy;&khcy; &mcy;&acy;&tcy;&iecy;&rcy;&icy;&acy;&lcy;&ocy;&vcy;, &pcy;&acy;&mcy;&yacy;&tcy;&ocy;&kcy; &icy; &ocy;&bcy;&hardcy;&yacy;&vcy;&lcy;&iecy;&ncy;&icy;&jcy; &pcy;&ocy; &gcy;&ocy;&scy;&ucy;&dcy;&acy;&rcy;&scy;&tcy;&vcy;&iecy;&ncy;&ncy;&ocy;&jcy; &icy;&tcy;&ocy;&gcy;&ocy;&vcy;&ocy;&jcy; &acy;&tcy;&tcy;&iecy;&scy;&tcy;&acy;&tscy;&icy;&icy; 2026 &gcy;&ocy;&dcy;&acy;.
+     </p>
+     <div class="notice">
+      &Icy;&ncy;&fcy;&ocy;&rcy;&mcy;&acy;&tscy;&icy;&yacy; &icy;&mcy;&pcy;&ocy;&rcy;&tcy;&icy;&rcy;&ocy;&vcy;&acy;&ncy;&acy; &icy;&zcy; &rcy;&acy;&zcy;&dcy;&iecy;&lcy;&acy; &laquo;&Gcy;&Icy;&Acy; 2026&raquo; &ocy;&fcy;&icy;&tscy;&icy;&acy;&lcy;&softcy;&ncy;&ocy;&jcy; &scy;&tcy;&rcy;&acy;&ncy;&icy;&tscy;&ycy; &shcy;&kcy;&ocy;&lcy;&ycy;. &Ncy;&acy; &icy;&scy;&khcy;&ocy;&dcy;&ncy;&ocy;&jcy; &scy;&tcy;&rcy;&acy;&ncy;&icy;&tscy;&iecy; &ocy;&pcy;&ucy;&bcy;&lcy;&icy;&kcy;&ocy;&vcy;&acy;&ncy;&ycy; &gcy;&rcy;&acy;&fcy;&icy;&chcy;&iecy;&scy;&kcy;&icy;&iecy; &icy;&ncy;&fcy;&ocy;&rcy;&mcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&iecy; &mcy;&acy;&tcy;&iecy;&rcy;&icy;&acy;&lcy;&ycy;.
+     </div>
+     <div class="image-strip">
+      <img alt="&Gcy;&Icy;&Acy; 2026" onerror="this.style.display='none'" src="https://buerak.oshkole.ru/media/sub/229445/images/gia2026.png"/>
+      <img alt="&Icy;&ncy;&fcy;&ocy;&rcy;&mcy;&acy;&tscy;&icy;&yacy; &Gcy;&Icy;&Acy;" onerror="this.style.display='none'" src="https://buerak.oshkole.ru/media/sub/229445/images/5.png"/>
+      <img alt="&Mcy;&acy;&tcy;&iecy;&rcy;&icy;&acy;&lcy;&ycy; &Gcy;&Icy;&Acy;" onerror="this.style.display='none'" src="https://buerak.oshkole.ru/media/sub/229445/images/6.png"/>
+     </div>
+     <a class="source-link" href="https://buerak.oshkole.ru/pages/35424.html" rel="noopener" target="_blank">
+      <i class="fa-solid fa-up-right-from-square">
+      </i>
+      &Icy;&scy;&tcy;&ocy;&chcy;&ncy;&icy;&kcy;
+     </a>
+    </section>
+    <section class="page-card" id="raspisanie-gia-2026">
+     <h3>
+      <i class="fa-solid fa-calendar-days">
+      </i>
+      &Rcy;&acy;&scy;&pcy;&icy;&scy;&acy;&ncy;&icy;&iecy; &IEcy;&Gcy;&Ecy; &icy; &Ocy;&Gcy;&Ecy; &ncy;&acy; 2026 &gcy;&ocy;&dcy;
+     </h3>
+     <p>
+      &Tcy;&acy;&bcy;&lcy;&icy;&tscy;&ycy; &scy;&ocy;&scy;&tcy;&acy;&vcy;&lcy;&iecy;&ncy;&ycy; &pcy;&ocy; &ocy;&pcy;&ucy;&bcy;&lcy;&icy;&kcy;&ocy;&vcy;&acy;&ncy;&ncy;&ocy;&mcy;&ucy; &rcy;&acy;&scy;&pcy;&icy;&scy;&acy;&ncy;&icy;&yucy; &Mcy;&icy;&ncy;&pcy;&rcy;&ocy;&scy;&vcy;&iecy;&shchcy;&iecy;&ncy;&icy;&yacy; &Rcy;&ocy;&scy;&scy;&icy;&icy; &icy; &Rcy;&ocy;&scy;&ocy;&bcy;&rcy;&ncy;&acy;&dcy;&zcy;&ocy;&rcy;&acy; &ncy;&acy; 2026 &gcy;&ocy;&dcy;.
+     </p>
+     <div class="notice">
+      <strong>
+       &Vcy;&acy;&zhcy;&ncy;&ocy;:
+      </strong>
+      &ecy;&kcy;&zcy;&acy;&mcy;&iecy;&ncy;&ycy; &ncy;&acy;&chcy;&icy;&ncy;&acy;&yucy;&tcy;&scy;&yacy; &pcy;&ocy; &mcy;&iecy;&scy;&tcy;&ncy;&ocy;&mcy;&ucy; &vcy;&rcy;&iecy;&mcy;&iecy;&ncy;&icy;. &Pcy;&iecy;&rcy;&iecy;&dcy; &ecy;&kcy;&zcy;&acy;&mcy;&iecy;&ncy;&acy;&mcy;&icy; &dcy;&ocy;&pcy;&ocy;&lcy;&ncy;&icy;&tcy;&iecy;&lcy;&softcy;&ncy;&ocy; &scy;&vcy;&iecy;&rcy;&yacy;&jcy;&tcy;&iecy; &dcy;&acy;&tcy;&ycy; &scy; &ocy;&fcy;&icy;&tscy;&icy;&acy;&lcy;&softcy;&ncy;&ycy;&mcy;&icy; &dcy;&ocy;&kcy;&ucy;&mcy;&iecy;&ncy;&tcy;&acy;&mcy;&icy; &icy; &ocy;&bcy;&hardcy;&yacy;&vcy;&lcy;&iecy;&ncy;&icy;&yacy;&mcy;&icy; &shcy;&kcy;&ocy;&lcy;&ycy;.
+     </div>
+     <div class="gia-schedule-grid">
+      <article class="gia-schedule-card">
+       <div class="gia-schedule-head">
+        <h3>
+         &IEcy;&Gcy;&Ecy; &mdash; &ocy;&scy;&ncy;&ocy;&vcy;&ncy;&ocy;&jcy; &pcy;&iecy;&rcy;&icy;&ocy;&dcy;
+        </h3>
+       </div>
+       <div class="gia-table-wrap">
+        <table class="gia-table">
+         <thead>
+          <tr>
+           <th>
+            &Dcy;&acy;&tcy;&acy;
+           </th>
+           <th>
+            &Ecy;&kcy;&zcy;&acy;&mcy;&iecy;&ncy;&ycy;
+           </th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td class="gia-date">
+            1 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &icy;&scy;&tcy;&ocy;&rcy;&icy;&yacy;, &lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;, &khcy;&icy;&mcy;&icy;&yacy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            4 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &rcy;&ucy;&scy;&scy;&kcy;&icy;&jcy; &yacy;&zcy;&ycy;&kcy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            8 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &mcy;&acy;&tcy;&iecy;&mcy;&acy;&tcy;&icy;&kcy;&acy; &bcy;&acy;&zcy;&ocy;&vcy;&ocy;&gcy;&ocy; &icy; &pcy;&rcy;&ocy;&fcy;&icy;&lcy;&softcy;&ncy;&ocy;&gcy;&ocy; &ucy;&rcy;&ocy;&vcy;&ncy;&iecy;&jcy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            11 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &ocy;&bcy;&shchcy;&iecy;&scy;&tcy;&vcy;&ocy;&zcy;&ncy;&acy;&ncy;&icy;&iecy;, &fcy;&icy;&zcy;&icy;&kcy;&acy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            15 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &bcy;&icy;&ocy;&lcy;&ocy;&gcy;&icy;&yacy;, &gcy;&iecy;&ocy;&gcy;&rcy;&acy;&fcy;&icy;&yacy;, &icy;&ncy;&ocy;&scy;&tcy;&rcy;&acy;&ncy;&ncy;&ycy;&iecy; &yacy;&zcy;&ycy;&kcy;&icy; &mdash; &pcy;&icy;&scy;&softcy;&mcy;&iecy;&ncy;&ncy;&acy;&yacy; &chcy;&acy;&scy;&tcy;&softcy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            18 &icy; 19 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &icy;&ncy;&ocy;&scy;&tcy;&rcy;&acy;&ncy;&ncy;&ycy;&iecy; &yacy;&zcy;&ycy;&kcy;&icy; &mdash; &ucy;&scy;&tcy;&ncy;&acy;&yacy; &chcy;&acy;&scy;&tcy;&softcy;, &icy;&ncy;&fcy;&ocy;&rcy;&mcy;&acy;&tcy;&icy;&kcy;&acy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            22&ndash;25 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &rcy;&iecy;&zcy;&iecy;&rcy;&vcy;&ncy;&ycy;&iecy; &dcy;&ncy;&icy; &pcy;&ocy; &vcy;&scy;&iecy;&mcy; &pcy;&rcy;&iecy;&dcy;&mcy;&iecy;&tcy;&acy;&mcy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            8 &icy; 9 &icy;&yucy;&lcy;&yacy;
+           </td>
+           <td>
+            &pcy;&iecy;&rcy;&iecy;&scy;&dcy;&acy;&chcy;&acy; &ocy;&dcy;&ncy;&ocy;&gcy;&ocy; &pcy;&rcy;&iecy;&dcy;&mcy;&iecy;&tcy;&acy; &pcy;&ocy; &vcy;&ycy;&bcy;&ocy;&rcy;&ucy; &vcy;&ycy;&pcy;&ucy;&scy;&kcy;&ncy;&icy;&kcy;&acy;
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </article>
+      <article class="gia-schedule-card">
+       <div class="gia-schedule-head">
+        <h3>
+         &Ocy;&Gcy;&Ecy; &mdash; &ocy;&scy;&ncy;&ocy;&vcy;&ncy;&ocy;&jcy; &pcy;&iecy;&rcy;&icy;&ocy;&dcy;
+        </h3>
+       </div>
+       <div class="gia-table-wrap">
+        <table class="gia-table">
+         <thead>
+          <tr>
+           <th>
+            &Dcy;&acy;&tcy;&acy;
+           </th>
+           <th>
+            &Ecy;&kcy;&zcy;&acy;&mcy;&iecy;&ncy;&ycy;
+           </th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td class="gia-date">
+            2 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &mcy;&acy;&tcy;&iecy;&mcy;&acy;&tcy;&icy;&kcy;&acy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            5 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &vcy;&scy;&iecy; &pcy;&rcy;&iecy;&dcy;&mcy;&iecy;&tcy;&ycy;, &kcy;&rcy;&ocy;&mcy;&iecy; &rcy;&ucy;&scy;&scy;&kcy;&ocy;&gcy;&ocy; &yacy;&zcy;&ycy;&kcy;&acy; &icy; &mcy;&acy;&tcy;&iecy;&mcy;&acy;&tcy;&icy;&kcy;&icy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            6 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &icy;&ncy;&fcy;&ocy;&rcy;&mcy;&acy;&tcy;&icy;&kcy;&acy;, &icy;&ncy;&ocy;&scy;&tcy;&rcy;&acy;&ncy;&ncy;&ycy;&iecy; &yacy;&zcy;&ycy;&kcy;&icy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            9 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &rcy;&ucy;&scy;&scy;&kcy;&icy;&jcy; &yacy;&zcy;&ycy;&kcy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            16 &icy; 19 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &vcy;&scy;&iecy; &pcy;&rcy;&iecy;&dcy;&mcy;&iecy;&tcy;&ycy;, &kcy;&rcy;&ocy;&mcy;&iecy; &rcy;&ucy;&scy;&scy;&kcy;&ocy;&gcy;&ocy; &yacy;&zcy;&ycy;&kcy;&acy; &icy; &mcy;&acy;&tcy;&iecy;&mcy;&acy;&tcy;&icy;&kcy;&icy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            29 &icy;&yucy;&ncy;&yacy;
+           </td>
+           <td>
+            &rcy;&iecy;&zcy;&iecy;&rcy;&vcy;&ncy;&ycy;&jcy; &dcy;&iecy;&ncy;&softcy;: &mcy;&acy;&tcy;&iecy;&mcy;&acy;&tcy;&icy;&kcy;&acy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            2 &icy;&yucy;&lcy;&yacy;
+           </td>
+           <td>
+            &rcy;&iecy;&zcy;&iecy;&rcy;&vcy;&ncy;&ycy;&jcy; &dcy;&iecy;&ncy;&softcy;: &rcy;&ucy;&scy;&scy;&kcy;&icy;&jcy; &yacy;&zcy;&ycy;&kcy;
+           </td>
+          </tr>
+          <tr>
+           <td class="gia-date">
+            3 &icy; 6 &icy;&yucy;&lcy;&yacy;
+           </td>
+           <td>
+            &rcy;&iecy;&zcy;&iecy;&rcy;&vcy;&ncy;&ycy;&iecy; &dcy;&ncy;&icy;: &vcy;&scy;&iecy; &pcy;&rcy;&iecy;&dcy;&mcy;&iecy;&tcy;&ycy;, &kcy;&rcy;&ocy;&mcy;&iecy; &rcy;&ucy;&scy;&scy;&kcy;&ocy;&gcy;&ocy; &yacy;&zcy;&ycy;&kcy;&acy; &icy; &mcy;&acy;&tcy;&iecy;&mcy;&acy;&tcy;&icy;&kcy;&icy;
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </article>
+     </div>
+     <p class="gia-period-note">
+      &Pcy;&iecy;&rcy;&icy;&ocy;&dcy;&ycy; &pcy;&rcy;&ocy;&vcy;&iecy;&dcy;&iecy;&ncy;&icy;&yacy;
+     </p>
+     <span class="gia-badge">
+      <i class="fa-solid fa-circle-info">
+      </i>
+      &IEcy;&Gcy;&Ecy;: 1 &icy;&yucy;&ncy;&yacy; &mdash; 9 &icy;&yucy;&lcy;&yacy;
+     </span>
+     <span class="gia-badge">
+      <i class="fa-solid fa-circle-info">
+      </i>
+      &Ocy;&Gcy;&Ecy;: 2 &icy;&yucy;&ncy;&yacy; &mdash; 6 &icy;&yucy;&lcy;&yacy;
+     </span>
+     <p class="gia-source-note">
+      &Icy;&scy;&tcy;&ocy;&chcy;&ncy;&icy;&kcy; &dcy;&acy;&ncy;&ncy;&ycy;&khcy;: &pcy;&ucy;&bcy;&lcy;&icy;&kcy;&acy;&tscy;&icy;&yacy; &Mcy;&icy;&ncy;&pcy;&rcy;&ocy;&scy;&vcy;&iecy;&shchcy;&iecy;&ncy;&icy;&yacy; &Rcy;&ocy;&scy;&scy;&icy;&icy; &laquo;&Ucy;&tcy;&vcy;&iecy;&rcy;&zhcy;&dcy;&iecy;&ncy;&ocy; &rcy;&acy;&scy;&pcy;&icy;&scy;&acy;&ncy;&icy;&iecy; &Ocy;&Gcy;&Ecy; &icy; &IEcy;&Gcy;&Ecy; &ncy;&acy; 2026 &gcy;&ocy;&dcy;&raquo;.
+     </p>
+     <a class="source-link" href="https://edu.gov.ru/press/10836/utverzhdeno-raspisanie-oge-i-ege-na-2026-god/" rel="noopener" target="_blank">
+      <i class="fa-solid fa-up-right-from-square">
+      </i>
+      &Ocy;&fcy;&icy;&tscy;&icy;&acy;&lcy;&softcy;&ncy;&ocy;&iecy; &rcy;&acy;&scy;&pcy;&icy;&scy;&acy;&ncy;&icy;&iecy;
+     </a>
+    </section>
+    <section class="page-card" id="demoversii-kim-ege-2026">
+     <h3>
+      <i class="fa-solid fa-file-zipper">
+      </i>
+      &Dcy;&iecy;&mcy;&ocy;&vcy;&iecy;&rcy;&scy;&icy;&icy; &Kcy;&Icy;&Mcy; &IEcy;&Gcy;&Ecy; 2026
+     </h3>
+     <p class="kim-demo-intro">
+      &Vcy; &bcy;&lcy;&ocy;&kcy;&iecy; &scy;&ocy;&bcy;&rcy;&acy;&ncy;&ycy; &ocy;&fcy;&icy;&tscy;&icy;&acy;&lcy;&softcy;&ncy;&ycy;&iecy; &acy;&rcy;&khcy;&icy;&vcy;&ycy; &Fcy;&Icy;&Pcy;&Icy; &scy; &dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&mcy;&icy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;&acy;&mcy;&icy;, &scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;&mcy;&icy; &icy; &kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;&acy;&mcy;&icy; &IEcy;&Gcy;&Ecy; 2026 &gcy;&ocy;&dcy;&acy;. &Ncy;&acy;&zhcy;&mcy;&icy;&tcy;&iecy; &kcy;&ncy;&ocy;&pcy;&kcy;&ucy; &laquo;&Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP&raquo;, &chcy;&tcy;&ocy;&bcy;&ycy; &zcy;&acy;&gcy;&rcy;&ucy;&zcy;&icy;&tcy;&softcy; &acy;&rcy;&khcy;&icy;&vcy; &pcy;&ocy; &vcy;&ycy;&bcy;&rcy;&acy;&ncy;&ncy;&ocy;&mcy;&ucy; &pcy;&rcy;&iecy;&dcy;&mcy;&iecy;&tcy;&ucy;.
+     </p>
+     <div class="notice">
+      <strong>
+       &Icy;&scy;&tcy;&ocy;&chcy;&ncy;&icy;&kcy;:
+      </strong>
+      &Fcy;&iecy;&dcy;&iecy;&rcy;&acy;&lcy;&softcy;&ncy;&ycy;&jcy; &icy;&ncy;&scy;&tcy;&icy;&tcy;&ucy;&tcy; &pcy;&iecy;&dcy;&acy;&gcy;&ocy;&gcy;&icy;&chcy;&iecy;&scy;&kcy;&icy;&khcy; &icy;&zcy;&mcy;&iecy;&rcy;&iecy;&ncy;&icy;&jcy; &mdash; &rcy;&acy;&zcy;&dcy;&iecy;&lcy; &laquo;&Dcy;&iecy;&mcy;&ocy;&vcy;&iecy;&rcy;&scy;&icy;&icy;, &scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&icy;, &kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;&ycy;&raquo;.
+     </div>
+     <div class="kim-demo-grid">
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-language">
+        </i>
+        &Rcy;&ucy;&scy;&scy;&kcy;&icy;&jcy; &yacy;&zcy;&ycy;&kcy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="ru_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/ru_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-square-root-variable">
+        </i>
+        &Mcy;&acy;&tcy;&iecy;&mcy;&acy;&tcy;&icy;&kcy;&acy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy; &bcy;&acy;&zcy;&ocy;&vcy;&ocy;&gcy;&ocy; &ucy;&rcy;&ocy;&vcy;&ncy;&yacy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy; &bcy;&acy;&zcy;&ocy;&vcy;&ocy;&gcy;&ocy; &ucy;&rcy;&ocy;&vcy;&ncy;&yacy;
+        </li>
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy; &pcy;&rcy;&ocy;&fcy;&icy;&lcy;&softcy;&ncy;&ocy;&gcy;&ocy; &ucy;&rcy;&ocy;&vcy;&ncy;&yacy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy; &pcy;&rcy;&ocy;&fcy;&icy;&lcy;&softcy;&ncy;&ocy;&gcy;&ocy; &ucy;&rcy;&ocy;&vcy;&ncy;&yacy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="ma_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/ma_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-atom">
+        </i>
+        &Fcy;&icy;&zcy;&icy;&kcy;&acy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="fi_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/fi_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-flask">
+        </i>
+        &KHcy;&icy;&mcy;&icy;&yacy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="hi_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/hi_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-laptop-code">
+        </i>
+        &Icy;&ncy;&fcy;&ocy;&rcy;&mcy;&acy;&tcy;&icy;&kcy;&acy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="inf_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/inf_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-dna">
+        </i>
+        &Bcy;&icy;&ocy;&lcy;&ocy;&gcy;&icy;&yacy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="bi_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/bi_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-landmark">
+        </i>
+        &Icy;&scy;&tcy;&ocy;&rcy;&icy;&yacy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="is_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/is_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-earth-europe">
+        </i>
+        &Gcy;&iecy;&ocy;&gcy;&rcy;&acy;&fcy;&icy;&yacy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="gg_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/gg_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-scale-balanced">
+        </i>
+        &Ocy;&bcy;&shchcy;&iecy;&scy;&tcy;&vcy;&ocy;&zcy;&ncy;&acy;&ncy;&icy;&iecy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="ob_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/ob_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-book-open">
+        </i>
+        &Lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="li_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/li_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-comments">
+        </i>
+        &Acy;&ncy;&gcy;&lcy;&icy;&jcy;&scy;&kcy;&icy;&jcy; &yacy;&zcy;&ycy;&kcy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;: &pcy;&icy;&scy;&softcy;&mcy;&iecy;&ncy;&ncy;&acy;&yacy; &chcy;&acy;&scy;&tcy;&softcy;
+        </li>
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;: &ucy;&scy;&tcy;&ncy;&acy;&yacy; &chcy;&acy;&scy;&tcy;&softcy;
+        </li>
+        <li>
+         &Acy;&ucy;&dcy;&icy;&ocy;&fcy;&acy;&jcy;&lcy;&ycy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="aya_11_2026.zip" href="https://doc.fipi.ru/ege/demoversii-specifikacii-kodifikatory/2026/aya_11_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+     </div>
+     <a class="source-link" href="https://fipi.ru/ege/demoversii-specifikacii-kodifikatory" rel="noopener" target="_blank">
+      <i class="fa-solid fa-up-right-from-square">
+      </i>
+      &Scy;&tcy;&rcy;&acy;&ncy;&icy;&tscy;&acy; &Fcy;&Icy;&Pcy;&Icy; &IEcy;&Gcy;&Ecy;
+     </a>
+    </section>
+    <section class="page-card" id="demoversii-kim-oge-2026">
+     <h3>
+      <i class="fa-solid fa-file-zipper">
+      </i>
+      &Dcy;&iecy;&mcy;&ocy;&vcy;&iecy;&rcy;&scy;&icy;&icy; &Kcy;&Icy;&Mcy; &Ocy;&Gcy;&Ecy; 2026
+     </h3>
+     <p class="kim-demo-intro">
+      &Vcy; &bcy;&lcy;&ocy;&kcy;&iecy; &scy;&ocy;&bcy;&rcy;&acy;&ncy;&ycy; &ocy;&fcy;&icy;&tscy;&icy;&acy;&lcy;&softcy;&ncy;&ycy;&iecy; &acy;&rcy;&khcy;&icy;&vcy;&ycy; &Fcy;&Icy;&Pcy;&Icy; &scy; &dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&mcy;&icy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;&acy;&mcy;&icy;, &scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;&mcy;&icy; &icy; &kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;&acy;&mcy;&icy; &Ocy;&Gcy;&Ecy; 2026 &gcy;&ocy;&dcy;&acy;. &Ncy;&acy;&zhcy;&mcy;&icy;&tcy;&iecy; &kcy;&ncy;&ocy;&pcy;&kcy;&ucy; &laquo;&Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP&raquo;, &chcy;&tcy;&ocy;&bcy;&ycy; &zcy;&acy;&gcy;&rcy;&ucy;&zcy;&icy;&tcy;&softcy; &acy;&rcy;&khcy;&icy;&vcy; &pcy;&ocy; &vcy;&ycy;&bcy;&rcy;&acy;&ncy;&ncy;&ocy;&mcy;&ucy; &pcy;&rcy;&iecy;&dcy;&mcy;&iecy;&tcy;&ucy;.
+     </p>
+     <div class="notice">
+      <strong>
+       &Icy;&scy;&tcy;&ocy;&chcy;&ncy;&icy;&kcy;:
+      </strong>
+      &Fcy;&iecy;&dcy;&iecy;&rcy;&acy;&lcy;&softcy;&ncy;&ycy;&jcy; &icy;&ncy;&scy;&tcy;&icy;&tcy;&ucy;&tcy; &pcy;&iecy;&dcy;&acy;&gcy;&ocy;&gcy;&icy;&chcy;&iecy;&scy;&kcy;&icy;&khcy; &icy;&zcy;&mcy;&iecy;&rcy;&iecy;&ncy;&icy;&jcy; &mdash; &rcy;&acy;&zcy;&dcy;&iecy;&lcy; &Ocy;&Gcy;&Ecy; &laquo;&Dcy;&iecy;&mcy;&ocy;&vcy;&iecy;&rcy;&scy;&icy;&icy;, &scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&icy;, &kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;&ycy;&raquo;.
+     </div>
+     <div class="kim-demo-grid">
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-language">
+        </i>
+        &Rcy;&ucy;&scy;&scy;&kcy;&icy;&jcy; &yacy;&zcy;&ycy;&kcy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy; &Ocy;&Gcy;&Ecy;
+        </li>
+        <li>
+         &Mcy;&acy;&tcy;&iecy;&rcy;&icy;&acy;&lcy;&ycy; &icy;&tcy;&ocy;&gcy;&ocy;&vcy;&ocy;&gcy;&ocy; &scy;&ocy;&bcy;&iecy;&scy;&iecy;&dcy;&ocy;&vcy;&acy;&ncy;&icy;&yacy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="ru_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/ru_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-square-root-variable">
+        </i>
+        &Mcy;&acy;&tcy;&iecy;&mcy;&acy;&tcy;&icy;&kcy;&acy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="ma_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/ma_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-atom">
+        </i>
+        &Fcy;&icy;&zcy;&icy;&kcy;&acy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="fi_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/fi_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-flask">
+        </i>
+        &KHcy;&icy;&mcy;&icy;&yacy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="hi_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/hi_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-laptop-code">
+        </i>
+        &Icy;&ncy;&fcy;&ocy;&rcy;&mcy;&acy;&tcy;&icy;&kcy;&acy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="inf_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/inf_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-dna">
+        </i>
+        &Bcy;&icy;&ocy;&lcy;&ocy;&gcy;&icy;&yacy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="bi_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/bi_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-landmark">
+        </i>
+        &Icy;&scy;&tcy;&ocy;&rcy;&icy;&yacy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="is_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/is_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-earth-europe">
+        </i>
+        &Gcy;&iecy;&ocy;&gcy;&rcy;&acy;&fcy;&icy;&yacy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="gg_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/gg_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-scale-balanced">
+        </i>
+        &Ocy;&bcy;&shchcy;&iecy;&scy;&tcy;&vcy;&ocy;&zcy;&ncy;&acy;&ncy;&icy;&iecy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="ob_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/ob_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-book-open">
+        </i>
+        &Lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="li_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/li_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+      <article class="kim-demo-card">
+       <div class="kim-demo-title">
+        <i class="fa-solid fa-comments">
+        </i>
+        &Acy;&ncy;&gcy;&lcy;&icy;&jcy;&scy;&kcy;&icy;&jcy; &yacy;&zcy;&ycy;&kcy;
+       </div>
+       <ul class="kim-demo-list">
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;: &pcy;&icy;&scy;&softcy;&mcy;&iecy;&ncy;&ncy;&acy;&yacy; &chcy;&acy;&scy;&tcy;&softcy;
+        </li>
+        <li>
+         &Dcy;&iecy;&mcy;&ocy;&ncy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&ocy;&ncy;&ncy;&ycy;&jcy; &vcy;&acy;&rcy;&icy;&acy;&ncy;&tcy;: &ucy;&scy;&tcy;&ncy;&acy;&yacy; &chcy;&acy;&scy;&tcy;&softcy;
+        </li>
+        <li>
+         &Acy;&ucy;&dcy;&icy;&ocy;&fcy;&acy;&jcy;&lcy;&ycy;
+        </li>
+        <li>
+         &Kcy;&ocy;&dcy;&icy;&fcy;&icy;&kcy;&acy;&tcy;&ocy;&rcy;
+        </li>
+        <li>
+         &Scy;&pcy;&iecy;&tscy;&icy;&fcy;&icy;&kcy;&acy;&tscy;&icy;&yacy;
+        </li>
+       </ul>
+       <a class="kim-download-btn" download="aya_9_2026.zip" href="https://doc.fipi.ru/oge/demoversii-specifikacii-kodifikatory/2026/aya_9_2026.zip" rel="noopener" target="_blank">
+        <i class="fa-solid fa-download">
+        </i>
+        &Scy;&kcy;&acy;&chcy;&acy;&tcy;&softcy; ZIP
+       </a>
+      </article>
+     </div>
+     <a class="source-link" href="https://fipi.ru/oge/demoversii-specifikacii-kodifikatory" rel="noopener" target="_blank">
+      <i class="fa-solid fa-up-right-from-square">
+      </i>
+      &Scy;&tcy;&rcy;&acy;&ncy;&icy;&tscy;&acy; &Fcy;&Icy;&Pcy;&Icy; &Ocy;&Gcy;&Ecy;
+     </a>
+    </section>
+   </div>
+  </main>
+  <div id="footer-placeholder">
+  </div>
+  <script src="header.js">
+  </script>
+ </body>
+</html>

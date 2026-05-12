@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход</title>
+  <link rel="icon" type="image/png" href="logo1.png">
+  <!-- Шрифты и иконки -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(135deg, #2ea3d0, #3a5fa0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 16px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 48px 56px;
+      border-radius: 36px;
+      width: 100%;
+      max-width: 780px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 800;
+      font-size: 42px;
+      letter-spacing: -0.5px;
+      margin-bottom: 44px;
+      color: white;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .field {
+      margin-top: 22px;
+    }
+
+    /* --- общие стили для полей ввода --- */
+    input,
+    .select-selected {
+      width: 100%;
+      height: 64px;
+      padding: 0 20px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      font-family: 'Raleway', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e3a6b;
+      background: #ffffff;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.2s;
+    }
+
+    input:focus,
+    .select-selected:focus-visible {
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    input::placeholder {
+      font-weight: 400;
+      opacity: 0.5;
+      color: #1e3a6b;
+    }
+
+
+    /* Цвет текста при автозаполнении браузером */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-text-fill-color: #1e3a6b !important;
+      caret-color: #1e3a6b !important;
+      box-shadow: 0 0 0 1000px #ffffff inset, 0 6px 12px rgba(0, 0, 0, 0.05) !important;
+      transition: background-color 9999s ease-in-out 0s;
+      font-family: 'Raleway', sans-serif !important;
+      font-weight: 700 !important;
+    }
+
+    #password:-webkit-autofill,
+    #password:-webkit-autofill:hover,
+    #password:-webkit-autofill:focus,
+    #password:-webkit-autofill:active {
+      -webkit-text-fill-color: transparent !important;
+      caret-color: #1e3a6b !important;
+    }
+
+    #password.password-visible,
+    #password.password-visible:-webkit-autofill,
+    #password.password-visible:-webkit-autofill:hover,
+    #password.password-visible:-webkit-autofill:focus,
+    #password.password-visible:-webkit-autofill:active {
+      color: #1e3a6b !important;
+      -webkit-text-fill-color: #1e3a6b !important;
+      caret-color: #1e3a6b !important;
+    }
+
+    /* --- поле пароля и звёздочки --- */
+    .password-wrapper {
+      position: relative;
+    }
+
+    #password {
+      background: #ffffff;
+      color: transparent;          /* по умолчанию текст скрыт */
+      caret-color: #1e3a6b;
+      position: relative;
+      z-index: 3;
+    }
+
+    .fake-password {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      color: #1e3a6b;
+      font-size: 20px;
+      font-weight: 700;
+      pointer-events: none;
+      z-index: 4;
+      letter-spacing: 3px;
+      white-space: nowrap;
+      background: transparent;
+    }
+
+    .fake-password span {
+      display: inline-block;
+    }
+
+    .fake-password.placeholder {
+      color: #1e3a6b;
+      font-weight: 400;
+      letter-spacing: 0;
+      opacity: 0.5;
+    }
+
+    /* Глаз — точное выравнивание */
+    .eye {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      color: #1e3a6b;
+      cursor: pointer;
+      z-index: 6;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+
+    .eye:hover {
+      background: rgba(30, 58, 107, 0.08);
+    }
+
+    /* --- кастомный селект --- */
+    .custom-select {
+      position: relative;
+    }
+
+    .select-selected {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      background: white;
+    }
+
+    .select-selected::after {
+      content: "";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 10px;
+      height: 10px;
+      border-right: 3px solid #1e3a6b;
+      border-bottom: 3px solid #1e3a6b;
+      transition: transform 0.2s;
+      pointer-events: none;
+    }
+
+    .select-selected.open::after {
+      transform: translateY(-50%) rotate(225deg);
+    }
+
+    .select-items {
+      position: absolute;
+      top: calc(100% + 8px);
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      z-index: 20;
+    }
+
+    .select-items.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .select-items div {
+      padding: 18px 20px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #1e3a6b;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .select-items div:hover {
+      background: #2ea3d0;
+      color: white;
+    }
+
+    /* --- чекбокс (согласие) --- */
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 24px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 500;
+    }
+
+    .checkbox-wrapper input {
+      display: none;
+    }
+
+    .custom-checkbox {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      border: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+
+    .custom-checkbox::after {
+      content: "✔";
+      color: white;
+      font-size: 16px;
+      display: none;
+    }
+
+    .checkbox-wrapper input:checked + .custom-checkbox {
+      background: white;
+      border-color: white;
+    }
+
+    .checkbox-wrapper input:checked + .custom-checkbox::after {
+      display: block;
+      color: #3a5fa0;
+    }
+
+    .checkbox-wrapper a {
+      color: white;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* --- КНОПКА ВХОДА — инвертирование цвета при наведении --- */
+    button {
+      width: 100%;
+      height: 64px;
+      margin-top: 32px;
+      border: none;
+      border-radius: 24px;
+      background: white;
+      color: #1e3a6b;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+      transition: background 0.25s, color 0.25s, box-shadow 0.2s;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    button:hover {
+      background: #1e3a6b;
+      color: white;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      transform: none;
+    }
+
+    /* ссылка внизу */
+    .bottom-link {
+      text-align: center;
+      margin-top: 28px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .bottom-link a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid rgba(255,255,255,0.5);
+      padding-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Вход</h2>
+
+  <!-- Логин -->
+  <input class="field" type="text" id="login" name="login_no_autofill" placeholder="Логин" autocomplete="new-password" autocapitalize="off" spellcheck="false" value="">
+
+  <!-- Электронная почта (новое поле между логином и паролем) -->
+  <input class="field" type="email" id="email" name="email_no_autofill" placeholder="Электронная почта" autocomplete="new-password" autocapitalize="off" spellcheck="false" value="">
+
+  <!-- Пароль с кастомными звёздочками -->
+  <div class="password-wrapper field">
+    <input type="password" id="password" name="password_no_autofill" placeholder="Пароль" autocomplete="new-password" value="">
+    <div class="fake-password" id="fakePassword"></div>
+    <i class="fa-solid fa-eye eye" id="eye" title="Показать пароль"></i>
+  </div>
+
+  <!-- Кастомный селект роли -->
+  <div class="custom-select field">
+    <div class="select-selected" id="selectedRole">Выберите роль</div>
+    <div class="select-items" id="roleList">
+      <div data-value="Ученик">Ученик</div>
+      <div data-value="Родитель">Родитель</div>
+      <div data-value="Учитель">Учитель</div>
+      <div data-value="Администратор">Администратор</div>
+      <div data-value="Гость">Гость</div>
+    </div>
+  </div>
+
+  <!-- Кастомный селект школы -->
+  <div class="custom-select field">
+    <div class="select-selected" id="selectedSchool">Выберите школу</div>
+    <div class="select-items" id="schoolList">
+      <div data-value="МКОУ школа №1 г.Серафимовича">МКОУ школа №1 г. Серафимовича</div>
+      <div data-value="МКОУ Буерак-Поповская СШ">МКОУ Буерак-Поповская СШ</div>
+    </div>
+  </div>
+
+  <!-- Чекбокс обработки данных -->
+  <label class="checkbox-wrapper">
+    <input type="checkbox" id="agree">
+    <div class="custom-checkbox"></div>
+    <span>
+      Я согласен на 
+      <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank" rel="noopener">
+        обработку персональных данных
+      </a>
+    </span>
+  </label>
+
+  <!-- Кнопка входа -->
+  <button type="button" onclick="loginUser(event)">Войти</button>
+
+  <!-- Ссылка на сайт -->
+  <div class="bottom-link">
+    Перейти на сайт:
+    <a href="https://sgo.volganet.ru" target="_blank" rel="noopener">sgo.volganet</a>
+  </div>
+</div>
+
+<script>
+  (function() {
+    "use strict";
+
+    // ---------- РАБОТА С СЕЛЕКТОМ РОЛИ ----------
+    let selectedRole = "";
+    const selectedDiv = document.getElementById('selectedRole');
+    const roleList = document.getElementById('roleList');
+    let selectedSchool = "";
+    const selectedSchoolDiv = document.getElementById('selectedSchool');
+    const schoolList = document.getElementById('schoolList');
+
+    selectedDiv.addEventListener('click', (e) => {
+      e.stopPropagation();
+      roleList.classList.toggle('show');
+      selectedDiv.classList.toggle('open');
+      schoolList.classList.remove('show');
+      selectedSchoolDiv.classList.remove('open');
+    });
+
+    selectedSchoolDiv.addEventListener('click', (e) => {
+      e.stopPropagation();
+      schoolList.classList.toggle('show');
+      selectedSchoolDiv.classList.toggle('open');
+      roleList.classList.remove('show');
+      selectedDiv.classList.remove('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.custom-select')) {
+        roleList.classList.remove('show');
+        selectedDiv.classList.remove('open');
+        schoolList.classList.remove('show');
+        selectedSchoolDiv.classList.remove('open');
+      }
+    });
+
+    document.querySelectorAll('#roleList div').forEach(item => {
+      item.addEventListener('click', () => {
+        selectedRole = item.dataset.value;
+        selectedDiv.textContent = selectedRole;
+        roleList.classList.remove('show');
+        selectedDiv.classList.remove('open');
+      });
+    });
+
+    document.querySelectorAll('#schoolList div').forEach(item => {
+      item.addEventListener('click', () => {
+        selectedSchool = item.dataset.value;
+        selectedSchoolDiv.textContent = item.textContent.trim();
+        schoolList.classList.remove('show');
+        selectedSchoolDiv.classList.remove('open');
+      });
+    });
+    // ---------- ПРОФИЛЬ НЕ СТИРАЕМ ----------
+    // При открытии страницы входа данные профиля не удаляются.
+    // Новый вход просто перезаписывает нужные поля и сразу переводит в выбранный кабинет.
+
+    // ---------- ПОЛЕ ПАРОЛЯ: ЗВЁЗДОЧКИ И ПЕРЕКЛЮЧЕНИЕ ВИДИМОСТИ ----------
+    const passwordInput = document.getElementById('password');
+    const fakeContainer = document.getElementById('fakePassword');
+    const eyeIcon = document.getElementById('eye');
+    let passwordVisible = false;
+
+    function updateFakeStars() {
+      const val = passwordInput.value;
+      fakeContainer.innerHTML = '';
+      fakeContainer.classList.toggle('placeholder', !val);
+      if (!val) {
+        fakeContainer.textContent = passwordInput.getAttribute('placeholder') || 'Пароль';
+        return;
+      }
+      for (let i = 0; i < val.length; i++) {
+        const starSpan = document.createElement('span');
+        starSpan.textContent = '*';
+        fakeContainer.appendChild(starSpan);
+      }
+    }
+
+    passwordInput.addEventListener('input', updateFakeStars);
+
+    eyeIcon.addEventListener('click', () => {
+      passwordVisible = !passwordVisible;
+
+      if (passwordVisible) {
+        passwordInput.type = 'text';
+        passwordInput.classList.add('password-visible');
+        passwordInput.style.color = '#1e3a6b';
+        passwordInput.style.webkitTextFillColor = '#1e3a6b';
+        fakeContainer.style.display = 'none';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+        eyeIcon.title = 'Скрыть пароль';
+      } else {
+        passwordInput.type = 'text';
+        passwordInput.classList.remove('password-visible');
+        passwordInput.style.color = 'transparent';
+        passwordInput.style.webkitTextFillColor = 'transparent';
+        fakeContainer.style.display = 'flex';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+        eyeIcon.title = 'Показать пароль';
+        updateFakeStars();
+      }
+    });
+
+    // Инициализация: скрытый режим
+    passwordInput.type = 'text';
+    passwordInput.classList.remove('password-visible');
+    passwordInput.style.color = 'transparent';
+    passwordInput.style.webkitTextFillColor = 'transparent';
+    fakeContainer.style.display = 'flex';
+    updateFakeStars();
+    setTimeout(updateFakeStars, 100);
+    setTimeout(updateFakeStars, 500);
+
+    // ---------- ВАЛИДАЦИЯ EMAIL ----------
+    function isValidEmail(email) {
+      // Простая, но достаточная проверка
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+
+
+    function getDefaultAvatarColor(name) {
+      let hash = 0;
+      const source = name || 'user';
+      for (let i = 0; i < source.length; i++) {
+        hash = source.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const colors = [
+        'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+        'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+        'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+        'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+      ];
+      return colors[Math.abs(hash) % colors.length];
+    }
+
+    function normalizeRole(role) {
+      return String(role || '').trim().toLowerCase();
+    }
+
+    function isGuestRole(role) {
+      return normalizeRole(role) === '\u0433\u043e\u0441\u0442\u044c';
+    }
+
+    function clearAuthSession() {
+      ['auth', 'login', 'password', 'role', 'full_name', 'email', 'user', 'profile_photo', 'avatar_color'].forEach(key => localStorage.removeItem(key));
+      sessionStorage.removeItem('password');
+    }
+
+    function getSavedGuestProfile() {
+      return {
+        fullName: localStorage.getItem('guest_full_name') || 'Гость',
+        avatarColor: localStorage.getItem('guest_avatar_color') || '',
+        profilePhoto: localStorage.getItem('guest_profile_photo') || ''
+      };
+    }
+
+    function getCabinetUrl(role) {
+      const r = normalizeRole(role);
+      if (r === '\u0443\u0447\u0435\u043d\u0438\u043a' || r === '\u0440\u043e\u0434\u0438\u0442\u0435\u043b\u044c') return 'lk.html';
+      if (r === '\u0443\u0447\u0438\u0442\u0435\u043b\u044c' || r === '\u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c') return 'lkteacher.html';
+      if (r === '\u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440' || r === '\u0434\u0438\u0440\u0435\u043a\u0442\u043e\u0440' || r === '\u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f') return 'lkadmin.html';
+      if (isGuestRole(role)) return 'index.html';
+      return 'login.html';
+    }
+
+    function getApiBase() {
+      const saved = localStorage.getItem('api_url');
+      if (saved) return saved.replace(/\/$/, '');
+      if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+        if (window.location.port === '5000') return window.location.origin;
+        const host = window.location.hostname || '127.0.0.1';
+        return `${window.location.protocol}//${host}:5000`;
+      }
+      return 'http://127.0.0.1:5000';
+    }
+
+    function redirectToRolePage(role) {
+      const target = getCabinetUrl(role);
+      const url = new URL(target, window.location.href).href;
+      // Мгновенное жёсткое перенаправление. Не ждём server.py/SMTP, чтобы форма не очищалась без перехода.
+      window.location.href = url;
+    }
+    // Поля больше не очищаются автоматически: после входа профиль сохраняется в localStorage.
+
+    // ---------- ФУНКЦИЯ ВХОДА ----------
+    window.loginUser = async function(event) {
+      if (event && typeof event.preventDefault === 'function') event.preventDefault();
+      const login = document.getElementById('login').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const savedExistingPassword = sessionStorage.getItem('password') || localStorage.getItem('password') || '';
+      const password = passwordInput.value || savedExistingPassword || 'local-password';
+
+      if (!selectedRole) { alert('Выберите роль из списка'); return; }
+      if (isGuestRole(selectedRole)) {
+        const savedGuest = getSavedGuestProfile();
+        const guestLogin = login || savedGuest.fullName || 'Гость';
+        clearAuthSession();
+        // Имя, введённое на странице входа, должно стать именем гостя в хэдере.
+        // Сохранённые фото/цвет гостя при этом не теряются.
+        const guestName = login || savedGuest.fullName || guestLogin;
+        const guestColor = savedGuest.avatarColor || getDefaultAvatarColor(guestName);
+        const guestPhoto = savedGuest.profilePhoto || '';
+        localStorage.setItem('auth', 'true');
+        localStorage.setItem('login', guestLogin);
+        localStorage.setItem('role', selectedRole);
+        localStorage.setItem('full_name', guestName);
+        localStorage.setItem('avatar_color', guestColor);
+        if (guestPhoto) localStorage.setItem('profile_photo', guestPhoto);
+        localStorage.setItem('guest_full_name', guestName);
+        localStorage.setItem('guest_avatar_color', guestColor);
+        if (guestPhoto) localStorage.setItem('guest_profile_photo', guestPhoto);
+        redirectToRolePage(selectedRole);
+        return;
+      }
+      if (!login) { alert('Пожалуйста, введите логин'); return; }
+      if (!email) { alert('Введите электронную почту — на неё будет отправлено уведомление о входе'); return; }
+      if (!isValidEmail(email)) { alert('Введите корректную электронную почту'); return; }
+
+      const school = selectedSchool || localStorage.getItem('school') || 'МКОУ школа №1 г.Серафимовича';
+      const avatarColor = localStorage.getItem('avatar_color') || getDefaultAvatarColor(login);
+
+      // Сохраняем профиль ДО перехода. Это не зависит от fetch/server.py.
+      localStorage.setItem('auth', 'true');
+      localStorage.setItem('login', login);
+      localStorage.setItem('email', email);
+      if (password && password !== 'local-password') {
+        localStorage.setItem('password', password);
+        sessionStorage.setItem('password', password);
+      }
+      localStorage.setItem('role', selectedRole);
+      localStorage.setItem('full_name', login);
+      localStorage.setItem('avatar_color', avatarColor);
+      localStorage.setItem('school', school);
+
+      // Сразу переходим в выбранный кабинет. Серверное сохранение и письмо запускаются в фоне.
+      const payload = {
+        login,
+        email,
+        password,
+        role: selectedRole,
+        school,
+        full_name: login,
+        avatar_color: avatarColor
+      };
+
+      try {
+        const apiBase = getApiBase();
+        fetch(`${apiBase}/api/login`, {
+          method: 'POST',
+          mode: 'cors',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(response => response.json().catch(() => ({})))
+        .then(result => {
+          if (result && result.user) {
+            localStorage.setItem('user', JSON.stringify(result.user));
+            if (result.user.full_name) localStorage.setItem('full_name', result.user.full_name);
+            if (result.user.avatar_color) localStorage.setItem('avatar_color', result.user.avatar_color);
+            if (result.user.profile_photo) localStorage.setItem('profile_photo', result.user.profile_photo);
+            if (result.user.school) localStorage.setItem('school', result.user.school);
+          }
+          if (result && result.success !== true) {
+            console.warn('Server login warning:', result.error || result.message || 'Вход сохранён локально');
+          }
+          if (result && result.mail_sent !== true) {
+            console.warn('Login email was not sent:', result.mail_message || result.warning || 'SMTP error');
+          }
+        })
+        .catch(err => console.warn('server.py не ответил, переход выполнен по локально сохранённому профилю:', err));
+      } catch (e) {
+        console.warn('Не удалось запустить фоновый запрос входа:', e);
+      }
+
+      redirectToRolePage(selectedRole);
+    };
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        window.loginUser(event);
+      }
+    });
+
+    // Убираем лишние пробелы в логине и email при потере фокуса
+    const loginInput = document.getElementById('login');
+    const emailInput = document.getElementById('email');
+    loginInput.addEventListener('blur', () => {
+      loginInput.value = loginInput.value.trim();
+    });
+    emailInput.addEventListener('blur', () => {
+      emailInput.value = emailInput.value.trim();
+    });
+
+  })();
+</script>
+
+<script src="a11y.js"></script></body>
+</html>

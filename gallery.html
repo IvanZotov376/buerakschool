@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="footer.css">
+
+    <style>
+        /* ----- ХЕДЕР ----- */
+        .header {
+            background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+            color: white;
+            padding: 20px 0;
+            transition: background 0.3s;
+        }
+
+        @keyframes gradientMove {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo img {
+            width: 80px;
+            transition: filter 0.3s;
+        }
+
+        .title {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .title h1 {
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .title p {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            position: relative;
+        }
+
+        .user-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+
+        .user-block:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .user-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .user-name {
+            font-weight: 800;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            line-height: 1.2;
+        }
+
+        .header-icons>i {
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .header-icons>i.active-icon {
+            color: #ffd966;
+        }
+
+        /* ----- ПАНЕЛЬ ДОСТУПНОСТИ ----- */
+        .accessibility-panel {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            z-index: 1000;
+            width: 480px;
+            margin-top: 10px;
+            color: #333;
+            font-family: 'Raleway', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .accessibility-panel.active {
+            display: block;
+        }
+
+        .accessibility-panel h4 {
+            margin-bottom: 10px;
+            font-weight: 800;
+            font-size: 1.125rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: 6px 14px;
+            border: 2px solid #ccc;
+            background: #f8f8f8;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .option-btn.active {
+            background: #2ea3d0;
+            color: white;
+            border-color: #2ea3d0;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+            font-size: 0.95rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .close-panel {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s;
+        }
+
+        .close-panel:hover {
+            color: #000;
+        }
+
+        /* ----- НАВИГАЦИЯ ----- */
+        .nav {
+            margin-top: 25px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        .menu li {
+            position: relative;
+        }
+
+        .menu>li>a {
+            text-decoration: none;
+            font-weight: 800;
+            color: black;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 8px;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .menu>li>a:hover {
+            background: #2ea3d0;
+            color: white;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 180px;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: all 0.25s ease;
+            z-index: 10;
+        }
+
+        .menu li:hover .dropdown {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown li {
+            list-style: none;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 15px;
+            font-weight: 700;
+            color: black;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .dropdown a:hover {
+            background: #2ea3d0;
+            color: white;
+        }
+
+        /* ----- ОСНОВНОЙ КОНТЕНТ ----- */
+        .content {
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        /* ----- ТЕМЫ ----- */
+        body.dark-theme {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-theme .header {
+            background: linear-gradient(270deg, #0f3b47, #1a2b5e, #0f3b47);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+        }
+        body.dark-theme .nav {
+            background: #1e1e1e;
+        }
+        body.dark-theme .menu>li>a {
+            color: #e0e0e0;
+        }
+        body.dark-theme .menu>li>a:hover {
+            background: #3a506b;
+            color: white;
+        }
+        body.dark-theme .dropdown {
+            background: #2a2a2a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        body.dark-theme .dropdown a {
+            color: #e0e0e0;
+        }
+        body.dark-theme .dropdown a:hover {
+            background: #3a506b;
+            color: white;
+        }
+        body.dark-theme .accessibility-panel {
+            background: #2a2a2a;
+            color: #e0e0e0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+        body.dark-theme .option-btn {
+            background: #3a3a3a;
+            border-color: #555;
+            color: #ccc;
+        }
+        body.dark-theme .option-btn.active {
+            background: #2ea3d0;
+            color: white;
+            border-color: #2ea3d0;
+        }
+        body.dark-theme .close-panel {
+            color: #aaa;
+        }
+        body.dark-theme .close-panel:hover {
+            color: white;
+        }
+
+        body.blue-theme {
+            background-color: #d4eafc;
+            color: #000;
+        }
+        body.blue-theme .header {
+            background: linear-gradient(270deg, #1e88e5, #1565c0, #1e88e5);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+        }
+        body.blue-theme .nav {
+            background: #bbdefb;
+        }
+        body.blue-theme .menu>li>a {
+            color: #000;
+        }
+        body.blue-theme .menu>li>a:hover {
+            background: #1e88e5;
+            color: white;
+        }
+        body.blue-theme .dropdown {
+            background: #e3f2fd;
+        }
+        body.blue-theme .accessibility-panel {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+        body.blue-theme .option-btn {
+            background: #bbdefb;
+            border-color: #90caf9;
+            color: #0d47a1;
+        }
+        body.blue-theme .option-btn.active {
+            background: #1e88e5;
+            color: white;
+        }
+
+        body.no-effects .header {
+            background: #2c3e50;
+            animation: none;
+        }
+        body.dark-theme.no-effects .header {
+            background: #0d1b2a;
+        }
+        body.blue-theme.no-effects .header {
+            background: #1565c0;
+        }
+
+        html.font-size-1 { font-size: 100%; }
+        html.font-size-2 { font-size: 125%; }
+        html.font-size-3 { font-size: 150%; }
+        html.font-size-4 { font-size: 175%; }
+
+        body.images-grayscale img { filter: grayscale(100%); }
+        body.images-hide img { display: none; }
+
+        
+
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { font-size: 16px; transition: font-size 0.2s; }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: #e9e9e9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .content h1 {
+            text-align: center;
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* ---- Темы ---- */
+        body.dark-theme { background-color: #121212; color: #e0e0e0; }
+        body.dark-theme .content { background-color: #121212; color: #e0e0e0; }
+        body.dark-theme .content h1 { color: #ffffff; }
+
+        body.blue-theme { background-color: #d4eafc; color: #000; }
+        body.blue-theme .content { background-color: #d4eafc; color: #0d47a1; }
+        body.blue-theme .content h1 { color: #0d47a1; }
+
+        html.font-size-1 { font-size: 100%; }
+        html.font-size-2 { font-size: 125%; }
+        html.font-size-3 { font-size: 150%; }
+        html.font-size-4 { font-size: 175%; }
+
+        body.images-grayscale img { filter: grayscale(100%); }
+        body.images-hide img { display: none; }
+
+        /* ---- Галерея ---- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            background: #fff;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            cursor: pointer;
+            display: block;
+        }
+
+        /* Плашка с информацией – скрыта по умолчанию, показывается при наведении */
+        .info-overlay {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            padding: 8px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; /* чтобы не мешала клику по фото */
+        }
+
+        .photo-card:hover .info-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-likes {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            pointer-events: auto; /* разрешаем клик по сердечку */
+        }
+
+        .info-likes i {
+            color: #ff4d6d;
+            font-size: 1.1rem;
+        }
+
+        .info-date {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* ---- Лайтбокс ---- */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-caption {
+            color: white;
+            margin-top: 20px;
+            font-weight: 600;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .lightbox-caption .desc {
+            font-size: 1.1rem;
+        }
+
+        .lightbox-caption .date {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px; right: 30px;
+            font-size: 32px;
+            color: white;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 1001;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 42px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .prev { left: 25px; }
+        .next { right: 25px; }
+    
+
+        /* ----- HERO-БЛОК ГАЛЕРЕИ С АНИМИРОВАННЫМИ КРУГАМИ ----- */
+        .gallery-hero {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 38px 42px;
+            margin-bottom: 32px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #2ea3d0 0%, #3a5fa0 72%);
+            box-shadow: 0 18px 40px rgba(46, 93, 160, 0.22);
+            text-align: left;
+        }
+
+        .gallery-hero h1 {
+            color: #ffffff;
+            font-size: 2.35rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin: 0 0 8px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-hero p {
+            color: #ffffff;
+            font-weight: 700;
+            opacity: 0.92;
+            max-width: 680px;
+            line-height: 1.5;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            font-weight: 800;
+            font-size: 0.92rem;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-circle {
+            position: absolute;
+            width: var(--size);
+            height: var(--size);
+            top: var(--top);
+            left: var(--left);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, var(--opacity));
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(var(--blur));
+            animation-name: var(--move);
+            animation-duration: var(--duration);
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-delay: var(--delay);
+            will-change: transform;
+        }
+
+        .hero-circle:nth-child(1) { --size: 230px; --top: -82px; --left: 78%; --opacity: 0.16; --blur: 0px; --duration: 44s; --delay: -12s; --move: floatChaosOne; }
+        .hero-circle:nth-child(2) { --size: 118px; --top: 18px; --left: 6%; --opacity: 0.14; --blur: 0.3px; --duration: 36s; --delay: -7s; --move: floatChaosTwo; }
+        .hero-circle:nth-child(3) { --size: 72px; --top: 64%; --left: 19%; --opacity: 0.22; --blur: 0px; --duration: 31s; --delay: -16s; --move: floatChaosThree; }
+        .hero-circle:nth-child(4) { --size: 154px; --top: 48%; --left: 58%; --opacity: 0.10; --blur: 0.5px; --duration: 52s; --delay: -21s; --move: floatChaosFour; }
+        .hero-circle:nth-child(5) { --size: 48px; --top: 19%; --left: 44%; --opacity: 0.26; --blur: 0px; --duration: 28s; --delay: -4s; --move: floatChaosFive; }
+        .hero-circle:nth-child(6) { --size: 96px; --top: 74%; --left: 84%; --opacity: 0.13; --blur: 0.4px; --duration: 40s; --delay: -25s; --move: floatChaosSix; }
+        .hero-circle:nth-child(7) { --size: 34px; --top: 38%; --left: 31%; --opacity: 0.30; --blur: 0px; --duration: 33s; --delay: -10s; --move: floatChaosSeven; }
+
+        @keyframes floatChaosOne { 0% { transform: translate(0, 0) scale(1); } 30% { transform: translate(-110px, 34px) scale(1.04); } 63% { transform: translate(-42px, 130px) scale(0.96); } 100% { transform: translate(-170px, 86px) scale(1.02); } }
+        @keyframes floatChaosTwo { 0% { transform: translate(0, 0) scale(1); } 28% { transform: translate(105px, 36px) scale(0.98); } 61% { transform: translate(44px, 92px) scale(1.06); } 100% { transform: translate(160px, -8px) scale(1); } }
+        @keyframes floatChaosThree { 0% { transform: translate(0, 0) scale(1); } 34% { transform: translate(64px, -58px) scale(1.08); } 67% { transform: translate(-38px, -96px) scale(0.94); } 100% { transform: translate(118px, -22px) scale(1.03); } }
+        @keyframes floatChaosFour { 0% { transform: translate(0, 0) scale(1); } 27% { transform: translate(-76px, -52px) scale(0.97); } 58% { transform: translate(84px, -104px) scale(1.05); } 100% { transform: translate(30px, 42px) scale(0.99); } }
+        @keyframes floatChaosFive { 0% { transform: translate(0, 0) scale(1); } 35% { transform: translate(92px, 38px) scale(1.1); } 70% { transform: translate(28px, 112px) scale(0.92); } 100% { transform: translate(-82px, 62px) scale(1.04); } }
+        @keyframes floatChaosSix { 0% { transform: translate(0, 0) scale(1); } 32% { transform: translate(-132px, -26px) scale(1.04); } 66% { transform: translate(-68px, -112px) scale(0.95); } 100% { transform: translate(-190px, -54px) scale(1.01); } }
+        @keyframes floatChaosSeven { 0% { transform: translate(0, 0) scale(1); } 25% { transform: translate(-48px, 64px) scale(1.12); } 55% { transform: translate(86px, 28px) scale(0.9); } 100% { transform: translate(24px, -72px) scale(1.05); } }
+
+        body.no-effects .hero-circle { animation: none; }
+
+        @media (max-width: 900px) {
+            .gallery-hero { padding: 30px 24px; border-radius: 22px; }
+            .gallery-hero h1 { font-size: 1.85rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-circle:nth-child(1) { --size: 150px; }
+            .hero-circle:nth-child(2) { --size: 88px; }
+            .hero-circle:nth-child(3) { --size: 54px; }
+            .hero-circle:nth-child(4) { --size: 104px; }
+            .hero-circle:nth-child(5) { --size: 38px; }
+            .hero-circle:nth-child(6) { --size: 72px; }
+            .hero-circle:nth-child(7) { --size: 28px; }
+        }
+
+    
+
+        /* ---- Альбомы ---- */
+        .albums-section {
+            margin: 0 0 28px;
+        }
+
+        .albums-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .albums-header h2 {
+            margin: 0;
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #2c3e50;
+        }
+
+        .albums-header button {
+            border: none;
+            border-radius: 999px;
+            padding: 9px 16px;
+            background: #ffffff;
+            color: #2c3e50;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s, background 0.2s, color 0.2s;
+        }
+
+        .albums-header button:hover,
+        .albums-header button.active {
+            background: #2ea3d0;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+            overflow-x: visible;
+            padding-bottom: 4px;
+        }
+        .albums-grid.scrollable {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x proximity;
+            padding-bottom: 14px;
+        }
+        .albums-grid.scrollable .album-card {
+            flex: 0 0 calc((100% - 54px) / 4);
+            min-width: calc((100% - 54px) / 4);
+            max-width: calc((100% - 54px) / 4);
+            scroll-snap-align: start;
+        }
+        .albums-grid.scrollable::-webkit-scrollbar { height: 10px; }
+        .albums-grid.scrollable::-webkit-scrollbar-track { background: rgba(46,93,160,.12); border-radius: 999px; }
+        .albums-grid.scrollable::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #2ea3d0, #3a5fa0); border-radius: 999px; }
+        .create-album-below { margin-top: 16px; display: none; justify-content: center; }
+        .create-album-below.active { display: flex; }
+        .create-album-plus { width: 58px; height: 58px; border-radius: 50%; border: 0; background: linear-gradient(135deg, #2ea3d0, #3a5fa0); color: #fff; font-size: 1.25rem; cursor: pointer; box-shadow: 0 10px 24px rgba(46,93,160,.22); }
+        @media (max-width: 980px) {
+            .albums-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .albums-grid.scrollable .album-card { flex-basis: calc((100% - 18px) / 2); min-width: calc((100% - 18px) / 2); max-width: calc((100% - 18px) / 2); }
+        }
+        @media (max-width: 560px) {
+            .albums-grid { grid-template-columns: 1fr; }
+            .albums-grid.scrollable .album-card { flex-basis: 100%; min-width: 100%; max-width: 100%; }
+        }
+
+        .album-card {
+            position: relative;
+            min-height: 150px;
+            border: none;
+            border-radius: 22px;
+            overflow: hidden;
+            padding: 20px;
+            text-align: left;
+            font-family: 'Raleway', sans-serif;
+            color: #ffffff;
+            cursor: pointer;
+            background: linear-gradient(135deg, #2ea3d0, #3a5fa0);
+            box-shadow: 0 12px 28px rgba(46, 93, 160, 0.18);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .album-card::before,
+        .album-card::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            pointer-events: none;
+        }
+
+        .album-card::before {
+            width: 120px;
+            height: 120px;
+            right: -34px;
+            top: -30px;
+        }
+
+        .album-card::after {
+            width: 78px;
+            height: 78px;
+            left: -18px;
+            bottom: -22px;
+        }
+
+        .album-card:hover,
+        .album-card.active,
+        .album-card.create-album-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 34px rgba(46, 93, 160, 0.28);
+        }
+
+        .album-card.active {
+            outline: 4px solid rgba(46, 163, 208, 0.24);
+        }
+        .album-card.create-album-card {
+            background: #ffffff;
+            color: #2a4e87;
+            border: 2px dashed rgba(46, 93, 160, 0.35);
+            box-shadow: 0 10px 24px rgba(46, 93, 160, 0.10);
+        }
+        .album-card.create-album-card::before,
+        .album-card.create-album-card::after { background: rgba(46, 163, 208, 0.12); }
+        .album-card.create-album-card .album-icon { background: rgba(46, 163, 208, 0.14); }
+
+        .album-card.has-cover {
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
+        .album-card.has-cover::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,.34);
+            border-radius: inherit;
+            z-index: 0;
+        }
+        .album-card.has-cover .album-icon,
+        .album-card.has-cover .album-title,
+        .album-card.has-cover .album-count { color: #ffffff; }
+
+        .album-card.has-cover .album-icon {
+            background: transparent !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+        }
+
+
+
+        /* У альбомов с собственной обложкой убираем любую подложку/затемнение именно вокруг иконки папки. */
+        .album-card.has-cover > .album-icon,
+        .album-card.has-cover > .album-icon i {
+            background: transparent !important;
+            box-shadow: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            mix-blend-mode: normal !important;
+            text-shadow: none !important;
+        }
+        .album-card.has-cover > .album-icon::before,
+        .album-card.has-cover > .album-icon::after {
+            content: none !important;
+            display: none !important;
+        }
+
+        .album-cover-edit-btn,
+        .album-delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.92);
+            color: #244b82;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 4;
+            box-shadow: 0 6px 16px rgba(0,0,0,.18);
+            transition: .2s;
+        }
+        .album-delete-btn { right: 52px; color: #d92d20; }
+        .album-cover-edit-btn:hover,
+        .album-delete-btn:hover { transform: translateY(-1px); background: #ffffff; }
+        body.gallery-editing .album-cover-edit-btn,
+        body.gallery-editing .album-delete-btn { display: inline-flex; }
+        .cover-options{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+        .cover-option-btn{border:0;border-radius:14px;padding:12px 14px;font-family:inherit;font-weight:800;cursor:pointer;background:#eef5ff;color:#244b82;text-align:left;display:flex;gap:10px;align-items:center}
+        .cover-option-btn:hover{background:#dfeeff}
+        .cover-option-btn.danger{background:#fff0f0;color:#c92a2a}
+        .cover-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-height:330px;overflow:auto;margin-top:12px}
+        .cover-photo-choice{border:3px solid transparent;border-radius:12px;overflow:hidden;background:#eef2f7;cursor:pointer;padding:0}
+        .cover-photo-choice:hover,.cover-photo-choice.active{border-color:#2ea3d0}
+        .cover-photo-choice img{width:100%;height:86px;object-fit:cover;display:block}
+        .cover-upload-label{display:flex;align-items:center;justify-content:center;gap:10px;border:2px dashed #9ec8ef;border-radius:16px;padding:18px;font-weight:800;color:#244b82;cursor:pointer;background:#f7fbff;margin-top:10px}
+        .cover-upload-label input{display:none}
+
+
+        .album-icon,
+        .album-title,
+        .album-count {
+            position: relative;
+            z-index: 1;
+        }
+
+        .album-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.18);
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+        }
+
+        .album-title {
+            display: block;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .album-count {
+            display: block;
+            font-weight: 700;
+            opacity: 0.88;
+            font-size: 0.9rem;
+        }
+
+        .gallery-title {
+            margin: 8px 0 18px;
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: #2c3e50;
+        }
+
+        body.dark-theme .albums-header h2,
+        body.dark-theme .gallery-title { color: #ffffff; }
+        body.dark-theme .albums-header button { background: #1e1e1e; color: #e0e0e0; }
+        body.dark-theme .albums-header button:hover,
+        body.dark-theme .albums-header button.active { background: #3a506b; color: #ffffff; }
+        body.blue-theme .albums-header h2,
+        body.blue-theme .gallery-title { color: #0d47a1; }
+        body.blue-theme .albums-header button { background: #bbdefb; color: #0d47a1; }
+        body.blue-theme .albums-header button:hover,
+        body.blue-theme .albums-header button.active { background: #1e88e5; color: #ffffff; }
+
+.admin-gallery-card .info-overlay{pointer-events:auto}.admin-gallery-date{font-size:.82rem;opacity:.95}.admin-gallery-desc{font-size:.88rem;max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.admin-like-btn{cursor:pointer;display:inline-flex;align-items:center;gap:5px}.admin-like-btn.liked{color:#ff6b6b}
+/* ===== Режим редактирования галереи для администратора ===== */
+.gallery-edit-panel{display:none;width:90%;max-width:1200px;margin:40px auto 0;align-items:center;gap:12px;justify-content:flex-end}
+.gallery-edit-panel.active{display:flex}
+.gallery-edit-toggle{border:0;border-radius:16px;background:linear-gradient(135deg,#2ea3d0,#3a5fa0);color:#fff;font-family:'Raleway',sans-serif;font-weight:800;padding:13px 18px;cursor:pointer;box-shadow:0 8px 20px rgba(46,93,160,.22);transition:.2s}
+.gallery-edit-toggle:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(46,93,160,.28)}
+.gallery-edit-toggle.exit{background:#fff;color:#2a4e87;border:2px solid #2ea3d0}
+.photo-card.edit-mode-card img{transition:filter .25s,opacity .25s}
+.photo-card.edit-mode-card:hover img{filter:brightness(1.28) saturate(.45);opacity:.58}
+.edit-actions-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;pointer-events:none;transition:.22s;z-index:5}
+.photo-card.edit-mode-card:hover .edit-actions-overlay{opacity:1;pointer-events:auto}
+.gallery-edit-action{width:46px;height:46px;border:0;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;background:#fff;color:#234c83;font-size:1.05rem;box-shadow:0 10px 25px rgba(0,0,0,.24);transition:.18s}
+.gallery-edit-action:hover{transform:translateY(-2px) scale(1.04);background:#2ea3d0;color:#fff}
+.gallery-edit-action.danger{color:#e03131}.gallery-edit-action.danger:hover{background:#e03131;color:#fff}
+.album-edit-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;align-items:center;justify-content:center;padding:20px}
+.album-edit-modal.active{display:flex}
+.album-edit-box{width:min(440px,94vw);background:#fff;border-radius:22px;padding:24px;box-shadow:0 18px 45px rgba(0,0,0,.28);font-family:'Raleway',sans-serif;color:#25324b}
+.album-edit-box h3{font-weight:800;margin-bottom:14px;color:#244b82}
+.album-edit-box select,.album-edit-box input{width:100%;border:2px solid #dbe5f5;border-radius:14px;padding:12px 14px;font-family:inherit;font-weight:800;font-size:1rem;outline:none;background:#fff}
+.album-edit-help{margin:8px 0 0;color:#6b7890;font-weight:700;font-size:.88rem;line-height:1.4}
+.album-edit-buttons{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.album-edit-buttons button{border:0;border-radius:12px;padding:10px 14px;font-family:inherit;font-weight:800;cursor:pointer}
+.album-edit-cancel{background:#eef2f7;color:#526174}.album-edit-save{background:#2ea3d0;color:#fff}
+body.dark-theme .album-edit-box{background:#242424;color:#e8e8e8} body.dark-theme .album-edit-box select,body.dark-theme .album-edit-box input{background:#333;color:#e8e8e8;border-color:#555}
+
+
+
+
+        /* FINAL FIX: альбомы с обложкой без тёмной подложки вокруг иконки папки.
+           Убираем общий затемняющий слой сверху фотографии и оставляем только
+           мягкий нижний градиент для читаемости названия/счётчика. */
+        .album-card.has-cover::before {
+            content: none !important;
+            display: none !important;
+            background: transparent !important;
+        }
+
+        .album-card.has-cover::after {
+            content: "" !important;
+            position: absolute !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            top: auto !important;
+            width: auto !important;
+            height: 58% !important;
+            border-radius: 0 0 22px 22px !important;
+            background: linear-gradient(to top, rgba(0,0,0,.42), rgba(0,0,0,0)) !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+        }
+
+        .album-card.has-cover .album-icon {
+            width: auto !important;
+            height: auto !important;
+            padding: 0 !important;
+            margin-bottom: 20px !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            text-shadow: 0 2px 5px rgba(0,0,0,.28) !important;
+        }
+
+        .album-card.has-cover .album-icon i {
+            background: transparent !important;
+            box-shadow: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+
+
+        /* ===== FINAL ALBUM LAYOUT FIX =====
+           1) В строке альбомов всегда видны ровно 4 карточки.
+           2) Карточки с обложкой используют такую же подложку иконки папки,
+              как обычные альбомы, без тёмного пятна вокруг иконки.
+           3) Название и количество фото выровнены одинаково для всех альбомов. */
+        .albums-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+            gap: 18px !important;
+        }
+
+        .albums-grid.scrollable {
+            display: grid !important;
+            grid-auto-flow: column !important;
+            grid-auto-columns: calc((100% - 54px) / 4) !important;
+            grid-template-columns: none !important;
+            gap: 18px !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            padding-bottom: 14px !important;
+            scroll-snap-type: x proximity !important;
+        }
+
+        .albums-grid.scrollable .album-card {
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: none !important;
+            flex: none !important;
+            scroll-snap-align: start !important;
+        }
+
+        .album-card {
+            min-height: 150px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+        }
+
+        .album-icon {
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            flex: 0 0 44px !important;
+            padding: 0 !important;
+            border-radius: 14px !important;
+            background: rgba(255,255,255,0.18) !important;
+            box-shadow: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            margin: 0 0 20px 0 !important;
+        }
+
+        .album-title {
+            margin-top: auto !important;
+            margin-bottom: 6px !important;
+            line-height: 1.15 !important;
+        }
+
+        .album-count {
+            line-height: 1.2 !important;
+        }
+
+        .album-card.has-cover::before {
+            content: none !important;
+            display: none !important;
+            background: transparent !important;
+        }
+
+        .album-card.has-cover::after {
+            content: "" !important;
+            position: absolute !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            top: auto !important;
+            width: auto !important;
+            height: 58% !important;
+            border-radius: 0 0 22px 22px !important;
+            background: linear-gradient(to top, rgba(0,0,0,.42), rgba(0,0,0,0)) !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+        }
+
+        .album-card.has-cover .album-icon {
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            flex: 0 0 44px !important;
+            padding: 0 !important;
+            border-radius: 14px !important;
+            background: rgba(255,255,255,0.24) !important;
+            box-shadow: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            text-shadow: none !important;
+            margin: 0 0 20px 0 !important;
+        }
+
+        .album-card.has-cover .album-icon i {
+            background: transparent !important;
+            box-shadow: none !important;
+            filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            text-shadow: none !important;
+        }
+
+        .album-card.has-cover .album-title,
+        .album-card.has-cover .album-count {
+            text-shadow: 0 2px 7px rgba(0,0,0,.36) !important;
+        }
+
+        @media (max-width: 980px) {
+            .albums-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+            .albums-grid.scrollable { grid-auto-columns: calc((100% - 18px) / 2) !important; }
+        }
+
+        @media (max-width: 560px) {
+            .albums-grid { grid-template-columns: 1fr !important; }
+            .albums-grid.scrollable { grid-auto-columns: 100% !important; }
+        }
+
+</style>
+</head>
+
+<body>
+
+<!-- Хедер -->
+<div id="header-placeholder"></div>
+
+<div class="gallery-edit-panel" id="galleryEditPanel"><button type="button" class="gallery-edit-toggle" id="galleryEditToggle"><i class="fa-solid fa-pen-to-square"></i> Режим редактирования</button></div>
+<main class="content">
+    <div class="container">
+        <section class="gallery-hero">
+            <span class="hero-circle" aria-hidden="true"></span>
+            <span class="hero-circle" aria-hidden="true"></span>
+            <span class="hero-circle" aria-hidden="true"></span>
+            <span class="hero-circle" aria-hidden="true"></span>
+            <span class="hero-circle" aria-hidden="true"></span>
+            <span class="hero-circle" aria-hidden="true"></span>
+            <span class="hero-circle" aria-hidden="true"></span>
+            <div class="hero-badge"><i class="fa-solid fa-images"></i> Школьная галерея</div>
+            <h1>Галерея школы</h1>
+            <p>Фотографии школьных мероприятий, занятий и ярких моментов школьной жизни.</p>
+        </section>
+        <section class="albums-section" aria-label="Альбомы галереи">
+            <div class="albums-header">
+                <h2>Альбомы</h2>
+                <button type="button" id="showAllPhotosBtn" class="active">Все фотографии</button>
+            </div>
+            <div class="albums-grid" id="albumsGrid"></div>
+            <div class="create-album-below" id="createAlbumBelow"><button type="button" class="create-album-plus" id="createAlbumPlus" title="Создать альбом"><i class="fa-solid fa-plus"></i></button></div>
+        </section>
+        <h2 class="gallery-title" id="galleryTitle">Все фотографии</h2>
+        <div class="gallery" id="gallery"></div>
+        <p style="text-align:center; color:#888; margin-top:20px;" id="status">Загрузка фотографий…</p>
+    </div>
+</main>
+
+<!-- Лайтбокс -->
+
+<div class="album-edit-modal" id="albumEditModal">
+  <div class="album-edit-box">
+    <h3 id="albumEditTitle">Выбор альбома</h3>
+    <select id="albumEditSelect">
+      <option value="may-2026">Май 2026</option>
+      <option value="april-2026">Апрель 2026</option>
+      <option value="march-2026">Март 2026</option>
+    </select>
+    <input id="albumNameInput" type="text" placeholder="Название альбома" style="display:none;margin-top:4px;">
+    <p class="album-edit-help" id="albumEditHelp"></p>
+    <div class="album-edit-buttons">
+      <button type="button" class="album-edit-cancel" id="albumEditCancel">Отмена</button>
+      <button type="button" class="album-edit-save" id="albumEditSave">Сохранить</button>
+    </div>
+  </div>
+</div>
+<div class="album-edit-modal" id="coverEditModal">
+  <div class="album-edit-box">
+    <h3 id="coverEditTitle">Изменение обложки</h3>
+    <div id="coverEditContent"></div>
+    <p class="album-edit-help" id="coverEditHelp"></p>
+    <div class="album-edit-buttons">
+      <button type="button" class="album-edit-cancel" id="coverEditCancel">Закрыть</button>
+    </div>
+  </div>
+</div>
+<div class="lightbox" id="lightbox">
+    <span class="close" id="closeLightbox">&times;</span>
+    <span class="nav-btn prev" id="prevBtn">❮</span>
+    <img id="lightbox-img" alt="">
+    <div class="lightbox-caption">
+        <span class="desc" id="lightboxDesc"></span>
+        <span class="date" id="lightboxDate"></span>
+    </div>
+    <span class="nav-btn next" id="nextBtn">❯</span>
+</div>
+
+<!-- Футер -->
+<div id="footer-placeholder"></div>
+
+<script src="footer.js"></script>
+<script>
+    (function() {
+        // ----- ЗАГРУЗКА HEADER -----
+        fetch('header.html')
+            .then(res => {
+                if (!res.ok) throw new Error('Ошибка загрузки header.html');
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+                initHeaderAfterLoad();
+            })
+            .catch(err => console.error(err));
+
+        // ----- ИНИЦИАЛИЗАЦИЯ ПОСЛЕ ЗАГРУЗКИ -----
+        function initHeaderAfterLoad() {
+            const accessibilityBtn = document.getElementById('accessibilityBtn');
+            const panel = document.getElementById('accessibilityPanel');
+            const closePanelBtn = document.getElementById('closeAccessibilityPanel');
+            const noEffectsCheckbox = document.getElementById('noEffectsCheckbox');
+            const themeBtns = document.querySelectorAll('[data-group="theme"] .option-btn');
+            const fontSizeBtns = document.querySelectorAll('[data-group="fontSize"] .option-btn');
+            const imageModeBtns = document.querySelectorAll('[data-group="imageMode"] .option-btn');
+            const userBlock = document.getElementById('userBlock');
+            const userAvatar = document.getElementById('userAvatar');
+            const userNameSpan = document.getElementById('userName');
+            const userRoleSpan = document.getElementById('userRole');
+            const loginBtn = document.getElementById('loginBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            let settings = {
+                theme: localStorage.getItem('a11y_theme') || 'original',
+                fontSize: localStorage.getItem('a11y_fontSize') || '1',
+                noEffects: localStorage.getItem('a11y_noEffects') === 'true',
+                imageMode: localStorage.getItem('a11y_imageMode') || 'original'
+            };
+
+            function applySettings() {
+                document.body.classList.remove('dark-theme', 'blue-theme');
+                if (settings.theme === 'dark') document.body.classList.add('dark-theme');
+                else if (settings.theme === 'blue') document.body.classList.add('blue-theme');
+                document.documentElement.classList.remove('font-size-1', 'font-size-2', 'font-size-3', 'font-size-4');
+                document.documentElement.classList.add('font-size-' + settings.fontSize);
+                if (settings.noEffects) document.body.classList.add('no-effects');
+                else document.body.classList.remove('no-effects');
+                document.body.classList.remove('images-grayscale', 'images-hide');
+                if (settings.imageMode === 'grayscale') document.body.classList.add('images-grayscale');
+                else if (settings.imageMode === 'hide') document.body.classList.add('images-hide');
+                updatePanelButtons();
+                if (noEffectsCheckbox) noEffectsCheckbox.checked = settings.noEffects;
+            }
+
+            function updatePanelButtons() {
+                themeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.value === settings.theme));
+                fontSizeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.value === settings.fontSize));
+                imageModeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.value === settings.imageMode));
+            }
+
+            function saveSettings() {
+                localStorage.setItem('a11y_theme', settings.theme);
+                localStorage.setItem('a11y_fontSize', settings.fontSize);
+                localStorage.setItem('a11y_noEffects', settings.noEffects);
+                localStorage.setItem('a11y_imageMode', settings.imageMode);
+            }
+
+            themeBtns.forEach(btn => btn.addEventListener('click', () => { settings.theme = btn.dataset.value; saveSettings(); applySettings(); }));
+            fontSizeBtns.forEach(btn => btn.addEventListener('click', () => { settings.fontSize = btn.dataset.value; saveSettings(); applySettings(); }));
+            imageModeBtns.forEach(btn => btn.addEventListener('click', () => { settings.imageMode = btn.dataset.value; saveSettings(); applySettings(); }));
+            if (noEffectsCheckbox) noEffectsCheckbox.addEventListener('change', () => { settings.noEffects = noEffectsCheckbox.checked; saveSettings(); applySettings(); });
+
+            function togglePanel() {
+                panel.classList.toggle('active');
+                if (accessibilityBtn) accessibilityBtn.classList.toggle('active-icon', panel.classList.contains('active'));
+            }
+            accessibilityBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
+            closePanelBtn.addEventListener('click', () => { panel.classList.remove('active'); accessibilityBtn.classList.remove('active-icon'); });
+            document.addEventListener('click', (e) => {
+                if (panel && !panel.contains(e.target) && e.target !== accessibilityBtn) {
+                    panel.classList.remove('active');
+                    accessibilityBtn.classList.remove('active-icon');
+                }
+            });
+
+            applySettings();
+
+            // Авторизация
+            const API_URL = (() => {
+                if (window.location.protocol.startsWith('http')) {
+                    const host = window.location.hostname || '127.0.0.1';
+                    return `${window.location.protocol}//${host}:5000`;
+                }
+                return 'http://127.0.0.1:5000';
+            })();
+
+            const isAuth = localStorage.getItem('auth') === 'true';
+            const savedLogin = localStorage.getItem('login');
+            let savedRole = localStorage.getItem('role') || '';
+            let savedFullName = localStorage.getItem('full_name') || savedLogin;
+            let savedAvatarColor = localStorage.getItem('avatar_color') || null;
+            let savedProfilePhoto = localStorage.getItem('profile_photo') || '';
+
+            function getInitials(name) { return name ? name.charAt(0).toUpperCase() : '?'; }
+            function getDefaultAvatarColor(name) {
+                let hash = 0;
+                for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+                const colors = [
+                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+                ];
+                return colors[Math.abs(hash) % colors.length];
+            }
+
+            function setAvatarElement(el, name, color, photo) {
+                if (!el) return;
+                if (photo) {
+                    el.style.background = 'transparent';
+                    el.style.backgroundImage = `url(${photo})`;
+                    el.style.backgroundSize = 'cover';
+                    el.style.backgroundPosition = 'center';
+                    el.textContent = '';
+                } else {
+                    el.style.backgroundImage = '';
+                    el.style.background = color || getDefaultAvatarColor(name || savedLogin);
+                    el.textContent = getInitials(name || savedLogin);
+                }
+            }
+
+            function updateUserInterface() {
+                if (isAuth && savedLogin) {
+                    if (userBlock) userBlock.style.display = 'flex';
+                    if (loginBtn) loginBtn.style.display = 'none';
+                    if (logoutBtn) logoutBtn.style.display = 'inline-block';
+                    const displayName = savedFullName || savedLogin;
+                    const avatarColor = savedAvatarColor || getDefaultAvatarColor(displayName);
+                    setAvatarElement(userAvatar, displayName, avatarColor, savedProfilePhoto);
+                    if (userNameSpan) userNameSpan.textContent = displayName;
+                    if (userRoleSpan) userRoleSpan.textContent = savedRole || 'Гость';
+                } else {
+                    if (userBlock) userBlock.style.display = 'none';
+                    if (loginBtn) loginBtn.style.display = 'inline-block';
+                    if (logoutBtn) logoutBtn.style.display = 'none';
+                }
+            }
+
+            async function loadHeaderUserInfo() {
+                if (!isAuth || !savedLogin) return;
+                updateUserInterface();
+                try {
+                    const response = await fetch(`${API_URL}/api/user_info?login=${encodeURIComponent(savedLogin)}`, { mode: 'cors' });
+                    const data = await response.json();
+                    if (data.success && data.user) {
+                        savedRole = savedRole || data.user.role || '';
+                        savedFullName = savedFullName || data.user.full_name || savedLogin;
+                        savedAvatarColor = savedAvatarColor || data.user.avatar_color;
+                        savedProfilePhoto = savedProfilePhoto || data.user.profile_photo || '';
+
+                        localStorage.setItem('role', savedRole);
+                        localStorage.setItem('full_name', savedFullName);
+                        if (savedAvatarColor) localStorage.setItem('avatar_color', savedAvatarColor);
+                        if (savedProfilePhoto) localStorage.setItem('profile_photo', savedProfilePhoto);
+                        else localStorage.removeItem('profile_photo');
+
+                        updateUserInterface();
+                    }
+                } catch (err) {
+                    console.error('Не удалось загрузить фото профиля:', err);
+                }
+            }
+
+            loadHeaderUserInfo();
+            function getProfilePageByRole() {
+                const role = String(localStorage.getItem('role') || '').trim().toLowerCase();
+                if (['ученик', 'родитель'].includes(role)) return 'lk.html';
+                if (['учитель', 'преподаватель'].includes(role)) return 'lkteacher.html';
+                if (['директор', 'администратор', 'администрация'].includes(role)) return 'lkadmin.html';
+                if (role === 'гость') return 'index.html';
+                return 'lk.html';
+            }
+            if (userBlock) userBlock.onclick = () => { if (isAuth && savedLogin) window.location.href = getProfilePageByRole(); };
+            if (loginBtn) loginBtn.onclick = () => { window.location.href = 'login.html'; };
+            if (logoutBtn) logoutBtn.onclick = () => {
+                if (confirm('Вы уверены, что хотите выйти?')) {
+                    localStorage.removeItem('auth');
+                    localStorage.removeItem('login');
+                    localStorage.removeItem('password');
+                    localStorage.removeItem('role');
+                    localStorage.removeItem('full_name');
+                    localStorage.removeItem('avatar_color');
+                    localStorage.removeItem('profile_photo');
+                    location.reload();
+                }
+            };
+        }
+
+    })();
+</script>
+
+<script>
+    (function() {
+        // ========== НАСТРОЙКИ ==========
+        const LIST_URL = 'photos/list.json';                 // <--- теперь JSON-файл
+        const STORAGE_META_KEY = 'gallery_photos_meta';
+        const STORAGE_LIKES_KEY = 'gallery_user_likes';
+
+        // ========== УТИЛИТЫ ХРАНИЛИЩА ==========
+        function getMeta() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_META_KEY)) || {}; } catch(e) { return {}; }
+        }
+        function setMeta(meta) { localStorage.setItem(STORAGE_META_KEY, JSON.stringify(meta)); }
+
+        function getLikesStorageKey() {
+            const login = localStorage.getItem('auth') === 'true'
+                ? String(localStorage.getItem('login') || '').trim().toLowerCase()
+                : '';
+            return login ? STORAGE_LIKES_KEY + ':' + login : STORAGE_LIKES_KEY + ':guest';
+        }
+        function canLike() {
+            return localStorage.getItem('auth') === 'true' && !!String(localStorage.getItem('login') || '').trim();
+        }
+        function getUserLikes() {
+            if (!canLike()) return [];
+            try { return JSON.parse(localStorage.getItem(getLikesStorageKey())) || []; } catch(e) { return []; }
+        }
+        function setUserLikes(likes) { if (canLike()) localStorage.setItem(getLikesStorageKey(), JSON.stringify(likes)); }
+
+        function apiRoots() {
+            const roots = [];
+            if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+                if (window.location.port === '5000') roots.push(window.location.origin);
+                roots.push(`${window.location.protocol}//${window.location.hostname || '127.0.0.1'}:5000`);
+            }
+            roots.push('http://127.0.0.1:5000', 'http://localhost:5000');
+            return Array.from(new Set(roots));
+        }
+
+        async function apiFetch(path, options) {
+            let lastError = null;
+            for (const root of apiRoots()) {
+                try {
+                    const response = await fetch(root + path, options || {});
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    return response;
+                } catch (error) {
+                    lastError = error;
+                }
+            }
+            throw lastError || new Error('server.py не отвечает');
+        }
+
+        function normalizePhotoPath(path) {
+            const value = String(path || '').trim();
+            if (!value || /^(data:|https?:\/\/|\/)/i.test(value)) return value;
+            return apiRoots()[0] + '/' + value.replace(/^\/+/, '');
+        }
+
+        // ========== ЗАГРУЗКА СПИСКА ФОТО ==========
+        async function fetchPhotoList() {
+            const response = await fetch(LIST_URL);
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            const data = await response.json();
+            if (!Array.isArray(data)) throw new Error('Неверный формат JSON');
+            return data.map(name => 'photos/' + name);
+        }
+
+        // ========== ГАЛЕРЕЯ ==========
+        const galleryDiv = document.getElementById('gallery');
+        const albumsGrid = document.getElementById('albumsGrid');
+        const showAllPhotosBtn = document.getElementById('showAllPhotosBtn');
+        const galleryTitle = document.getElementById('galleryTitle');
+        const statusEl = document.getElementById('status');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxDesc = document.getElementById('lightboxDesc');
+        const lightboxDate = document.getElementById('lightboxDate');
+        const closeBtn = document.getElementById('closeLightbox');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const galleryEditPanel = document.getElementById('galleryEditPanel');
+        const galleryEditToggle = document.getElementById('galleryEditToggle');
+        const albumEditModal = document.getElementById('albumEditModal');
+        const albumEditTitle = document.getElementById('albumEditTitle');
+        const albumEditSelect = document.getElementById('albumEditSelect');
+        const albumEditCancel = document.getElementById('albumEditCancel');
+        const albumEditSave = document.getElementById('albumEditSave');
+        const albumNameInput = document.getElementById('albumNameInput');
+        const albumEditHelp = document.getElementById('albumEditHelp');
+        const createAlbumBelow = document.getElementById('createAlbumBelow');
+        const createAlbumPlus = document.getElementById('createAlbumPlus');
+        const coverEditModal = document.getElementById('coverEditModal');
+        const coverEditTitle = document.getElementById('coverEditTitle');
+        const coverEditContent = document.getElementById('coverEditContent');
+        const coverEditHelp = document.getElementById('coverEditHelp');
+        const coverEditCancel = document.getElementById('coverEditCancel');
+
+        let allPhotos = [];
+        let visiblePhotos = [];
+        let albums = [];
+        let activeAlbumId = null;
+        let currentIndex = 0;
+        let editMode = false;
+        let pendingAlbumAction = null;
+
+
+
+        function seededShuffle(items, seed) {
+            const result = items.slice();
+            let value = seed;
+            for (let i = result.length - 1; i > 0; i--) {
+                value = (value * 9301 + 49297) % 233280;
+                const j = Math.floor((value / 233280) * (i + 1));
+                [result[i], result[j]] = [result[j], result[i]];
+            }
+            return result;
+        }
+
+
+        const DEFAULT_ALBUMS = [
+            { id: 'may-2026', title: 'Май 2026' },
+            { id: 'april-2026', title: 'Апрель 2026' },
+            { id: 'march-2026', title: 'Март 2026' }
+        ];
+        const CUSTOM_ALBUMS_KEY = 'gallery_custom_albums_v2';
+        const ALBUM_EXCLUSIONS_KEY = 'gallery_album_exclusions_v2';
+        const ALBUM_COVERS_KEY = 'gallery_album_covers_v1';
+        const DELETED_ALBUMS_KEY = 'gallery_deleted_albums_v1';
+
+        function escapeAttr(value) { return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch])); }
+        function getAlbumCovers() { try { return JSON.parse(localStorage.getItem(ALBUM_COVERS_KEY) || '{}') || {}; } catch (e) { return {}; } }
+        function setAlbumCovers(data) { localStorage.setItem(ALBUM_COVERS_KEY, JSON.stringify(data || {})); }
+        function getAlbumCover(albumId) { return getAlbumCovers()[albumId] || ''; }
+        function setAlbumCover(albumId, value) {
+            const covers = getAlbumCovers();
+            if (value) covers[albumId] = value; else delete covers[albumId];
+            setAlbumCovers(covers);
+            renderAlbums();
+        }
+        function deleteAlbumCover(albumId) { setAlbumCover(albumId, ''); }
+        function closeCoverModal() { if (coverEditModal) coverEditModal.classList.remove('active'); }
+        function openCoverChoiceModal(albumId) {
+            const album = albums.find(item => item.id === albumId);
+            if (!album || !coverEditModal || !coverEditContent) return;
+            if (coverEditTitle) coverEditTitle.textContent = 'Выбрать обложку: ' + album.title;
+            const photos = album.photos || [];
+            const currentCover = getAlbumCover(albumId);
+            const fromPhotos = photos.length ? `<div class="cover-photo-grid">${photos.map((photo, index) => `<button type="button" class="cover-photo-choice${currentCover === photo.url ? ' active' : ''}" data-cover-url="${escapeAttr(photo.url)}" title="Фото ${index + 1}"><img src="${escapeAttr(photo.url)}" alt="Фото ${index + 1}"></button>`).join('')}</div>` : '<p class="album-edit-help">В этом альбоме пока нет фотографий для выбора обложки.</p>';
+            coverEditContent.innerHTML = `
+                <button type="button" class="cover-option-btn" data-cover-source="album"><i class="fa-solid fa-images"></i> Выбрать из загруженных в альбом фото</button>
+                <div id="coverPhotosBlock" style="display:none;">${fromPhotos}</div>
+                <label class="cover-upload-label"><i class="fa-solid fa-upload"></i> Загрузить с устройства<input type="file" id="coverUploadInput" accept="image/*"></label>
+            `;
+            if (coverEditHelp) coverEditHelp.textContent = 'Выберите фото из альбома или загрузите отдельную обложку с устройства.';
+            coverEditModal.classList.add('active');
+            const albumBtn = coverEditContent.querySelector('[data-cover-source="album"]');
+            const photosBlock = coverEditContent.querySelector('#coverPhotosBlock');
+            if (albumBtn && photosBlock) albumBtn.addEventListener('click', () => { photosBlock.style.display = photosBlock.style.display === 'none' ? 'block' : 'none'; });
+            coverEditContent.querySelectorAll('[data-cover-url]').forEach(btn => {
+                btn.addEventListener('click', () => { setAlbumCover(albumId, btn.dataset.coverUrl || ''); closeCoverModal(); });
+            });
+            const upload = coverEditContent.querySelector('#coverUploadInput');
+            if (upload) upload.addEventListener('change', () => {
+                const file = upload.files && upload.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = () => { setAlbumCover(albumId, String(reader.result || '')); closeCoverModal(); };
+                reader.readAsDataURL(file);
+            });
+        }
+        function openCoverManageModal(albumId) {
+            const album = albums.find(item => item.id === albumId);
+            if (!album || !coverEditModal || !coverEditContent) return;
+            const hasCover = !!getAlbumCover(albumId);
+            if (!hasCover) { openCoverChoiceModal(albumId); return; }
+            if (coverEditTitle) coverEditTitle.textContent = 'Изменение обложки: ' + album.title;
+            coverEditContent.innerHTML = `
+                <div class="cover-options">
+                    <button type="button" class="cover-option-btn" data-cover-action="update"><i class="fa-solid fa-rotate"></i> Обновить обложку</button>
+                    <button type="button" class="cover-option-btn danger" data-cover-action="delete"><i class="fa-solid fa-trash"></i> Удалить обложку</button>
+                </div>
+            `;
+            if (coverEditHelp) coverEditHelp.textContent = 'Можно заменить текущую обложку или удалить её.';
+            coverEditModal.classList.add('active');
+            coverEditContent.querySelector('[data-cover-action="update"]').addEventListener('click', () => openCoverChoiceModal(albumId));
+            coverEditContent.querySelector('[data-cover-action="delete"]').addEventListener('click', () => { if (confirm('Удалить обложку альбома?')) { deleteAlbumCover(albumId); closeCoverModal(); } });
+        }
+
+        function slugifyAlbumName(name) {
+            const base = String(name || '').trim().toLowerCase()
+                .replace(/[ё]/g, 'е')
+                .replace(/[^a-zа-я0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '') || 'album';
+            return 'custom-' + base + '-' + Date.now().toString(36);
+        }
+        function getCustomAlbums() {
+            try { return JSON.parse(localStorage.getItem(CUSTOM_ALBUMS_KEY) || '[]') || []; } catch (e) { return []; }
+        }
+        function setCustomAlbums(list) { localStorage.setItem(CUSTOM_ALBUMS_KEY, JSON.stringify(list || [])); }
+        function getDeletedAlbums() { try { return JSON.parse(localStorage.getItem(DELETED_ALBUMS_KEY) || '[]') || []; } catch (e) { return []; } }
+        function setDeletedAlbums(list) { localStorage.setItem(DELETED_ALBUMS_KEY, JSON.stringify([...(new Set(list || []))])); }
+        function getAlbumDefs() {
+            const deleted = getDeletedAlbums();
+            return DEFAULT_ALBUMS.concat(getCustomAlbums()).filter(item => deleted.indexOf(item.id) === -1);
+        }
+        function getAlbumTitle(albumId) { const found = getAlbumDefs().find(item => item.id === albumId); return found ? found.title : albumId; }
+        function isKnownAlbum(albumId) { return !!getAlbumDefs().find(item => item.id === albumId); }
+        function getAlbumExclusions() { try { return JSON.parse(localStorage.getItem(ALBUM_EXCLUSIONS_KEY) || '{}') || {}; } catch (e) { return {}; } }
+        function setAlbumExclusions(data) { localStorage.setItem(ALBUM_EXCLUSIONS_KEY, JSON.stringify(data || {})); }
+        function photoKey(photo) { return String((photo && (photo.source === 'admin' || photo.source === 'local-admin') && photo.postId) ? ('post_' + photo.postId) : (photo && photo.id || '')); }
+        function isPhotoExcludedFromAlbum(photo, albumId) {
+            const map = getAlbumExclusions();
+            const list = map[photoKey(photo)] || [];
+            return list.indexOf(albumId) !== -1;
+        }
+        function addPhotoAlbumExclusion(photo, albumId) {
+            const key = photoKey(photo);
+            if (!key || !albumId) return;
+            const map = getAlbumExclusions();
+            const list = Array.isArray(map[key]) ? map[key] : [];
+            if (list.indexOf(albumId) === -1) list.push(albumId);
+            map[key] = list;
+            setAlbumExclusions(map);
+        }
+        function removePhotoAlbumExclusion(photo, albumId) {
+            const key = photoKey(photo);
+            if (!key || !albumId) return;
+            const map = getAlbumExclusions();
+            if (!Array.isArray(map[key])) return;
+            map[key] = map[key].filter(item => item !== albumId);
+            if (!map[key].length) delete map[key];
+            setAlbumExclusions(map);
+        }
+        function isAdminUser() {
+            const isAuth = localStorage.getItem('auth') === 'true';
+            const login = String(localStorage.getItem('login') || '').trim();
+            const role = String(localStorage.getItem('role') || '').trim().toLowerCase();
+            return isAuth && !!login && (role === 'администратор' || role === 'директор' || role === 'администрация');
+        }
+        function getPhotoAlbums(photo) {
+            const raw = photo && photo.album ? String(photo.album) : '';
+            return raw.split(/[,;\s]+/).map(item => item.trim()).filter(Boolean);
+        }
+        function setPhotoAlbums(photo, albumsList) {
+            const unique = [];
+            (albumsList || []).forEach(value => {
+                if (isKnownAlbum(value) && unique.indexOf(value) === -1) unique.push(value);
+            });
+            photo.album = unique.join(',');
+        }
+        function fillAlbumSelect(excludeAlbumId) {
+            if (!albumEditSelect) return;
+            const options = getAlbumDefs().filter(item => item.id !== excludeAlbumId);
+            albumEditSelect.innerHTML = options.map(item => `<option value="${item.id}">${item.title}</option>`).join('');
+            if (options[0]) albumEditSelect.value = options[0].id;
+        }
+        function openAlbumModal(title, action) {
+            pendingAlbumAction = action || { type: 'select' };
+            if (albumEditTitle) albumEditTitle.textContent = title || 'Выбор альбома';
+            const isCreate = pendingAlbumAction.type === 'create-album';
+            if (albumEditSelect) {
+                albumEditSelect.style.display = isCreate ? 'none' : '';
+                fillAlbumSelect(pendingAlbumAction.excludeAlbumId || null);
+            }
+            if (albumNameInput) {
+                albumNameInput.style.display = isCreate ? '' : 'none';
+                albumNameInput.value = '';
+                if (isCreate) setTimeout(() => albumNameInput.focus(), 50);
+            }
+            if (albumEditHelp) {
+                albumEditHelp.textContent = isCreate ? 'Введите название нового альбома. Он появится в списке альбомов и в выборе при добавлении фото.' : '';
+            }
+            if (albumEditModal) albumEditModal.classList.add('active');
+        }
+        function closeAlbumModal() {
+            pendingAlbumAction = null;
+            if (albumEditModal) albumEditModal.classList.remove('active');
+        }
+        async function savePhotoAlbumChanges(photo) {
+            if ((photo.source === 'admin' || photo.source === 'local-admin') && photo.postId) {
+                try {
+                    await apiFetch('/api/admin/gallery/' + photo.postId + '/album', {
+                        method: 'POST',
+                        headers: {'Content-Type':'application/json'},
+                        body: JSON.stringify({ album: photo.album || '' })
+                    });
+                    return;
+                } catch (e) {
+                    console.warn('Не удалось сохранить альбом на сервере, пробуем локально', e);
+                }
+                try {
+                    const posts = JSON.parse(localStorage.getItem('school_admin_posts_v2')) || [];
+                    posts.forEach(post => { if (String(post.id) === String(photo.postId)) post.album = photo.album || ''; });
+                    localStorage.setItem('school_admin_posts_v2', JSON.stringify(posts));
+                } catch (_) {}
+            } else {
+                const meta = getMeta();
+                meta[photo.id] = { description: photo.description, addedAt: photo.addedAt, likes: photo.likes, album: photo.album || '' };
+                setMeta(meta);
+            }
+        }
+        async function addPhotoToAlbum(photo, albumId) {
+            if (!albumId || !isKnownAlbum(albumId)) return;
+            removePhotoAlbumExclusion(photo, albumId);
+            const list = getPhotoAlbums(photo);
+            if (list.indexOf(albumId) === -1) list.push(albumId);
+            setPhotoAlbums(photo, list);
+            await savePhotoAlbumChanges(photo);
+            buildAlbums(); setActiveAlbum(activeAlbumId);
+        }
+        async function removePhotoFromCurrentAlbum(photo) {
+            if (!activeAlbumId) return;
+            addPhotoAlbumExclusion(photo, activeAlbumId);
+            const list = getPhotoAlbums(photo).filter(item => item !== activeAlbumId);
+            setPhotoAlbums(photo, list);
+            await savePhotoAlbumChanges(photo);
+            buildAlbums(); setActiveAlbum(activeAlbumId);
+        }
+        function createNewAlbum() {
+            openAlbumModal('Создать альбом', { type: 'create-album' });
+        }
+        async function deleteAlbum(albumId) {
+            const album = getAlbumDefs().find(item => item.id === albumId);
+            if (!album) return;
+            if (!confirm('Удалить альбом «' + album.title + '»? Фотографии останутся в общей галерее.')) return;
+            setCustomAlbums(getCustomAlbums().filter(item => item.id !== albumId));
+            if (DEFAULT_ALBUMS.some(item => item.id === albumId)) {
+                const deleted = getDeletedAlbums();
+                if (deleted.indexOf(albumId) === -1) deleted.push(albumId);
+                setDeletedAlbums(deleted);
+            }
+            const covers = getAlbumCovers();
+            delete covers[albumId];
+            setAlbumCovers(covers);
+            const exclusions = getAlbumExclusions();
+            Object.keys(exclusions).forEach(key => {
+                if (Array.isArray(exclusions[key])) exclusions[key] = exclusions[key].filter(item => item !== albumId);
+                if (!exclusions[key] || !exclusions[key].length) delete exclusions[key];
+            });
+            setAlbumExclusions(exclusions);
+            for (const photo of allPhotos) {
+                const nextAlbums = getPhotoAlbums(photo).filter(item => item !== albumId);
+                if (nextAlbums.join(',') !== getPhotoAlbums(photo).join(',')) {
+                    setPhotoAlbums(photo, nextAlbums);
+                    await savePhotoAlbumChanges(photo);
+                }
+            }
+            if (activeAlbumId === albumId) activeAlbumId = null;
+            buildAlbums();
+            setActiveAlbum(activeAlbumId);
+        }
+        async function deletePhotoFromGallery(photo) {
+            if (!confirm('Удалить фото из галереи полностью?')) return;
+            if ((photo.source === 'admin' || photo.source === 'local-admin') && photo.postId) {
+                try { await apiFetch('/api/admin/posts/' + photo.postId, { method: 'DELETE' }); } catch (e) {
+                    try {
+                        const posts = JSON.parse(localStorage.getItem('school_admin_posts_v2')) || [];
+                        localStorage.setItem('school_admin_posts_v2', JSON.stringify(posts.filter(post => String(post.id) !== String(photo.postId))));
+                    } catch (_) {}
+                }
+            } else {
+                const hidden = JSON.parse(localStorage.getItem('gallery_hidden_photos') || '[]');
+                if (hidden.indexOf(photo.id) === -1) hidden.push(photo.id);
+                localStorage.setItem('gallery_hidden_photos', JSON.stringify(hidden));
+            }
+            allPhotos = allPhotos.filter(item => item.id !== photo.id && String(item.postId || '') !== String(photo.postId || ''));
+            buildAlbums(); setActiveAlbum(activeAlbumId);
+        }
+        function renderEditActions(card, photo) {
+            if (!editMode || !isAdminUser()) return;
+            card.classList.add('edit-mode-card');
+            const panel = document.createElement('div');
+            panel.className = 'edit-actions-overlay';
+            if (!activeAlbumId) {
+                panel.innerHTML = '<button type="button" class="gallery-edit-action" title="Добавить фото в альбом" data-edit-action="add"><i class="fa-solid fa-plus"></i></button><button type="button" class="gallery-edit-action danger" title="Удалить фото" data-edit-action="delete"><i class="fa-solid fa-trash"></i></button>';
+            } else {
+                panel.innerHTML = '<button type="button" class="gallery-edit-action" title="Скопировать в другой альбом" data-edit-action="copy"><i class="fa-solid fa-copy"></i></button><button type="button" class="gallery-edit-action" title="Удалить из альбома" data-edit-action="remove"><i class="fa-solid fa-folder-minus"></i></button><button type="button" class="gallery-edit-action danger" title="Удалить из галереи" data-edit-action="delete"><i class="fa-solid fa-trash"></i></button>';
+            }
+            panel.addEventListener('click', (e) => {
+                e.stopPropagation(); e.preventDefault();
+                const btn = e.target.closest('[data-edit-action]');
+                if (!btn) return;
+                const action = btn.dataset.editAction;
+                if (action === 'add') openAlbumModal('Добавить фото в альбом', { type: 'add', photo });
+                if (action === 'copy') openAlbumModal('Скопировать фото в другой альбом', { type: 'copy', photo, excludeAlbumId: activeAlbumId });
+                if (action === 'remove') { if (confirm('Удалить фото из выбранного альбома?')) removePhotoFromCurrentAlbum(photo); }
+                if (action === 'delete') deletePhotoFromGallery(photo);
+            });
+            card.appendChild(panel);
+        }
+
+        function buildAlbums() {
+            const albumDefs = getAlbumDefs();
+            const byNewest = allPhotos.slice().sort((a, b) => {
+                const da = new Date(a.addedAt || 0).getTime() || 0;
+                const db = new Date(b.addedAt || 0).getTime() || 0;
+                return db - da;
+            });
+
+            const manual = {};
+            albumDefs.forEach(album => { manual[album.id] = []; });
+            const used = new Set();
+
+            byNewest.forEach(photo => {
+                getPhotoAlbums(photo).forEach(albumId => {
+                    if (manual[albumId] && !isPhotoExcludedFromAlbum(photo, albumId)) {
+                        manual[albumId].push(photo);
+                        used.add(photo.id);
+                    }
+                });
+            });
+
+            const freePhotos = byNewest.filter(photo => !used.has(photo.id));
+
+            const mayManual = manual['may-2026'] || [];
+            const mayPhotos = mayManual.concat(freePhotos.filter(photo => !isPhotoExcludedFromAlbum(photo, 'may-2026')).slice(0, Math.max(0, 4 - mayManual.length)));
+            mayPhotos.forEach(photo => used.add(photo.id));
+
+            const remainingAfterMay = byNewest.filter(photo => !used.has(photo.id));
+            const aprilManual = manual['april-2026'] || [];
+            const aprilCandidates = seededShuffle(remainingAfterMay.filter(photo => !isPhotoExcludedFromAlbum(photo, 'april-2026')), 202604);
+            const aprilCount = Math.min(6, Math.max(0, Math.ceil(aprilCandidates.length / 2)));
+            const aprilPhotos = aprilManual.concat(aprilCandidates.slice(0, aprilCount));
+            aprilPhotos.forEach(photo => used.add(photo.id));
+
+            const remainingForMarch = byNewest.filter(photo => !used.has(photo.id));
+            const marchManual = manual['march-2026'] || [];
+            const marchFallback = seededShuffle(remainingForMarch.slice().reverse().filter(photo => !isPhotoExcludedFromAlbum(photo, 'march-2026')), 20260327);
+            const marchCount = Math.min(5, marchFallback.length);
+            const marchPhotos = marchManual.concat(marchFallback.slice(0, marchCount));
+
+            const photosByAlbum = Object.assign({}, manual, {
+                'may-2026': mayPhotos,
+                'april-2026': aprilPhotos,
+                'march-2026': marchPhotos
+            });
+
+            albums = albumDefs.map(album => ({
+                id: album.id,
+                title: album.title,
+                photos: (photosByAlbum[album.id] || []).filter(photo => !isPhotoExcludedFromAlbum(photo, album.id))
+            }));
+        }
+
+        function renderAlbums() {
+            if (!albumsGrid) return;
+            const totalAlbums = albums.length;
+            const canCreateAlbum = editMode && isAdminUser();
+            albumsGrid.classList.toggle('scrollable', totalAlbums >= 5);
+            const createCard = (canCreateAlbum && totalAlbums <= 3) ? `
+                <div class="album-card create-album-card" data-create-album="1" role="button" tabindex="0">
+                    <span class="album-icon"><i class="fa-solid fa-plus"></i></span>
+                    <span class="album-title">Создать альбом</span>
+                    <span class="album-count">Добавить новый раздел</span>
+                </div>
+            ` : '';
+            albumsGrid.innerHTML = albums.map(album => {
+                const cover = getAlbumCover(album.id);
+                const editButtons = canCreateAlbum ? `
+                    <button type="button" class="album-cover-edit-btn" data-cover-album-id="${album.id}" title="Изменить обложку"><i class="fa-solid fa-pen"></i></button>
+                    <button type="button" class="album-delete-btn" data-delete-album-id="${album.id}" title="Удалить альбом"><i class="fa-solid fa-trash"></i></button>
+                ` : '';
+                return `
+                <div class="album-card${activeAlbumId === album.id ? ' active' : ''}${cover ? ' has-cover' : ''}" data-album-id="${album.id}" role="button" tabindex="0"${cover ? ` style="background-image:url('${escapeAttr(cover)}')"` : ''}>
+                    ${editButtons}
+                    <span class="album-icon"><i class="fa-solid fa-folder-open"></i></span>
+                    <span class="album-title">${album.title}</span>
+                    <span class="album-count">${album.photos.length} фото</span>
+                </div>`;
+            }).join('') + createCard;
+            if (createAlbumBelow) createAlbumBelow.classList.toggle('active', canCreateAlbum && totalAlbums >= 4);
+
+            // Кнопки создаются динамически, поэтому дополнительно привязываем обработчики
+            // прямо после отрисовки. Делегирование ниже остаётся как резервный вариант.
+            albumsGrid.querySelectorAll('[data-cover-album-id]').forEach(btn => {
+                btn.onclick = (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    openCoverManageModal(btn.dataset.coverAlbumId);
+                };
+            });
+            albumsGrid.querySelectorAll('[data-delete-album-id]').forEach(btn => {
+                btn.onclick = (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    deleteAlbum(btn.dataset.deleteAlbumId);
+                };
+            });
+        }
+
+        function getDisplayedPhotos() {
+            if (!activeAlbumId) return allPhotos;
+            const album = albums.find(item => item.id === activeAlbumId);
+            return album ? album.photos : allPhotos;
+        }
+
+        function setActiveAlbum(albumId) {
+            activeAlbumId = albumId || null;
+            visiblePhotos = getDisplayedPhotos();
+            renderAlbums();
+            if (showAllPhotosBtn) showAllPhotosBtn.classList.toggle('active', !activeAlbumId);
+            const album = albums.find(item => item.id === activeAlbumId);
+            if (galleryTitle) galleryTitle.textContent = album ? album.title : 'Все фотографии';
+            renderGallery();
+        }
+
+        async function loadGallery() {
+            try {
+                statusEl.textContent = 'Загрузка списка фотографий…';
+                let urls = [];
+                try {
+                    urls = await fetchPhotoList();
+                } catch (error) {
+                    console.warn('Не удалось загрузить photos/list.json, пробуем фото из админки', error);
+                }
+                if (urls.length === 0) {
+                    statusEl.textContent = '';
+                }
+                let adminPhotos = [];
+                try {
+    const res = await apiFetch('/api/site/posts?page=gallery');
+    const data = await res.json();
+    const adminPosts = data.posts || data.data || [];
+
+    adminPosts.forEach(post => {
+        (post.files || []).forEach((file, fileIndex) => {
+            if (!String(file.type || '').startsWith('image/') && !String(file.path || '').startsWith('data:image')) return;
+            adminPhotos.push({
+                id: 'admin_' + post.id + '_' + fileIndex,
+                postId: post.id,
+                source: 'admin',
+                url: normalizePhotoPath(file.path),
+                description: post.content || post.title || file.name || '',
+                addedAt: post.created_at,
+                likes: Number(post.likes || 0),
+                album: post.album || ''
+            });
+        });
+    });
+} catch (e) {
+    console.warn('Не удалось загрузить фото из админки', e);
+    try {
+        const localPosts = (JSON.parse(localStorage.getItem('school_admin_posts_v2')) || []).filter(post => post.page === 'gallery');
+        localPosts.forEach(post => {
+            (post.files || []).forEach((file, fileIndex) => {
+                if (!String(file.type || '').startsWith('image/') && !String(file.path || '').startsWith('data:image')) return;
+                adminPhotos.push({
+                    id: 'admin_local_' + (post.id || Date.now()) + '_' + fileIndex,
+                    postId: post.id,
+                    source: 'local-admin',
+                    url: normalizePhotoPath(file.path),
+                    description: post.content || post.title || file.name || '',
+                    addedAt: post.created_at,
+                    likes: Number(post.likes || 0),
+                    album: post.album || ''
+                });
+            });
+        });
+    } catch (_) {}
+}
+
+                const meta = getMeta();
+                const userLikes = getUserLikes();
+
+                const regularPhotos = urls.map(url => {
+                    const id = 'photo_' + url.replace(/[^a-zA-Z0-9]/g, '_');
+                    const saved = meta[id] || {};
+                    return {
+                        id: id,
+                        url: url,
+                        description: saved.description || '',
+                        addedAt: saved.addedAt || new Date().toISOString(),
+                        likes: saved.likes || 0,
+                        album: saved.album || ''
+                    };
+                });
+                const hiddenPhotos = JSON.parse(localStorage.getItem('gallery_hidden_photos') || '[]');
+                allPhotos = adminPhotos.concat(regularPhotos).filter(photo => hiddenPhotos.indexOf(photo.id) === -1);
+                buildAlbums();
+                renderAlbums();
+                visiblePhotos = getDisplayedPhotos();
+
+                // Обновим метаданные, если появились новые фото
+                const newMeta = {};
+                allPhotos.forEach(p => { newMeta[p.id] = { description: p.description, addedAt: p.addedAt, likes: p.likes, album: p.album || '' }; });
+                setMeta(newMeta);
+
+                statusEl.textContent = '';
+                renderGallery();
+            } catch (error) {
+                console.error(error);
+                statusEl.textContent = 'Не удалось загрузить фотографии. Проверьте, что файл photos/list.json существует и доступен.';
+            }
+        }
+
+        function renderGallery() {
+            galleryDiv.innerHTML = '';
+            visiblePhotos = getDisplayedPhotos();
+            if (visiblePhotos.length === 0) {
+                galleryDiv.innerHTML = '<p style="text-align:center; color:#888; grid-column: 1 / -1;">В этом альбоме пока нет фотографий.</p>';
+                return;
+            }
+
+            const userLikes = getUserLikes();
+
+            visiblePhotos.forEach((photo, index) => {
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+
+                const img = document.createElement('img');
+                img.src = photo.url;
+                img.alt = photo.description || 'Фото ' + (index + 1);
+                img.addEventListener('click', () => openLightbox(index));
+
+                const overlay = document.createElement('div');
+                overlay.className = 'info-overlay';
+
+                const likesDiv = document.createElement('div');
+                likesDiv.className = 'info-likes';
+                if (userLikes.includes(photo.id)) likesDiv.classList.add('liked');
+                likesDiv.innerHTML = `<i class="${userLikes.includes(photo.id) ? 'fas' : 'far'} fa-heart"></i> <span>${photo.likes}</span>`;
+                likesDiv.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleLike(photo, likesDiv);
+                });
+
+                const dateDiv = document.createElement('div');
+                dateDiv.className = 'info-date';
+                dateDiv.textContent = formatDate(photo.addedAt);
+
+                overlay.appendChild(likesDiv);
+                overlay.appendChild(dateDiv);
+                card.appendChild(img);
+                card.appendChild(overlay);
+                renderEditActions(card, photo);
+                galleryDiv.appendChild(card);
+            });
+        }
+
+        function formatDate(isoString) {
+            if (!isoString) return '';
+            const date = new Date(isoString);
+            return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        // ========== ЛАЙКИ ==========
+        async function toggleLike(photo, likesDiv) {
+    if (!canLike()) return;
+    const userLikes = getUserLikes();
+    const likedIndex = userLikes.indexOf(photo.id);
+    const isUnlike = likedIndex > -1;
+
+    if (isUnlike) {
+        userLikes.splice(likedIndex, 1);
+        photo.likes = Math.max(0, photo.likes - 1);
+        likesDiv.classList.remove('liked');
+        likesDiv.querySelector('i').className = 'far fa-heart';
+    } else {
+        userLikes.push(photo.id);
+        photo.likes += 1;
+        likesDiv.classList.add('liked');
+        likesDiv.querySelector('i').className = 'fas fa-heart';
+    }
+
+    likesDiv.querySelector('span').textContent = photo.likes;
+    setUserLikes(userLikes);
+
+    if ((photo.source === 'admin' || photo.source === 'local-admin') && photo.postId) {
+        try {
+            const res = await apiFetch('/api/gallery/' + photo.postId + '/like', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ action: isUnlike ? 'unlike' : 'like' })
+            });
+            const data = await res.json();
+            if (data.success) {
+                photo.likes = data.likes;
+                likesDiv.querySelector('span').textContent = data.likes;
+            }
+        } catch (e) {
+            if (photo.source === 'local-admin') {
+                try {
+                    const posts = JSON.parse(localStorage.getItem('school_admin_posts_v2')) || [];
+                    posts.forEach(post => {
+                        if (String(post.id) === String(photo.postId)) post.likes = photo.likes;
+                    });
+                    localStorage.setItem('school_admin_posts_v2', JSON.stringify(posts));
+                } catch (_) {}
+            }
+        }
+    } else {
+        const meta = getMeta();
+        meta[photo.id] = { description: photo.description, addedAt: photo.addedAt, likes: photo.likes };
+        setMeta(meta);
+    }
+}
+
+        // ========== ЛАЙТБОКС ==========
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightboxContent();
+            lightbox.style.display = 'flex';
+        }
+
+        function updateLightboxContent() {
+            const photo = visiblePhotos[currentIndex];
+            lightboxImg.src = photo.url;
+            lightboxDesc.textContent = photo.description || '';
+            lightboxDate.textContent = photo.addedAt ? 'Добавлено: ' + formatDate(photo.addedAt) : '';
+        }
+
+        function closeLightbox() { lightbox.style.display = 'none'; }
+
+        function changeSlide(step) {
+            currentIndex += step;
+            if (currentIndex < 0) currentIndex = visiblePhotos.length - 1;
+            if (currentIndex >= visiblePhotos.length) currentIndex = 0;
+            updateLightboxContent();
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', () => changeSlide(-1));
+        nextBtn.addEventListener('click', () => changeSlide(1));
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+                if (e.key === 'ArrowRight') changeSlide(1);
+                if (e.key === 'Escape') closeLightbox();
+            }
+        });
+
+        if (albumsGrid) {
+            albumsGrid.addEventListener('click', (event) => {
+                const coverBtn = event.target.closest('[data-cover-album-id]');
+                if (coverBtn) { event.preventDefault(); event.stopPropagation(); openCoverManageModal(coverBtn.dataset.coverAlbumId); return; }
+                const deleteBtn = event.target.closest('[data-delete-album-id]');
+                if (deleteBtn) { event.preventDefault(); event.stopPropagation(); deleteAlbum(deleteBtn.dataset.deleteAlbumId); return; }
+                const createCard = event.target.closest('[data-create-album]');
+                if (createCard) { createNewAlbum(); return; }
+                const card = event.target.closest('.album-card');
+                if (!card || !card.dataset.albumId) return;
+                setActiveAlbum(card.dataset.albumId);
+            });
+        }
+        if (createAlbumPlus) createAlbumPlus.addEventListener('click', createNewAlbum);
+        if (coverEditCancel) coverEditCancel.addEventListener('click', closeCoverModal);
+        if (coverEditModal) coverEditModal.addEventListener('click', (e) => { if (e.target === coverEditModal) closeCoverModal(); });
+
+        if (showAllPhotosBtn) {
+            showAllPhotosBtn.addEventListener('click', () => setActiveAlbum(null));
+        }
+
+
+        if (galleryEditPanel) {
+            galleryEditPanel.classList.toggle('active', isAdminUser());
+        }
+        if (!isAdminUser()) {
+            editMode = false;
+            document.body.classList.remove('gallery-editing');
+        }
+        if (galleryEditToggle) {
+            galleryEditToggle.addEventListener('click', () => {
+                if (!isAdminUser()) return;
+                editMode = !editMode;
+                galleryEditToggle.classList.toggle('exit', editMode);
+                document.body.classList.toggle('gallery-editing', editMode && isAdminUser());
+                galleryEditToggle.innerHTML = editMode
+                    ? '<i class="fa-solid fa-xmark"></i> Выйти из режима редактирования'
+                    : '<i class="fa-solid fa-pen-to-square"></i> Режим редактирования';
+                renderAlbums();
+                renderGallery();
+            });
+        }
+        if (albumEditCancel) albumEditCancel.addEventListener('click', closeAlbumModal);
+        if (albumEditModal) albumEditModal.addEventListener('click', (e) => { if (e.target === albumEditModal) closeAlbumModal(); });
+        if (albumEditSave) albumEditSave.addEventListener('click', async () => {
+            if (!pendingAlbumAction) return;
+            if (pendingAlbumAction.type === 'create-album') {
+                const name = albumNameInput ? albumNameInput.value.trim() : '';
+                if (!name) { alert('Введите название альбома'); return; }
+                const current = getCustomAlbums();
+                const exists = getAlbumDefs().some(item => item.title.trim().toLowerCase() === name.toLowerCase());
+                if (exists) { alert('Такой альбом уже существует'); return; }
+                current.push({ id: slugifyAlbumName(name), title: name });
+                setCustomAlbums(current);
+                buildAlbums();
+                renderAlbums();
+                closeAlbumModal();
+                return;
+            }
+            if (!pendingAlbumAction.photo) return;
+            const albumId = albumEditSelect ? albumEditSelect.value : 'may-2026';
+            await addPhotoToAlbum(pendingAlbumAction.photo, albumId);
+            closeAlbumModal();
+        });
+
+        // ========== СТАРТ ==========
+        window.__schoolGalleryMainLoaded = true;
+        loadGallery();
+    })();
+</script>
+
+<script>
+(function(){window.schoolAdminApiFetch=window.schoolAdminApiFetch||async function(path,opt={}){const a=[];if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');let last;for(const r of [...new Set(a)]){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')};window.schoolAdminEsc=window.schoolAdminEsc||function(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))};window.schoolAdminLocalPosts=window.schoolAdminLocalPosts||function(page){try{return (JSON.parse(localStorage.getItem('school_admin_posts_v2'))||[]).filter(p=>p.page===page).sort((a,b)=>(b.id||0)-(a.id||0))}catch(e){return []}}})();
+</script><script>
+(async()=>{if(window.__schoolGalleryMainLoaded)return;const esc=window.schoolAdminEsc,fmt=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?(v||''):d.toLocaleDateString('ru-RU')};const canLike=()=>localStorage.getItem('auth')==='true'&&!!String(localStorage.getItem('login')||'').trim();const likeKey=()=>{const login=canLike()?String(localStorage.getItem('login')||'').trim().toLowerCase():'';return 'gallery_user_likes:'+(login||'guest')};const getLikes=()=>{if(!canLike())return [];try{return JSON.parse(localStorage.getItem(likeKey()))||[]}catch(e){return []}};const setLikes=likes=>{if(canLike())localStorage.setItem(likeKey(),JSON.stringify(likes))};let posts=[];try{const r=await window.schoolAdminApiFetch('/api/admin/posts?page=gallery');const d=await r.json();posts=d.posts||[]}catch(e){posts=window.schoolAdminLocalPosts('gallery')}const gallery=document.querySelector('.gallery');if(!gallery||!posts.length)return;const userLikes=getLikes();const html=posts.map(p=>{const img=(p.files||[]).find(f=>String(f.type||'').startsWith('image/'));if(!img)return '';const liked=userLikes.includes('admin_'+p.id+'_0')||userLikes.includes(String(p.id));return `<div class="photo-card admin-gallery-card"><img src="${esc(img.path)}" alt="${esc(p.title)}"><div class="info-overlay"><span class="admin-gallery-desc">${esc(p.title||p.content)}</span><span class="admin-gallery-date">${esc(fmt(p.created_at))}</span><span class="admin-like-btn ${liked?'liked':''}" data-id="${esc(p.id)}" data-like-id="admin_${esc(p.id)}_0"><i class="fa-solid fa-heart"></i> <b>${p.likes||0}</b></span></div></div>`}).join('');gallery.insertAdjacentHTML('afterbegin',html);gallery.addEventListener('click',async e=>{const btn=e.target.closest('.admin-like-btn');if(!btn||btn.classList.contains('liked'))return;e.preventDefault();if(!canLike())return;const likes=getLikes();likes.push(btn.dataset.likeId||btn.dataset.id);setLikes([...new Set(likes)]);try{const rr=await window.schoolAdminApiFetch(`/api/admin/gallery/${btn.dataset.id}/like`,{method:'POST'});const dd=await rr.json();btn.querySelector('b').textContent=dd.likes||0}catch(_){btn.querySelector('b').textContent=String((parseInt(btn.querySelector('b').textContent)||0)+1)}btn.classList.add('liked')})})();
+</script>
+<script id="school-admin-unified-loader">
+(function(){
+if(window.__schoolGalleryMainLoaded)return;
+const STORAGE_POSTS='school_admin_posts_v2', STORAGE_SCHEDULE='school_schedule_overrides_v2';
+function roots(){const a=[];if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');return [...new Set(a)]}
+async function apiFetch(path,opt={}){let last;for(const r of roots()){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')}
+function esc(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function fmt(v){const d=new Date(v);return Number.isNaN(d.getTime())?(v||''):d.toLocaleDateString('ru-RU')}
+function localPosts(page){try{return (JSON.parse(localStorage.getItem(STORAGE_POSTS))||[]).filter(p=>p.page===page)}catch(e){return []}}
+function canLike(){return localStorage.getItem('auth')==='true'&&!!String(localStorage.getItem('login')||'').trim()}
+function likeKey(){const login=canLike()?String(localStorage.getItem('login')||'').trim().toLowerCase():'';return 'gallery_user_likes:'+(login||'guest')}
+function getLikes(){if(!canLike())return [];try{return JSON.parse(localStorage.getItem(likeKey()))||[]}catch(e){return []}}
+function setLikes(likes){if(canLike())localStorage.setItem(likeKey(),JSON.stringify([...new Set(likes)]))}
+async function getPosts(page){let api=[];try{const r=await apiFetch('/api/admin/posts?page='+encodeURIComponent(page));const d=await r.json();api=d.posts||[]}catch(e){}const local=localPosts(page);const all=[...local,...api];const seen=new Set();return all.filter(p=>{const k=String(p.id||'')+'|'+String(p.page||'')+'|'+String(p.title||'')+'|'+String(p.created_at||'');if(seen.has(k))return false;seen.add(k);return true}).sort((a,b)=>(new Date(b.created_at||0))-(new Date(a.created_at||0)))}
+async function renderPosts(page){const posts=await getPosts(page);if(!posts.length)return;document.querySelectorAll('.admin-dynamic-list,.admin-gallery-card,.admin-docs-dynamic').forEach(x=>x.remove());if(page==='news'||page==='warnings'){const box=document.createElement('div');box.className='admin-dynamic-list';box.innerHTML=posts.map(p=>`<article class="admin-dynamic-card"><h2>${page==='warnings'?'<b>'+esc(p.title)+'</b>':esc(p.title)}</h2><p>${esc(p.content)}</p><div class="admin-dynamic-images">${(p.files||[]).filter(f=>String(f.type||'').startsWith('image/')||String(f.path||'').startsWith('data:image')).map(f=>`<img src="${esc(f.path)}" alt="${esc(f.name)}">`).join('')}</div></article>`).join('');const content=document.querySelector('.content')||document.body;const h=content.querySelector('h1');h?h.insertAdjacentElement('afterend',box):content.prepend(box)}
+if(page==='gallery'){const gallery=document.querySelector('.gallery');if(!gallery)return;const userLikes=getLikes();const html=posts.map(p=>{const img=(p.files||[]).find(f=>String(f.type||'').startsWith('image/')||String(f.path||'').startsWith('data:image'));if(!img)return '';const likeId='admin_'+p.id+'_0';const liked=userLikes.includes(likeId)||userLikes.includes(String(p.id));return `<div class="photo-card admin-gallery-card"><img src="${esc(img.path)}" alt="${esc(p.title)}"><div class="info-overlay"><span class="admin-gallery-desc">${esc(p.content||p.title)}</span><span class="admin-gallery-date">${esc(fmt(p.created_at))}</span><span class="admin-like-btn ${liked?'liked':''}" data-id="${esc(p.id)}" data-like-id="${esc(likeId)}"><i class="fa-solid fa-heart"></i> <b>${p.likes||0}</b></span></div></div>`}).join('');gallery.insertAdjacentHTML('afterbegin',html)}
+if(page==='information'){const files=[];posts.forEach(p=>(p.files||[]).forEach(f=>files.push({title:p.title,content:p.content,...f,created_at:p.created_at})));if(!files.length)return;const box=document.createElement('div');box.className='admin-docs-dynamic';box.innerHTML='<h2>Документы</h2>'+files.map(f=>`<a class="doc-link" href="${esc(f.path)}" target="_blank"><i class="fa-solid fa-file-lines"></i> ${esc(f.title||f.name||'Документ')}</a>`).join('');const content=document.querySelector('.content')||document.body;const target=[...document.querySelectorAll('h2,h3')].find(x=>/документ/i.test(x.textContent));target?target.insertAdjacentElement('afterend',box):content.prepend(box)} }
+async function applySchedule(){let rows=[];try{const r=await apiFetch('/api/schedule/overrides');const d=await r.json();rows=d.overrides||[]}catch(e){try{rows=JSON.parse(localStorage.getItem(STORAGE_SCHEDULE))||[]}catch(_){rows=[]}}if(!rows.length)return;const norm=s=>String(s||'').replace(/\s+/g,' ').trim().toLowerCase();rows.forEach(o=>{document.querySelectorAll('table').forEach(table=>{const heads=[...table.querySelectorAll('thead th')].map(th=>norm(th.textContent));let classIdx=heads.findIndex(h=>h===norm(o.class_name));if(classIdx<0)classIdx=heads.findIndex(h=>h.includes(norm(o.class_name))||norm(o.class_name).includes(h));if(classIdx<0)return;[...table.querySelectorAll('tbody tr')].forEach(tr=>{const cells=[...tr.children];if(!cells.length||norm(cells[0].textContent)!==norm(o.day))return;const cell=cells[classIdx];if(!cell)return;const rows=[...cell.querySelectorAll('.lesson-row, div, p, li')];let done=false;rows.forEach(row=>{const text=String(row.textContent||'');const num=(text.match(/^\s*(\d+)/)||[])[1];if(String(num||'')===String(o.lesson_number)){let name=row.querySelector('.lesson-name');if(name)name.textContent=o.subject;else row.innerHTML=String(row.innerHTML).replace(/(\d+\.?\s*)[^<\n]*/, '$1'+esc(o.subject));done=true;}});if(!done)cell.insertAdjacentHTML('beforeend',`<div class="lesson-row"><span class="lesson-num">${esc(o.lesson_number)}.</span> <span class="lesson-name admin-replaced">${esc(o.subject)}</span></div>`)})})})}
+const page=(location.pathname.split('/').pop()||'').toLowerCase();if(page==='news.html')renderPosts('news');if(page==='warnings.html')renderPosts('warnings');if(page==='gallery.html'&&!window.__schoolGalleryMainLoaded)renderPosts('gallery');if(page==='information.html'||page==='total.html')renderPosts('information');if(page==='rasp.html')applySchedule();
+document.addEventListener('click',async e=>{const btn=e.target.closest('.admin-like-btn');if(!btn||btn.classList.contains('liked'))return;e.preventDefault();if(!canLike())return;const likes=getLikes();likes.push(btn.dataset.likeId||btn.dataset.id);setLikes(likes);try{const rr=await apiFetch(`/api/admin/gallery/${btn.dataset.id}/like`,{method:'POST'});const dd=await rr.json();btn.querySelector('b').textContent=dd.likes||0}catch(_){btn.querySelector('b').textContent=String((parseInt(btn.querySelector('b').textContent)||0)+1)}btn.classList.add('liked')});
+})();
+</script>
+
+<script src="a11y.js"></script></body>
+</html>

@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Расписание</title>
+<link href="logo1.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="footer.css" rel="stylesheet"/>
+<style>
+
+        /* ----- ХЕДЕР ----- */
+        .header {
+            background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+            color: white;
+            padding: 20px 0;
+            transition: background 0.3s;
+        }
+
+        @keyframes gradientMove {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .logo img {
+            width: 80px;
+            transition: filter 0.3s;
+        }
+
+        .title {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .title h1 {
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .title p {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            position: relative;
+        }
+
+        .user-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+
+        .user-block:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .user-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .user-name {
+            font-weight: 800;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            line-height: 1.2;
+        }
+
+        .header-icons>i {
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .header-icons>i.active-icon {
+            color: #ffd966;
+        }
+
+        /* ----- ПАНЕЛЬ ДОСТУПНОСТИ ----- */
+        .accessibility-panel {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            z-index: 1000;
+            width: 480px;
+            margin-top: 10px;
+            color: #333;
+            font-family: 'Raleway', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .accessibility-panel.active {
+            display: block;
+        }
+
+        .accessibility-panel h4 {
+            margin-bottom: 10px;
+            font-weight: 800;
+            font-size: 1.125rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-group {
+            margin-bottom: 20px;
+        }
+
+        .option-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .option-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .option-btn {
+            padding: 6px 14px;
+            border: 2px solid #ccc;
+            background: #f8f8f8;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .option-btn.active {
+            background: #2ea3d0;
+            color: white;
+            border-color: #2ea3d0;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+            font-size: 0.95rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .close-panel {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s;
+        }
+
+        .close-panel:hover {
+            color: #000;
+        }
+
+        /* ----- НАВИГАЦИЯ ----- */
+        .nav {
+            margin-top: 25px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+        }
+
+        .menu li {
+            position: relative;
+        }
+
+        .menu>li>a {
+            text-decoration: none;
+            font-weight: 800;
+            color: black;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 8px;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .menu>li>a:hover {
+            background: #2ea3d0;
+            color: white;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 180px;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: all 0.25s ease;
+            z-index: 10;
+        }
+
+        .menu li:hover .dropdown {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .dropdown li {
+            list-style: none;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 15px;
+            font-weight: 700;
+            color: black;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .dropdown a:hover {
+            background: #2ea3d0;
+            color: white;
+        }
+
+        /* ----- ОСНОВНОЙ КОНТЕНТ ----- */
+        .content {
+            padding: 40px 20px;
+            flex: 1;
+        }
+
+        /* ----- ТЕМЫ ----- */
+        body.dark-theme {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-theme .header {
+            background: linear-gradient(270deg, #0f3b47, #1a2b5e, #0f3b47);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+        }
+        body.dark-theme .nav {
+            background: #1e1e1e;
+        }
+        body.dark-theme .menu>li>a {
+            color: #e0e0e0;
+        }
+        body.dark-theme .menu>li>a:hover {
+            background: #3a506b;
+            color: white;
+        }
+        body.dark-theme .dropdown {
+            background: #2a2a2a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        body.dark-theme .dropdown a {
+            color: #e0e0e0;
+        }
+        body.dark-theme .dropdown a:hover {
+            background: #3a506b;
+            color: white;
+        }
+        body.dark-theme .accessibility-panel {
+            background: #2a2a2a;
+            color: #e0e0e0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+        body.dark-theme .option-btn {
+            background: #3a3a3a;
+            border-color: #555;
+            color: #ccc;
+        }
+        body.dark-theme .option-btn.active {
+            background: #2ea3d0;
+            color: white;
+            border-color: #2ea3d0;
+        }
+        body.dark-theme .close-panel {
+            color: #aaa;
+        }
+        body.dark-theme .close-panel:hover {
+            color: white;
+        }
+
+        body.blue-theme {
+            background-color: #d4eafc;
+            color: #000;
+        }
+        body.blue-theme .header {
+            background: linear-gradient(270deg, #1e88e5, #1565c0, #1e88e5);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+        }
+        body.blue-theme .nav {
+            background: #bbdefb;
+        }
+        body.blue-theme .menu>li>a {
+            color: #000;
+        }
+        body.blue-theme .menu>li>a:hover {
+            background: #1e88e5;
+            color: white;
+        }
+        body.blue-theme .dropdown {
+            background: #e3f2fd;
+        }
+        body.blue-theme .accessibility-panel {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+        body.blue-theme .option-btn {
+            background: #bbdefb;
+            border-color: #90caf9;
+            color: #0d47a1;
+        }
+        body.blue-theme .option-btn.active {
+            background: #1e88e5;
+            color: white;
+        }
+
+        body.no-effects .header {
+            background: #2c3e50;
+            animation: none;
+        }
+        body.dark-theme.no-effects .header {
+            background: #0d1b2a;
+        }
+        body.blue-theme.no-effects .header {
+            background: #1565c0;
+        }
+
+        html.font-size-1 { font-size: 100%; }
+        html.font-size-2 { font-size: 125%; }
+        html.font-size-3 { font-size: 150%; }
+        html.font-size-4 { font-size: 175%; }
+
+        body.images-grayscale img { filter: grayscale(100%); }
+        body.images-hide img { display: none; }
+
+        
+
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { font-size: 16px; transition: font-size 0.2s; }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: #e9e9e9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .content h1 {
+            text-align: center;
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* ---- Темы ---- */
+        body.dark-theme { background-color: #121212; color: #e0e0e0; }
+        body.dark-theme .content { background-color: #121212; color: #e0e0e0; }
+        body.dark-theme .content h1 { color: #ffffff; }
+
+        body.blue-theme { background-color: #d4eafc; color: #000; }
+        body.blue-theme .content { background-color: #d4eafc; color: #0d47a1; }
+        body.blue-theme .content h1 { color: #0d47a1; }
+
+        html.font-size-1 { font-size: 100%; }
+        html.font-size-2 { font-size: 125%; }
+        html.font-size-3 { font-size: 150%; }
+        html.font-size-4 { font-size: 175%; }
+
+        body.images-grayscale img { filter: grayscale(100%); }
+        body.images-hide img { display: none; }
+
+        /* ---- Галерея ---- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            background: #fff;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            cursor: pointer;
+            display: block;
+        }
+
+        /* Плашка с информацией – скрыта по умолчанию, показывается при наведении */
+        .info-overlay {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            padding: 8px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; /* чтобы не мешала клику по фото */
+        }
+
+        .photo-card:hover .info-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .info-likes {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            pointer-events: auto; /* разрешаем клик по сердечку */
+        }
+
+        .info-likes i {
+            color: #ff4d6d;
+            font-size: 1.1rem;
+        }
+
+        .info-date {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* ---- Лайтбокс ---- */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-caption {
+            color: white;
+            margin-top: 20px;
+            font-weight: 600;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .lightbox-caption .desc {
+            font-size: 1.1rem;
+        }
+
+        .lightbox-caption .date {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px; right: 30px;
+            font-size: 32px;
+            color: white;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 1001;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 42px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .prev { left: 25px; }
+        .next { right: 25px; }
+    
+    
+
+        /* ===== СТИЛИ СТРАНИЦЫ РАСПИСАНИЯ ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            font-size: 16px;
+            transition: font-size 0.2s;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(46, 163, 208, 0.16), transparent 28rem),
+                linear-gradient(180deg, #f3f6fb 0%, #e9e9e9 100%);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #24364a;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 38px 20px 55px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .schedule-container {
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .schedule-hero {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 38px 42px;
+            margin-bottom: 32px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #2ea3d0 0%, #3a5fa0 72%);
+            box-shadow: 0 18px 40px rgba(46, 93, 160, 0.22);
+        }
+
+        .schedule-hero::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            right: -85px;
+            top: -95px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            font-weight: 800;
+            font-size: 0.92rem;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .schedule-hero h1 {
+            color: #ffffff;
+            font-size: 2.35rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .schedule-hero p {
+            font-weight: 700;
+            opacity: 0.92;
+            max-width: 680px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .block {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(46, 163, 208, 0.12);
+            border-radius: 24px;
+            padding: 28px;
+            margin: 30px auto;
+            box-shadow: 0 14px 35px rgba(34, 52, 77, 0.08);
+            overflow-x: auto;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
+        }
+
+        .block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 45px rgba(34, 52, 77, 0.12);
+        }
+
+        .schedule-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 18px;
+            white-space: nowrap;
+        }
+
+        .schedule-section-title::before {
+            content: "";
+            width: 7px;
+            height: 30px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #2ea3d0, #3a5fa0);
+            flex-shrink: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(46, 163, 208, 0.1);
+            table-layout: fixed;
+            min-width: 820px;
+        }
+
+        .schedule-table {
+            width: min(100%, 560px);
+            min-width: 0;
+            margin: 0 auto;
+            table-layout: auto;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            text-align: center;
+            width: auto;
+            font-weight: 800;
+            vertical-align: middle;
+        }
+
+        th {
+            background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+            color: #ffffff;
+            padding: 14px 12px;
+            font-size: 0.92rem;
+            font-weight: 800;
+            text-align: center;
+            border: none;
+        }
+
+        td {
+            border-right: 2px solid #d8e5ee;
+            border-bottom: 2px solid #d8e5ee;
+            padding: 12px;
+            vertical-align: top;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        td:last-child, th:last-child { border-right: none; }
+
+        .day {
+            width: 95px;
+            font-weight: 800;
+            text-align: center;
+            color: #2ea3d0;
+            background: #f3f9fc;
+        }
+
+        th.day {
+            color: #ffffff;
+            background: linear-gradient(135deg, #2ea3d0, #3a5fa0);
+        }
+
+        .lesson-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            padding: 7px 8px;
+            margin-bottom: 7px;
+            border-radius: 12px;
+            background: #f8fbfd;
+            border: 1px solid #edf3f7;
+        }
+
+        .lesson-row:last-child { margin-bottom: 0; }
+
+        .lesson-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #e6f4fb;
+            color: #2ea3d0;
+            font-weight: 800;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+
+        .lesson-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .lesson-subrow {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) max-content;
+            align-items: start;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .lesson-subrow .lesson-name {
+            min-width: 90px;
+        }
+
+        .lesson-subrow .room {
+            margin-left: 0;
+            justify-self: end;
+        }
+
+        .lesson-name {
+            flex: 1;
+            font-weight: 700;
+            color: #26384a;
+            min-width: 90px;
+        }
+
+        .room {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #50677c;
+            background: #eef4f8;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
+        .room:empty {
+            display: none;
+        }
+
+        .empty {
+            text-align: center;
+            color: #9aa7b5;
+            font-weight: 700;
+        }
+
+        body.dark-theme {
+            background:
+                radial-gradient(circle at top left, rgba(79, 172, 254, 0.12), transparent 28rem),
+                #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .content {
+            background-color: transparent;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .block {
+            width: 100%;
+            background: rgba(30, 30, 30, 0.92);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        body.dark-theme .schedule-section-title {
+            color: #ffffff;
+        }
+
+        body.dark-theme table {
+            background: #1e1e1e;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+        }
+
+        body.dark-theme td {
+            background: #1e1e1e;
+            color: #e0e0e0;
+            border-color: #444444;
+        }
+
+        body.dark-theme .day {
+            background: #2a2a2a;
+            color: #4facfe;
+        }
+
+        body.dark-theme th.day {
+            color: #ffffff;
+        }
+
+        body.dark-theme .lesson-row {
+            background: #252525;
+            border-color: #333333;
+        }
+
+        body.dark-theme .lesson-name {
+            color: #e8e8e8;
+        }
+
+        body.dark-theme .lesson-num {
+            background: #203244;
+            color: #4facfe;
+        }
+
+        body.dark-theme .room {
+            background: #303030;
+            color: #c9c9c9;
+        }
+
+        body.blue-theme {
+            background:
+                radial-gradient(circle at top left, rgba(30, 136, 229, 0.14), transparent 28rem),
+                #d4eafc;
+            color: #0d47a1;
+        }
+
+        body.blue-theme .content {
+            background-color: transparent;
+            color: #0d47a1;
+        }
+
+        body.blue-theme .block {
+            width: 100%;
+            background: rgba(227, 242, 253, 0.92);
+            border-color: #bbdefb;
+        }
+
+        body.blue-theme .schedule-section-title {
+            color: #0d47a1;
+        }
+
+        body.blue-theme table {
+            background: #e3f2fd;
+        }
+
+        body.blue-theme th {
+            background: linear-gradient(270deg, #1e88e5, #1565c0, #1e88e5);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+        }
+
+        body.blue-theme td {
+            background: #f4fbff;
+            border-color: #8fc8ee;
+        }
+
+        body.blue-theme .day {
+            background: #bbdefb;
+            color: #0d47a1;
+        }
+
+        body.blue-theme .lesson-row {
+            background: #eaf6ff;
+            border-color: #c7e4fb;
+        }
+
+        body.blue-theme .lesson-num {
+            background: #d4eafc;
+            color: #1565c0;
+        }
+
+        body.blue-theme .room {
+            background: #d4eafc;
+            color: #0d47a1;
+        }
+
+        html.font-size-1 { font-size: 100%; }
+        html.font-size-2 { font-size: 125%; }
+        html.font-size-3 { font-size: 150%; }
+        html.font-size-4 { font-size: 175%; }
+
+        body.images-grayscale img { filter: grayscale(100%); }
+        body.images-hide img { display: none; }
+
+        @media (max-width: 900px) {
+            .content { padding: 28px 12px 42px; }
+            .schedule-container { width: 90%; }
+            .schedule-hero { padding: 30px 24px; border-radius: 22px; }
+            .schedule-hero h1 { font-size: 1.85rem; }
+            .block { padding: 18px; border-radius: 20px; }
+            table { min-width: 760px; }
+            .schedule-table { min-width: 0; }
+            .schedule-section-title { font-size: 1.28rem; }
+        }
+
+        @media (max-width: 768px) {
+            .accessibility-panel { width: 90vw; right: -10px; padding: 20px; }
+            .user-info { display: none; }
+            .user-avatar { width: 36px; height: 36px; font-size: 1rem; }
+        }
+
+    
+
+        /* ----- АНИМИРОВАННЫЕ КРУГИ В HERO-БЛОКАХ ----- */
+        .schedule-hero,
+        .contacts-hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-hero::after,
+        .contacts-hero::after {
+            display: none;
+        }
+
+        .hero-circle {
+            position: absolute;
+            width: var(--size);
+            height: var(--size);
+            top: var(--top);
+            left: var(--left);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, var(--opacity));
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(var(--blur));
+            animation-name: var(--move);
+            animation-duration: var(--duration);
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-delay: var(--delay);
+            will-change: transform;
+        }
+
+        .hero-circle:nth-child(1) {
+            --size: 230px;
+            --top: -82px;
+            --left: 78%;
+            --opacity: 0.16;
+            --blur: 0px;
+            --duration: 44s;
+            --delay: -12s;
+            --move: floatChaosOne;
+        }
+
+        .hero-circle:nth-child(2) {
+            --size: 118px;
+            --top: 18px;
+            --left: 6%;
+            --opacity: 0.14;
+            --blur: 0.3px;
+            --duration: 36s;
+            --delay: -7s;
+            --move: floatChaosTwo;
+        }
+
+        .hero-circle:nth-child(3) {
+            --size: 72px;
+            --top: 64%;
+            --left: 19%;
+            --opacity: 0.22;
+            --blur: 0px;
+            --duration: 31s;
+            --delay: -16s;
+            --move: floatChaosThree;
+        }
+
+        .hero-circle:nth-child(4) {
+            --size: 154px;
+            --top: 48%;
+            --left: 58%;
+            --opacity: 0.10;
+            --blur: 0.5px;
+            --duration: 52s;
+            --delay: -21s;
+            --move: floatChaosFour;
+        }
+
+        .hero-circle:nth-child(5) {
+            --size: 48px;
+            --top: 19%;
+            --left: 44%;
+            --opacity: 0.26;
+            --blur: 0px;
+            --duration: 28s;
+            --delay: -4s;
+            --move: floatChaosFive;
+        }
+
+        .hero-circle:nth-child(6) {
+            --size: 96px;
+            --top: 74%;
+            --left: 84%;
+            --opacity: 0.13;
+            --blur: 0.4px;
+            --duration: 40s;
+            --delay: -25s;
+            --move: floatChaosSix;
+        }
+
+        .hero-circle:nth-child(7) {
+            --size: 34px;
+            --top: 38%;
+            --left: 31%;
+            --opacity: 0.30;
+            --blur: 0px;
+            --duration: 33s;
+            --delay: -10s;
+            --move: floatChaosSeven;
+        }
+
+        .hero-badge,
+        .schedule-hero h1,
+        .schedule-hero p,
+        .contacts-hero h1,
+        .contacts-hero p {
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes floatChaosOne {
+            0% { transform: translate(0, 0) scale(1); }
+            30% { transform: translate(-110px, 34px) scale(1.04); }
+            63% { transform: translate(-42px, 130px) scale(0.96); }
+            100% { transform: translate(-170px, 86px) scale(1.02); }
+        }
+
+        @keyframes floatChaosTwo {
+            0% { transform: translate(0, 0) scale(1); }
+            28% { transform: translate(105px, 36px) scale(0.98); }
+            61% { transform: translate(44px, 92px) scale(1.06); }
+            100% { transform: translate(160px, -8px) scale(1); }
+        }
+
+        @keyframes floatChaosThree {
+            0% { transform: translate(0, 0) scale(1); }
+            34% { transform: translate(64px, -58px) scale(1.08); }
+            67% { transform: translate(-38px, -96px) scale(0.94); }
+            100% { transform: translate(118px, -22px) scale(1.03); }
+        }
+
+        @keyframes floatChaosFour {
+            0% { transform: translate(0, 0) scale(1); }
+            27% { transform: translate(-76px, -52px) scale(0.97); }
+            58% { transform: translate(84px, -104px) scale(1.05); }
+            100% { transform: translate(30px, 42px) scale(0.99); }
+        }
+
+        @keyframes floatChaosFive {
+            0% { transform: translate(0, 0) scale(1); }
+            35% { transform: translate(92px, 38px) scale(1.1); }
+            70% { transform: translate(28px, 112px) scale(0.92); }
+            100% { transform: translate(-82px, 62px) scale(1.04); }
+        }
+
+        @keyframes floatChaosSix {
+            0% { transform: translate(0, 0) scale(1); }
+            32% { transform: translate(-132px, -26px) scale(1.04); }
+            66% { transform: translate(-68px, -112px) scale(0.95); }
+            100% { transform: translate(-190px, -54px) scale(1.01); }
+        }
+
+        @keyframes floatChaosSeven {
+            0% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-48px, 64px) scale(1.12); }
+            55% { transform: translate(86px, 28px) scale(0.9); }
+            100% { transform: translate(24px, -72px) scale(1.05); }
+        }
+
+        body.no-effects .hero-circle {
+            animation: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-circle:nth-child(1) { --size: 150px; }
+            .hero-circle:nth-child(2) { --size: 88px; }
+            .hero-circle:nth-child(3) { --size: 54px; }
+            .hero-circle:nth-child(4) { --size: 104px; }
+            .hero-circle:nth-child(5) { --size: 38px; }
+            .hero-circle:nth-child(6) { --size: 72px; }
+            .hero-circle:nth-child(7) { --size: 28px; }
+        }
+
+
+/* ===== ACCESSIBILITY FIX: при отключении эффектов шапки таблиц становятся статичными ===== */
+        body.no-effects th,
+        body.no-effects .schedule-table th {
+            background: #2c3e50 !important;
+            background-image: none !important;
+            background-size: auto !important;
+            animation: none !important;
+        }
+        body.dark-theme.no-effects th,
+        body.dark-theme.no-effects .schedule-table th {
+            background: #0d1b2a !important;
+            background-image: none !important;
+            animation: none !important;
+        }
+        body.blue-theme.no-effects th,
+        body.blue-theme.no-effects .schedule-table th {
+            background: #1565c0 !important;
+            background-image: none !important;
+            animation: none !important;
+        }
+
+
+
+        /* ===== FINAL ACCESSIBILITY NO-EFFECTS FIX ===== */
+        body.no-effects .header,
+        body.no-effects .footer,
+        body.no-effects #header-placeholder .header,
+        body.no-effects #footer-placeholder .footer {
+            background: #2ea3d0 !important;
+            background-image: none !important;
+            background-size: auto !important;
+            animation: none !important;
+        }
+
+        body.no-effects th,
+        body.no-effects .schedule-table th,
+        body.no-effects .schedule-section-title::before,
+        body.no-effects .schedule-hero {
+            background: #2ea3d0 !important;
+            background-image: none !important;
+            background-size: auto !important;
+            animation: none !important;
+        }
+
+        body.dark-theme.no-effects .header,
+        body.dark-theme.no-effects .footer,
+        body.dark-theme.no-effects #header-placeholder .header,
+        body.dark-theme.no-effects #footer-placeholder .footer,
+        body.blue-theme.no-effects .header,
+        body.blue-theme.no-effects .footer,
+        body.blue-theme.no-effects #header-placeholder .header,
+        body.blue-theme.no-effects #footer-placeholder .footer {
+            background: #2ea3d0 !important;
+            background-image: none !important;
+            animation: none !important;
+        }
+
+
+
+/* ===== Режим редактирования расписания для администратора ===== */
+.schedule-edit-panel{display:none;width:100%;max-width:none;margin:0 0 38px 0;align-items:center;gap:12px;justify-content:flex-end}
+.schedule-edit-panel.active{display:flex}
+.schedule-edit-toggle{border:0;border-radius:16px;background:linear-gradient(135deg,#2ea3d0,#3a5fa0);color:#fff;font-family:'Raleway',sans-serif;font-weight:800;padding:13px 18px;cursor:pointer;box-shadow:0 8px 20px rgba(46,93,160,.22);transition:.2s}
+.schedule-edit-toggle:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(46,93,160,.28)}
+.schedule-edit-toggle.exit{background:#fff;color:#2a4e87;border:2px solid #2ea3d0}
+body.schedule-editing .lesson-row,body.schedule-editing .lesson-subrow{position:relative}
+body.schedule-editing .lesson-subrow{padding-right:40px}
+body.schedule-editing .lesson-row:not(:has(.lesson-subrow)){padding-right:40px}
+.schedule-edit-pen{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:30px;height:30px;border:0;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;background:#fff;color:#234c83;font-size:.85rem;box-shadow:0 6px 16px rgba(0,0,0,.18);transition:background .18s,color .18s,box-shadow .18s;z-index:6;flex:0 0 30px}
+.schedule-edit-pen:hover{background:#2ea3d0;color:#fff;box-shadow:0 8px 18px rgba(46,93,160,.25)}
+.schedule-edit-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;align-items:center;justify-content:center;padding:20px}
+.schedule-edit-modal.active{display:flex}
+.schedule-edit-box{width:min(480px,94vw);background:#fff;border-radius:22px;padding:24px;box-shadow:0 18px 45px rgba(0,0,0,.28);font-family:'Raleway',sans-serif;color:#25324b}
+.schedule-edit-box h3{font-weight:800;margin-bottom:14px;color:#244b82}
+.schedule-edit-box label{display:block;font-weight:800;margin:12px 0 7px;color:#526174;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em}
+.schedule-edit-box input{width:100%;border:2px solid #dbe5f5;border-radius:14px;padding:12px 14px;font-family:inherit;font-weight:800;font-size:1rem;outline:none;background:#fff;color:#1f2d40}
+.schedule-edit-box input:focus{border-color:#2ea3d0;box-shadow:0 0 0 3px rgba(46,163,208,.12)}
+.schedule-edit-error{display:none;margin-top:10px;color:#c92a2a;font-weight:800;font-size:.9rem;line-height:1.35}
+.schedule-edit-error.active{display:block}
+.schedule-edit-help{margin:8px 0 0;color:#6b7890;font-weight:700;font-size:.88rem;line-height:1.4}
+.schedule-edit-context{background:#f4f8ff;border:1px solid #dbe8ff;border-radius:14px;padding:10px 12px;margin-bottom:12px;font-weight:800;color:#244b82;line-height:1.4}
+.schedule-edit-buttons{display:flex;justify-content:flex-end;gap:10px;margin-top:18px;flex-wrap:wrap}
+.schedule-edit-buttons button{border:0;border-radius:12px;padding:10px 14px;font-family:inherit;font-weight:800;cursor:pointer}
+.schedule-edit-cancel{background:#eef2f7;color:#526174}.schedule-edit-save{background:#2ea3d0;color:#fff}.schedule-edit-save:hover{background:#238dba}
+body.dark-theme .schedule-edit-box{background:#242424;color:#e8e8e8} body.dark-theme .schedule-edit-box input{background:#333;color:#e8e8e8;border-color:#555} body.dark-theme .schedule-edit-context{background:#1f2a38;border-color:#344456;color:#dbeafe}
+body.dark-theme .schedule-edit-pen{background:#303030;color:#e8e8e8}body.dark-theme .schedule-edit-pen:hover{background:#2ea3d0;color:#fff}
+
+
+/* ===== FIX: строгая вертикальная линия кнопок редактирования в старших классах ===== */
+body.schedule-editing .lesson-row {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) 76px 34px;
+    align-items: center;
+    column-gap: 8px;
+    padding-right: 8px !important;
+}
+
+body.schedule-editing .lesson-row:has(.lesson-stack) {
+    grid-template-columns: 32px minmax(0, 1fr);
+    align-items: flex-start;
+}
+
+body.schedule-editing .lesson-row > .lesson-num {
+    grid-column: 1;
+    align-self: start;
+}
+
+body.schedule-editing .lesson-row > .lesson-name {
+    grid-column: 2;
+    min-width: 0;
+}
+
+body.schedule-editing .lesson-row > .room {
+    grid-column: 3;
+    justify-self: end;
+    margin-left: 0;
+}
+
+body.schedule-editing .lesson-row > .schedule-edit-pen {
+    position: static;
+    transform: none;
+    grid-column: 4;
+    justify-self: end;
+    align-self: center;
+    margin: 0;
+}
+
+body.schedule-editing .lesson-stack {
+    grid-column: 2;
+    width: 100%;
+    min-width: 0;
+}
+
+body.schedule-editing .lesson-subrow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 76px 34px;
+    align-items: center;
+    column-gap: 8px;
+    padding-right: 0 !important;
+    width: 100%;
+}
+
+body.schedule-editing .lesson-subrow .lesson-name {
+    min-width: 0;
+}
+
+body.schedule-editing .lesson-subrow .room {
+    grid-column: 2;
+    justify-self: end;
+    margin-left: 0;
+}
+
+body.schedule-editing .lesson-subrow > .schedule-edit-pen {
+    position: static;
+    transform: none;
+    grid-column: 3;
+    justify-self: end;
+    align-self: center;
+    margin: 0;
+}
+
+</style>
+</head>
+<body>
+<!-- Хедер -->
+<div id="header-placeholder"></div>
+<main class="content">
+<div class="container schedule-container">
+<div class="schedule-edit-panel" id="scheduleEditPanel"><button type="button" class="schedule-edit-toggle" id="scheduleEditToggle"><i class="fa-solid fa-pen-to-square"></i> Режим редактирования</button></div>
+<section class="schedule-hero">
+<span aria-hidden="true" class="hero-circle"></span>
+<span aria-hidden="true" class="hero-circle"></span>
+<span aria-hidden="true" class="hero-circle"></span>
+<span aria-hidden="true" class="hero-circle"></span>
+<span aria-hidden="true" class="hero-circle"></span>
+<span aria-hidden="true" class="hero-circle"></span>
+<span aria-hidden="true" class="hero-circle"></span>
+<div class="hero-badge"><i class="fa-solid fa-calendar-days"></i> Учебное расписание</div>
+<h1>Расписание уроков</h1>
+<p>График звонков и расписание уроков по классам в удобном формате.</p>
+</section>
+
+
+<!-- ================= ГРАФИК ЗВОНКОВ ================= -->
+<div class="block">
+<div class="schedule-section-title">График звонков</div>
+<table class="schedule-table">
+<thead>
+<tr><th>№ урока</th><th>Время урока</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>8:30 – 9:10</td></tr>
+<tr><td>2</td><td>9:20 – 10:00</td></tr>
+<tr><td>3</td><td>10:30 – 11:10</td></tr>
+<tr><td>4</td><td>11:40 – 12:20</td></tr>
+<tr><td>5</td><td>12:30 – 13:10</td></tr>
+<tr><td>6</td><td>13:20 – 14:00</td></tr>
+<tr><td>7</td><td>14:10 – 14:50</td></tr>
+<tr><td>8</td><td>15:00 – 15:40</td></tr>
+</tbody>
+</table>
+</div>
+<!-- ================= НАЧАЛЬНЫЕ ================= -->
+<div class="block">
+<div class="schedule-section-title">Начальные классы (2–4)</div>
+<table>
+<thead>
+<tr><th class="day">День</th><th>2 класс</th><th>3 класс</th><th>4 класс</th></tr>
+</thead>
+<tbody>
+<tr><td class="day">Пн</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Математика</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">ИЗО</span><span class="room">каб.2</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Математика</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">ИЗО</span><span class="room">каб.2</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Математика</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div></td>
+</tr>
+<tr><td class="day">Вт</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Математика</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Окружающий мир</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Математика</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Окружающий мир</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Английский язык</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Русский язык</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Математика</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">ИЗО</span><span class="room">каб.1</span></div></td>
+</tr>
+<tr><td class="day">Ср</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Математика</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Математика</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Окружающий мир</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Математика</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Музыка</span><span class="room">каб.1</span></div></td>
+</tr>
+<tr><td class="day">Чт</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Математика</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.1</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Математика</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.1</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Математика</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.1</span></div></td>
+</tr>
+<tr><td class="day">Пт</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Окружающий мир</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Музыка</span><span class="room">каб.2</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Окружающий мир</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Литературное чтение</span><span class="room">каб.2</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Музыка</span><span class="room">каб.2</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Английский</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Окружающий мир</span><span class="room">каб.1</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">ОПК</span><span class="room">каб.1</span></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- ================= СРЕДНИЕ ================= -->
+<div class="block">
+<div class="schedule-section-title">Средние классы (5–9)</div>
+<table>
+<thead><tr><th class="day">День</th><th>5 класс</th><th>6 класс</th><th>7 класс</th><th>8 класс</th><th>9 класс</th></tr></thead>
+<tbody>
+<tr><td class="day">Пн</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Музыка</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Вероятность и статистика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Вероятность и статистика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">ОБЗР</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Музыка</span><span class="room">каб.6</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Физическая культура</span><span class="room">каб.12</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Биология</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Химия</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Вероятность и статистика</span><span class="room">каб.5</span></div></td></tr>
+<tr><td class="day">Вт</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Музыка</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.7</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Геометрия</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Биология</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Музыка</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Химия</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Физика</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">---</span><span class="room"></span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Геометрия</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Обществознание</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Геометрия</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div></td></tr>
+<tr><td class="day">Ср</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Биология</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Элективный курс "Удивительный мир математики"</span><span class="room">каб.5</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Биология</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Элективный курс "Познавательная биология"</span><span class="room">каб.6</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Физика</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Физика</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Геометрия</span><span class="room">каб.5</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Биология</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Химия</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Обществознание</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Геометрия</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Труд</span><span class="room">каб.1</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Физика</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Геометрия</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Химия</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">ОБЗР</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div></td></tr>
+<tr><td class="day">Чт</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">ИЗО</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">ИЗО</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Физика</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Биология</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Физическая культура</span><span class="room">каб. 12</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Физическая культура</span><span class="room">каб.12</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Биология</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div></td></tr>
+<tr><td class="day">Пт</td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.11</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">ИЗО</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Математика</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Информатика</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Труд (технология)</span><span class="room">каб.11</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Информатика</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Литература</span><span class="room">каб.7</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Физика</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">7.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Элективные курсы "Избранные вопросы математики"</span><span class="room">каб.5</span></div><div class="lesson-subrow"><span class="lesson-name">"Трудные вопросы орфографии"</span><span class="room">каб.8</span></div></div></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Физика</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Информатика</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Физика</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Алгебра</span><span class="room">каб.5</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div></td></tr>
+</tbody>
+</table>
+</div>
+<!-- ================= СТАРШИЕ ================= -->
+<div class="block">
+<div class="schedule-section-title">Старшие классы (10–11)</div>
+<table>
+<thead>
+<tr><th class="day">День</th><th>10 класс</th><th>11 класс</th></tr>
+</thead>
+<tbody>
+<!-- ПОНЕДЕЛЬНИК -->
+<tr>
+<td class="day">Пн</td>
+
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Алгебра и начала анализа</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Алгебра и начала анализа</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">5.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Информатика(угл.)</span><span class="room">каб.4</span></div><div class="lesson-subrow"><span class="lesson-name">Обществознание (угл.)</span><span class="room">каб.9</span></div></div></div><div class="lesson-row"><span class="lesson-num">6.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Информатика (угл.)</span><span class="room">каб.4</span></div><div class="lesson-subrow"><span class="lesson-name">Биология (угл.)</span><span class="room">каб.10</span></div></div></div><div class="lesson-row"><span class="lesson-num">7.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Биология (угл.)</span><span class="room">каб.10</span></div><div class="lesson-subrow"><span class="lesson-name">Элективный курс "Органическая химия в вопросах и задачах"</span><span class="room">каб.10</span></div></div></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Обществознание (угл.)</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Информатика (угл.)</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Информатика (угл.)</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div></td>
+</tr>
+<!-- ВТОРНИК -->
+<tr>
+<td class="day">Вт</td>
+
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">2.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Обществознание (угл.)</span><span class="room">каб.9</span></div><div class="lesson-subrow"><span class="lesson-name">Биология (угл.)</span><span class="room">каб.10</span></div><div class="lesson-subrow"><span class="lesson-name">Химия (угл.)</span><span class="room">каб.9</span></div><div class="lesson-subrow"><span class="lesson-name">Биология (баз.)</span><span class="room">каб.6</span></div></div></div><div class="lesson-row"><span class="lesson-num">3.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Физика (угл.)</span><span class="room">каб.11</span></div><div class="lesson-subrow"><span class="lesson-name">Обществознание (угл.)</span><span class="room">каб.9</span></div></div></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Физика (угл.)</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Физика (угл.)</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Физическая культура</span><span class="room">каб.12</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Физическая культура</span><span class="room">каб.12</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Алгебра и начала анализа</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Алгебра и начала анализа</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Химия (баз.)</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">6.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Физика (угл.)</span><span class="room">каб.11</span></div><div class="lesson-subrow"><span class="lesson-name">Обществознание</span><span class="room">каб.9</span></div></div></div><div class="lesson-row"><span class="lesson-num">7.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Физика (угл.)</span><span class="room">каб.11</span></div><div class="lesson-subrow"><span class="lesson-name">Обществознание</span><span class="room">каб.9</span></div></div></div><div class="lesson-row"><span class="lesson-num">8.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div></td>
+</tr>
+<!-- СРЕДА -->
+<tr>
+<td class="day">Ср</td>
+
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Химия (баз.)</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Физическая культура</span><span class="room">каб.12</span></div><div class="lesson-row"><span class="lesson-num">4.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Физика (угл.)</span><span class="room">каб.11</span></div><div class="lesson-subrow"><span class="lesson-name">Химия (угл.)</span><span class="room">каб.10</span></div></div></div><div class="lesson-row"><span class="lesson-num">5.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Физика (угл.)</span><span class="room">каб.11</span></div><div class="lesson-subrow"><span class="lesson-name">Химия (угл.)</span><span class="room">каб.10</span></div></div></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Русский язык</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">8.</span><span class="lesson-name">Элективный курс "Обучение сочинениям разных жанров"</span><span class="room">каб.8</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">География</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Биология (баз.)</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">6.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Физика (угл.)</span><span class="room">каб.11</span></div><div class="lesson-subrow"><span class="lesson-name">Обществознание (угл.)</span><span class="room">каб.9</span></div></div></div><div class="lesson-row"><span class="lesson-num">7.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Обществознание (баз.)</span><span class="room">каб.9</span></div><div class="lesson-subrow"><span class="lesson-name">Физика</span><span class="room">каб.10</span></div></div></div><div class="lesson-row"><span class="lesson-num">8.</span><span class="lesson-name">Английский язык</span><span class="room">каб.3</span></div></td>
+</tr>
+<!-- ЧЕТВЕРГ -->
+<tr>
+<td class="day">Чт</td>
+
+<td><div class="lesson-row"><span class="lesson-num">1.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Физика</span><span class="room">каб.10</span></div><div class="lesson-subrow"><span class="lesson-name">Информатика (угл.)</span><span class="room">каб.4</span></div><div class="lesson-subrow"><span class="lesson-name">Обществознание (угл.)</span><span class="room">каб.9</span></div></div></div><div class="lesson-row"><span class="lesson-num">2.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Информатика (угл.)</span><span class="room">каб.4</span></div><div class="lesson-subrow"><span class="lesson-name">Физика</span><span class="room">каб.10</span></div></div></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Геометрия</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Геометрия</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">История</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">8.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Индивидуальный проект по истории</span><span class="room">каб.9</span></div><div class="lesson-subrow"><span class="lesson-name">Индивидуальный проект по географии</span><span class="room">каб.6</span></div></div></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Алгебра и начала анализа</span><span class="room">каб.3</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Геометрия</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Информатика (угл.)</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Информатика (угл.)</span><span class="room">каб.4</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">Физика (угл.)</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Физика (угл.)</span><span class="room">каб.10</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">---</span></div><div class="lesson-row"><span class="lesson-num">8.</span><span class="lesson-name">Элективный курс "Обучение сочинениям разных жанров"</span><span class="room">каб.8</span></div></td>
+</tr>
+<!-- ПЯТНИЦА -->
+<tr>
+<td class="day">Пт</td>
+
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Обществознание (баз.)</span><span class="room">каб.9</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">---</span><span class="room"></span></div><div class="lesson-row"><span class="lesson-num">3.</span><span class="lesson-name">Вероятность и статистика</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">Практикум "Решение задач повышенного уровня"</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">---</span><span class="room"></span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">ОБЗР</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">8.</span><span class="lesson-name">Элективный курс "Трудные вопросы обществознания"</span><span class="room">каб.9</span></div></td>
+<td><div class="lesson-row"><span class="lesson-num">1.</span><span class="lesson-name">Вероятность и статистика</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">2.</span><span class="lesson-name">Практикум "Решение задач повышенного уровня"</span><span class="room">каб.6</span></div><div class="lesson-row"><span class="lesson-num">3.</span><div class="lesson-stack"><div class="lesson-subrow"><span class="lesson-name">Обществознание (баз.)</span><span class="room">каб.9</span></div><div class="lesson-subrow"><span class="lesson-name">Физика</span><span class="room">каб.10</span></div></div></div><div class="lesson-row"><span class="lesson-num">4.</span><span class="lesson-name">ОБЗР</span><span class="room">каб.11</span></div><div class="lesson-row"><span class="lesson-num">5.</span><span class="lesson-name">---</span><span class="room">каб.12</span></div><div class="lesson-row"><span class="lesson-num">6.</span><span class="lesson-name">Физическая культура</span><span class="room">каб.12</span></div><div class="lesson-row"><span class="lesson-num">7.</span><span class="lesson-name">---</span></div><div class="lesson-row"><span class="lesson-num">8.</span><span class="lesson-name">Литература</span><span class="room">каб.8</span></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Футер -->
+<div id="footer-placeholder"></div>
+<script src="footer.js"></script>
+<script>
+    (function() {
+        // ----- ЗАГРУЗКА HEADER -----
+        fetch('header.html')
+            .then(res => {
+                if (!res.ok) throw new Error('Ошибка загрузки header.html');
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+                initHeaderAfterLoad();
+            })
+            .catch(err => console.error(err));
+
+        // ----- ИНИЦИАЛИЗАЦИЯ ПОСЛЕ ЗАГРУЗКИ -----
+        function initHeaderAfterLoad() {
+            const accessibilityBtn = document.getElementById('accessibilityBtn');
+            const panel = document.getElementById('accessibilityPanel');
+            const closePanelBtn = document.getElementById('closeAccessibilityPanel');
+            const noEffectsCheckbox = document.getElementById('noEffectsCheckbox');
+            const themeBtns = document.querySelectorAll('[data-group="theme"] .option-btn');
+            const fontSizeBtns = document.querySelectorAll('[data-group="fontSize"] .option-btn');
+            const imageModeBtns = document.querySelectorAll('[data-group="imageMode"] .option-btn');
+            const userBlock = document.getElementById('userBlock');
+            const userAvatar = document.getElementById('userAvatar');
+            const userNameSpan = document.getElementById('userName');
+            const userRoleSpan = document.getElementById('userRole');
+            const loginBtn = document.getElementById('loginBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            let settings = {
+                theme: localStorage.getItem('a11y_theme') || 'original',
+                fontSize: localStorage.getItem('a11y_fontSize') || '1',
+                noEffects: localStorage.getItem('a11y_noEffects') === 'true',
+                imageMode: localStorage.getItem('a11y_imageMode') || 'original'
+            };
+
+            function applySettings() {
+                document.body.classList.remove('dark-theme', 'blue-theme');
+                if (settings.theme === 'dark') document.body.classList.add('dark-theme');
+                else if (settings.theme === 'blue') document.body.classList.add('blue-theme');
+                document.documentElement.classList.remove('font-size-1', 'font-size-2', 'font-size-3', 'font-size-4');
+                document.documentElement.classList.add('font-size-' + settings.fontSize);
+                if (settings.noEffects) document.body.classList.add('no-effects');
+                else document.body.classList.remove('no-effects');
+                document.body.classList.remove('images-grayscale', 'images-hide');
+                if (settings.imageMode === 'grayscale') document.body.classList.add('images-grayscale');
+                else if (settings.imageMode === 'hide') document.body.classList.add('images-hide');
+                updatePanelButtons();
+                if (noEffectsCheckbox) noEffectsCheckbox.checked = settings.noEffects;
+            }
+
+            function updatePanelButtons() {
+                themeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.value === settings.theme));
+                fontSizeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.value === settings.fontSize));
+                imageModeBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.value === settings.imageMode));
+            }
+
+            function saveSettings() {
+                localStorage.setItem('a11y_theme', settings.theme);
+                localStorage.setItem('a11y_fontSize', settings.fontSize);
+                localStorage.setItem('a11y_noEffects', settings.noEffects);
+                localStorage.setItem('a11y_imageMode', settings.imageMode);
+            }
+
+            themeBtns.forEach(btn => btn.addEventListener('click', () => { settings.theme = btn.dataset.value; saveSettings(); applySettings(); }));
+            fontSizeBtns.forEach(btn => btn.addEventListener('click', () => { settings.fontSize = btn.dataset.value; saveSettings(); applySettings(); }));
+            imageModeBtns.forEach(btn => btn.addEventListener('click', () => { settings.imageMode = btn.dataset.value; saveSettings(); applySettings(); }));
+            if (noEffectsCheckbox) noEffectsCheckbox.addEventListener('change', () => { settings.noEffects = noEffectsCheckbox.checked; saveSettings(); applySettings(); });
+
+            function togglePanel() {
+                panel.classList.toggle('active');
+                if (accessibilityBtn) accessibilityBtn.classList.toggle('active-icon', panel.classList.contains('active'));
+            }
+            accessibilityBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
+            closePanelBtn.addEventListener('click', () => { panel.classList.remove('active'); accessibilityBtn.classList.remove('active-icon'); });
+            document.addEventListener('click', (e) => {
+                if (panel && !panel.contains(e.target) && e.target !== accessibilityBtn) {
+                    panel.classList.remove('active');
+                    accessibilityBtn.classList.remove('active-icon');
+                }
+            });
+
+            applySettings();
+
+            // Авторизация
+            const API_URL = (() => {
+                if (window.location.protocol.startsWith('http')) {
+                    const host = window.location.hostname || '127.0.0.1';
+                    return `${window.location.protocol}//${host}:5000`;
+                }
+                return 'http://127.0.0.1:5000';
+            })();
+
+            const isAuth = localStorage.getItem('auth') === 'true';
+            const savedLogin = localStorage.getItem('login');
+            let savedRole = localStorage.getItem('role') || '';
+            let savedFullName = localStorage.getItem('full_name') || savedLogin;
+            let savedAvatarColor = localStorage.getItem('avatar_color') || null;
+            let savedProfilePhoto = localStorage.getItem('profile_photo') || '';
+
+            function getInitials(name) { return name ? name.charAt(0).toUpperCase() : '?'; }
+            function getDefaultAvatarColor(name) {
+                let hash = 0;
+                for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+                const colors = [
+                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+                ];
+                return colors[Math.abs(hash) % colors.length];
+            }
+
+            function setAvatarElement(el, name, color, photo) {
+                if (!el) return;
+                if (photo) {
+                    el.style.background = 'transparent';
+                    el.style.backgroundImage = `url(${photo})`;
+                    el.style.backgroundSize = 'cover';
+                    el.style.backgroundPosition = 'center';
+                    el.textContent = '';
+                } else {
+                    el.style.backgroundImage = '';
+                    el.style.background = color || getDefaultAvatarColor(name || savedLogin);
+                    el.textContent = getInitials(name || savedLogin);
+                }
+            }
+
+            function updateUserInterface() {
+                if (isAuth && savedLogin) {
+                    if (userBlock) userBlock.style.display = 'flex';
+                    if (loginBtn) loginBtn.style.display = 'none';
+                    if (logoutBtn) logoutBtn.style.display = 'inline-block';
+                    const displayName = savedFullName || savedLogin;
+                    const avatarColor = savedAvatarColor || getDefaultAvatarColor(displayName);
+                    setAvatarElement(userAvatar, displayName, avatarColor, savedProfilePhoto);
+                    if (userNameSpan) userNameSpan.textContent = displayName;
+                    if (userRoleSpan) userRoleSpan.textContent = savedRole || 'Гость';
+                } else {
+                    if (userBlock) userBlock.style.display = 'none';
+                    if (loginBtn) loginBtn.style.display = 'inline-block';
+                    if (logoutBtn) logoutBtn.style.display = 'none';
+                }
+            }
+
+            async function loadHeaderUserInfo() {
+                if (!isAuth || !savedLogin) return;
+                updateUserInterface();
+                try {
+                    const response = await fetch(`${API_URL}/api/user_info?login=${encodeURIComponent(savedLogin)}`, { mode: 'cors' });
+                    const data = await response.json();
+                    if (data.success && data.user) {
+                        savedRole = savedRole || data.user.role || '';
+                        savedFullName = savedFullName || data.user.full_name || savedLogin;
+                        savedAvatarColor = savedAvatarColor || data.user.avatar_color;
+                        savedProfilePhoto = savedProfilePhoto || data.user.profile_photo || '';
+
+                        localStorage.setItem('role', savedRole);
+                        localStorage.setItem('full_name', savedFullName);
+                        if (savedAvatarColor) localStorage.setItem('avatar_color', savedAvatarColor);
+                        if (savedProfilePhoto) localStorage.setItem('profile_photo', savedProfilePhoto);
+                        else localStorage.removeItem('profile_photo');
+
+                        updateUserInterface();
+                    }
+                } catch (err) {
+                    console.error('Не удалось загрузить фото профиля:', err);
+                }
+            }
+
+            loadHeaderUserInfo();
+            function getProfilePageByRole() {
+                const role = String(localStorage.getItem('role') || '').trim().toLowerCase();
+                if (['ученик', 'родитель'].includes(role)) return 'lk.html';
+                if (['учитель', 'преподаватель'].includes(role)) return 'lkteacher.html';
+                if (['директор', 'администратор', 'администрация'].includes(role)) return 'lkadmin.html';
+                if (role === 'гость') return 'index.html';
+                return 'lk.html';
+            }
+            if (userBlock) userBlock.onclick = () => { if (isAuth && savedLogin) window.location.href = getProfilePageByRole(); };
+            if (loginBtn) loginBtn.onclick = () => { window.location.href = 'login.html'; };
+            if (logoutBtn) logoutBtn.onclick = () => {
+                if (confirm('Вы уверены, что хотите выйти?')) {
+                    localStorage.removeItem('auth');
+                    localStorage.removeItem('login');
+                    localStorage.removeItem('password');
+                    localStorage.removeItem('role');
+                    localStorage.removeItem('full_name');
+                    localStorage.removeItem('avatar_color');
+                    localStorage.removeItem('profile_photo');
+                    location.reload();
+                }
+            };
+        }
+
+    })();
+</script>
+
+<script>
+(function(){window.schoolAdminApiFetch=window.schoolAdminApiFetch||async function(path,opt={}){const a=[];if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');let last;for(const r of [...new Set(a)]){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')};window.schoolAdminEsc=window.schoolAdminEsc||function(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))};window.schoolAdminLocalPosts=window.schoolAdminLocalPosts||function(page){try{return (JSON.parse(localStorage.getItem('school_admin_posts_v2'))||[]).filter(p=>p.page===page).sort((a,b)=>(b.id||0)-(a.id||0))}catch(e){return []}}})();
+</script>
+
+
+<div class="schedule-edit-modal" id="scheduleEditModal" aria-hidden="true">
+  <div class="schedule-edit-box" role="dialog" aria-modal="true" aria-labelledby="scheduleEditTitle">
+    <h3 id="scheduleEditTitle">Редактирование урока</h3>
+    <div class="schedule-edit-context" id="scheduleEditContext"></div>
+    <label for="scheduleSubjectInput">Название урока</label>
+    <input id="scheduleSubjectInput" type="text" autocomplete="off" placeholder="Например: Математика">
+    <label for="scheduleRoomInput">Кабинет</label>
+    <input id="scheduleRoomInput" type="text" autocomplete="off" placeholder="каб. 2">
+    <div class="schedule-edit-help">Кабинет вводится строго в формате <b>каб. X</b>. Если название урока оставить пустым, кабинет очистится автоматически, а в расписании будет показано <b>---</b>.</div>
+    <div class="schedule-edit-error" id="scheduleEditError"></div>
+    <div class="schedule-edit-buttons">
+      <button type="button" class="schedule-edit-cancel" id="scheduleEditCancel">Отмена</button>
+      <button type="button" class="schedule-edit-save" id="scheduleEditSave">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<script id="schedule-admin-edit-script">
+(function(){
+    const STORAGE_SCHEDULE = 'school_schedule_overrides_v2';
+    const STORAGE_EDIT_MODE = 'school_schedule_edit_mode_active';
+    const editPanel = document.getElementById('scheduleEditPanel');
+    const editToggle = document.getElementById('scheduleEditToggle');
+    const modal = document.getElementById('scheduleEditModal');
+    const contextBox = document.getElementById('scheduleEditContext');
+    const subjectInput = document.getElementById('scheduleSubjectInput');
+    const roomInput = document.getElementById('scheduleRoomInput');
+    const errorBox = document.getElementById('scheduleEditError');
+    const cancelBtn = document.getElementById('scheduleEditCancel');
+    const saveBtn = document.getElementById('scheduleEditSave');
+    let editMode = false;
+    let currentTarget = null;
+
+    function setEditMode(value, saveState=true){
+        editMode = !!value;
+        if(saveState){
+            try{localStorage.setItem(STORAGE_EDIT_MODE, editMode ? '1' : '0')}catch(_e){}
+        }
+        document.body.classList.toggle('schedule-editing', editMode);
+        if(editToggle){
+            editToggle.classList.toggle('exit', editMode);
+            editToggle.innerHTML = editMode
+                ? '<i class="fa-solid fa-xmark"></i> Выйти из режима редактирования'
+                : '<i class="fa-solid fa-pen-to-square"></i> Режим редактирования';
+        }
+        if(editMode){ addPens(); } else { clearPens(); }
+    }
+
+    function esc(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+    function norm(v){return String(v||'').replace(/\s+/g,' ').trim().toLowerCase()}
+    function roots(){const a=[];if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');return [...new Set(a)]}
+    async function apiFetch(path,opt={}){let last;for(const r of roots()){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')}
+    function isAdminUser(){const role=norm(localStorage.getItem('role'));return ['администратор','директор','администрация'].includes(role)}
+    function rowLessonNumber(row){const num=row.closest('.lesson-row')?.querySelector('.lesson-num')?.textContent||'';return (num.match(/\d+/)||[''])[0]}
+    function targetClassName(row){const cell=row.closest('td');if(!cell)return'';const table=cell.closest('table');const idx=[...cell.parentElement.children].indexOf(cell);const th=table?.querySelectorAll('thead th')[idx];return String(th?.textContent||'').trim()}
+    function targetDay(row){const tr=row.closest('tr');return String(tr?.querySelector('td.day,th.day,td:first-child,th:first-child')?.textContent||'').trim()}
+    function targetSubIndex(row){if(row.classList.contains('lesson-subrow')){const stack=row.closest('.lesson-stack');return stack?[...stack.querySelectorAll('.lesson-subrow')].indexOf(row):0}return 0}
+    function nameEl(row){return row.querySelector('.lesson-name')||row.closest('.lesson-row')?.querySelector('.lesson-name')}
+    function roomEl(row){let room=row.querySelector('.room');if(!room&&row.classList.contains('lesson-subrow')){room=document.createElement('span');room.className='room';row.appendChild(room)}else if(!room&&!row.classList.contains('lesson-subrow')){room=document.createElement('span');room.className='room';row.appendChild(room)}return room}
+    function normalizeRoom(value){const m=String(value||'').trim().match(/^каб\.\s*(\d+)$/i);return m?`каб. ${m[1]}`:''}
+    function showError(text){if(!errorBox)return;errorBox.textContent=text||'';errorBox.classList.toggle('active',!!text)}
+    function buildMeta(row){return{class_name:targetClassName(row),day:targetDay(row),lesson_number:rowLessonNumber(row),sub_index:targetSubIndex(row)}}
+    function applyToRow(row, subject, room){const n=nameEl(row);const r=roomEl(row);const cleanSubject=String(subject||'').trim();if(n)n.textContent=cleanSubject||'---';if(r){r.textContent=cleanSubject&&room?room:''}}
+    function openModal(row){currentTarget=row;showError('');const meta=buildMeta(row);const n=nameEl(row);const r=row.querySelector('.room');const subject=String(n?.textContent||'').trim();const room=String(r?.textContent||'').trim();if(contextBox)contextBox.innerHTML=`Класс: ${esc(meta.class_name)}<br>День: ${esc(meta.day)} · урок № ${esc(meta.lesson_number)}${Number(meta.sub_index)>0?` · вариант ${meta.sub_index+1}`:''}`;if(subjectInput)subjectInput.value=subject==='---'?'':subject;if(roomInput)roomInput.value=subject==='---'?'':room;if(modal){modal.classList.add('active');modal.setAttribute('aria-hidden','false')}setTimeout(()=>subjectInput&&subjectInput.focus(),50)}
+    function closeModal(){if(modal){modal.classList.remove('active');modal.setAttribute('aria-hidden','true')}currentTarget=null;showError('')}
+    function clearPens(){document.querySelectorAll('.schedule-edit-pen').forEach(b=>b.remove())}
+    function addPens(){clearPens();if(!editMode||!isAdminUser())return;document.querySelectorAll('.schedule-container table').forEach(table=>{if(table.classList.contains('schedule-table'))return;table.querySelectorAll('tbody td:not(.day)').forEach(cell=>{cell.querySelectorAll('.lesson-row').forEach(row=>{const subrows=row.querySelectorAll('.lesson-subrow');if(subrows.length){subrows.forEach(sr=>insertPen(sr))}else{insertPen(row)}})})})}
+    function insertPen(row){if(!row||row.querySelector(':scope > .schedule-edit-pen'))return;const btn=document.createElement('button');btn.type='button';btn.className='schedule-edit-pen';btn.title='Редактировать урок';btn.innerHTML='<i class="fa-solid fa-pen"></i>';btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openModal(row)});row.appendChild(btn)}
+    async function loadOverrides(){let rows=[];try{const r=await apiFetch('/api/schedule/overrides');const d=await r.json();rows=d.overrides||[]}catch(e){try{rows=JSON.parse(localStorage.getItem(STORAGE_SCHEDULE))||[]}catch(_){rows=[]}}return rows}
+    async function applyOverrides(){const rows=await loadOverrides();if(!rows.length)return;rows.forEach(o=>{document.querySelectorAll('.schedule-container table').forEach(table=>{if(table.classList.contains('schedule-table'))return;const heads=[...table.querySelectorAll('thead th')].map(th=>norm(th.textContent));let classIdx=heads.findIndex(h=>h===norm(o.class_name));if(classIdx<0)classIdx=heads.findIndex(h=>h.includes(norm(o.class_name))||norm(o.class_name).includes(h));if(classIdx<0)return;table.querySelectorAll('tbody tr').forEach(tr=>{const cells=[...tr.children];const dayCell=cells[0];if(!dayCell||norm(dayCell.textContent)!==norm(o.day))return;const cell=cells[classIdx];if(!cell)return;cell.querySelectorAll('.lesson-row').forEach(row=>{if(rowLessonNumber(row)!==String(o.lesson_number))return;const subrows=[...row.querySelectorAll('.lesson-subrow')];let target=subrows.length?subrows[Number(o.sub_index)||0]:row;if(target)applyToRow(target,o.subject,o.room)})})})});addPens()}
+    async function saveCurrent(){if(!currentTarget)return;const rawSubject=String(subjectInput?.value||'').trim();let rawRoom=String(roomInput?.value||'').trim();let subject=rawSubject;let room='';if(!subject){room='';if(roomInput)roomInput.value=''}else{room=normalizeRoom(rawRoom);if(!room){showError('Кабинет обязателен и должен быть указан строго в формате: каб. X');return}if(roomInput)roomInput.value=room}const meta=buildMeta(currentTarget);const payload={...meta,subject:subject||'---',room};try{const r=await apiFetch('/api/admin/schedule',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));if(!r.ok||!d.success){showError(d.error||'Не удалось сохранить изменение расписания');return}}catch(e){let local=[];try{local=JSON.parse(localStorage.getItem(STORAGE_SCHEDULE))||[]}catch(_){local=[]}const key=x=>`${norm(x.class_name)}|${norm(x.day)}|${x.lesson_number}|${Number(x.sub_index)||0}`;const payloadKey=key(payload);local=local.filter(x=>key(x)!==payloadKey);local.unshift({...payload,subject:subject||'---',room,updated_at:new Date().toISOString()});localStorage.setItem(STORAGE_SCHEDULE,JSON.stringify(local))}applyToRow(currentTarget,subject||'---',room);closeModal();setEditMode(true)}
+    const adminReady = isAdminUser();
+    if(editPanel)editPanel.classList.toggle('active',adminReady);
+    if(editToggle)editToggle.addEventListener('click',()=>{if(!isAdminUser())return;setEditMode(!editMode, true)});
+    if(cancelBtn)cancelBtn.addEventListener('click',closeModal);
+    if(saveBtn)saveBtn.addEventListener('click',saveCurrent);
+    if(modal)modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal?.classList.contains('active'))closeModal()});
+    if(roomInput)roomInput.addEventListener('input',()=>{if(!String(subjectInput?.value||'').trim())roomInput.value=''});
+    if(subjectInput)subjectInput.addEventListener('input',()=>{if(!String(subjectInput.value||'').trim()&&roomInput)roomInput.value=''});
+    applyOverrides().finally(()=>{
+        let restore=false;
+        try{restore=localStorage.getItem(STORAGE_EDIT_MODE)==='1'}catch(_e){}
+        if(adminReady && restore){setEditMode(true, false)}
+    });
+})();
+</script>
+
+<script id="school-admin-unified-loader">
+(function(){
+const STORAGE_POSTS='school_admin_posts_v2', STORAGE_SCHEDULE='school_schedule_overrides_v2';
+function roots(){const a=[];if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');return [...new Set(a)]}
+async function apiFetch(path,opt={}){let last;for(const r of roots()){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')}
+function esc(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function fmt(v){const d=new Date(v);return Number.isNaN(d.getTime())?(v||''):d.toLocaleDateString('ru-RU')}
+function localPosts(page){try{return (JSON.parse(localStorage.getItem(STORAGE_POSTS))||[]).filter(p=>p.page===page)}catch(e){return []}}
+function canLike(){return localStorage.getItem('auth')==='true'&&!!String(localStorage.getItem('login')||'').trim()}
+function likeKey(){const login=canLike()?String(localStorage.getItem('login')||'').trim().toLowerCase():'';return 'gallery_user_likes:'+(login||'guest')}
+function getLikes(){if(!canLike())return [];try{return JSON.parse(localStorage.getItem(likeKey()))||[]}catch(e){return []}}
+function setLikes(likes){if(canLike())localStorage.setItem(likeKey(),JSON.stringify([...new Set(likes)]))}
+async function getPosts(page){let api=[];try{const r=await apiFetch('/api/admin/posts?page='+encodeURIComponent(page));const d=await r.json();api=d.posts||[]}catch(e){}const local=localPosts(page);const all=[...local,...api];const seen=new Set();return all.filter(p=>{const k=String(p.id||'')+'|'+String(p.page||'')+'|'+String(p.title||'')+'|'+String(p.created_at||'');if(seen.has(k))return false;seen.add(k);return true}).sort((a,b)=>(new Date(b.created_at||0))-(new Date(a.created_at||0)))}
+async function renderPosts(page){const posts=await getPosts(page);if(!posts.length)return;document.querySelectorAll('.admin-dynamic-list,.admin-gallery-card,.admin-docs-dynamic').forEach(x=>x.remove());if(page==='news'||page==='warnings'){const box=document.createElement('div');box.className='admin-dynamic-list';box.innerHTML=posts.map(p=>`<article class="admin-dynamic-card"><h2>${page==='warnings'?'<b>'+esc(p.title)+'</b>':esc(p.title)}</h2><p>${esc(p.content)}</p><div class="admin-dynamic-images">${(p.files||[]).filter(f=>String(f.type||'').startsWith('image/')||String(f.path||'').startsWith('data:image')).map(f=>`<img src="${esc(f.path)}" alt="${esc(f.name)}">`).join('')}</div></article>`).join('');const content=document.querySelector('.content')||document.body;const h=content.querySelector('h1');h?h.insertAdjacentElement('afterend',box):content.prepend(box)}
+if(page==='gallery'){const gallery=document.querySelector('.gallery');if(!gallery)return;const userLikes=getLikes();const html=posts.map(p=>{const img=(p.files||[]).find(f=>String(f.type||'').startsWith('image/')||String(f.path||'').startsWith('data:image'));if(!img)return '';const likeId='admin_'+p.id+'_0';const liked=userLikes.includes(likeId)||userLikes.includes(String(p.id));return `<div class="photo-card admin-gallery-card"><img src="${esc(img.path)}" alt="${esc(p.title)}"><div class="info-overlay"><span class="admin-gallery-desc">${esc(p.content||p.title)}</span><span class="admin-gallery-date">${esc(fmt(p.created_at))}</span><span class="admin-like-btn ${liked?'liked':''}" data-id="${esc(p.id)}" data-like-id="${esc(likeId)}"><i class="fa-solid fa-heart"></i> <b>${p.likes||0}</b></span></div></div>`}).join('');gallery.insertAdjacentHTML('afterbegin',html)}
+if(page==='information'){const files=[];posts.forEach(p=>(p.files||[]).forEach(f=>files.push({title:p.title,content:p.content,...f,created_at:p.created_at})));if(!files.length)return;const box=document.createElement('div');box.className='admin-docs-dynamic';box.innerHTML='<h2>Документы</h2>'+files.map(f=>`<a class="doc-link" href="${esc(f.path)}" target="_blank"><i class="fa-solid fa-file-lines"></i> ${esc(f.title||f.name||'Документ')}</a>`).join('');const content=document.querySelector('.content')||document.body;const target=[...document.querySelectorAll('h2,h3')].find(x=>/документ/i.test(x.textContent));target?target.insertAdjacentElement('afterend',box):content.prepend(box)} }
+const page=(location.pathname.split('/').pop()||'').toLowerCase();if(page==='news.html')renderPosts('news');if(page==='warnings.html')renderPosts('warnings');if(page==='gallery.html')renderPosts('gallery');if(page==='information.html'||page==='total.html')renderPosts('information');
+document.addEventListener('click',async e=>{const btn=e.target.closest('.admin-like-btn');if(!btn||btn.classList.contains('liked'))return;e.preventDefault();if(!canLike())return;const likes=getLikes();likes.push(btn.dataset.likeId||btn.dataset.id);setLikes(likes);try{const rr=await apiFetch(`/api/admin/gallery/${btn.dataset.id}/like`,{method:'POST'});const dd=await rr.json();btn.querySelector('b').textContent=dd.likes||0}catch(_){btn.querySelector('b').textContent=String((parseInt(btn.querySelector('b').textContent)||0)+1)}btn.classList.add('liked')});
+})();
+</script>
+
+
+
+<script src="a11y.js"></script></body>
+</html>

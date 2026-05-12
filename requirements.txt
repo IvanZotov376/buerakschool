@@ -1,0 +1,6 @@
+flask
+flask-cors
+requests
+nest_asyncio
+netschoolapi
+typing_extensions

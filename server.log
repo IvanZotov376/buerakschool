@@ -1,0 +1,1220 @@
+[04.05.2026 17:06:38,86] ОШИБКА: Python не найден 
+SERVER STARTED (Moscow: 04.05.2026 17:10:34)
+Database initialized
+
+==================================================
+SERVER.PY ЗАПУЩЕН
+Server: http://0.0.0.0:5000
+Local:  http://127.0.0.1:5000
+Лог пишется в файл: C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.log
+Если терминал VS Code пустой, откройте server.log рядом с server.py
+==================================================
+
+SERVER STARTED (Moscow: 04.05.2026 17:17:34)
+Database initialized
+
+==================================================
+SERVER.PY ЗАПУЩЕН
+Server: http://0.0.0.0:5000
+Local:  http://127.0.0.1:5000
+Лог пишется в файл: C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.log
+Если терминал VS Code пустой, откройте server.log рядом с server.py
+==================================================
+
+SERVER STARTED (Moscow: 04.05.2026 17:45:49)
+Database initialized
+
+==================================================
+SERVER.PY ЗАПУЩЕН
+Server: http://0.0.0.0:5000
+Local:  http://127.0.0.1:5000
+Лог пишется в файл: C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.log
+Если терминал VS Code пустой, откройте server.log рядом с server.py
+==================================================
+
+SERVER STARTED (Moscow: 04.05.2026 19:16:09)
+Database initialized
+
+==================================================
+SERVER.PY ЗАПУЩЕН
+Server: http://0.0.0.0:5000
+Local:  http://127.0.0.1:5000
+Лог пишется в файл: C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.log
+Если терминал VS Code пустой, откройте server.log рядом с server.py
+==================================================
+
+[19:16:13] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:13] <<< GET /api/user_info status=200 time=0.01s
+[19:16:14] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:14] <<< GET /api/user_info status=200 time=0.01s
+[19:16:14] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:14] <<< GET /api/user_info status=200 time=0.00s
+[19:16:14] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:14] <<< GET /api/user_info status=200 time=0.01s
+[19:16:14] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:14] <<< GET /api/user_info status=200 time=0.00s
+[19:16:14] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:14] <<< GET /api/user_info status=200 time=0.00s
+[19:16:15] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:15] <<< GET /api/user_info status=200 time=0.00s
+[19:16:15] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:15] <<< GET /api/user_info status=200 time=0.01s
+[19:16:15] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:15] <<< GET /api/user_info status=200 time=0.01s
+[19:16:15] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:15] <<< GET /api/user_info status=200 time=0.01s
+[19:16:16] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:16] <<< GET /api/user_info status=200 time=0.00s
+[19:16:16] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:16] <<< GET /api/user_info status=200 time=0.00s
+[19:16:16] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:16] <<< GET /api/user_info status=200 time=0.01s
+[19:16:16] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:16] <<< GET /api/user_info status=200 time=0.00s
+[19:16:17] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:17] <<< GET /api/user_info status=200 time=0.00s
+[19:16:17] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:17] <<< GET /api/user_info status=200 time=0.00s
+[19:16:17] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:17] <<< GET /api/user_info status=200 time=0.01s
+[19:16:17] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:17] <<< GET /api/user_info status=200 time=0.01s
+[19:16:17] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:17] <<< GET /api/user_info status=200 time=0.01s
+[19:16:18] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:18] <<< GET /api/user_info status=200 time=0.01s
+[19:16:18] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:18] <<< GET /api/user_info status=200 time=0.01s
+[19:16:18] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:18] <<< GET /api/user_info status=200 time=0.01s
+[19:16:18] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:18] <<< GET /api/user_info status=200 time=0.00s
+[19:16:19] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:19] <<< GET /api/user_info status=200 time=0.00s
+[19:16:19] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:19] <<< GET /api/user_info status=200 time=0.01s
+[19:16:19] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:19] <<< GET /api/user_info status=200 time=0.00s
+[19:16:19] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:19] <<< GET /api/user_info status=200 time=0.01s
+[19:16:19] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:19] <<< GET /api/user_info status=200 time=0.00s
+[19:16:20] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:20] <<< GET /api/user_info status=200 time=0.00s
+[19:16:20] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:20] <<< GET /api/user_info status=200 time=0.01s
+[19:16:20] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:20] <<< GET /api/user_info status=200 time=0.01s
+[19:16:20] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:20] <<< GET /api/user_info status=200 time=0.00s
+[19:16:21] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:21] <<< GET /api/user_info status=200 time=0.01s
+[19:16:21] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:21] <<< GET /api/user_info status=200 time=0.01s
+[19:16:21] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:21] <<< GET /api/user_info status=200 time=0.00s
+[19:16:21] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:21] <<< GET /api/user_info status=200 time=0.01s
+[19:16:21] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:21] <<< GET /api/user_info status=200 time=0.00s
+[19:16:22] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:22] <<< GET /api/user_info status=200 time=0.00s
+[19:16:22] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:22] <<< GET /api/user_info status=200 time=0.00s
+[19:16:22] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:22] <<< GET /api/user_info status=200 time=0.00s
+[19:16:22] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:22] <<< GET /api/user_info status=200 time=0.01s
+[19:16:23] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:23] <<< GET /api/user_info status=200 time=0.00s
+[19:16:23] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:23] <<< GET /api/user_info status=200 time=0.00s
+[19:16:23] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:23] <<< GET /api/user_info status=200 time=0.00s
+[19:16:23] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:23] <<< GET /api/site/posts status=200 time=0.01s
+[19:16:24] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:24] <<< GET /api/user_info status=200 time=0.00s
+[19:16:24] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:24] <<< GET /api/site/posts status=200 time=0.01s
+[19:16:24] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:24] <<< GET /api/user_info status=200 time=0.00s
+[19:16:24] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:24] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:24] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:24] <<< GET /api/user_info status=200 time=0.01s
+[19:16:24] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:24] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:24] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:24] <<< GET /api/user_info status=200 time=0.01s
+[19:16:24] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:24] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:24] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:24] <<< GET /api/user_info status=200 time=0.01s
+[19:16:24] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:24] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:24] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:24] <<< GET /api/user_info status=200 time=0.00s
+[19:16:25] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:25] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:25] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:25] <<< GET /api/user_info status=200 time=0.00s
+[19:16:25] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:25] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:25] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:25] <<< GET /api/user_info status=200 time=0.00s
+[19:16:25] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:25] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:25] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:25] <<< GET /api/user_info status=200 time=0.01s
+[19:16:25] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:25] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:25] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:25] <<< GET /api/user_info status=200 time=0.00s
+[19:16:25] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:25] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:25] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:25] <<< GET /api/user_info status=200 time=0.00s
+[19:16:26] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:26] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:26] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:26] <<< GET /api/user_info status=200 time=0.00s
+[19:16:26] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:26] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:26] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:26] <<< GET /api/user_info status=200 time=0.00s
+[19:16:26] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:26] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:26] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:26] <<< GET /api/user_info status=200 time=0.01s
+[19:16:26] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:26] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:26] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:26] <<< GET /api/user_info status=200 time=0.00s
+[19:16:26] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:26] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:27] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:27] <<< GET /api/user_info status=200 time=0.00s
+[19:16:27] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:27] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:27] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:27] <<< GET /api/user_info status=200 time=0.01s
+[19:16:27] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:27] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:27] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:27] <<< GET /api/user_info status=200 time=0.00s
+[19:16:27] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:27] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:27] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:27] <<< GET /api/user_info status=200 time=0.00s
+[19:16:27] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:27] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:27] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:27] <<< GET /api/user_info status=200 time=0.00s
+[19:16:28] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:28] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:28] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:28] <<< GET /api/user_info status=200 time=0.01s
+[19:16:28] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:28] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:28] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:28] <<< GET /api/user_info status=200 time=0.00s
+[19:16:28] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:28] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:28] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:28] <<< GET /api/user_info status=200 time=0.00s
+[19:16:28] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:28] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:28] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:28] <<< GET /api/user_info status=200 time=0.01s
+[19:16:28] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:28] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:28] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:28] <<< GET /api/user_info status=200 time=0.00s
+[19:16:29] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:29] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:29] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:29] <<< GET /api/user_info status=200 time=0.00s
+[19:16:29] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:29] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:29] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:29] <<< GET /api/user_info status=200 time=0.01s
+[19:16:29] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:29] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:29] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:29] <<< GET /api/user_info status=200 time=0.00s
+[19:16:29] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:29] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:29] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:29] <<< GET /api/user_info status=200 time=0.00s
+[19:16:29] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:29] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:29] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:29] <<< GET /api/user_info status=200 time=0.00s
+[19:16:30] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:30] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:30] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:30] <<< GET /api/user_info status=200 time=0.00s
+[19:16:30] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:30] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:30] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:30] <<< GET /api/user_info status=200 time=0.00s
+[19:16:30] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:30] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:30] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:30] <<< GET /api/user_info status=200 time=0.01s
+[19:16:30] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:30] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:30] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:30] <<< GET /api/user_info status=200 time=0.00s
+[19:16:30] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:30] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:30] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:30] <<< GET /api/user_info status=200 time=0.00s
+[19:16:31] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:31] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:31] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:31] <<< GET /api/user_info status=200 time=0.00s
+[19:16:31] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:31] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:31] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:31] <<< GET /api/user_info status=200 time=0.00s
+[19:16:31] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:31] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:31] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:31] <<< GET /api/user_info status=200 time=0.00s
+[19:16:31] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:31] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:31] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:31] <<< GET /api/user_info status=200 time=0.00s
+[19:16:31] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:31] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:31] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:32] <<< GET /api/user_info status=200 time=0.00s
+[19:16:32] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:32] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:32] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:32] <<< GET /api/user_info status=200 time=0.00s
+[19:16:32] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:32] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:32] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:32] <<< GET /api/user_info status=200 time=0.01s
+[19:16:32] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:32] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:32] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:32] <<< GET /api/user_info status=200 time=0.00s
+[19:16:32] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:32] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:32] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:32] <<< GET /api/user_info status=200 time=0.00s
+[19:16:32] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:32] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:32] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:32] <<< GET /api/user_info status=200 time=0.00s
+[19:16:33] >>> GET /api/site/posts args={'page': 'news'}
+[19:16:33] <<< GET /api/site/posts status=200 time=0.00s
+[19:16:33] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:16:33] <<< GET /api/user_info status=200 time=0.00s
+[19:19:24] >>> GET /api/site/posts args={'page': 'news'}
+[19:19:24] <<< GET /api/site/posts status=200 time=0.00s
+[19:19:41] >>> OPTIONS /api/login args={}
+[19:19:41] <<< OPTIONS /api/login status=200 time=0.00s
+[19:19:41] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login оЗотовВ11
+[19:19:43] <<< POST /api/login status=200 time=1.69s
+[19:19:51] >>> GET /api/site/posts args={'page': 'news'}
+[19:19:51] <<< GET /api/site/posts status=200 time=0.01s
+[19:19:51] >>> GET /api/site/posts args={'page': 'news'}
+[19:19:51] <<< GET /api/site/posts status=200 time=0.00s
+[19:20:00] >>> OPTIONS /api/login args={}
+[19:20:00] <<< OPTIONS /api/login status=200 time=0.00s
+SERVER STARTED (Moscow: 04.05.2026 19:20:30)
+Database initialized
+
+==================================================
+SERVER.PY ЗАПУЩЕН
+Server: http://0.0.0.0:5000
+Local:  http://127.0.0.1:5000
+Лог пишется в файл: C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.log
+Если терминал VS Code пустой, откройте server.log рядом с server.py
+==================================================
+
+[19:20:40] >>> OPTIONS /api/login args={}
+[19:20:40] <<< OPTIONS /api/login status=200 time=0.00s
+[19:20:40] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login оЗотовВ11
+[19:20:42] <<< POST /api/login status=200 time=1.84s
+[19:21:09] >>> OPTIONS /api/login args={}
+[19:21:09] <<< OPTIONS /api/login status=200 time=0.00s
+[19:21:09] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотоваО10
+[19:21:13] <<< POST /api/login status=200 time=3.56s
+[19:24:27] >>> OPTIONS /api/login args={}
+[19:24:27] <<< OPTIONS /api/login status=200 time=0.00s
+[19:24:27] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login оЗотовВ11
+[19:24:28] <<< POST /api/login status=200 time=1.43s
+[19:25:36] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотовА25
+[19:25:38] <<< POST /api/login status=200 time=2.59s
+[19:25:38] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:25:38] <<< GET /api/user_info status=200 time=0.01s
+[19:32:02] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотоваО10
+[19:32:08] <<< POST /api/login status=200 time=5.75s
+[19:32:08] >>> POST /api/lkteacher/dashboard args={}
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 4412, in _fetch
+    actual_school = await asyncio.wait_for(sgo_login_with_fallback(ns, login_val, password_val, school, allow_teacher=True))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:32:09] <<< POST /api/lkteacher/dashboard status=200 time=0.55s
+[19:32:25] >>> POST /api/register args={}
+[19:32:25] <<< POST /api/register status=200 time=0.02s
+[19:34:51] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотовА25
+[19:34:54] <<< POST /api/login status=200 time=2.54s
+[19:34:54] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:34:54] <<< GET /api/user_info status=200 time=0.01s
+[19:34:57] >>> POST /api/diary args={}
+[19:34:57] [diary-0e23d54b] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:34:57] [diary-0e23d54b] 1/5 вход в СГО...
+[19:35:02] [diary-0e23d54b] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    actual_school = await sgo_login_with_fallback(ns, login_val, password_val, school)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    await ns.login(login_val, password_val, candidate)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:35:02] <<< POST /api/diary status=200 time=5.66s
+[19:35:42] >>> POST /api/diary args={}
+[19:35:42] [diary-6af1e94e] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:35:42] [diary-6af1e94e] 1/5 вход в СГО...
+[19:35:43] [diary-6af1e94e] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    actual_school = await sgo_login_with_fallback(ns, login_val, password_val, school)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    await ns.login(login_val, password_val, candidate)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:35:43] <<< POST /api/diary status=200 time=1.57s
+[19:35:46] >>> POST /api/diary args={}
+[19:35:46] [diary-866dd881] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:35:46] [diary-866dd881] 1/5 вход в СГО...
+[19:35:47] [diary-866dd881] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    actual_school = await sgo_login_with_fallback(ns, login_val, password_val, school)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    await ns.login(login_val, password_val, candidate)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:35:48] <<< POST /api/diary status=200 time=1.73s
+[19:38:47] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:38:47] >>> POST /api/diary args={}
+[19:38:47] [diary-e9acce6e] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:38:47] <<< GET /api/user_info status=200 time=0.01s
+[19:38:47] [diary-e9acce6e] 1/5 вход в СГО...
+[19:38:48] [diary-e9acce6e] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    actual_school = await sgo_login_with_fallback(ns, login_val, password_val, school)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    await ns.login(login_val, password_val, candidate)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:38:48] <<< POST /api/diary status=200 time=1.49s
+[19:38:57] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:38:57] <<< GET /api/user_info status=200 time=0.01s
+[19:38:57] >>> POST /api/diary args={}
+[19:38:57] [diary-e7c9256f] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:38:57] [diary-e7c9256f] 1/5 вход в СГО...
+[19:38:58] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:38:58] <<< GET /api/user_info status=200 time=0.00s
+[19:38:58] >>> POST /api/diary args={}
+[19:38:58] [diary-a7a7e62e] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:38:58] [diary-a7a7e62e] 1/5 вход в СГО...
+[19:38:59] [diary-e7c9256f] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    actual_school = await sgo_login_with_fallback(ns, login_val, password_val, school)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    await ns.login(login_val, password_val, candidate)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:38:59] [diary-a7a7e62e] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    actual_school = await sgo_login_with_fallback(ns, login_val, password_val, school)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    await ns.login(login_val, password_val, candidate)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:38:59] <<< POST /api/diary status=200 time=1.87s
+[19:38:59] <<< POST /api/diary status=200 time=1.38s
+[19:39:28] >>> OPTIONS /api/login args={}
+[19:39:28] <<< OPTIONS /api/login status=200 time=0.00s
+[19:39:28] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ДьячихинаДир1
+[19:39:30] <<< POST /api/login status=200 time=1.67s
+[19:39:54] >>> OPTIONS /api/login args={}
+[19:39:54] <<< OPTIONS /api/login status=200 time=0.00s
+[19:39:54] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотоваО10
+[19:39:56] <<< POST /api/login status=200 time=2.57s
+[19:40:04] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:04] <<< GET /api/user_info status=200 time=0.01s
+[19:40:04] >>> OPTIONS /api/diary args={}
+[19:40:04] <<< OPTIONS /api/diary status=200 time=0.00s
+[19:40:04] >>> POST /api/diary args={}
+[19:40:04] [diary-08ddd0c1] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:04] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:04] <<< GET /api/user_info status=200 time=0.00s
+[19:40:04] >>> POST /api/diary args={}
+[19:40:04] [diary-94561f69] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:04] [diary-08ddd0c1] 1/5 вход в СГО...
+[19:40:04] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:04] [diary-94561f69] 1/5 вход в СГО...
+[19:40:04] >>> POST /api/diary args={}
+[19:40:04] [diary-8f8eaada] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:04] <<< GET /api/user_info status=200 time=0.14s
+[19:40:05] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:05] >>> POST /api/diary args={}
+[19:40:05] [diary-03cf9ee0] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:05] <<< GET /api/user_info status=200 time=0.01s
+[19:40:05] [diary-8f8eaada] 1/5 вход в СГО...
+[19:40:05] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:05] >>> POST /api/diary args={}
+[19:40:05] [diary-33b7fd7f] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:05] <<< GET /api/user_info status=200 time=0.02s
+[19:40:05] [diary-03cf9ee0] 1/5 вход в СГО...
+[19:40:05] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:05] <<< GET /api/user_info status=200 time=0.01s
+[19:40:05] >>> POST /api/diary args={}
+[19:40:05] [diary-f67338ae] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:05] [diary-33b7fd7f] 1/5 вход в СГО...
+[19:40:05] [diary-94561f69] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:05] [diary-94561f69] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:05] [diary-94561f69] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:05] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:05] >>> POST /api/diary args={}
+[19:40:05] [diary-a4c90ea5] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:05] <<< GET /api/user_info status=200 time=0.00s
+[19:40:06] [diary-08ddd0c1] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:06] [diary-08ddd0c1] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:06] <<< POST /api/diary status=200 time=1.68s
+[19:40:06] [diary-08ddd0c1] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:06] [diary-f67338ae] 1/5 вход в СГО...
+[19:40:06] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:06] >>> POST /api/diary args={}
+[19:40:06] <<< POST /api/diary status=200 time=2.01s
+[19:40:06] [diary-fa464a63] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:06] [diary-a4c90ea5] 1/5 вход в СГО...
+[19:40:06] <<< GET /api/user_info status=200 time=0.13s
+[19:40:06] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:06] <<< GET /api/user_info status=200 time=0.00s
+[19:40:06] >>> POST /api/diary args={}
+[19:40:06] [diary-3c60a5d6] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:06] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:06] >>> POST /api/diary args={}
+[19:40:06] <<< GET /api/user_info status=200 time=0.01s
+[19:40:06] [diary-af79d2e6] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:06] [diary-fa464a63] 1/5 вход в СГО...
+[19:40:06] [diary-3c60a5d6] 1/5 вход в СГО...
+[19:40:07] >>> POST /api/diary args={}
+'login': 'ЗотовА25'}
+[19:40:07] [diary-af79d2e6] 1/5 вход в СГО...
+[19:40:07] [diary-7f246308] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:07] <<< GET /api/user_info status=200 time=0.11s
+[19:40:07] [diary-33b7fd7f] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:07] [diary-33b7fd7f] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:07] [diary-33b7fd7f] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+[19:40:07] [diary-03cf9ee0] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:07] >>> POST /api/diary args={}
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:07] [diary-03cf9ee0] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:07] [diary-6e5826c7] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:07] [diary-03cf9ee0] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:07] <<< POST /api/diary status=200 time=2.38s
+[19:40:07] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:07] <<< GET /api/user_info status=200 time=0.01s
+[19:40:07] >>> POST /api/diary args={}
+[19:40:07] [diary-f1d3311d] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:07] [diary-f67338ae] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:07] [diary-f67338ae] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:07] [diary-f67338ae] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:07] [diary-7f246308] 1/5 вход в СГО...
+[19:40:07] [diary-6e5826c7] 1/5 вход в СГО...
+[19:40:07] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:40:07] >>> POST /api/diary args={}
+[19:40:08] <<< POST /api/diary status=200 time=2.30s
+[19:40:08] [diary-09c754e1] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:40:08] [diary-8f8eaada] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:08] [diary-f1d3311d] 1/5 вход в СГО...
+[19:40:08] <<< GET /api/user_info status=200 time=0.16s
+[19:40:08] [diary-8f8eaada] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:08] [diary-8f8eaada] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:08] [diary-09c754e1] 1/5 вход в СГО...
+[19:40:08] <<< POST /api/diary status=200 time=3.79s
+[19:40:08] [diary-3c60a5d6] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:08] [diary-3c60a5d6] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:08] [diary-3c60a5d6] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:08] [diary-af79d2e6] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:08] [diary-af79d2e6] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:08] [diary-af79d2e6] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:08] <<< POST /api/diary status=200 time=2.21s
+[19:40:08] <<< POST /api/diary status=200 time=1.98s
+[19:40:09] [diary-fa464a63] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:09] [diary-fa464a63] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:09] [diary-fa464a63] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:09] <<< POST /api/diary status=200 time=2.94s
+[19:40:09] [diary-6e5826c7] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:09] [diary-6e5826c7] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:09] [diary-6e5826c7] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:09] <<< POST /api/diary status=200 time=1.99s
+[19:40:09] [diary-09c754e1] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:09] [diary-09c754e1] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:09] [diary-09c754e1] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:09] <<< POST /api/diary status=200 time=1.70s
+[19:40:09] [diary-7f246308] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:09] [diary-7f246308] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:09] [diary-7f246308] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:09] <<< POST /api/diary status=200 time=2.80s
+[19:40:10] [diary-f1d3311d] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:10] [diary-f1d3311d] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:10] [diary-f1d3311d] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:10] <<< POST /api/diary status=200 time=2.68s
+[19:40:11] [diary-a4c90ea5] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[19:40:11] [diary-a4c90ea5] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[19:40:11] [diary-a4c90ea5] ОШИБКА дневника: TypeError: wait_for() missing 1 required positional argument: 'timeout'
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1858, in _fetch
+    diary = await asyncio.wait_for(ns.diary(start_dt, end_dt), timeout=120)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wait_for() missing 1 required positional argument: 'timeout'
+
+[19:40:11] <<< POST /api/diary status=200 time=5.76s
+[19:42:43] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотовА25
+[19:42:44] <<< POST /api/login status=200 time=1.49s
+[19:42:45] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:42:45] <<< GET /api/user_info status=200 time=0.01s
+[19:42:45] >>> POST /api/diary args={}
+[19:42:45] [diary-edcf2fcd] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:42:45] [diary-edcf2fcd] 1/5 вход в СГО...
+[19:42:46] [diary-edcf2fcd] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    actual_school = await sgo_login_with_fallback(ns, login_val, password_val, school)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    await ns.login(login_val, password_val, candidate)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:42:46] <<< POST /api/diary status=200 time=1.74s
+[19:42:55] >>> GET /api/user_info args={'login': ''}
+[19:42:55] <<< GET /api/user_info status=400 time=0.00s
+[19:43:22] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотовА25
+[19:43:25] <<< POST /api/login status=200 time=2.54s
+[19:43:25] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:43:25] <<< GET /api/user_info status=200 time=0.01s
+[19:43:25] >>> POST /api/diary args={}
+[19:43:25] [diary-47faef92] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:43:25] [diary-47faef92] 1/5 вход в СГО...
+[19:43:26] [diary-47faef92] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    actual_school = await sgo_login_with_fallback(ns, login_val, password_val, school)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    await ns.login(login_val, password_val, candidate)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:43:26] <<< POST /api/diary status=200 time=1.54s
+[19:48:06] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[19:48:06] >>> POST /api/diary args={}
+[19:48:06] [diary-7afb47ef] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[19:48:06] <<< GET /api/user_info status=200 time=0.02s
+[19:48:06] [diary-7afb47ef] 1/5 вход в СГО...
+[19:48:08] [diary-7afb47ef] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1851, in _fetch
+    log_step(request_id, "1/5 вход в СГО...")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 589, in sgo_login_with_fallback
+    try:
+        ^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[19:48:09] <<< POST /api/diary status=200 time=2.81s
+[22:08:29] >>> GET /api/messages args={'login': 'оЗотовВ11'}
+[22:08:29] <<< GET /api/messages status=200 time=0.01s
+[22:08:31] >>> POST /api/diary args={}
+[22:08:31] [diary-9397c1ee] START /api/diary login=оЗотовВ11 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[22:08:31] [diary-9397c1ee] 1/5 вход в СГО...
+[22:08:33] [diary-9397c1ee] 2/5 вход выполнен, школа: МКОУ школа №1 г.Серафимовича
+[22:08:33] [diary-9397c1ee] 3/5 запрос дневника за период 2026-05-04..2026-05-10...
+[22:08:33] [diary-9397c1ee] 4/5 получено дней: 5
+[22:08:33] [diary-9397c1ee] разбор дня 1/5
+[22:08:33] [diary-9397c1ee] разбор дня 2/5
+[22:08:33] [diary-9397c1ee] разбор дня 3/5
+[22:08:33] [diary-9397c1ee] разбор дня 4/5
+[22:08:33] [diary-9397c1ee] разбор дня 5/5
+[22:08:33] [diary-9397c1ee] 5/5 дневник готов: дней=5, уроков=32, оценок=2, время=2.41s
+[22:08:33] <<< POST /api/diary status=200 time=2.43s
+[22:08:46] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотовА25
+[22:08:48] <<< POST /api/login status=200 time=2.06s
+[22:08:48] >>> GET /api/user_info args={'login': 'ЗотовА25'}
+[22:08:48] <<< GET /api/user_info status=200 time=0.01s
+[22:08:48] >>> POST /api/diary args={}
+[22:08:48] [diary-d618092d] START /api/diary login=ЗотовА25 school=МКОУ школа №1 г.Серафимовича period=2026-05-04..2026-05-10 attachments=False
+[22:08:48] [diary-d618092d] 1/5 вход в СГО...
+[22:08:49] [diary-d618092d] ОШИБКА дневника: AuthError: 
+Traceback (most recent call last):
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 71, in login
+    response = await requester(
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1706, in _send_handling_redirects
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1688, in _send_handling_redirects
+    await hook(response)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 18, in _die_on_bad_status
+    response.raise_for_status()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_models.py", line 749, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '409 Conflict' for url 'https://sgo.volganet.ru/webapi/login'
+For more information check: https://httpstatuses.com/409
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 1852, in _fetch
+    result.append({"date": cursor.strftime("%Y-%m-%d"), "lessons": []})
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 590, in sgo_login_with_fallback
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 102, in login
+    raise errors.AuthError()
+netschoolapi.errors.AuthError
+
+[22:08:51] <<< POST /api/diary status=200 time=2.64s
+[22:18:48] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ДьячихинаДир1
+[22:18:55] <<< POST /api/login status=200 time=7.29s
+[22:18:55] >>> GET /api/admin/posts args={'page': 'news'}
+[22:18:55] <<< GET /api/admin/posts status=200 time=0.02s
+[22:19:04] >>> GET /api/site/posts args={'page': 'news'}
+[22:19:04] <<< GET /api/site/posts status=200 time=0.01s
+[22:19:04] >>> GET /api/user_info args={'login': 'ДьячихинаДир1'}
+[22:19:04] <<< GET /api/user_info status=200 time=0.00s
+[22:19:09] >>> GET /api/admin/posts args={'page': 'news'}
+[22:19:09] <<< GET /api/admin/posts status=200 time=0.01s
+[22:19:09] >>> GET /api/user_info args={'login': 'ДьячихинаДир1'}
+[22:19:09] <<< GET /api/user_info status=200 time=0.00s
+[22:19:14] >>> GET /api/site/posts args={'page': 'gallery'}
+[22:19:14] >>> GET /api/user_info args={'login': 'ДьячихинаДир1'}
+[22:19:14] <<< GET /api/user_info status=200 time=0.15s
+[22:19:14] <<< GET /api/site/posts status=200 time=0.16s
+[22:19:21] >>> POST /api/gallery/1/like args={}
+[22:19:21] <<< POST /api/gallery/1/like status=200 time=0.02s
+[22:19:27] >>> GET /api/site/posts args={'page': 'gallery'}
+[22:19:27] <<< GET /api/site/posts status=200 time=0.03s
+[22:19:46] >>> POST /api/login args={}
+LOGIN MAIL SENT to ivan.kulm@yandex.ru for login ЗотоваО10
+[22:19:52] <<< POST /api/login status=200 time=6.77s
+[22:19:53] >>> POST /api/lkteacher/dashboard args={}
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 4418, in _fetch
+    'debug': [],
+                 
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\Desktop\univer\ДИПЛОМ\прога\server.py", line 590, in sgo_login_with_fallback
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\netschoolapi.py", line 53, in login
+    await requester(self._wrapped_client.client.build_request(
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 43, in request
+    return await asyncio.wait_for(self._infinite_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\asyncio\tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\netschoolapi\async_client_wrapper.py", line 52, in _infinite_request
+    response = await self.client.send(request, follow_redirects=follow_redirects)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1620, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1648, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1685, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_client.py", line 1722, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpx\_transports\default.py", line 353, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_async\connection_pool.py", line 253, in handle_async_request
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_async\connection_pool.py", line 237, in handle_async_request
+    response = await connection.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\_async\http_proxy.py", line 289, in handle_async_request
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\backends\asyncio.py", line 78, in start_tls
+    raise exc
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\httpcore\backends\asyncio.py", line 69, in start_tls
+    ssl_stream = await anyio.streams.tls.TLSStream.wrap(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\streams\tls.py", line 132, in wrap
+    await wrapper._call_sslobject_method(ssl_object.do_handshake)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\site-packages\anyio\streams\tls.py", line 140, in _call_sslobject_method
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python312\Lib\ssl.py", line 916, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1010)
+
+[22:19:56] <<< POST /api/lkteacher/dashboard status=200 time=2.88s
+[22:20:08] >>> POST /api/lkteacher/dashboard args={}
+Teacher account detected: student diary init returned 401, continue with journal cookies
+SGO GET https://sgo.volganet.ru/webapi/context mode=query params={} -> HTTP 200 in 0.75s
+SGO GET https://sgo.volganet.ru/webapi/auth/getdata mode=query params={} -> HTTP 405 in 0.06s
+SGO GET https://sgo.volganet.ru/webapi/subjectgroups mode=query params={} -> HTTP 200 in 0.25s
+SGO GET https://sgo.volganet.ru/webapi/classmeetings mode=query params={'startDate': '2026-05-04', 'endDate': '2026-05-17', 'teacherId': '228298'} -> HTTP 404 in 0.12s
+SGO POST https://sgo.volganet.ru/webapi/classmeetings mode=json params={'startDate': '2026-05-04', 'endDate': '2026-05-17', 'teacherId': '228298'} -> HTTP 404 in 0.13s
+SGO POST https://sgo.volganet.ru/webapi/classmeetings mode=query params={'startDate': '2026-05-04', 'endDate': '2026-05-17', 'teacherId': '228298'} -> HTTP 404 in 0.22s
+SGO GET https://sgo.volganet.ru/webapi/classmeetings mode=query params={'start': '2026-05-04', 'end': '2026-05-17', 'teacherId': '228298'} -> HTTP 404 in 0.11s
+SGO POST https://sgo.volganet.ru/webapi/classmeetings mode=json params={'start': '2026-05-04', 'end': '2026-05-17', 'teacherId': '228298'} -> HTTP 404 in 0.22s
+SGO POST https://sgo.volganet.ru/webapi/classmeetings mode=query params={'start': '2026-05-04', 'end': '2026-05-17', 'teacherId': '228298'} -> HTTP 404 in 0.38s
+SGO GET https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4068728', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.12s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=json params={'sg': '4068728', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.08s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4068728', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.16s
+SGO GET https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4068728', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.05s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=json params={'sg': '4068728', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.06s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4068728', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.23s
+SGO GET https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4270427', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.17s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=json params={'sg': '4270427', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.23s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4270427', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.32s
+SGO GET https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4270427', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.11s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=json params={'sg': '4270427', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.11s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4270427', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.17s
+SGO GET https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4068724', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.07s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=json params={'sg': '4068724', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.08s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4068724', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.13s
+SGO GET https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4068724', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.1s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=json params={'sg': '4068724', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.09s
+SGO POST https://sgo.volganet.ru/webapi/journals mode=query params={'sg': '4068724', 'weekStart': '2026-05-04', 'weekEnd': '2026-05-17'} -> HTTP 404 in 0.2s
+[22:20:17] <<< POST /api/lkteacher/dashboard status=200 time=8.56s

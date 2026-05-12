@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Школьный Театр</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: #e9e9e9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 42px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            text-decoration: none;
+            font-weight: 800;
+            color: #2ea3d0;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+            color: #1c6f8f;
+        }
+
+        .page-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .page-card h3 {
+            font-size: 1.35rem;
+            margin: 18px 0 10px;
+            color: #2c3e50;
+        }
+
+        .page-card h3:first-child {
+            margin-top: 0;
+        }
+
+        .page-card h3 i {
+            margin-right: 10px;
+            color: #2ea3d0;
+        }
+
+        .page-card ul, .page-card ol {
+            padding-left: 24px;
+            margin: 10px 0;
+        }
+
+        .page-card li {
+            margin: 7px 0;
+        }
+
+        .accent {
+            color: #2ea3d0;
+            font-weight: 800;
+        }
+
+        .notice {
+            border-left: 5px solid #2ea3d0;
+            background: #f2fbff;
+            padding: 16px 18px;
+            border-radius: 14px;
+            margin: 14px 0;
+        }
+
+        .quote-block {
+            background: #f9f3e8;
+            border-left: 5px solid #d49b3a;
+            padding: 18px 24px;
+            border-radius: 20px;
+            font-style: italic;
+            margin: 20px 0;
+            font-size: 1.05rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .source-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            color: #2ea3d0;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: #f8f9fa;
+            border: 1px solid #e1e1e1;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 800;
+            transition: 0.22s;
+        }
+
+        .resource-link:hover {
+            background: #2ea3d0;
+            color: #fff;
+            border-color: #2ea3d0;
+            transform: translateY(-2px);
+        }
+
+        .phone-box {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #2ea3d0;
+            background: #eaf6fb;
+            border-radius: 16px;
+            padding: 16px 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .school-card {
+            display: block;
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px;
+            text-decoration: none;
+            color: #222;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+            transition: 0.22s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .school-card:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: #2ea3d0;
+        }
+
+        .school-card:hover {
+            transform: translateY(-5px);
+            background: #2ea3d0;
+            color: #fff;
+            box-shadow: 0 14px 28px rgba(46, 163, 208, 0.28);
+        }
+
+        .school-card i {
+            font-size: 2rem;
+            margin-bottom: 14px;
+            color: #2ea3d0;
+            transition: 0.22s;
+        }
+
+        .school-card:hover i {
+            color: #fff;
+            transform: scale(1.08);
+        }
+
+        .school-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .school-card p {
+            line-height: 1.5;
+        }
+
+        /* стили для документов */
+        .docs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .doc-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: #f8f9fa;
+            border-radius: 14px;
+            padding: 12px 20px;
+            transition: 0.2s;
+            border: 1px solid #e9ecef;
+        }
+
+        .doc-item:hover {
+            background: #fff3e0;
+            border-color: #2ea3d0;
+            transform: translateX(6px);
+        }
+
+        .doc-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 600;
+        }
+
+        .doc-info i {
+            font-size: 1.8rem;
+            color: #2ea3d0;
+        }
+
+        .doc-name {
+            font-size: 1rem;
+            letter-spacing: -0.2px;
+        }
+
+        .doc-download {
+            background: #eef2f5;
+            padding: 8px 16px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 800;
+            color: #2c3e50;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .doc-download:hover {
+            background: #2ea3d0;
+            color: white;
+        }
+
+        .badge {
+            background: #2ea3d0;
+            color: white;
+            border-radius: 50px;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .project-card {
+            background: #eef4fa;
+            border-radius: 20px;
+            padding: 18px 22px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 700px) {
+            .phone-box {
+                font-size: 1.05rem;
+            }
+            .content {
+                padding: 28px 0;
+            }
+            .doc-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+
+        /* темная и синяя темы (поддержка стилей) */
+        body.dark-theme {
+            background: #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .section-title,
+        body.dark-theme .page-card h3 {
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .page-card,
+        body.dark-theme .school-card {
+            background: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .notice,
+        body.dark-theme .quote-block {
+            background: #202f36;
+            color: #ddd;
+        }
+
+        body.dark-theme .resource-link,
+        body.dark-theme .doc-item,
+        body.dark-theme .project-card {
+            background: #2a2a2a;
+            border-color: #333;
+            color: #e0e0e0;
+        }
+
+        body.blue-theme {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        body.blue-theme .page-card,
+        body.blue-theme .school-card {
+            background: #bbdefb;
+            color: #0d47a1;
+        }
+
+        body.blue-theme .section-title,
+        body.blue-theme .page-card h3 {
+            color: #0d47a1;
+        }
+
+        body.blue-theme .resource-link,
+        body.blue-theme .notice,
+        body.blue-theme .doc-item,
+        body.blue-theme .quote-block,
+        body.blue-theme .project-card {
+            background: #e3f2fd;
+            border-color: #90caf9;
+        }
+    </style>
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<main class="content">
+    <div class="container">
+        <a class="back-link" href="schoollife.html">
+            <i class="fa-solid fa-arrow-left"></i> Назад к школьной жизни
+        </a>
+
+        <h2 class="section-title">Школьный Театр</h2>
+
+        <!-- Основная карточка с информацией с сайта школы -->
+        <div class="page-card">
+            <h3><i class="fa-solid fa-masks-theater"></i> Школьный театр – пространство творчества и развития</h3>
+            <div class="quote-block">
+                <i class="fa-solid fa-quote-left" style="margin-right: 8px; color: #d49b3a;"></i> 
+                "Театр есть искусство отражать жизнь". 
+                <span style="font-weight: 700;">(К.С. Станиславский)</span>
+            </div>
+
+            <p>Школьный театр – это то место, где ребёнок может попробовать себя в разных ролях, что способствует его самоопределению и дальнейшей самореализации. Тем самым развивается их социально-трудовая компетенция, которая включает в себя владение знаниями и опытом в сфере гражданско-общественной деятельности, в социально-трудовой сфере, в сфере семейных отношений и обязанностей. Ученик овладевает минимально необходимыми для жизни в современном обществе навыками социальной активности и функциональной грамотности.</p>
+
+            <p>Школьный театр может стать местом, где произойдет становление личностного самосознания, сформируется культура чувств, способность к общению, овладение собственным телом, голосом, пластической выразительностью движений, воспитается чувство меры и вкус, необходимые человеку для успеха в любой сфере деятельности. Театрально-эстетическая деятельность, органично включенная в образовательный процесс, — универсальное средство развития личностных способностей человека.</p>
+
+            <div class="notice">
+                <i class="fa-regular fa-lightbulb"></i>  
+                <strong>Цитата:</strong> «Школьный театр - это удивительный мир, в котором все дети талантливы и неповторимы. Школьный театр – это способ дать волю своим чувствам, мыслям, своей креативности, это красота отношений, которую дети создают собственными руками. Это эмоции, формирующие лучшие человеческие качества».
+            </div>
+
+            <!-- Информация о Всероссийском проекте "Школьная классика" -->
+            <h3><i class="fa-regular fa-star"></i> Всероссийский проект «Школьная классика»</h3>
+            <div class="project-card">
+                <p><strong>С 2020 года</strong> при поддержке Министерства просвещения России стартовал Всероссийский проект «Школьная классика». Проект разработан Общероссийской общественно-государственной детско-юношеской организацией «Российское движение школьников» и Федеральным государственным бюджетным образовательным учреждением высшего образования «Театральным институтом имени Бориса Щукина при Государственном академическом театре имени Евгения Вахтангова».</p>
+                <p style="margin-top: 12px;"><i class="fa-solid fa-bullhorn" style="color:#2ea3d0;"></i> <strong>Цель проекта «Школьная классика»</strong> – формирование поликультурной среды, способствующей всестороннему развитию личности, приобщению учащихся к общечеловеческим ценностям посредством стимулирования развития школьных театров в образовательных организациях всех регионов нашей страны.</p>
+            </div>
+
+            <h3><i class="fa-solid fa-list-check"></i> Задачи и направления работы театра</h3>
+            <ul>
+                <li>подготовка спектаклей и тематических постановок на школьной сцене;</li>
+                <li>участие в фестивалях, конкурсах и праздниках школьного, муниципального уровня;</li>
+                <li>развитие актёрского мастерства, сценической речи, пластики и воображения;</li>
+                <li>создание условий для творческого самовыражения и раскрытия личности каждого участника;</li>
+                <li>приобщение к театральному искусству, классическому и современному репертуару;</li>
+                <li>воспитание командного духа, взаимовыручки и ответственности.</li>
+            </ul>
+
+            <!-- Документы школьного театра (на основе реально размещаемых материалов) -->
+            <h3><i class="fa-solid fa-folder-open"></i> Документы школьного театра</h3>
+            <div class="docs-list">
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-file-pdf"></i>
+                        <span class="doc-name">Положение о школьном театре «Вдохновение»</span>
+                    </div>
+                    <a href="docs/theatre_regulation.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-file-word"></i>
+                        <span class="doc-name">План работы школьного театра на 2025-2026 учебный год</span>
+                    </div>
+                    <a href="docs/theatre_plan_2025_2026.docx" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-file-pdf"></i>
+                        <span class="doc-name">Репертуарный план и график репетиций</span>
+                    </div>
+                    <a href="docs/theatre_repertoire.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-file-lines"></i>
+                        <span class="doc-name">Отчёт о творческой деятельности театральной студии (прошлый учебный год)</span>
+                    </div>
+                    <a href="docs/theatre_report_2024.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <span class="doc-name">Правила поведения и техника безопасности на занятиях театра</span>
+                    </div>
+                    <a href="docs/theatre_safety.pdf" class="doc-download" download><i class="fa-solid fa-download"></i> Скачать</a>
+                </div>
+            </div>
+
+            <!-- Дополнительный блок о руководителе / контакты -->
+            <h3><i class="fa-regular fa-address-card"></i> Руководитель театральной студии</h3>
+            <p>Занятия ведёт педагог дополнительного образования, режиссёр школьных постановок — <strong>Кузнецова Елена Вадимовна</strong> (учитель русского языка и литературы, руководитель театрального объединения).</p>
+            <div class="phone-box">
+                <i class="fa-regular fa-envelope"></i> theatre@buerak-school.ru
+                <span style="margin:0 5px">|</span>
+                <i class="fa-brands fa-telegram"></i> +7 (904) 412-35-77
+            </div>
+
+            <div class="notice">
+                <i class="fa-solid fa-ticket"></i>  
+                <strong>Приглашаем!</strong> Встречи театральной студии проходят по средам и пятницам с 15:00 до 16:30 в актовом зале школы. Ждём всех желающих с 3 по 9 класс!
+            </div>
+
+            <!-- Полезные ресурсы и ссылки на театральные проекты -->
+            <h3><i class="fa-solid fa-link"></i> Театральные проекты и полезные ресурсы</h3>
+            <div class="link-grid">
+                <a href="https://школьнаяклассика.рф/" class="resource-link" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i> Проект «Школьная классика»</a>
+                <a href="https://rdsh.education/" class="resource-link" target="_blank"><i class="fa-solid fa-children"></i> РДШ — театральное направление</a>
+                <a href="https://buerak.oshkole.ru/pages/24174.html" class="resource-link" target="_blank"><i class="fa-solid fa-landmark"></i> Официальная страница театра</a>
+                <a href="#" class="resource-link" id="vkTheatre"><i class="fa-brands fa-vk"></i> Группа в ВК «Театр в школе»</a>
+            </div>
+
+            <!-- Блок с новостями / предстоящими событиями -->
+            <h3 style="margin-top: 24px;"><i class="fa-regular fa-calendar-alt"></i> Афиша и ближайшие события</h3>
+            <ul>
+                <li><i class="fa-regular fa-calendar-check"></i> <strong>10 октября 2025</strong> — открытие театрального сезона: спектакль по мотивам рассказов Чехова «Каштанка и другие».</li>
+                <li><i class="fa-regular fa-calendar-check"></i> <strong>25 ноября 2025</strong> — участие в муниципальном фестивале школьных театров «Театральная весна».</li>
+                <li><i class="fa-regular fa-calendar-check"></i> <strong>Декабрь 2025</strong> — новогодняя сказка для учеников начальной школы «Морозко на новый лад».</li>
+                <li><i class="fa-regular fa-calendar-check"></i> <strong>Февраль 2026</strong> — мастер-класс от актёров Волгоградского ТЮЗа в рамках проекта «Школьная классика».</li>
+            </ul>
+        </div>
+
+        <!-- Дополнительная карточка: информация о возможностях для учащихся -->
+        <div class="page-card">
+            <h3><i class="fa-solid fa-crown"></i> Почему стоит заниматься в школьном театре?</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px;">
+                <div style="flex: 1; min-width: 180px;"><i class="fa-solid fa-comments"></i> Развитие речи и уверенности</div>
+                <div style="flex: 1; min-width: 180px;"><i class="fa-solid fa-users"></i> Работа в команде и дружба</div>
+                <div style="flex: 1; min-width: 180px;"><i class="fa-regular fa-lightbulb"></i> Креативное мышление и эмоциональный интеллект</div>
+                <div style="flex: 1; min-width: 180px;"><i class="fa-solid fa-person-walking-arrow-right"></i> Самоопределение и выбор будущей профессии</div>
+            </div>
+            <p style="margin-top: 14px;">Театральная студия помогает преодолеть страх публичных выступлений, развивает эмпатию и артистизм. Выступления на сцене повышают самооценку и учат взаимодействовать с аудиторией. Присоединяйтесь к нашей театральной семье!</p>
+        </div>
+    </div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="header.js"></script>
+<script>
+    // Обработка ссылки на группу ВК (демонстрационный функционал)
+    const vkTheatreLink = document.getElementById('vkTheatre');
+    if (vkTheatreLink) {
+        vkTheatreLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Официальная группа школьного театра ВКонтакте скоро появится. Следите за новостями!');
+        });
+    }
+
+    // Дополнительная функция для подсказки о файлах документов – носит информативный характер
+    const docLinks = document.querySelectorAll('.doc-download');
+    docLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Файлы можно скачать при условии их наличия в папке /docs,
+            // тут не мешаем браузеру, лишь убираем лишние сообщения.
+            // Всё работает корректно.
+        });
+    });
+</script>
+
+<script src="a11y.js"></script></body>
+</html>

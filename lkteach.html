@@ -1,0 +1,4450 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Кабинет</title>
+    <script>
+      (function () {
+        var role = String(localStorage.getItem('role') || '').trim().toLowerCase();
+        var isAuth = localStorage.getItem('auth') === 'true' && !!localStorage.getItem('login');
+        if (!isAuth) {
+          location.replace(role === '\u0433\u043e\u0441\u0442\u044c' ? 'index.html' : 'login.html');
+          return;
+        }
+        if (role === '\u0433\u043e\u0441\u0442\u044c') location.replace('index.html');
+        else if (role === '\u0443\u0447\u0435\u043d\u0438\u043a' || role === '\u0440\u043e\u0434\u0438\u0442\u0435\u043b\u044c') location.replace('lk.html');
+        else if (role === '\u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440' || role === '\u0434\u0438\u0440\u0435\u043a\u0442\u043e\u0440' || role === '\u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f') location.replace('lkadmin.html');
+        else location.replace('lkteacher.html');
+      })();
+    </script>
+    <link rel="icon" type="image/png" href="logo1.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"
+    />
+    <link rel="stylesheet" href="footer.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+        transition: font-size 0.2s;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        background: #eef2f7;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* HEADER */
+.header {
+    background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0);
+    background-size: 400% 400%;
+    animation: gradientMove 8s ease infinite;
+    color: white;
+    padding: 20px 0;
+    transition: background 0.3s;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo img {
+    width: 80px;
+    transition: filter 0.3s;
+}
+
+.title {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.title h1 {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.title p {
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    position: relative;
+}
+
+.user-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+
+.user-block:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.user-name {
+    font-weight: 800;
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.user-role {
+    font-size: 0.75rem;
+    opacity: 0.85;
+    line-height: 1.2;
+}
+
+.header-icons > i {
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.header-icons > i.active-icon {
+    color: #ffd966;
+}
+
+.accessibility-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    padding: 30px;
+    z-index: 1000;
+    width: 480px;
+    margin-top: 10px;
+    color: #333;
+    font-family: 'Raleway', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.accessibility-panel.active {
+    display: block;
+}
+
+.accessibility-panel h4 {
+    margin-bottom: 10px;
+    font-weight: 800;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.accessibility-panel .option-group {
+    margin-bottom: 20px;
+}
+
+.option-group label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+}
+
+.option-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.option-btn {
+    padding: 6px 14px;
+    border: 2px solid #ccc;
+    background: #f8f8f8;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    font-family: 'Raleway', sans-serif;
+}
+
+.option-btn.active {
+    background: #2ea3d0;
+    color: white;
+    border-color: #2ea3d0;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 0.95rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.close-panel {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+    font-family: 'Raleway', sans-serif;
+}
+
+.close-panel:hover {
+    color: #000;
+}
+
+/* NAV */
+.nav {
+    margin-top: 25px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Raleway', sans-serif;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu > li > a {
+    text-decoration: none;
+    font-weight: 800;
+    color: black;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 8px;
+    transition: 0.2s;
+    font-size: 1rem;
+}
+
+.menu > li > a:hover {
+    background: #2ea3d0;
+    color: white;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    min-width: 180px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 10;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li:hover .dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown li {
+    list-style: none;
+}
+
+.dropdown a {
+    display: block;
+    padding: 12px 15px;
+    font-weight: 700;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.2s;
+    font-size: 0.95rem;
+}
+
+.dropdown a:hover {
+    background: #2ea3d0;
+    color: white;
+}
+
+/* MAIN */
+      .main {
+        display: flex;
+        min-height: calc(100vh - 100px);
+        flex: 1;
+      }
+
+      .sidebar {
+        width: 240px;
+        background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0);
+        background-size: 400% 400%;
+        animation: gradientMove 8s ease infinite;
+        padding: 25px 15px;
+        color: white;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar h3 {
+        margin-bottom: 25px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        padding: 0 10px;
+        opacity: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 15px;
+        border-radius: 12px;
+        margin-bottom: 8px;
+        text-decoration: none;
+        color: white;
+        transition: 0.3s;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .sidebar a i {
+        width: 20px;
+        font-size: 1rem;
+      }
+
+      .sidebar a:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateX(5px);
+      }
+
+      .sidebar a.active {
+        background: white;
+        color: #3a5fa0 !important;
+        font-weight: 700;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar a.active i {
+        color: #3a5fa0;
+      }
+
+      .content {
+        flex: 1;
+        padding: 25px;
+        background: #f5f7fa;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+        min-width: 0;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      /* Обновленные контролы для Дневника */
+      #tab-diary .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+      }
+
+      #tab-diary .controls .week-label {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #333;
+        background: white;
+        padding: 10px 25px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        min-width: 250px;
+        text-align: center;
+      }
+
+      /* Дневник: дни друг под другом */
+      #diary {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .day {
+        width: 100%;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        transition: 0.2s;
+        border: 2px solid #e8ecff;
+      }
+
+      .day:hover {
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .day-title {
+        background: linear-gradient(135deg, #4c6ef5, #3b5de7);
+        color: white;
+        padding: 15px;
+        font-weight: 700;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+
+      .day-name {
+        display: block;
+        font-size: 0.8rem;
+        opacity: 0.85;
+        margin-top: 3px;
+        font-weight: 500;
+      }
+
+      /* Таблица дневника */
+      #diary table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      #diary table th {
+        background: #f5f7fa;
+        padding: 12px 10px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #666;
+        border-bottom: 2px solid #e0e5f7;
+        font-weight: 700;
+      }
+
+      #diary table td {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+        border-bottom: 1px solid #f0f0f0;
+        vertical-align: middle;
+        min-height: 48px;
+        height: 48px;
+      }
+
+      #diary table tr:last-child td {
+        border-bottom: none;
+      }
+
+      #diary table tr:hover {
+        background: #fafbfc;
+        cursor: pointer;
+      }
+
+      .subject {
+        color: #364fc7;
+        font-weight: 700;
+      }
+
+      .marks-cell {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        height: 100%;
+        min-height: 48px;
+      }
+
+      .diary-marks-cell {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        min-height: unset;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .diary-marks-cell .mark-segment {
+        min-width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        flex: unset;
+        font-size: 0.95rem;
+      }
+
+      .mark {
+        padding: 5px 9px;
+        border-radius: 8px;
+        margin-right: 4px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: inline-block;
+      }
+
+      .mark-5 {
+        background: #51cf66;
+        color: white;
+      }
+      .mark-4 {
+        background: #339af0;
+        color: white;
+      }
+      .mark-3 {
+        background: #fcc419;
+        color: #333;
+      }
+      .mark-2 {
+        background: #ff6b6b;
+        color: white;
+      }
+
+      /* REPORT */
+      .report-wrapper {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .report-scroll {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        overflow-x: auto;
+        max-width: 100%;
+      }
+
+      #reportTable {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+      }
+
+      #reportTable th {
+        background: #4c6ef5;
+        color: white;
+        padding: 14px 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-align: center;
+        border: 1px solid #3b5de7;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+
+      #reportTable th:first-child {
+        text-align: left;
+        position: sticky;
+        left: 0;
+        z-index: 3;
+        background: #3b5de7;
+      }
+
+      #reportTable th:last-child {
+        background: #3b5de7;
+      }
+
+      #reportTable td {
+        padding: 0;
+        font-size: 0.85rem;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #e0e0e0;
+        position: relative;
+        min-width: 60px;
+        height: 48px;
+      }
+
+      #reportTable td:first-child {
+        text-align: left;
+        font-weight: 600;
+        padding: 12px 15px;
+        background: #fafbfc;
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        min-width: 150px;
+        color: #333;
+      }
+
+      #reportTable td:last-child {
+        font-weight: 700;
+        background: #f8f9ff;
+        color: #2c3e50;
+        min-width: 100px;
+      }
+
+      #reportTable tr:hover td {
+        filter: brightness(0.97);
+      }
+
+      #reportTable tr:hover td:first-child {
+        background: #f0f2f5;
+      }
+
+      .marks-cell {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        height: 100%;
+        min-height: 48px;
+      }
+
+      .mark-segment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        flex: 1;
+        min-width: 30px;
+        padding: 4px 6px;
+        transition: all 0.2s;
+        position: relative;
+      }
+
+      .mark-segment:hover {
+        transform: scale(1.05);
+        z-index: 10;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+      }
+
+      .mark-bg-5 {
+        background: #c8f7c5;
+        color: #1b5e20;
+      }
+      .mark-bg-4 {
+        background: #bbdefb;
+        color: #0d47a1;
+      }
+      .mark-bg-3 {
+        background: #fff9c4;
+        color: #f57f17;
+      }
+      .mark-bg-2 {
+        background: #ffcdd2;
+        color: #b71c1c;
+      }
+
+      .empty-cell {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .report-summary {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .summary-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        flex: 1;
+        min-width: 200px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .summary-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .summary-info h4 {
+        font-size: 0.85rem;
+        color: #888;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      .summary-info p {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+      }
+
+      /* CHAT */
+      .chat {
+        display: flex;
+        height: 75vh;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .dialogs-panel {
+        width: 280px;
+        border-right: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .dialogs-header {
+        padding: 20px 15px;
+        border-bottom: 1px solid #eee;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.1rem;
+      }
+
+      .dialogs-header button {
+        background: #4c6ef5;
+        border: none;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .dialogs-header button:hover {
+        background: #3b5de7;
+        transform: scale(1.05);
+      }
+
+      .dialogs {
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      .dialog {
+        padding: 15px;
+        cursor: pointer;
+        border-bottom: 1px solid #f0f0f0;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .dialog:hover {
+        background: #f8f9fa;
+      }
+
+      .dialog.active {
+        background: #e7f0ff;
+        border-left: 3px solid #4c6ef5;
+      }
+
+      .dialog-avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .dialog-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .dialog-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .dialog-name {
+        font-weight: 600;
+        margin-bottom: 3px;
+        font-size: 0.95rem;
+      }
+
+      .dialog-preview {
+        font-size: 0.8rem;
+        color: #888;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .chat-window {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .chat-header {
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+        background: white;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .chat-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .chat-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .chat-user-info {
+        flex: 1;
+      }
+
+      .chat-username {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 3px;
+      }
+
+      .chat-role {
+        font-size: 0.85rem;
+        color: #888;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .role-badge {
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+      }
+
+      .role-Учитель {
+        background: #ffe0e0;
+        color: #d32f2f;
+      }
+      .role-Ученик {
+        background: #e0f0ff;
+        color: #1976d2;
+      }
+      .role-Администратор {
+        background: #fff3e0;
+        color: #f57c00;
+      }
+      .role-Родитель {
+        background: #e8f5e9;
+        color: #388e3c;
+      }
+
+      .messages {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        background: #f5f6fa;
+      }
+
+      .message-wrapper {
+        display: flex;
+        margin-bottom: 20px;
+      }
+
+      .message-wrapper.me {
+        justify-content: flex-end;
+      }
+
+      .message-wrapper.other {
+        justify-content: flex-start;
+      }
+
+      .message {
+        max-width: 65%;
+        padding: 12px 16px;
+        border-radius: 18px;
+        position: relative;
+        word-wrap: break-word;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      .me-message {
+        background: linear-gradient(135deg, #4c6ef5, #3b5de7);
+        color: white;
+        border-bottom-right-radius: 4px;
+        margin-left: 50px;
+      }
+
+      .other-message {
+        background: white;
+        border: 1px solid #e8e8e8;
+        border-bottom-left-radius: 4px;
+        margin-right: 50px;
+      }
+
+      .message-text {
+        margin-bottom: 6px;
+        line-height: 1.5;
+        font-size: 0.95rem;
+      }
+
+      .message-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 5px;
+        font-size: 0.7rem;
+      }
+
+      .me-message .message-footer {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .other-message .message-footer {
+        color: #999;
+      }
+
+      .message-status {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+      }
+
+      .status-check {
+        font-size: 0.65rem;
+      }
+
+      .me-message .status-check.sent {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .me-message .status-check.read {
+        color: #4fc3f7;
+      }
+
+      .input {
+        display: flex;
+        border-top: 1px solid #eee;
+        background: white;
+        padding: 10px;
+      }
+
+      .input input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 25px;
+        outline: none;
+        font-size: 0.95rem;
+        margin-right: 10px;
+        transition: 0.2s;
+        font-family: "Raleway", sans-serif;
+      }
+
+      .input input:focus {
+        border-color: #4c6ef5;
+      }
+
+      .system-message {
+        text-align: center;
+        margin: 20px 0;
+        color: #999;
+        font-size: 0.8rem;
+      }
+
+      /* MODAL */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: rgba(0, 0, 0, 0.4);
+        animation: fadeIn 0.2s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .modal-content {
+        background: white;
+        margin: 5% auto;
+        padding: 25px;
+        border-radius: 16px;
+        width: 520px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        animation: slideIn 0.3s;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .modal-content h3 {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        color: #333;
+      }
+
+      .modal-content input,
+      .modal-content textarea,
+      .modal-content select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        transition: 0.2s;
+      }
+
+      .modal-content input[type="file"] {
+        padding: 8px;
+      }
+
+      .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .modal-buttons button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: 0.2s;
+        font-family: "Raleway", sans-serif;
+      }
+
+      .btn-primary {
+        background: #4c6ef5;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #3b5de7;
+      }
+
+      .btn-cancel {
+        background: #f0f0f0;
+        color: #666;
+      }
+
+      .btn-cancel:hover {
+        background: #e0e0e0;
+      }
+
+      .btn-danger {
+        background: #ff6b6b;
+        color: white;
+      }
+
+      .btn-danger:hover {
+        background: #e55555;
+      }
+
+      /* CROPPER */
+      .cropper-container {
+        margin: 15px 0;
+        max-height: 350px;
+      }
+
+      .cropper-preview-box {
+        display: flex;
+        gap: 20px;
+        margin: 15px 0;
+        align-items: flex-start;
+      }
+
+      .cropper-preview-wrap {
+        text-align: center;
+      }
+
+      .cropper-preview-wrap label {
+        display: block;
+        font-size: 0.8rem;
+        color: #888;
+        margin-bottom: 5px;
+      }
+
+      .cropper-preview-sm {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #ddd;
+      }
+
+      .cropper-preview-lg {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #ddd;
+      }
+
+      /* ANNOUNCEMENTS */
+      .announcements-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .announcement-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border-left: 4px solid #4c6ef5;
+        transition: 0.2s;
+      }
+
+      .announcement-card:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .announcement-title {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .announcement-date {
+        font-size: 0.8rem;
+        color: #888;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .announcement-text {
+        color: #555;
+        line-height: 1.5;
+      }
+
+      .announcement-author {
+        font-size: 0.8rem;
+        color: #4c6ef5;
+        font-weight: 600;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 50px;
+        color: #888;
+      }
+
+      .error-message {
+        text-align: center;
+        padding: 30px;
+        color: #ff6b6b;
+        background: #fff0f0;
+        border-radius: 12px;
+        margin: 10px 0;
+      }
+
+      /* AVATAR COLORS */
+      .avatar-colors {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+      }
+
+      .avatar-color-option {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 3px solid transparent;
+        transition: all 0.2s;
+      }
+
+      .avatar-color-option:hover {
+        transform: scale(1.1);
+      }
+
+      .avatar-color-option.active {
+        border-color: #333;
+      }
+
+      /* DARK THEME */
+      body.dark-theme {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .header {
+        background: linear-gradient(270deg, #0f3b47, #1a2b5e, #0f3b47);
+        background-size: 400% 400%;
+        animation: gradientMove 8s ease infinite;
+      }
+
+      body.dark-theme .nav {
+        background: #1e1e1e;
+      }
+
+      body.dark-theme .menu > li > a {
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .menu > li > a:hover {
+        background: #3a506b;
+        color: white;
+      }
+
+      body.dark-theme .dropdown {
+        background: #2a2a2a;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      body.dark-theme .dropdown a {
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .dropdown a:hover {
+        background: #3a506b;
+        color: white;
+      }
+
+      body.dark-theme .content {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .accessibility-panel {
+        background: #2a2a2a;
+        color: #e0e0e0;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      }
+
+      body.dark-theme .option-btn {
+        background: #3a3a3a;
+        border-color: #555;
+        color: #ccc;
+      }
+
+      body.dark-theme .option-btn.active {
+        background: #2ea3d0;
+        color: white;
+        border-color: #2ea3d0;
+      }
+
+      body.dark-theme .close-panel {
+        color: #aaa;
+      }
+
+      body.dark-theme .close-panel:hover {
+        color: white;
+      }
+
+      body.dark-theme .checkbox-group {
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .styled-select {
+        background-color: #2a2a2a;
+        color: #e0e0e0;
+        border-color: #555;
+      }
+
+      body.dark-theme .styled-select option {
+        background: #2a2a2a;
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .custom-period {
+        background: #1e1e1e;
+      }
+
+      body.dark-theme .report-scroll {
+        background: #1e1e1e;
+      }
+
+      body.dark-theme #reportTable td {
+        border-color: #333;
+      }
+
+      body.dark-theme #reportTable td:first-child {
+        background: #252525;
+        color: #e0e0e0;
+      }
+
+      body.dark-theme #reportTable td:last-child {
+        background: #1a1a2e;
+        color: #e0e0e0;
+      }
+
+      body.dark-theme #reportTable tr:hover td:first-child {
+        background: #2a2a2a;
+      }
+
+      body.dark-theme .summary-card {
+        background: #1e1e1e;
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .summary-info h4 {
+        color: #aaa;
+      }
+
+      body.dark-theme .summary-info p {
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .modal-content {
+        background: #2a2a2a;
+        color: #e0e0e0;
+      }
+
+      body.dark-theme .avatar-color-option.active {
+        border-color: #fff;
+      }
+
+      /* BLUE THEME */
+      body.blue-theme {
+        background-color: #d4eafc;
+        color: #000;
+      }
+
+      body.blue-theme .header {
+        background: linear-gradient(270deg, #1e88e5, #1565c0, #1e88e5);
+        background-size: 400% 400%;
+        animation: gradientMove 8s ease infinite;
+      }
+
+      body.blue-theme .nav {
+        background: #bbdefb;
+      }
+
+      body.blue-theme .menu > li > a {
+        color: #000;
+      }
+
+      body.blue-theme .menu > li > a:hover {
+        background: #1e88e5;
+        color: white;
+      }
+
+      body.blue-theme .dropdown {
+        background: #e3f2fd;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      body.blue-theme .dropdown a {
+        color: #000;
+      }
+
+      body.blue-theme .dropdown a:hover {
+        background: #1e88e5;
+        color: white;
+      }
+
+      body.blue-theme .content {
+        background-color: #d4eafc;
+        color: #0d47a1;
+      }
+
+      body.blue-theme .accessibility-panel {
+        background: #e3f2fd;
+        color: #0d47a1;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      body.blue-theme .option-btn {
+        background: #bbdefb;
+        border-color: #90caf9;
+        color: #0d47a1;
+      }
+
+      body.blue-theme .option-btn.active {
+        background: #1e88e5;
+        color: white;
+        border-color: #1e88e5;
+      }
+
+      body.blue-theme .close-panel {
+        color: #1565c0;
+      }
+
+      body.blue-theme .close-panel:hover {
+        color: #0d47a1;
+      }
+
+      body.blue-theme .checkbox-group {
+        color: #0d47a1;
+      }
+
+      /* NO EFFECTS */
+      body.no-effects .header {
+        background: #2c3e50;
+        animation: none;
+      }
+
+      body.no-effects .sidebar {
+        background: #2c3e50;
+        animation: none;
+      }
+
+      body.dark-theme.no-effects .header {
+        background: #0d1b2a;
+      }
+
+      body.dark-theme.no-effects .sidebar {
+        background: #0d1b2a;
+      }
+
+      body.blue-theme.no-effects .header {
+        background: #1565c0;
+      }
+
+      body.blue-theme.no-effects .sidebar {
+        background: #1565c0;
+      }
+
+      /* =============================================
+   ДНЕВНИК — НОВЫЕ КОНТРОЛЫ НАВИГАЦИИ ПО НЕДЕЛЯМ
+   ============================================= */
+      .diary-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+      }
+
+      .week-nav-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        border: 2px solid #e0e5f7;
+        background: white;
+        color: #4c6ef5;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+        font-family: "Raleway", sans-serif;
+      }
+
+      .week-nav-btn:hover {
+        background: #4c6ef5;
+        color: white;
+        border-color: #4c6ef5;
+        transform: scale(1.08);
+        box-shadow: 0 4px 12px rgba(76, 110, 245, 0.3);
+      }
+
+      .week-nav-btn:active {
+        transform: scale(0.96);
+      }
+
+      .week-label-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        border: 2px solid #e0e5f7;
+        border-radius: 14px;
+        padding: 10px 22px;
+        min-width: 270px;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(76, 110, 245, 0.06);
+      }
+
+      .week-icon {
+        color: #4c6ef5;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .week-label {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #333;
+        text-align: center;
+        min-width: 0;
+      }
+
+      .week-today-btn {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 0 18px;
+        height: 42px;
+        border-radius: 12px;
+        border: 2px solid #4c6ef5;
+        background: transparent;
+        color: #4c6ef5;
+        font-weight: 700;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+        font-family: "Raleway", sans-serif;
+      }
+
+      .week-today-btn:hover {
+        background: #4c6ef5;
+        color: white;
+        box-shadow: 0 4px 12px rgba(76, 110, 245, 0.3);
+      }
+
+      .week-today-btn:active {
+        transform: scale(0.97);
+      }
+
+      /* =============================================
+   УСПЕВАЕМОСТЬ — КНОПКИ ЧЕТВЕРТЕЙ
+   ============================================= */
+      .grades-controls {
+        background: white;
+        border-radius: 18px;
+        padding: 22px 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+      }
+
+      .period-label {
+        font-weight: 800;
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .period-label i {
+        color: #4c6ef5;
+      }
+
+      .quarter-pills {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .quarter-pill {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 18px;
+        border-radius: 14px;
+        border: 2px solid #e0e5f7;
+        background: #f8f9ff;
+        cursor: pointer;
+        transition: all 0.22s;
+        text-align: left;
+        font-family: "Raleway", sans-serif;
+        flex: 1;
+        min-width: 150px;
+      }
+
+      .quarter-pill:hover {
+        border-color: #4c6ef5;
+        background: #eef1ff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(76, 110, 245, 0.15);
+      }
+
+      .quarter-pill.active {
+        border-color: #4c6ef5;
+        background: linear-gradient(135deg, #4c6ef5, #3b5de7);
+        color: white;
+        box-shadow: 0 6px 20px rgba(76, 110, 245, 0.35);
+        transform: translateY(-2px);
+      }
+
+      .quarter-pill:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      .qpill-num {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #4c6ef5;
+        min-width: 22px;
+        text-align: center;
+        flex-shrink: 0;
+        transition: color 0.22s;
+      }
+
+      .quarter-pill.active .qpill-num {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .qpill-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .qpill-title {
+        font-weight: 700;
+        font-size: 0.88rem;
+        color: #333;
+        transition: color 0.22s;
+        line-height: 1.2;
+      }
+
+      .qpill-dates {
+        font-size: 0.75rem;
+        color: #888;
+        font-weight: 500;
+        transition: color 0.22s;
+        line-height: 1.2;
+      }
+
+      .quarter-pill.active .qpill-title,
+      .quarter-pill.active .qpill-dates {
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .quarter-pill--custom .qpill-num {
+        font-size: 0.95rem;
+      }
+
+      /* Блок произвольного периода */
+      .custom-period-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1.5px dashed #e0e5f7;
+        flex-wrap: wrap;
+        animation: fadeSlideIn 0.25s ease;
+      }
+
+      @keyframes fadeSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .custom-date-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .date-label {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: #666;
+        white-space: nowrap;
+      }
+
+      .date-input {
+        padding: 9px 12px;
+        border: 2px solid #e0e5f7;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-family: "Raleway", sans-serif;
+        color: #333;
+        background: #f8f9ff;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        cursor: pointer;
+      }
+
+      .date-input:focus {
+        border-color: #4c6ef5;
+        box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.12);
+        background: white;
+      }
+
+      .date-sep {
+        color: #aaa;
+        font-weight: 700;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .show-report-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 20px;
+        background: #4c6ef5;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "Raleway", sans-serif;
+        margin-left: 4px;
+      }
+
+      .show-report-btn:hover {
+        background: #3b5de7;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(76, 110, 245, 0.3);
+      }
+
+      .show-report-btn:active {
+        transform: scale(0.97);
+      }
+
+      /* Заглушка до выбора периода */
+      .grades-placeholder {
+        text-align: center;
+        padding: 70px 20px;
+        color: #c0c8e8;
+      }
+
+      .grades-placeholder i {
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 16px;
+      }
+
+      .grades-placeholder p {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      /* Тёмная тема */
+      body.dark-theme .week-nav-btn {
+        background: #2a2a2a;
+        border-color: #3a3a5e;
+        color: #7c97ff;
+      }
+      body.dark-theme .week-nav-btn:hover {
+        background: #4c6ef5;
+        color: white;
+        border-color: #4c6ef5;
+      }
+      body.dark-theme .week-label-wrap {
+        background: #1e1e1e;
+        border-color: #3a3a5e;
+      }
+      body.dark-theme .week-label {
+        color: #e0e0e0;
+      }
+      body.dark-theme .week-today-btn {
+        border-color: #4c6ef5;
+        color: #7c97ff;
+        background: transparent;
+      }
+      body.dark-theme .week-today-btn:hover {
+        background: #4c6ef5;
+        color: white;
+      }
+      body.dark-theme .grades-controls {
+        background: #1e1e1e;
+      }
+      body.dark-theme .period-label {
+        color: #e0e0e0;
+      }
+      body.dark-theme .quarter-pill {
+        background: #252525;
+        border-color: #3a3a5e;
+      }
+      body.dark-theme .quarter-pill:hover {
+        background: #2a2a4a;
+        border-color: #4c6ef5;
+      }
+      body.dark-theme .quarter-pill.active {
+        background: linear-gradient(135deg, #4c6ef5, #3b5de7);
+        border-color: #4c6ef5;
+      }
+      body.dark-theme .qpill-title {
+        color: #e0e0e0;
+      }
+      body.dark-theme .qpill-dates {
+        color: #888;
+      }
+      body.dark-theme .custom-period-row {
+        border-top-color: #3a3a5e;
+      }
+      body.dark-theme .date-input {
+        background: #252525;
+        border-color: #3a3a5e;
+        color: #e0e0e0;
+      }
+      body.dark-theme .date-input:focus {
+        border-color: #4c6ef5;
+        background: #1e1e2e;
+      }
+      body.dark-theme .date-label {
+        color: #aaa;
+      }
+      body.dark-theme .grades-placeholder {
+        color: #3a3a5e;
+      }
+
+      /* Синяя тема */
+      body.blue-theme .week-nav-btn {
+        background: #e3f2fd;
+        border-color: #90caf9;
+        color: #1565c0;
+      }
+      body.blue-theme .week-nav-btn:hover {
+        background: #1e88e5;
+        color: white;
+        border-color: #1e88e5;
+      }
+      body.blue-theme .week-label-wrap {
+        background: #e3f2fd;
+        border-color: #90caf9;
+      }
+      body.blue-theme .week-label {
+        color: #0d47a1;
+      }
+      body.blue-theme .week-today-btn {
+        border-color: #1e88e5;
+        color: #1565c0;
+      }
+      body.blue-theme .week-today-btn:hover {
+        background: #1e88e5;
+        color: white;
+      }
+      body.blue-theme .grades-controls {
+        background: #e3f2fd;
+      }
+      body.blue-theme .period-label {
+        color: #0d47a1;
+      }
+      body.blue-theme .period-label i {
+        color: #1e88e5;
+      }
+      body.blue-theme .quarter-pill {
+        background: #bbdefb;
+        border-color: #90caf9;
+      }
+      body.blue-theme .quarter-pill:hover {
+        border-color: #1e88e5;
+        background: #e3f2fd;
+      }
+      body.blue-theme .quarter-pill.active {
+        background: linear-gradient(135deg, #1e88e5, #1565c0);
+        border-color: #1565c0;
+      }
+      body.blue-theme .qpill-num {
+        color: #1565c0;
+      }
+      body.blue-theme .qpill-title {
+        color: #0d47a1;
+      }
+      body.blue-theme .date-input {
+        background: #e3f2fd;
+        border-color: #90caf9;
+        color: #0d47a1;
+      }
+      body.blue-theme .show-report-btn {
+        background: #1e88e5;
+      }
+      body.blue-theme .show-report-btn:hover {
+        background: #1565c0;
+      }
+
+      /* ANNOUNCEMENTS — кнопка обновить */
+      .announcements-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 18px;
+      }
+
+      .ann-refresh-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 20px;
+        height: 42px;
+        border-radius: 12px;
+        border: 2px solid #4c6ef5;
+        background: transparent;
+        color: #4c6ef5;
+        font-weight: 700;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "Raleway", sans-serif;
+      }
+
+      .ann-refresh-btn:hover {
+        background: #4c6ef5;
+        color: white;
+        box-shadow: 0 4px 12px rgba(76, 110, 245, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .ann-refresh-btn:hover i {
+        animation: spin-once 0.5s ease;
+      }
+
+      .ann-refresh-btn:active {
+        transform: scale(0.97);
+      }
+
+      @keyframes spin-once {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      body.dark-theme .ann-refresh-btn {
+        border-color: #4c6ef5;
+        color: #7c97ff;
+      }
+      body.dark-theme .ann-refresh-btn:hover {
+        background: #4c6ef5;
+        color: white;
+      }
+
+      body.blue-theme .ann-refresh-btn {
+        border-color: #1e88e5;
+        color: #1565c0;
+      }
+      body.blue-theme .ann-refresh-btn:hover {
+        background: #1e88e5;
+        color: white;
+        box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .diary-controls {
+          gap: 8px;
+        }
+        .week-label-wrap {
+          min-width: 0;
+          flex: 1;
+          padding: 10px 14px;
+        }
+        .week-label {
+          font-size: 0.85rem;
+        }
+        .week-today-btn {
+          padding: 0 12px;
+          font-size: 0.82rem;
+        }
+        .quarter-pills {
+          gap: 8px;
+        }
+        .quarter-pill {
+          min-width: 130px;
+          padding: 10px 12px;
+          gap: 8px;
+        }
+        .custom-period-row {
+          gap: 8px;
+        }
+        .date-input {
+          font-size: 0.82rem;
+          padding: 8px 10px;
+        }
+        .sidebar {
+          width: 80px;
+        }
+        .sidebar a span {
+          display: none;
+        }
+        .sidebar a {
+          justify-content: center;
+          padding: 14px;
+        }
+        .sidebar a i {
+          margin: 0;
+        }
+        .sidebar h3 {
+          display: none;
+        }
+        .dialogs-panel {
+          width: 100px;
+        }
+        .dialog-info {
+          display: none;
+        }
+        .accessibility-panel {
+          width: 90vw;
+          right: -10px;
+          padding: 20px;
+        }
+        .user-block .user-avatar {
+          width: 36px;
+          height: 36px;
+          font-size: 1rem;
+        }
+        .user-info {
+          display: none;
+        }
+      }
+
+      /* === ПОПАП ДЕТАЛЕЙ ОЦЕНКИ === */
+      .mark-modal-content {
+        max-width: 380px;
+        padding: 0;
+        overflow: hidden;
+        position: relative;
+      }
+      .mark-modal-close {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        width: 30px;
+        height: 30px;
+        border: none;
+        background: rgba(0, 0, 0, 0.08);
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.95rem;
+        color: #555;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+        z-index: 10;
+      }
+      .mark-modal-close:hover {
+        background: rgba(0, 0, 0, 0.15);
+      }
+      .mark-modal-header {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 22px 22px 16px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .mark-modal-badge {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: white;
+        flex-shrink: 0;
+      }
+      .mark-badge-5 {
+        background: linear-gradient(135deg, #51cf66, #2f9e44);
+      }
+      .mark-badge-4 {
+        background: linear-gradient(135deg, #339af0, #1971c2);
+      }
+      .mark-badge-3 {
+        background: linear-gradient(135deg, #fcc419, #f59f00);
+        color: #333 !important;
+      }
+      .mark-badge-2 {
+        background: linear-gradient(135deg, #ff6b6b, #e03131);
+      }
+      .mark-modal-subject {
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: #222;
+        line-height: 1.3;
+        margin-bottom: 3px;
+      }
+      .mark-modal-type {
+        font-size: 0.82rem;
+        color: #888;
+        font-weight: 600;
+      }
+      .mark-modal-title-block {
+        flex: 1;
+        min-width: 0;
+      }
+      .mark-modal-rows {
+        padding: 14px 22px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .mark-modal-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .mark-modal-row-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: #f1f3f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        color: #4c6ef5;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .mark-modal-row-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #aaa;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .mark-modal-row-value {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: #333;
+      }
+      .mark.clickable {
+        cursor: pointer;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .mark.clickable:hover {
+        transform: scale(1.18);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+      }
+
+      body.dark-theme .mark-modal-header {
+        border-bottom-color: #333;
+      }
+      body.dark-theme .mark-modal-subject {
+        color: #e0e0e0;
+      }
+      body.dark-theme .mark-modal-row-icon {
+        background: #2a2a2a;
+      }
+      body.dark-theme .mark-modal-row-value {
+        color: #e0e0e0;
+      }
+      body.dark-theme .mark-modal-close {
+        background: rgba(255, 255, 255, 0.08);
+        color: #aaa;
+      }
+
+      /* === ПРОФИЛЬ: ПРЕВЬЮ + ЖИВОТНЫЕ === */
+      .profile-preview-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: #f8f9ff;
+        border-radius: 14px;
+        padding: 14px 18px;
+        margin-bottom: 18px;
+        border: 1.5px solid #e8ecff;
+      }
+      .profile-preview-circle {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        flex-shrink: 0;
+        border: 3px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+        transition: all 0.25s;
+      }
+      .profile-preview-name {
+        font-weight: 800;
+        font-size: 1rem;
+        color: #222;
+        margin-bottom: 2px;
+      }
+      .profile-preview-role {
+        font-size: 0.8rem;
+        color: #888;
+        font-weight: 600;
+      }
+      .profile-preview-circle {
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+      }
+      .profile-preview-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .profile-preview-circle.has-photo,
+      .user-avatar.has-photo,
+      .dialog-avatar.has-photo,
+      .chat-avatar.has-photo {
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        color: transparent !important;
+      }
+      .profile-photo-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 14px 0 18px;
+      }
+      .profile-photo-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 2px solid #4c6ef5;
+        background: #4c6ef5;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: 0.2s;
+        font-family: "Raleway", sans-serif;
+      }
+      .profile-photo-btn:hover {
+        background: #3b5de7;
+        border-color: #3b5de7;
+        transform: translateY(-1px);
+      }
+      .profile-photo-remove {
+        background: transparent;
+        color: #ff6b6b;
+        border-color: #ffb8b8;
+      }
+      .profile-photo-remove:hover {
+        background: #fff0f0;
+        color: #e55555;
+        border-color: #ff8f8f;
+      }
+      .crop-modal-content {
+        width: min(760px, 94vw);
+      }
+      .crop-area {
+        width: 100%;
+        max-height: 430px;
+        background: #f5f7fa;
+        border: 2px dashed #d8def7;
+        border-radius: 14px;
+        overflow: hidden;
+        margin: 12px 0 18px;
+      }
+      .crop-area img {
+        display: block;
+        max-width: 100%;
+        max-height: 430px;
+      }
+      .crop-help {
+        color: #777;
+        font-size: 0.9rem;
+        line-height: 1.45;
+        margin-bottom: 12px;
+      }
+      .cropper-preview-box {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+        margin: 14px 0 18px;
+        flex-wrap: wrap;
+      }
+      .cropper-preview-wrap {
+        text-align: center;
+      }
+      .cropper-preview-wrap label {
+        display: block;
+        font-size: 0.82rem;
+        color: #777;
+        font-weight: 700;
+        margin-bottom: 7px;
+      }
+      .cropper-preview-sm,
+      .cropper-preview-lg {
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #e0e5f7;
+        background: #fff;
+      }
+      .cropper-preview-sm {
+        width: 56px;
+        height: 56px;
+      }
+      .cropper-preview-lg {
+        width: 112px;
+        height: 112px;
+      }
+      body.dark-theme .crop-area {
+        background: #1e1e1e;
+        border-color: #3a3a5e;
+      }
+      body.dark-theme .crop-help,
+      body.dark-theme .cropper-preview-wrap label {
+        color: #aaa;
+      }
+      body.dark-theme .cropper-preview-sm,
+      body.dark-theme .cropper-preview-lg {
+        background: #252525;
+        border-color: #3a3a5e;
+      }
+      body.dark-theme .profile-photo-remove:hover {
+        background: rgba(255, 107, 107, 0.12);
+      }
+
+      /* Тёмная тема */
+      body.dark-theme .profile-preview-row {
+        background: #252535;
+        border-color: #3a3a5e;
+      }
+      body.dark-theme .profile-preview-name {
+        color: #e0e0e0;
+      }
+
+      /* === ДОРАБОТКА: левое меню закреплено слева, контент выровнен по тексту верхней навигации === */
+      :root {
+        --lk-sidebar-width: 240px;
+        --lk-content-left-offset: 25px;
+        --lk-content-width: min(90vw, 1200px);
+      }
+
+      .main {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .sidebar {
+        flex: 0 0 var(--lk-sidebar-width);
+        width: var(--lk-sidebar-width);
+        align-self: stretch;
+        min-height: calc(100vh - 140px);
+        position: sticky;
+        top: 0;
+        left: 0;
+        margin: 0;
+        border-radius: 0;
+      }
+
+      .content {
+        flex: 1;
+        min-width: 0;
+        padding: 25px 0 45px;
+        overflow-x: hidden;
+      }
+
+      .content > .tab-content.active {
+        width: var(--lk-content-width);
+        max-width: calc(
+          100vw - var(--lk-sidebar-width) - var(--lk-content-left-offset) - 16px
+        );
+        margin-left: var(--lk-content-left-offset);
+        margin-right: auto;
+      }
+
+      .week-select {
+        min-width: 280px;
+        max-width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: #333;
+        font-family: "Raleway", sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        cursor: pointer;
+        appearance: auto;
+      }
+
+      body.dark-theme .week-select {
+        color: #e0e0e0;
+        background: #1e1e1e;
+      }
+      body.blue-theme .week-select {
+        color: #0d47a1;
+      }
+
+      #diary,
+      .day,
+      .grades-controls,
+      .report-wrapper,
+      .report-scroll,
+      .chat,
+      .announcements-controls,
+      .announcements-list {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      #reportTable {
+        width: 100%;
+      }
+
+      /* Цвет итоговой оценки за четверть/период */
+      .avg-score {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 58px;
+        padding: 6px 10px;
+        border-radius: 10px;
+        font-weight: 800;
+      }
+      .avg-score-red {
+        background: #ffcdd2;
+        color: #b71c1c;
+      }
+      .avg-score-yellow {
+        background: #fff9c4;
+        color: #f57f17;
+      }
+      .avg-score-blue {
+        background: #bbdefb;
+        color: #0d47a1;
+      }
+      .avg-score-green {
+        background: #c8f7c5;
+        color: #1b5e20;
+      }
+
+      body.dark-theme .avg-score-red {
+        background: rgba(255, 107, 107, 0.22);
+        color: #ff8a8a;
+      }
+      body.dark-theme .avg-score-yellow {
+        background: rgba(252, 196, 25, 0.22);
+        color: #ffd43b;
+      }
+      body.dark-theme .avg-score-blue {
+        background: rgba(51, 154, 240, 0.22);
+        color: #74c0fc;
+      }
+      body.dark-theme .avg-score-green {
+        background: rgba(81, 207, 102, 0.22);
+        color: #8ce99a;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --lk-sidebar-width: 80px;
+          --lk-content-left-offset: 14px;
+        }
+
+        .content {
+          padding: 18px 0 35px;
+        }
+
+        .content > .tab-content.active {
+          max-width: calc(
+            100vw - var(--lk-sidebar-width) - var(--lk-content-left-offset) -
+              12px
+          );
+        }
+
+        .week-select {
+          min-width: 0;
+          width: 100%;
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Красивое расписание уроков */
+      .schedule-day {
+        border: 1px solid #e3e9f7;
+        box-shadow: 0 10px 28px rgba(44, 78, 140, 0.1);
+      }
+      .schedule-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      .schedule-table th {
+        background: #f3f7ff;
+        color: #4b6fb4;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 14px 16px;
+        border-bottom: 1px solid #e2e9f8;
+      }
+      .schedule-table td {
+        padding: 15px 16px;
+        border-bottom: 1px solid #edf1f8;
+        vertical-align: middle;
+      }
+      .schedule-table tr:last-child td {
+        border-bottom: none;
+      }
+      .schedule-table tr:hover {
+        background: #f8fbff;
+      }
+      .lesson-num {
+        width: 44px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #edf5ff;
+        color: #2f6ebd;
+        font-weight: 800;
+      }
+      .lesson-time {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 128px;
+        padding: 9px 12px;
+        border-radius: 14px;
+        background: #f7faff;
+        border: 1px solid #dfe8fb;
+        color: #3f73d7;
+        font-weight: 800;
+      }
+      .schedule-subject {
+        color: #233b67;
+        font-weight: 800;
+        font-size: 1rem;
+      }
+      .schedule-theme {
+        color: #7b8797;
+        font-size: 0.84rem;
+        margin-top: 5px;
+        line-height: 1.35;
+      }
+      @media (max-width: 700px) {
+        .schedule-table th,
+        .schedule-table td {
+          padding: 11px 8px;
+        }
+        .lesson-time {
+          min-width: 104px;
+          font-size: 0.82rem;
+        }
+      }
+
+      /* SCHOOL LK blocks use the same lk.html shell, plus teacher journal controls */
+      .panel {
+        background: #fff;
+        border-radius: 18px;
+        padding: 22px 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+      }
+      .panel-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .panel-title {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .panel-title i {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: #edf5ff;
+        color: #4c6ef5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+      }
+      .panel-title h2 {
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: #333;
+      }
+      .hint {
+        color: #7b8797;
+        font-size: 0.9rem;
+        margin-top: 4px;
+      }
+      .teacher-note {
+        background: #fff8e1;
+        border: 1px solid #ffe3a3;
+        color: #795a00;
+        border-radius: 16px;
+        padding: 14px 16px;
+        margin: 16px 0;
+        font-weight: 700;
+      }
+      .controls {
+        display: flex;
+        gap: 12px;
+        align-items: end;
+        flex-wrap: wrap;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .field label {
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #6f7b8d;
+        text-transform: uppercase;
+      }
+      .field select,
+      .field input {
+        min-width: 190px;
+        border: 2px solid #e0e5f7;
+        border-radius: 14px;
+        padding: 11px 13px;
+        font-family: "Raleway", sans-serif;
+        font-weight: 700;
+        outline: 0;
+        background: #fff;
+        color: #333;
+      }
+      .btn {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 16px;
+        background: #4c6ef5;
+        color: white;
+        font-weight: 800;
+        font-family: "Raleway", sans-serif;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(76, 110, 245, 0.3);
+      }
+      .btn.secondary {
+        background: transparent;
+        color: #4c6ef5;
+        border: 2px solid #4c6ef5;
+        box-shadow: none;
+      }
+      .btn.secondary:hover,
+      .btn:hover {
+        background: #3b5de7;
+        color: #fff;
+      }
+      .empty,
+      .error,
+      .loading {
+        text-align: center;
+        padding: 46px 20px;
+        color: #7b8797;
+      }
+      .empty i,
+      .error i,
+      .loading i {
+        font-size: 3rem;
+        display: block;
+        margin-bottom: 14px;
+      }
+      .error {
+        color: #ff4141;
+        background: #fff0f0;
+        border-radius: 16px;
+      }
+      .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+        background: #fff;
+      }
+      .schedule-table th {
+        background: #f5f7fa;
+        padding: 12px 10px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #666;
+        border-bottom: 2px solid #e0e5f7;
+        font-weight: 800;
+      }
+      .schedule-table td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+        border-bottom: 1px solid #f0f0f0;
+        vertical-align: middle;
+      }
+      .lesson-num {
+        width: 44px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #edf5ff;
+        color: #2f6ebd;
+        font-weight: 800;
+      }
+      .lesson-time {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 128px;
+        padding: 9px 12px;
+        border-radius: 14px;
+        background: #f7faff;
+        border: 1px solid #dfe8fb;
+        color: #3f73d7;
+        font-weight: 800;
+      }
+      .schedule-subject {
+        color: #233b67;
+        font-weight: 800;
+        font-size: 1rem;
+      }
+      .schedule-theme {
+        color: #7b8797;
+        font-size: 0.84rem;
+        margin-top: 5px;
+        line-height: 1.35;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #eef5ff;
+        color: #2862a6;
+        font-weight: 800;
+        font-size: 0.78rem;
+      }
+      .m5,
+      .m4,
+      .m3,
+      .m2,
+      .mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        color: #fff;
+        font-weight: 800;
+        margin: 2px;
+      }
+      .m5 {
+        background: #51cf66;
+      }
+      .m4 {
+        background: #339af0;
+      }
+      .m3 {
+        background: #fcc419;
+        color: #333;
+      }
+      .m2 {
+        background: #ff6b6b;
+      }
+      .content > .tab-content.active {
+        width: min(var(--lk-content-width, 100%), 100%);
+        margin-left: var(--lk-content-left-offset, 0px);
+      }
+      @media (max-width: 850px) {
+        .content > .tab-content.active {
+          width: 100%;
+          margin-left: 0;
+        }
+        .controls {
+          align-items: stretch;
+        }
+        .field select,
+        .field input {
+          min-width: 100%;
+        }
+      }
+      body.dark-theme .panel,
+      body.dark-theme .field select,
+      body.dark-theme .field input {
+        background: #1e1e1e;
+        color: #e0e0e0;
+        border-color: #3a3a5e;
+      }
+      body.dark-theme .panel-title h2 {
+        color: #fff;
+      }
+      body.dark-theme .schedule-table th {
+        background: #252525;
+        color: #ddd;
+      }
+      body.dark-theme .schedule-table td {
+        border-color: #333;
+      }
+      body.blue-theme .panel {
+        background: #e3f2fd;
+      }
+    
+
+/* ==========================================================
+   ЛК: единое анимированное градиентное поле страницы
+   Градиент взят из обычных страниц сайта:
+   linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0)
+   Логика: вся страница — общий градиент, а контентная область
+   накрывает его светлым блоком как "вырез".
+   ========================================================== */
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMove 8s ease infinite !important;
+}
+
+.header,
+.nav,
+.sidebar,
+.footer,
+#header-placeholder,
+#footer-placeholder {
+    background: transparent !important;
+    background-image: none !important;
+    animation: none !important;
+    border: 0 !important;
+}
+
+.nav {
+    box-shadow: none !important;
+    margin-top: 25px;
+}
+
+.menu {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.main {
+    background: transparent !important;
+}
+
+.content {
+    background: #f5f7fa !important;
+}
+
+.footer {
+    margin-top: 0 !important;
+}
+
+body.no-effects {
+    animation: none !important;
+    background: #3a5fa0 !important;
+}
+
+body.no-effects .header,
+body.no-effects .nav,
+body.no-effects .sidebar,
+body.no-effects .footer {
+    background: transparent !important;
+    background-image: none !important;
+    animation: none !important;
+}
+
+body.dark-theme {
+    background: linear-gradient(270deg, #0f3b47, #1a2b5e, #0f3b47) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMove 8s ease infinite !important;
+}
+
+body.dark-theme .header,
+body.dark-theme .nav,
+body.dark-theme .sidebar,
+body.dark-theme .footer {
+    background: transparent !important;
+    background-image: none !important;
+    animation: none !important;
+}
+
+body.blue-theme {
+    background: linear-gradient(270deg, #1e88e5, #1565c0, #1e88e5) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMove 8s ease infinite !important;
+}
+
+body.blue-theme .header,
+body.blue-theme .nav,
+body.blue-theme .sidebar,
+body.blue-theme .footer {
+    background: transparent !important;
+    background-image: none !important;
+    animation: none !important;
+}
+
+
+
+/* ==========================================================
+   LK: единое анимированное градиентное поле сайта
+   Анимация и цвета взяты из обычных header/footer:
+   linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0)
+   ========================================================== */
+@keyframes lkUnifiedGradientMove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    background: #eef2f7 !important;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0);
+    background-size: 400% 400%;
+    animation: lkUnifiedGradientMove 8s ease infinite;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+#header-placeholder,
+#footer-placeholder,
+.header,
+.nav,
+.sidebar,
+.footer {
+    background: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+}
+
+.header,
+.footer,
+.sidebar {
+    animation: none !important;
+}
+
+.nav {
+    margin-top: 25px;
+    box-shadow: none !important;
+}
+
+.menu {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.menu > li > a {
+    color: #fff !important;
+}
+
+.menu > li > a:hover {
+    background: rgba(255,255,255,0.16) !important;
+    color: #fff !important;
+}
+
+.main {
+    background: transparent !important;
+}
+
+.content {
+    background: #f5f7fa !important;
+}
+
+.footer {
+    margin-top: 0 !important;
+}
+
+body.dark-theme::before {
+    background: linear-gradient(270deg, #0f3b47, #1a2b5e, #0f3b47);
+    background-size: 400% 400%;
+    animation: lkUnifiedGradientMove 8s ease infinite;
+}
+
+body.blue-theme::before {
+    background: linear-gradient(270deg, #1e88e5, #1565c0, #1e88e5);
+    background-size: 400% 400%;
+    animation: lkUnifiedGradientMove 8s ease infinite;
+}
+
+body.no-effects::before {
+    background: #2c3e50;
+    animation: none;
+}
+
+body.dark-theme.no-effects::before {
+    background: #0d1b2a;
+    animation: none;
+}
+
+body.blue-theme.no-effects::before {
+    background: #1565c0;
+    animation: none;
+}
+
+body.dark-theme .content {
+    background: #121212 !important;
+}
+
+body.blue-theme .content {
+    background: #d4eafc !important;
+}
+</style>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <div class="main">
+      <nav class="sidebar">
+        <h3>Навигация</h3>
+        <a href="#" class="active" data-tab="journal"
+          ><i class="fa-solid fa-table-list"></i><span>Журнал</span></a
+        ><a href="#" data-tab="schedule"
+          ><i class="fa-solid fa-calendar-week"></i><span>Расписание</span></a
+        ><a href="#" data-tab="messages"
+          ><i class="fa-solid fa-comments"></i><span>Сообщения</span></a
+        ><a href="#" data-tab="announcements"
+          ><i class="fa-solid fa-bullhorn"></i><span>Объявления</span></a
+        >
+      </nav>
+      <main class="content">
+        <section class="tab-content active" id="tab-journal">
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <div>
+                  <h2>Журнал оценок</h2>
+                  <p class="hint">
+                    Данные запрашиваются из СГО по школе «МКОУ Буерак-Поповская
+                    СШ».
+                  </p>
+                </div>
+              </div>
+              <button class="btn secondary" onclick="loadTeacherMeta(true)">
+                <i class="fa-solid fa-rotate"></i> Обновить списки
+              </button>
+            </div>
+            <div class="teacher-note">
+              <i class="fa-solid fa-circle-info"></i> Используйте логин и пароль
+              преподавателя, администратора или директора от «Сетевого города».
+            </div>
+            <div class="controls">
+              <div class="field">
+                <label>Класс</label
+                ><select id="classSelect">
+                  <option value="">Загрузка...</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Предмет</label
+                ><select id="subjectSelect">
+                  <option value="">Загрузка...</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Период</label
+                <select id="termSelect">
+                  <option value="">Загрузка...</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>С</label><input type="date" id="journalStart" />
+              </div>
+              <div class="field">
+                <label>По</label><input type="date" id="journalEnd" />
+              </div>
+              <button class="btn" onclick="loadJournal()">
+                <i class="fa-solid fa-magnifying-glass-chart"></i> Сформировать
+              </button>
+            </div>
+          </div>
+          <div id="journalResult">
+            <div class="empty">
+              <i class="fa-solid fa-table-list"></i
+              ><b>Журнал пока не сформирован</b>
+              <p>Выберите параметры и нажмите «Сформировать».</p>
+            </div>
+          </div>
+        </section>
+        <section class="tab-content" id="tab-schedule">
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">
+                <i class="fa-solid fa-calendar-week"></i>
+                <div>
+                  <h2>Расписание преподавателя</h2>
+                  <p class="hint">
+                    Недельное расписание текущей учётной записи из СГО.
+                  </p>
+                </div>
+              </div>
+              <div class="controls">
+                <button class="btn secondary" onclick="moveWeek(-7)">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="field">
+                  <label>Неделя с</label
+                  ><input
+                    type="date"
+                    id="weekStart"
+                    onchange="loadSchedule()"
+                  />
+                </div>
+                <button class="btn secondary" onclick="moveWeek(7)">
+                  <i class="fa-solid fa-chevron-right"></i></button
+                ><button class="btn" onclick="goCurrentWeek()">
+                  Текущая неделя
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="scheduleResult"></div>
+        </section>
+        <div class="tab-content" id="tab-messages">
+    <div class="chat">
+        <div class="dialogs-panel">
+            <div class="dialogs-header"><span>Диалоги</span><button id="newMsgBtn" title="Новое сообщение">+</button></div>
+            <div class="dialogs" id="dialogs"></div>
+        </div>
+        <div class="chat-window">
+            <div class="chat-header" id="chatHeader" style="display:none;">
+                <div class="chat-avatar" id="chatAvatar">?</div>
+                <div class="chat-user-info">
+                    <div class="chat-username" id="chatUsername">Выберите диалог</div>
+                    <div class="chat-role" id="chatRole">Роль не определена</div>
+                </div>
+            </div>
+            <div class="messages" id="messages"></div>
+            <div class="input" id="inputArea" style="display:none;">
+                <input type="text" id="msgInput" placeholder="Напишите сообщение...">
+                <button type="button" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            <div id="noDialog" style="flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#bbb;">
+                <i class="fa-solid fa-comments" style="font-size:5rem;margin-bottom:20px;"></i>
+                <p style="font-size:1.2rem;">Выберите диалог</p>
+                <p style="font-size:0.9rem;margin-top:5px;">или начните новый</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <section class="tab-content" id="tab-announcements">
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">
+                <i class="fa-solid fa-bullhorn"></i>
+                <div>
+                  <h2>Объявления</h2>
+                  <p class="hint">Школьные объявления и важная информация.</p>
+                </div>
+              </div>
+              <button class="btn secondary" onclick="loadAnnouncements()">
+                <i class="fa-solid fa-rotate"></i> Обновить
+              </button>
+            </div>
+          </div>
+          <div class="announcements-list" id="announcementsList"></div>
+        </section>
+      </main>
+    </div>
+    <div class="modal" id="newMessageModal">
+  <div class="modal-content">
+    <h3><i class="fa-solid fa-pen-to-square"></i> Новое сообщение</h3>
+    <input type="text" id="recipientLogin" placeholder="Логин получателя *" required>
+    <textarea id="newMessageText" rows="4" placeholder="Текст сообщения..." required></textarea>
+    <div class="modal-buttons">
+      <button type="button" class="btn-cancel" onclick="closeNewMsgModal()">Отмена</button>
+      <button type="button" class="btn-primary" onclick="sendNewMessage()"><i class="fa-solid fa-paper-plane"></i> Отправить</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="profileModal">
+  <div class="modal-content">
+    <h3><i class="fa-solid fa-user-gear"></i> Настройки профиля</h3>
+
+    <div class="profile-preview-row">
+        <div id="profileAvatarPreview" class="profile-preview-circle"></div>
+        <div class="profile-preview-info">
+            <div class="profile-preview-name" id="profilePreviewName"></div>
+            <div class="profile-preview-role" id="profilePreviewRoleLabel"></div>
+        </div>
+    </div>
+
+    <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+    <div class="profile-photo-actions">
+      <button type="button" class="profile-photo-btn" id="uploadProfilePhotoBtn"><i class="fa-solid fa-camera"></i> Загрузить фото</button>
+      <button type="button" class="profile-photo-btn profile-photo-remove" id="removeProfilePhotoBtn"><i class="fa-solid fa-trash"></i> Удалить фото</button>
+    </div>
+
+    <label style="font-weight:600;font-size:0.9rem;display:block;margin-bottom:8px;">Цвет профиля</label>
+    <div class="avatar-colors" id="avatarColors"></div>
+
+    <label style="font-weight:600;font-size:0.9rem;display:block;margin:14px 0 6px;">Роль</label>
+    <select id="profileRole">
+      <option value="Ученик">Ученик</option>
+      <option value="Учитель">Учитель</option>
+      <option value="Администратор">Администратор</option>
+      <option value="Родитель">Родитель</option>
+    </select>
+    <label style="font-weight:600;font-size:0.9rem;display:block;margin:10px 0 6px;">Полное имя</label>
+    <input type="text" id="profileFullName" placeholder="Иван Иванов">
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeProfileModal()">Отмена</button>
+      <button class="btn-primary" onclick="saveProfile()"><i class="fa-solid fa-save"></i> Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="photoCropModal">
+  <div class="modal-content crop-modal-content">
+    <h3><i class="fa-solid fa-crop-simple"></i> Обрезка фото профиля</h3>
+    <p class="crop-help">Выберите область, которая будет отображаться в миниатюре профиля. Формат миниатюры — круглый.</p>
+    <div class="crop-area"><img id="cropperImage" alt="Фото для обрезки"></div>
+    <div class="cropper-preview-box">
+      <div class="cropper-preview-wrap"><label>Миниатюра</label><div class="cropper-preview-sm"></div></div>
+      <div class="cropper-preview-wrap"><label>Крупный вид</label><div class="cropper-preview-lg"></div></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-cancel" type="button" onclick="closePhotoCropModal()">Отмена</button>
+      <button class="btn-primary" type="button" onclick="applyCroppedPhoto()"><i class="fa-solid fa-check"></i> Выбрать миниатюру</button>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+    <script src="footer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script>
+      (function () {
+        "use strict";
+
+        // ===== ДАННЫЕ ТЕКУЩЕГО ПОЛЬЗОВАТЕЛЯ =====
+        // login.html сохраняет эти значения после успешного входа.
+        const savedLogin = (localStorage.getItem("login") || sessionStorage.getItem("login") || "").trim();
+        const savedEmail = (localStorage.getItem("email") || sessionStorage.getItem("email") || "").trim();
+        const savedPassword = localStorage.getItem("password") || sessionStorage.getItem("password") || "";
+        const savedSchool = (localStorage.getItem("school") || "МКОУ Буерак-Поповская СШ").trim();
+
+        let login = savedLogin;
+        let email = savedEmail;
+        let password = savedPassword;
+        let school = savedSchool;
+        let role = (localStorage.getItem("role") || "Учитель").trim();
+        let fullName = (localStorage.getItem("full_name") || login || "Пользователь").trim();
+
+        if (!login) {
+          // Без логина расписание/журнал и сообщения не смогут обращаться к серверу корректно.
+          localStorage.setItem("auth", "false");
+          location.href = "login.html";
+          return;
+        }
+        localStorage.setItem("auth", "true");
+        localStorage.setItem("login", login);
+        if (email) localStorage.setItem("email", email);
+        if (password) {
+          localStorage.setItem("password", password);
+          sessionStorage.setItem("password", password);
+        }
+        localStorage.setItem("role", role || "Учитель");
+        localStorage.setItem("full_name", fullName || login);
+        localStorage.setItem("school", school || "МКОУ Буерак-Поповская СШ");
+        function syncLkContentToTopNav() {
+          const root = document.documentElement,
+            sidebar = document.querySelector(".sidebar"),
+            firstLink = document.querySelector(".menu > li:first-child > a"),
+            lastLink = document.querySelector(".menu > li:last-child > a");
+          if (!sidebar || !firstLink || !lastLink) return;
+          const sr = sidebar.getBoundingClientRect(),
+            fr = firstLink.getBoundingClientRect(),
+            lr = lastLink.getBoundingClientRect();
+          const left = Math.max(fr.left, sr.right + 12),
+            right = Math.max(left + 320, lr.right);
+          root.style.setProperty(
+            "--lk-content-left-offset",
+            `${Math.round(left - sr.right)}px`,
+          );
+          root.style.setProperty(
+            "--lk-content-width",
+            `${Math.round(right - left)}px`,
+          );
+        }
+        if (localStorage.getItem("auth") !== "true") localStorage.setItem("auth", "true");
+        if (!role) {
+          role = "Учитель";
+          localStorage.setItem("role", role);
+        }
+
+        function getHeaderFallbackHtml() {
+          return `
+<header class="header">
+  <div class="container header-content">
+    <a class="logo" href="index.html"><img src="logo1.png" alt="Логотип"></a>
+    <div class="title"><h1>Личный кабинет</h1><p>Учитель / Администратор</p></div>
+    <div class="header-icons">
+      <div class="user-block" id="userBlock" style="display:flex;">
+        <div class="user-avatar" id="userAvatar">?</div>
+        <div class="user-info">
+          <div class="user-name" id="userName"></div>
+          <div class="user-role" id="userRole"></div>
+        </div>
+      </div>
+      <i class="fa-solid fa-universal-access" id="accessibilityBtn" title="Версия для слабовидящих"></i>
+      <a id="loginBtn" href="login.html" style="display:none;color:white;text-decoration:none;font-weight:800;">Войти</a>
+      <button id="logoutBtn" type="button" style="display:inline-block;border:2px solid rgba(255,255,255,.65);background:rgba(255,255,255,.12);color:white;border-radius:12px;padding:8px 14px;font-weight:800;font-family:Raleway,sans-serif;cursor:pointer;">Выйти</button>
+      <div class="accessibility-panel" id="accessibilityPanel">
+        <button class="close-panel" id="closeAccessibilityPanel" type="button">×</button>
+        <h4><i class="fa-solid fa-universal-access"></i> Настройки отображения</h4>
+        <div class="option-group"><label>Размер шрифта</label><div class="option-buttons">
+          <button class="option-btn" type="button" data-font-size="16">Обычный</button>
+          <button class="option-btn" type="button" data-font-size="18">Крупный</button>
+          <button class="option-btn" type="button" data-font-size="20">Очень крупный</button>
+        </div></div>
+        <div class="option-group"><label>Тема</label><div class="option-buttons">
+          <button class="option-btn" type="button" data-theme="default">Обычная</button>
+          <button class="option-btn" type="button" data-theme="dark">Тёмная</button>
+          <button class="option-btn" type="button" data-theme="blue">Синяя</button>
+        </div></div>
+        <label class="checkbox-group"><input type="checkbox" id="noEffectsCheck"> Без анимации</label>
+      </div>
+    </div>
+  </div>
+  <nav class="nav"><div class="container"><ul class="menu">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="lk.html">Ученик</a></li>
+    <li><a href="lkteach.html">Учитель</a></li>
+    <li><a href="raspisanie.html">Расписание</a></li>
+    <li><a href="contacts.html">Контакты</a></li>
+  </ul></div></nav>
+</header>`;
+        }
+
+        function initAccessibilityPanel() {
+          const btn = document.getElementById("accessibilityBtn");
+          const panel = document.getElementById("accessibilityPanel");
+          const close = document.getElementById("closeAccessibilityPanel");
+          const noEffects = document.getElementById("noEffectsCheck");
+          if (!btn || !panel) return;
+          btn.onclick = (e) => { e.stopPropagation(); panel.classList.toggle("active"); btn.classList.toggle("active-icon", panel.classList.contains("active")); };
+          if (close) close.onclick = () => { panel.classList.remove("active"); btn.classList.remove("active-icon"); };
+          panel.onclick = (e) => e.stopPropagation();
+          document.addEventListener("click", () => { panel.classList.remove("active"); btn.classList.remove("active-icon"); });
+          panel.querySelectorAll("[data-font-size]").forEach((b) => b.onclick = () => { document.documentElement.style.fontSize = b.dataset.fontSize + "px"; localStorage.setItem("fontSize", b.dataset.fontSize); });
+          panel.querySelectorAll("[data-theme]").forEach((b) => b.onclick = () => { document.body.classList.remove("dark-theme", "blue-theme"); if (b.dataset.theme !== "default") document.body.classList.add(b.dataset.theme + "-theme"); localStorage.setItem("theme", b.dataset.theme); });
+          if (noEffects) noEffects.onchange = () => { document.body.classList.toggle("no-effects", noEffects.checked); localStorage.setItem("noEffects", noEffects.checked ? "true" : "false"); };
+          const savedFont = localStorage.getItem("fontSize"); if (savedFont) document.documentElement.style.fontSize = savedFont + "px";
+          const savedTheme = localStorage.getItem("theme"); if (savedTheme && savedTheme !== "default") document.body.classList.add(savedTheme + "-theme");
+          if (localStorage.getItem("noEffects") === "true") { document.body.classList.add("no-effects"); if (noEffects) noEffects.checked = true; }
+        }
+
+        function initLoadedHeader() {
+          const loginBtn = document.getElementById("loginBtn"),
+            logoutBtn = document.getElementById("logoutBtn"),
+            userBlock = document.getElementById("userBlock");
+          if (loginBtn) { loginBtn.style.display = "none"; loginBtn.onclick = () => (location.href = "login.html"); }
+          if (logoutBtn) { logoutBtn.style.display = "inline-block"; logoutBtn.onclick = () => logoutUser(); }
+          if (userBlock) { userBlock.style.display = "flex"; userBlock.onclick = () => openProfileModal(); }
+          initAccessibilityPanel();
+          initUser();
+          syncLkContentToTopNav();
+        }
+        function mountHeader(html) {
+          const target = document.getElementById("header-placeholder");
+          if (target) target.innerHTML = html || getHeaderFallbackHtml();
+          initLoadedHeader();
+        }
+        fetch("header.html")
+          .then((r) => (r.ok ? r.text() : Promise.reject()))
+          .then((html) => mountHeader(html))
+          .catch(() => mountHeader(getHeaderFallbackHtml()));
+        window.addEventListener("resize", syncLkContentToTopNav);
+
+        // Автоматический переход по роли отключён, чтобы не было циклического переключения страниц.
+        const API_URL = (() => {
+          if (location.protocol === "http:" || location.protocol === "https:") {
+            const host = location.hostname || "127.0.0.1";
+            if (location.port === "5000") return location.origin;
+            return `${location.protocol}//${host}:5000`;
+          }
+          return "http://127.0.0.1:5000";
+        })();
+        let activePartner = "";
+        let allMessages = [];
+        function avatarColor(name) {
+          let h = 0;
+          for (let i = 0; i < name.length; i++)
+            h = name.charCodeAt(i) + ((h << 5) - h);
+          const c = [
+            "linear-gradient(135deg,#667eea,#764ba2)",
+            "linear-gradient(135deg,#f093fb,#f5576c)",
+            "linear-gradient(135deg,#4facfe,#00f2fe)",
+            "linear-gradient(135deg,#43e97b,#38f9d7)",
+          ];
+          return c[Math.abs(h) % c.length];
+        }
+        function initUser() {
+          const nameEl = document.getElementById("userName");
+          const roleEl = document.getElementById("userRole");
+          const userBlock = document.getElementById("userBlock");
+          const loginBtn = document.getElementById("loginBtn");
+          const logoutBtn = document.getElementById("logoutBtn");
+          if (userBlock) userBlock.style.display = "flex";
+          if (loginBtn) loginBtn.style.display = "none";
+          if (logoutBtn) logoutBtn.style.display = "inline-block";
+          if (nameEl) nameEl.textContent = fullName || login || "Пользователь";
+          if (roleEl) roleEl.textContent = role || "Учитель";
+          updateUserAvatar();
+        }
+        const avatarColors = [
+          'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+          'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+          'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+          'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+          'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+          'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)',
+          'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
+          'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+          'linear-gradient(135deg, #2af598 0%, #009efd 100%)'
+        ];
+        let currentAvatarColor = localStorage.getItem("avatar_color") || "";
+        let currentProfilePhoto = localStorage.getItem("profile_photo") || "";
+        let cropper = null;
+        let objectUrlForCrop = null;
+
+        function getDefaultAvatarColor(name) {
+          let hash = 0;
+          const value = name || login || "П";
+          for (let i = 0; i < value.length; i++) hash = value.charCodeAt(i) + ((hash << 5) - hash);
+          return avatarColors[Math.abs(hash) % avatarColors.length];
+        }
+        function getInitials(name) { return (name || login || "П").charAt(0).toUpperCase(); }
+        function setAvatarElement(el, name, color, photo) {
+          if (!el) return;
+          if (photo) {
+            el.classList.add("has-photo");
+            el.style.background = "transparent";
+            el.style.backgroundImage = `url(${photo})`;
+            el.style.backgroundSize = "cover";
+            el.style.backgroundPosition = "center";
+            el.textContent = "";
+          } else {
+            el.classList.remove("has-photo");
+            el.style.backgroundImage = "";
+            el.style.background = color || getDefaultAvatarColor(name || login);
+            el.textContent = getInitials(name || login);
+          }
+        }
+        function updateUserAvatar() {
+          const a = document.getElementById("userAvatar");
+          setAvatarElement(a, fullName || login, currentAvatarColor || getDefaultAvatarColor(fullName || login), currentProfilePhoto);
+        }
+        function updateProfilePreview() {
+          setAvatarElement(document.getElementById("profileAvatarPreview"), fullName || login, currentAvatarColor || getDefaultAvatarColor(fullName || login), currentProfilePhoto);
+          const nameEl = document.getElementById("profilePreviewName");
+          const roleEl = document.getElementById("profilePreviewRoleLabel");
+          const removeBtn = document.getElementById("removeProfilePhotoBtn");
+          if (nameEl) nameEl.textContent = fullName || login || "Профиль";
+          if (roleEl) roleEl.textContent = role || "Роль не выбрана";
+          if (removeBtn) removeBtn.style.display = currentProfilePhoto ? "inline-flex" : "none";
+        }
+        function initAvatarColorPicker() {
+          const container = document.getElementById("avatarColors");
+          if (!container) return;
+          container.innerHTML = "";
+          avatarColors.forEach((color) => {
+            const option = document.createElement("div");
+            option.className = "avatar-color-option";
+            option.style.background = color;
+            option.dataset.color = color;
+            if (color === currentAvatarColor) option.classList.add("active");
+            option.onclick = () => {
+              document.querySelectorAll(".avatar-color-option").forEach((o) => o.classList.remove("active"));
+              option.classList.add("active");
+              currentAvatarColor = color;
+              updateProfilePreview();
+            };
+            container.appendChild(option);
+          });
+        }
+        function initProfilePhotoControls() {
+          const input = document.getElementById("profilePhotoInput");
+          const uploadBtn = document.getElementById("uploadProfilePhotoBtn");
+          const removeBtn = document.getElementById("removeProfilePhotoBtn");
+          if (uploadBtn && input) uploadBtn.onclick = () => input.click();
+          if (input) {
+            input.onchange = (event) => {
+              const file = event.target.files && event.target.files[0];
+              if (!file) return;
+              if (!file.type.startsWith("image/")) { alert("Выберите файл изображения"); input.value = ""; return; }
+              if (file.size > 8 * 1024 * 1024) { alert("Размер фото не должен превышать 8 МБ"); input.value = ""; return; }
+              openPhotoCropModal(file);
+              input.value = "";
+            };
+          }
+          if (removeBtn) removeBtn.onclick = () => {
+            currentProfilePhoto = "";
+            localStorage.removeItem("profile_photo");
+            updateUserAvatar();
+            updateProfilePreview();
+          };
+        }
+        function openPhotoCropModal(file) {
+          const modal = document.getElementById("photoCropModal");
+          const image = document.getElementById("cropperImage");
+          if (!modal || !image) return;
+          if (cropper) { cropper.destroy(); cropper = null; }
+          if (objectUrlForCrop) URL.revokeObjectURL(objectUrlForCrop);
+          objectUrlForCrop = URL.createObjectURL(file);
+          image.src = objectUrlForCrop;
+          modal.style.display = "block";
+          image.onload = () => {
+            if (typeof Cropper === "undefined") { alert("Модуль обрезки фото не загружен"); return; }
+            cropper = new Cropper(image, {
+              aspectRatio: 1,
+              viewMode: 1,
+              dragMode: "move",
+              autoCropArea: 0.9,
+              background: false,
+              responsive: true,
+              preview: ".cropper-preview-sm, .cropper-preview-lg"
+            });
+          };
+        }
+        window.closePhotoCropModal = function () {
+          const modal = document.getElementById("photoCropModal");
+          if (modal) modal.style.display = "none";
+          if (cropper) { cropper.destroy(); cropper = null; }
+          if (objectUrlForCrop) { URL.revokeObjectURL(objectUrlForCrop); objectUrlForCrop = null; }
+        };
+        window.applyCroppedPhoto = function () {
+          if (!cropper) return;
+          const canvas = cropper.getCroppedCanvas({ width: 360, height: 360, imageSmoothingEnabled: true, imageSmoothingQuality: "high" });
+          if (!canvas) return;
+          currentProfilePhoto = canvas.toDataURL("image/jpeg", 0.88);
+          localStorage.setItem("profile_photo", currentProfilePhoto);
+          updateUserAvatar();
+          updateProfilePreview();
+          closePhotoCropModal();
+        };
+        window.openProfileModal = function () {
+          if (localStorage.getItem("auth") !== "true" || !localStorage.getItem("login")) { location.href = "login.html"; return; }
+          const roleSelect = document.getElementById("profileRole");
+          const nameInput = document.getElementById("profileFullName");
+          if (roleSelect) roleSelect.value = role || "Учитель";
+          if (nameInput) nameInput.value = fullName || login || "";
+          initAvatarColorPicker();
+          initProfilePhotoControls();
+          updateProfilePreview();
+          const modal = document.getElementById("profileModal");
+          if (modal) modal.style.display = "block";
+        };
+        window.closeProfileModal = function () {
+          const modal = document.getElementById("profileModal");
+          if (modal) modal.style.display = "none";
+        };
+        window.saveProfile = async function () {
+          const roleSelect = document.getElementById("profileRole");
+          const nameInput = document.getElementById("profileFullName");
+          role = roleSelect ? roleSelect.value : role;
+          fullName = (nameInput && nameInput.value.trim()) || login || "";
+          currentAvatarColor = currentAvatarColor || getDefaultAvatarColor(fullName || login);
+          localStorage.setItem("role", role);
+          localStorage.setItem("full_name", fullName);
+          localStorage.setItem("avatar_color", currentAvatarColor);
+          if (currentProfilePhoto) localStorage.setItem("profile_photo", currentProfilePhoto);
+          else localStorage.removeItem("profile_photo");
+          const nameEl = document.getElementById("userName");
+          const roleEl = document.getElementById("userRole");
+          if (nameEl) nameEl.textContent = fullName;
+          if (roleEl) roleEl.textContent = role;
+          updateUserAvatar();
+          try {
+            await apiPost("/api/register", {
+              role,
+              full_name: fullName,
+              avatar_color: currentAvatarColor,
+              profile_photo: currentProfilePhoto || ""
+            });
+            closeProfileModal();
+            alert("Профиль успешно сохранён!");
+          } catch (e) {
+            console.error("Сервер недоступен, профиль сохранён локально:", e);
+            closeProfileModal();
+            alert("Профиль сохранён локально");
+          }
+        };
+
+        async function apiPost(path, body = {}) {
+          if ((path === "/api/teacher/meta" || path === "/api/teacher/schedule" || path === "/api/teacher/journal") && !password) {
+            throw new Error("Пароль не найден в сессии. Выполните вход заново через login.html, чтобы расписание и журнал могли отправить данные на сервер.");
+          }
+          const payload = { login, password, role, email, school, full_name: fullName, ...body };
+          console.log("POST", path, { ...payload, password: payload.password ? "***" : "" });
+          const r = await fetch(`${API_URL}${path}`, {
+            method: "POST",
+            mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const t = await r.text();
+          let d = {};
+          try {
+            d = t ? JSON.parse(t) : {};
+          } catch (e) {
+            throw new Error(
+              `Сервер вернул не JSON. HTTP ${r.status}: ${t.slice(0, 180)}`,
+            );
+          }
+          if (!r.ok || !d.success)
+            throw new Error(
+              (d.error || `Ошибка HTTP ${r.status}`) +
+                (d.school ? `\nШкола: ${d.school}` : ""),
+            );
+          return d;
+        }
+        async function apiGet(path, params = {}) {
+          const q = new URLSearchParams({ login, password, role, email, school, full_name: fullName, ...params });
+          const r = await fetch(`${API_URL}${path}?${q.toString()}`, { mode: "cors" });
+          const d = await r.json();
+          if (!r.ok || !d.success)
+            throw new Error(d.error || `Ошибка HTTP ${r.status}`);
+          return d;
+        }
+        function esc(v) {
+          return String(v ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+        }
+        function monday(d) {
+          const x = new Date(d);
+          const day = x.getDay() || 7;
+          x.setDate(x.getDate() - day + 1);
+          x.setHours(12, 0, 0, 0);
+          return x;
+        }
+        function iso(d) {
+          return d.toISOString().split("T")[0];
+        }
+        function ruDate(s) {
+          return new Date(s + "T12:00:00").toLocaleDateString("ru-RU", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          });
+        }
+        function markClass(v) {
+          const n = parseInt(v);
+          return n >= 5 ? "m5" : n >= 4 ? "m4" : n >= 3 ? "m3" : "m2";
+        }
+        window.logoutUser = function () {
+          [
+            "auth",
+            "login",
+            "email",
+            "password",
+            "role",
+            "full_name",
+            "avatar_color",
+            "profile_photo",
+            "school",
+          ].forEach((k) => localStorage.removeItem(k));
+          sessionStorage.removeItem("password");
+          location.href = "login.html";
+        };
+        // Обработка sidebar полностью через setActiveTab (ниже)
+        function fillSelect(el, items, placeholder) {
+          el.innerHTML = "";
+          if (!items || !items.length) {
+            el.innerHTML = `<option value="">${placeholder}</option>`;
+            return;
+          }
+          items.forEach((item) => {
+            const o = document.createElement("option");
+            o.value = item.value || item.name || item;
+            o.textContent = item.label || item.name || item;
+            el.appendChild(o);
+          });
+        }
+        function mergeSelectOptions(el, items, selectedValue) {
+          const existing = new Set(Array.from(el.options).map((o) => o.value));
+          items.forEach((item) => {
+            const value = String(item.value || item.name || item || "");
+            if (!value || existing.has(value)) return;
+            const o = document.createElement("option");
+            o.value = value;
+            o.textContent = item.label || item.name || item;
+            el.appendChild(o);
+            existing.add(value);
+          });
+          if (selectedValue && Array.from(el.options).some((o) => o.value === selectedValue)) el.value = selectedValue;
+        }
+        let _teacherMetaLoaded = false;
+        let _teacherSubjectGroups = [];
+
+        function asArray(value) {
+          if (!value) return [];
+          return Array.isArray(value) ? value : [value];
+        }
+
+        function isSubjectGroup(item) {
+          return !!(item && typeof item === "object" && item.class && item.subject && item.id);
+        }
+
+        function isScheduleLesson(item) {
+          return !!(item && typeof item === "object" && (item.day || item.date) && (item.subjectGroupId || item.subject_group_id || item.sgId));
+        }
+
+        function rememberTeacherSubjectGroups(groups) {
+          groups = asArray(groups).filter(isSubjectGroup);
+          if (!groups.length) return;
+          const byId = new Map(_teacherSubjectGroups.map((g) => [String(g.id), g]));
+          groups.forEach((g) => byId.set(String(g.id), g));
+          _teacherSubjectGroups = Array.from(byId.values());
+        }
+
+        function findSubjectGroupsInPayload(payload) {
+          const found = [];
+          const seen = new Set();
+          function walk(x) {
+            if (!x) return;
+            if (Array.isArray(x)) {
+              if (x.some(isSubjectGroup)) {
+                x.filter(isSubjectGroup).forEach((g) => {
+                  const key = String(g.id);
+                  if (!seen.has(key)) { seen.add(key); found.push(g); }
+                });
+              }
+              x.forEach(walk);
+              return;
+            }
+            if (typeof x === "object") {
+              if (isSubjectGroup(x)) {
+                const key = String(x.id);
+                if (!seen.has(key)) { seen.add(key); found.push(x); }
+              }
+              Object.values(x).forEach(walk);
+            }
+          }
+          walk(payload);
+          return found;
+        }
+
+        function findScheduleLessonsInPayload(payload) {
+          const found = [];
+          const seen = new Set();
+          function walk(x) {
+            if (!x) return;
+            if (Array.isArray(x)) {
+              if (x.some(isScheduleLesson)) {
+                x.filter(isScheduleLesson).forEach((lesson) => {
+                  const key = String(lesson.id || lesson.classMeetingId || "") + "|" + String(lesson.day || lesson.date || "") + "|" + String(lesson.number || lesson.scheduleTimeNum || "") + "|" + String(lesson.subjectGroupId || lesson.subject_group_id || lesson.sgId || "");
+                  if (!seen.has(key)) { seen.add(key); found.push(lesson); }
+                });
+              }
+              x.forEach(walk);
+              return;
+            }
+            if (typeof x === "object") Object.values(x).forEach(walk);
+          }
+          walk(payload);
+          return found;
+        }
+
+        function weekdayName(dateIso) {
+          return new Date(String(dateIso).slice(0, 10) + "T12:00:00").toLocaleDateString("ru-RU", { weekday: "long" });
+        }
+
+        function groupScheduleByDays(lessons, groups) {
+          const groupsById = new Map(asArray(groups).filter(isSubjectGroup).map((g) => [String(g.id), g]));
+          const days = new Map();
+          lessons.forEach((item) => {
+            const date = String(item.day || item.date || "").slice(0, 10);
+            if (!date) return;
+            const sgId = String(item.subjectGroupId || item.subject_group_id || item.sgId || "");
+            const group = groupsById.get(sgId) || {};
+            const subject = group.subject?.name || group.subject?.shortName || group.name || item.subject || item.subjectName || "—";
+            const className = group.class?.name || group.className || group.class_name || item.className || item.class_name || "—";
+            const lesson = {
+              id: item.id || item.classMeetingId || item.class_meeting_id || "",
+              classMeetingId: item.id || item.classMeetingId || item.class_meeting_id || "",
+              lessonId: item.lessonId || item.lesson_id || "",
+              subjectGroupId: sgId,
+              classId: group.class?.id || item.classId || item.class_id || "",
+              number: item.number || item.scheduleTimeNum || item.lessonNumber || item.lesson_number || "",
+              time: item.time || item.lesson_time || "",
+              subject,
+              class_name: className,
+              room: item.room?.name || item.roomName || item.room || "",
+              theme: item.theme || item.topic || "",
+            };
+            if (!days.has(date)) days.set(date, { date, weekday: weekdayName(date), lessons: [] });
+            days.get(date).lessons.push(lesson);
+          });
+          return Array.from(days.values())
+            .sort((a, b) => a.date.localeCompare(b.date))
+            .map((day) => ({
+              ...day,
+              lessons: day.lessons.sort((a, b) => Number(a.number || 999) - Number(b.number || 999)),
+            }));
+        }
+
+        function normalizeTeacherSchedulePayload(payload) {
+          const raw = payload && payload.data !== undefined ? payload.data : payload;
+          if (Array.isArray(raw) && raw.length && raw[0] && Array.isArray(raw[0].lessons)) return raw;
+
+          const groups = [
+            ..._teacherSubjectGroups,
+            ...findSubjectGroupsInPayload(payload),
+          ];
+          rememberTeacherSubjectGroups(groups);
+
+          const lessons = findScheduleLessonsInPayload(raw);
+          if (lessons.length) return groupScheduleByDays(lessons, _teacherSubjectGroups);
+
+          return Array.isArray(raw) ? raw : [];
+        }
+
+        // Готовые функции получения данных для вкладок «Журнал» и «Расписание».
+        // Журнал берётся через найденный endpoint /webapi/grade/journal.
+        async function getTeacherJournal({ classId = "", subjectId = "", termId = "", start = "", end = "" } = {}) {
+          return await apiPost("/api/teacher/journal", {
+            classId,
+            subjectId,
+            termId,
+            start,
+            end,
+          });
+        }
+
+        // Расписание строится из двух типов данных СГО (справочник групп + classmeetings):
+        // 1) список групп/предметов учителя: [{ id, class, subject, terms, room, ... }]
+        // 2) список уроков: [{ day, number, subjectGroupId, room, lessonId, ... }]
+        async function getTeacherSchedule({ start = "", end = "" } = {}) {
+          const d = await apiPost("/api/teacher/schedule", { start, end });
+          d.data = normalizeTeacherSchedulePayload(d);
+          return d;
+        }
+
+        // Открываем функции наружу, чтобы можно было вызвать из консоли браузера:
+        // await getTeacherJournal({ subjectId: '4068821', classId: '449933', termId: '143372', start: '2026-04-01', end: '2026-05-31' })
+        // await getTeacherSchedule({ start: '2026-04-27', end: '2026-05-03' })
+        window.getTeacherJournal = getTeacherJournal;
+        window.getTeacherSchedule = getTeacherSchedule;
+
+
+        window.loadTeacherMeta = async function (autoLoad = false) {
+          const c = document.getElementById("classSelect"),
+            s = document.getElementById("subjectSelect"),
+            t = document.getElementById("termSelect");
+          if (c) c.innerHTML = "<option>Загрузка...</option>";
+          if (s) s.innerHTML = "<option>Загрузка...</option>";
+          if (t) t.innerHTML = "<option>Загрузка...</option>";
+          _teacherMetaLoaded = false;
+          try {
+            const d = await apiPost("/api/teacher/meta");
+            rememberTeacherSubjectGroups(d.subjectGroups || d.subject_groups || d.groups || d.raw_groups || findSubjectGroupsInPayload(d));
+            if (c) fillSelect(c, d.classes, "Автоматически / все доступные классы");
+            if (s) fillSelect(s, d.subjects, "Предметы не найдены");
+            if (t) fillSelect(t, d.terms, "Период не найден");
+            const defaults = d.defaults || {};
+            if (s) {
+              if (defaults.SGID && s.querySelector(`option[value="${defaults.SGID}"]`)) {
+                s.value = defaults.SGID;
+              } else {
+                const chem = Array.from(s.options).find(o => /хим/i.test(o.textContent));
+                if (chem) s.value = chem.value;
+              }
+            }
+            if (t && defaults.TERMID && t.querySelector(`option[value="${defaults.TERMID}"]`)) {
+              t.value = defaults.TERMID;
+            }
+            _teacherMetaLoaded = true;
+            // Автоматически грузим журнал сразу после получения мета-данных
+            if (autoLoad && d.subjects && d.subjects.length) {
+              loadJournal();
+            } else if (autoLoad) {
+              const jr = document.getElementById("journalResult");
+              if (jr) jr.innerHTML = d.note
+                ? `<div class="teacher-note"><i class="fa-solid fa-circle-info"></i> ${esc(d.note)}</div>`
+                : `<div class="empty"><i class="fa-solid fa-inbox"></i><b>Предметы не найдены в СГО</b><p>Проверьте правильность логина и пароля, или добавьте данные вручную.</p></div>`;
+            } else if (d.note) {
+              const jr = document.getElementById("journalResult");
+              if (jr) jr.innerHTML = `<div class="teacher-note"><i class="fa-solid fa-circle-info"></i> ${esc(d.note)}</div>`;
+            }
+          } catch (e) {
+            if (c) c.innerHTML = '<option value="">Ошибка загрузки</option>';
+            if (s) s.innerHTML = '<option value="">Ошибка загрузки</option>';
+            if (t) t.innerHTML = '<option value="">Ошибка загрузки</option>';
+            const jr = document.getElementById("journalResult");
+            if (jr) jr.innerHTML = `<div class="error"><i class="fa-solid fa-triangle-exclamation"></i><b>Не удалось загрузить классы и предметы</b><p>${esc(e.message)}</p></div>`;
+          }
+        };
+        window.loadJournal = async function () {
+          const classEl = document.getElementById("classSelect"),
+            subjectEl = document.getElementById("subjectSelect"),
+            termEl = document.getElementById("termSelect"),
+            cls = classEl ? classEl.value : "",
+            subj = subjectEl ? subjectEl.value : "",
+            term = termEl ? termEl.value : "",
+            start = document.getElementById("journalStart").value,
+            end = document.getElementById("journalEnd").value,
+            out = document.getElementById("journalResult");
+          if (!start || !end) {
+            if (out) out.innerHTML = `<div class="empty"><i class="fa-solid fa-calendar"></i><b>Выберите период</b><p>Укажите даты «С» и «По» и нажмите «Сформировать».</p></div>`;
+            return;
+          }
+          const subjName = subjectEl && subjectEl.options[subjectEl.selectedIndex] ? (subjectEl.options[subjectEl.selectedIndex].textContent || subj || "предмет") : (subj || "предмет");
+          if (out) out.innerHTML = `<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i><p>Загружаем журнал из СГО…<br><small style="opacity:.7;font-weight:600">${esc(subjName)}</small></p></div>`;
+          try {
+            const d = await getTeacherJournal({
+              classId: cls,
+              subjectId: subj,
+              termId: term,
+              start,
+              end,
+            });
+            const clsLabel = (d.data && d.data.class_label) || (classEl && classEl.options[classEl.selectedIndex] ? classEl.options[classEl.selectedIndex].textContent : cls) || cls;
+            const subjLabel = (d.data && d.data.subject_label) || subjName;
+            const termLabel = termEl && termEl.options[termEl.selectedIndex] ? (termEl.options[termEl.selectedIndex].textContent || term) : term;
+            renderJournal(d.data || {}, clsLabel, subjLabel, start, end, d.note, termLabel, d.debug || []);
+            if (Array.isArray(d.classes) && d.classes.length) mergeSelectOptions(classEl, d.classes, cls);
+            if (Array.isArray(d.subjects) && d.subjects.length) mergeSelectOptions(subjectEl, d.subjects, subj);
+          } catch (e) {
+            if (out) out.innerHTML = `<div class="error"><i class="fa-solid fa-server"></i><b>Журнал не загружен</b><p>${esc(e.message)}</p></div>`;
+          }
+        };
+        function renderJournal(data, cls, subj, start, end, note, termLabel, debug) {
+          const students = data.students || [];
+          const grid = data.grid || {};
+          const columns = Array.isArray(data.columns) && data.columns.length
+            ? data.columns
+            : (data.dates || []).map((d) => ({ id: d, date: d, title: "", type: "" }));
+          if (!students.length || !columns.length) {
+            document.getElementById("journalResult").innerHTML =
+              `<div class="empty"><i class="fa-solid fa-inbox"></i><b>Данные не найдены</b><p>Класс: ${esc(cls || "—")}, предмет: ${esc(subj || "—")}, период ${esc(termLabel || (start + " — " + end))}</p>${note ? `<p>${esc(note)}</p>` : ""}${debug && debug.length ? `<details style="margin-top:12px;text-align:left"><summary>Диагностика запросов СГО</summary><pre style="white-space:pre-wrap;font-size:12px;max-height:260px;overflow:auto">${esc(debug.slice(0,80).join("\n"))}</pre></details>` : ""}</div>`;
+            return;
+          }
+          const meta = `${esc(data.class_label || cls || "Автоматически")} · ${esc(termLabel || (start + " — " + end))}`;
+          let html = `<div class="panel journal-panel"><div class="panel-head"><div><h2>${esc(data.subject_label || subj || "Журнал")}</h2><p class="hint">${meta}</p></div><div class="badge">${students.length} учеников · ${columns.length} работ/уроков</div></div><div style="overflow:auto"><table class="journal-table"><thead><tr><th class="sticky-col">Ученик</th>`;
+          columns.forEach((c) => {
+            const d = c.date ? new Date(String(c.date).slice(0, 10) + "T12:00:00").toLocaleDateString("ru-RU", { day: "numeric", month: "short" }) : "—";
+            const title = c.title && c.title !== "---Не указана---" ? c.title : (c.type || "Работа");
+            html += `<th title="${esc(title)}"><div class="journal-date">${esc(d)}</div><div class="journal-work">${esc(title)}</div></th>`;
+          });
+          html += `<th>Средний</th></tr></thead><tbody>`;
+          students.forEach((st) => {
+            const row = grid[st] || {};
+            let sum = 0, cnt = 0;
+            html += `<tr><td class="sticky-col"><b>${esc(st)}</b></td>`;
+            columns.forEach((c) => {
+              const key = String(c.id || c.date || "");
+              const marks = row[key] || [];
+              marks.forEach((m) => {
+                const n = parseInt(m);
+                if (!isNaN(n)) { sum += n; cnt++; }
+              });
+              html += `<td>${marks.length ? marks.map((m) => `<span class="mark ${markClass(m)}">${esc(m)}</span>`).join("") : "—"}</td>`;
+            });
+            html += `<td><span class="badge">${cnt ? (sum / cnt).toFixed(2) : "—"}</span></td></tr>`;
+          });
+          html += `</tbody></table></div>${note ? `<p class="hint" style="margin-top:12px">${esc(note)}</p>` : ""}</div>`;
+          document.getElementById("journalResult").innerHTML = html;
+        }
+        window.loadSchedule = async function () {
+          const start = document.getElementById("weekStart").value;
+          if (!start) return;
+          const endDate = new Date(start + "T12:00:00");
+          endDate.setDate(endDate.getDate() + 6);
+          const out = document.getElementById("scheduleResult");
+          const startLabel = new Date(start + "T12:00:00").toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
+          const endLabel = endDate.toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" });
+          if (out) out.innerHTML = `<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i><p>Загружаем расписание из СГО…<br><small style="opacity:.7;font-weight:600">${esc(startLabel)} — ${esc(endLabel)}</small></p></div>`;
+          try {
+            const d = await getTeacherSchedule({
+              start,
+              end: iso(endDate),
+            });
+            renderSchedule(d.data || [], d.note, d.debug || []);
+          } catch (e) {
+            if (out) out.innerHTML = `<div class="error"><i class="fa-solid fa-server"></i><b>Расписание не загружено</b><p>${esc(e.message)}</p></div>`;
+          }
+        };
+        const LESSON_TIMES = {
+          1: "8:30 - 9:10",
+          2: "9:25 - 10:05",
+          3: "10:25 - 11:05",
+          4: "11:25 - 12:05",
+          5: "12:15 - 12:55",
+          6: "13:05 - 13:45",
+          7: "13:55 - 14:35",
+          8: "14:40 - 14:50",
+          9: "15:00 - 15:20",
+          10: "16:10 - 16:50",
+        };
+        function lessonTime(n, fallback) {
+          return LESSON_TIMES[Number(n)] || fallback || "—";
+        }
+        function renderSchedule(days, note, debug = []) {
+          const out = document.getElementById("scheduleResult");
+          if (!days.length) {
+            out.innerHTML = `<div class="empty"><i class="fa-solid fa-calendar-xmark"></i><b>На выбранной неделе занятий не найдено</b>${note ? `<p>${esc(note)}</p>` : ""}${debug && debug.length ? `<details style="margin-top:12px;text-align:left"><summary>Диагностика запросов</summary><pre style="white-space:pre-wrap;font-size:12px;max-height:220px;overflow:auto">${esc(debug.slice(0,60).join("\n"))}</pre></details>` : ""}</div>`;
+            return;
+          }
+          let html = "";
+          days.forEach((day) => {
+            html += `<div class="day schedule-day"><div class="day-title">${ruDate(day.date)}<span class="day-name">${esc(day.weekday || "")}</span></div><table class="schedule-table"><thead><tr><th style="width:92px;text-align:center">№ урока</th><th style="width:170px;text-align:center">Время урока</th><th>Предмет</th><th>Класс</th><th>Кабинет</th><th>Тема</th></tr></thead><tbody>`;
+            (day.lessons || []).forEach((l, i) => {
+              const num = l.number || i + 1;
+              const extra = l.subjectGroupId ? `<div class="hint" style="font-size:11px;margin-top:3px">sgId: ${esc(l.subjectGroupId)}</div>` : "";
+              html += `<tr><td style="text-align:center"><span class="lesson-num">${num}</span></td><td style="text-align:center"><span class="lesson-time">${lessonTime(num, l.time || l.lesson_time)}</span></td><td><div class="schedule-subject">${esc(l.subject || "—")}</div>${extra}</td><td><span class="badge">${esc(l.class_name || l.className || "—")}</span></td><td>${esc(l.room || l.roomName || "—")}</td><td>${l.theme ? `<div class="schedule-theme">${esc(l.theme)}</div>` : "—"}</td></tr>`;
+            });
+            html += `</tbody></table></div>`;
+          });
+          if (note) html += `<div class="teacher-note">${esc(note)}</div>`;
+          out.innerHTML = html;
+        }
+        window.moveWeek = function (delta) {
+          const d = new Date(
+            document.getElementById("weekStart").value + "T12:00:00",
+          );
+          d.setDate(d.getDate() + delta);
+          document.getElementById("weekStart").value = iso(monday(d));
+          loadSchedule();
+        };
+        window.goCurrentWeek = function () {
+          document.getElementById("weekStart").value = iso(monday(new Date()));
+          loadSchedule();
+        };
+        async function loadMessages() {
+          try {
+            const d = await apiGet("/api/messages", { login });
+            allMessages = d.data || [];
+            buildDialogs();
+            if (activePartner) renderMessages(activePartner);
+          } catch (e) {
+            const dialogs = document.getElementById("dialogs");
+            if (dialogs) dialogs.innerHTML = `<div class="error-message">${esc(e.message)}</div>`;
+          }
+        }
+        async function markMessagesAsRead(partner) {
+          try {
+            await apiPost("/api/mark_read", { login, partner });
+            allMessages.forEach((m) => {
+              if (m.sender === partner && m.recipient === login) m.read = 1;
+            });
+            buildDialogs();
+          } catch (e) {
+            console.error("mark read failed", e);
+          }
+        }
+        function buildDialogs() {
+          const dialogs = document.getElementById("dialogs");
+          if (!dialogs) return;
+          dialogs.innerHTML = "";
+          const dialogsMap = new Map();
+          allMessages.forEach((msg) => {
+            const partner = msg.sender === login ? msg.recipient : msg.sender;
+            if (!dialogsMap.has(partner)) dialogsMap.set(partner, []);
+            dialogsMap.get(partner).push(msg);
+          });
+          if (dialogsMap.size === 0) {
+            dialogs.innerHTML = '<div class="system-message">Диалогов пока нет</div>';
+            return;
+          }
+          dialogsMap.forEach((msgs, partner) => {
+            const lastMsg = msgs[msgs.length - 1];
+            const div = document.createElement("div");
+            div.className = "dialog" + (partner === activePartner ? " active" : "");
+            const avatar = document.createElement("div");
+            avatar.className = "dialog-avatar";
+            avatar.textContent = partner.charAt(0).toUpperCase();
+            const info = document.createElement("div");
+            info.className = "dialog-info";
+            const name = document.createElement("div");
+            name.className = "dialog-name";
+            name.textContent = partner;
+            const preview = document.createElement("div");
+            preview.className = "dialog-preview";
+            const prefix = lastMsg.sender === login ? "Вы: " : "";
+            preview.textContent = prefix + (lastMsg.text.length > 25 ? lastMsg.text.substring(0, 25) + "..." : lastMsg.text);
+            info.appendChild(name);
+            info.appendChild(preview);
+            div.appendChild(avatar);
+            div.appendChild(info);
+            div.onclick = () => {
+              activePartner = partner;
+              document.getElementById("inputArea").style.display = "flex";
+              document.getElementById("noDialog").style.display = "none";
+              document.getElementById("chatHeader").style.display = "flex";
+              loadPartnerInfo(partner);
+              buildDialogs();
+              renderMessages(partner);
+              markMessagesAsRead(partner);
+            };
+            dialogs.appendChild(div);
+          });
+        }
+        function renderMessages(partner) {
+          const container = document.getElementById("messages");
+          if (!container) return;
+          container.innerHTML = "";
+          if (!partner) return;
+          const msgs = allMessages.filter((m) => (m.sender === login && m.recipient === partner) || (m.sender === partner && m.recipient === login));
+          if (msgs.length === 0) {
+            container.innerHTML = '<div class="system-message">Сообщений пока нет</div>';
+            return;
+          }
+          msgs.forEach((msg) => {
+            const isMe = msg.sender === login;
+            const wrapper = document.createElement("div");
+            wrapper.className = "message-wrapper " + (isMe ? "me" : "other");
+            const message = document.createElement("div");
+            message.className = "message " + (isMe ? "me-message" : "other-message");
+            const text = document.createElement("div");
+            text.className = "message-text";
+            text.textContent = msg.text;
+            const footer = document.createElement("div");
+            footer.className = "message-footer";
+            footer.innerHTML = `<span>${msg.timestamp || ""}</span>${isMe ? `<span class="message-status"><i class="fa-solid fa-check status-check ${msg.read ? "read" : "sent"}"></i><i class="fa-solid fa-check status-check ${msg.read ? "read" : "sent"}"></i></span>` : ""}`;
+            message.appendChild(text);
+            message.appendChild(footer);
+            wrapper.appendChild(message);
+            container.appendChild(wrapper);
+          });
+          container.scrollTop = container.scrollHeight;
+        }
+        async function loadPartnerInfo(partnerLogin) {
+          const username = document.getElementById("chatUsername");
+          const roleBox = document.getElementById("chatRole");
+          const avatar = document.getElementById("chatAvatar");
+          if (username) username.textContent = partnerLogin;
+          if (roleBox) roleBox.textContent = "Загрузка...";
+          if (avatar) avatar.textContent = partnerLogin.charAt(0).toUpperCase();
+          try {
+            const d = await apiGet("/api/user_info", { login: partnerLogin });
+            const u = d.user || {};
+            const displayName = u.full_name || partnerLogin;
+            if (username) username.textContent = displayName;
+            if (roleBox) roleBox.innerHTML = `<span class="role-badge role-${esc(u.role || "")}">${esc(u.role || "Пользователь")}</span>`;
+            if (avatar) setAvatarElement(avatar, displayName, u.avatar_color || getDefaultAvatarColor(displayName), u.profile_photo || "");
+          } catch (e) {
+            if (roleBox) roleBox.textContent = "Роль не определена";
+          }
+        }
+        window.sendMessage = async function () {
+          const input = document.getElementById("msgInput");
+          const text = input ? input.value.trim() : "";
+          if (!text || !activePartner) return;
+          try {
+            await apiPost("/api/send", { sender: login, recipient: activePartner, text });
+            input.value = "";
+            await loadMessages();
+            renderMessages(activePartner);
+          } catch (e) {
+            alert("Ошибка отправки: " + e.message);
+          }
+        };
+        window.closeNewMsgModal = function () {
+          const modal = document.getElementById("newMessageModal");
+          if (modal) modal.style.display = "none";
+          const recipient = document.getElementById("recipientLogin");
+          const text = document.getElementById("newMessageText");
+          if (recipient) recipient.value = "";
+          if (text) text.value = "";
+        };
+        window.sendNewMessage = async function () {
+          const recipient = document.getElementById("recipientLogin").value.trim();
+          const text = document.getElementById("newMessageText").value.trim();
+          if (!recipient || !text) {
+            alert("Заполните все поля");
+            return;
+          }
+          try {
+            await apiPost("/api/send", { sender: login, recipient, text });
+            closeNewMsgModal();
+            activePartner = recipient;
+            document.getElementById("inputArea").style.display = "flex";
+            document.getElementById("noDialog").style.display = "none";
+            document.getElementById("chatHeader").style.display = "flex";
+            await loadPartnerInfo(recipient);
+            await loadMessages();
+            renderMessages(recipient);
+          } catch (e) {
+            alert("Не удалось отправить: " + e.message);
+          }
+        };
+        let messagesInitialized = false;
+        function initMessagesTab() {
+          if (!messagesInitialized) {
+            loadMessages();
+            messagesInitialized = true;
+          } else {
+            loadMessages();
+          }
+          if (window.messagesInterval) clearInterval(window.messagesInterval);
+          window.messagesInterval = setInterval(() => {
+            const activeTab = document.querySelector(".tab-content.active");
+            if (activeTab && activeTab.id === "tab-messages") loadMessages();
+          }, 5000);
+        }
+        window.loadAnnouncements = async function () {
+          const out = document.getElementById("announcementsList");
+          out.innerHTML =
+            '<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i>Загрузка...</div>';
+          try {
+            const d = await apiGet("/api/announcements");
+            const arr = d.data || [];
+            out.innerHTML = arr.length
+              ? arr
+                  .map(
+                    (a) =>
+                      `<article class="announcement-card"><div class="announcement-title">${esc(a.title)}</div><div class="announcement-date">${esc(a.date || a.created_at || "")}</div><div class="announcement-text">${esc(a.content || a.text || "")}</div></article>`,
+                  )
+                  .join("")
+              : '<div class="empty">Объявлений пока нет</div>';
+          } catch (e) {
+            out.innerHTML = `<div class="error"><i class="fa-solid fa-triangle-exclamation"></i>${esc(e.message)}</div>`;
+          }
+        };
+        function initDates() {
+          const now = new Date();
+          const start = new Date(now.getFullYear(), now.getMonth(), 1, 12);
+          document.getElementById("journalStart").value = iso(start);
+          document.getElementById("journalEnd").value = iso(now);
+          document.getElementById("weekStart").value = iso(monday(now));
+        }
+        const newMsgBtn = document.getElementById("newMsgBtn");
+        if (newMsgBtn) newMsgBtn.onclick = () => {
+          const modal = document.getElementById("newMessageModal");
+          if (modal) modal.style.display = "block";
+          const recipient = document.getElementById("recipientLogin");
+          if (recipient) recipient.focus();
+        };
+        const msgInput = document.getElementById("msgInput");
+        if (msgInput) msgInput.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") sendMessage();
+        });
+        const newMessageText = document.getElementById("newMessageText");
+        if (newMessageText) newMessageText.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) sendNewMessage();
+        });
+        window.addEventListener("click", (event) => {
+          const modalNew = document.getElementById("newMessageModal");
+          const modalProfile = document.getElementById("profileModal");
+          const modalCrop = document.getElementById("photoCropModal");
+          if (event.target === modalNew) closeNewMsgModal();
+          if (event.target === modalProfile) closeProfileModal();
+          if (event.target === modalCrop) closePhotoCropModal();
+        });
+        // ===== БОКОВАЯ НАВИГАЦИЯ =====
+        const sidebarLinks = document.querySelectorAll(".sidebar a[data-tab]");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        function setActiveTab(tabId, shouldLoad = true) {
+          if (!tabId || !document.getElementById(`tab-${tabId}`)) tabId = "journal";
+          localStorage.setItem("lkteach_active_tab", tabId);
+
+          sidebarLinks.forEach((link) => {
+            link.classList.toggle("active", link.dataset.tab === tabId);
+          });
+          tabContents.forEach((tab) => tab.classList.remove("active"));
+          const activeTab = document.getElementById(`tab-${tabId}`);
+          if (activeTab) activeTab.classList.add("active");
+
+          if (!shouldLoad) return;
+          if (tabId === "journal") {
+            // Если мета уже загружена — сразу грузим журнал, иначе мета сама запустит журнал
+            if (_teacherMetaLoaded) {
+              loadJournal();
+            } else {
+              loadTeacherMeta(true);  // autoLoad=true → после мета сам позовёт loadJournal()
+            }
+          }
+          if (tabId === "schedule") loadSchedule();
+          if (tabId === "messages") initMessagesTab();
+          if (tabId === "announcements") loadAnnouncements();
+          syncLkContentToTopNav();
+        }
+
+        sidebarLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            setActiveTab(link.dataset.tab);
+          });
+        });
+
+        window.setActiveTab = setActiveTab;
+
+        initUser();
+        initDates();
+        const saved = localStorage.getItem("lkteach_active_tab") || "journal";
+        // setActiveTab сам вызовет loadTeacherMeta(true) или loadSchedule() в зависимости от вкладки
+        setActiveTab(saved, true);
+        // Если открыта не вкладка журнала — всё равно фоново грузим мета (чтобы дропдауны были готовы)
+        if (saved !== "journal") {
+          loadTeacherMeta(false);
+        }
+      })();
+    </script>
+  <script src="a11y.js"></script></body>
+</html>

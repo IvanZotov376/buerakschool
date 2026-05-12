@@ -1,0 +1,2763 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Панель директора</title>
+<link rel="icon" type="image/png" href="logo1.png">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+<link rel="stylesheet" href="common-ui.css">
+<link rel="stylesheet" href="footer.css">
+<link rel="stylesheet" href="header.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{font-size:16px}body{font-family:'Raleway',sans-serif;background:#eef2f7;display:flex;flex-direction:column;min-height:100vh;color:#25324b}.container{width:90%;max-width:1200px;margin:0 auto}.header{background:linear-gradient(270deg,#2ea3d0,#3a5fa0,#2ea3d0);background-size:400% 400%;animation:gradientMove 8s ease infinite;color:#fff;padding:20px 0}@keyframes gradientMove{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}.header-content{display:flex;align-items:center;justify-content:space-between;position:relative}.logo img{width:80px}.title{flex:1;margin-left:20px}.title h1{font-weight:800;font-size:1.5rem}.title p{font-weight:700;font-size:.875rem}.header-icons{display:flex;gap:15px;align-items:center;position:relative}.user-block{display:flex;align-items:center;gap:10px;cursor:pointer;padding:5px 10px;border-radius:12px;transition:.2s}.user-block:hover{background:rgba(255,255,255,.15)}.user-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.1rem;flex-shrink:0;border:2px solid rgba(255,255,255,.5);overflow:hidden;background-size:cover;background-position:center}.user-info{display:flex;flex-direction:column;text-align:left}.user-name{font-weight:800;font-size:.9rem;line-height:1.2}.user-role{font-size:.75rem;opacity:.85;line-height:1.2}.header-icons>i{font-size:1.25rem;cursor:pointer}.nav{margin-top:25px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.05)}.menu{display:flex;justify-content:space-between;list-style:none;padding:0}.menu>li>a{text-decoration:none;font-weight:800;color:#000;padding:10px 15px;display:block;border-radius:8px;transition:.2s;font-size:1rem}.menu>li>a:hover,.menu>li>a.active{background:#2ea3d0;color:#fff}.main{display:flex;min-height:calc(100vh - 100px);flex:1}.sidebar{width:240px;background:linear-gradient(270deg,#2ea3d0,#3a5fa0,#2ea3d0);background-size:400% 400%;animation:gradientMove 8s ease infinite;padding:25px 15px;color:#fff;box-shadow:2px 0 10px rgba(0,0,0,.1)}.sidebar h3{margin-bottom:25px;font-size:1.1rem;font-weight:700;padding:0 10px;opacity:.9;text-transform:uppercase;letter-spacing:1px}.sidebar button{width:100%;display:flex;align-items:center;gap:12px;padding:14px 15px;border-radius:12px;margin-bottom:8px;color:#fff;transition:.3s;font-weight:500;font-size:.95rem;background:transparent;border:0;font-family:inherit;cursor:pointer;text-align:left}.sidebar button:hover{background:rgba(255,255,255,.15);transform:translateX(5px)}.sidebar button.active{background:#fff;color:#3a5fa0!important;font-weight:700;box-shadow:0 4px 15px rgba(0,0,0,.1)}.content{flex:1;padding:25px;background:#f5f7fa;min-width:0}.admin-hero{background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.12);overflow:hidden;border:2px solid #e8ecff;margin-bottom:24px}.admin-hero h2{background:linear-gradient(135deg,#4c6ef5,#3b5de7);color:#fff;padding:15px 18px;font-weight:700;font-size:1.1rem}.admin-hero p{padding:18px;color:#4d5b72;line-height:1.6}.grid{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:24px;align-items:start}.card{background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.12);overflow:hidden;border:2px solid #e8ecff;padding:22px}.card h3{color:#2a4e87;margin-bottom:16px;display:flex;gap:10px;align-items:center}label{display:block;font-weight:800;margin:13px 0 8px}.input,select,textarea{width:100%;border:2px solid #e0e7f2;border-radius:14px;padding:12px 14px;font-family:inherit;font-size:1rem;background:#fff;outline:none}textarea{min-height:160px;resize:vertical}.editor-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}.tool-btn{border:0;background:#edf4ff;color:#315b93;border-radius:10px;padding:8px 11px;font-weight:800;cursor:pointer}.submit{margin-top:16px;width:100%;border:0;border-radius:16px;padding:14px;background:linear-gradient(135deg,#2ea3d0,#3a5fa0);color:#fff;font-weight:800;font-size:1rem;cursor:pointer}.status{margin-top:12px;font-weight:800}.status.ok{color:#2f9e44}.status.err{color:#e03131}.posts{display:flex;flex-direction:column;gap:14px}.post{border:2px solid #e8eef7;border-radius:16px;padding:16px;background:#fbfdff}.post-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;background:#eaf6ff;color:#27608d;font-weight:800;font-size:.8rem;padding:6px 10px}.post h4{font-size:1.08rem;color:#273b60;margin:4px 0}.post p{white-space:pre-wrap;color:#4d5b72;line-height:1.5}.post a{color:#2a6bb0;font-weight:800}.delete{border:0;border-radius:10px;background:#fff0f0;color:#c92a2a;padding:8px 10px;font-weight:800;cursor:pointer}.preview{margin-top:10px;max-width:220px;border-radius:14px;display:block}.file-note{font-size:.85rem;color:#68758c;margin-top:6px}
+.file-picker{display:flex;align-items:center;gap:10px;width:100%;border:2px solid #e0e7f2;border-radius:14px;background:#fff;padding:8px 10px;min-height:50px;transition:.2s}.file-picker:focus-within{border-color:#4c6ef5;box-shadow:0 0 0 4px rgba(76,110,245,.10)}.file-picker input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.file-picker-btn{display:inline-flex!important;align-items:center;justify-content:center;gap:8px;margin:0!important;border:0;border-radius:11px;background:linear-gradient(135deg,#2ea3d0,#3a5fa0);color:#fff!important;padding:10px 14px;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 6px 14px rgba(46,93,160,.18);transition:.2s}.file-picker-btn:hover{transform:translateY(-1px);box-shadow:0 9px 18px rgba(46,93,160,.24)}.file-picker-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#526174;font-weight:700}.content-block.is-hidden{display:none!important}
+.chat{display:flex;height:72vh;background:white;border-radius:16px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.1);border:2px solid #e8ecff}.dialogs-panel{width:310px;border-right:1px solid #eef2f7;display:flex;flex-direction:column;background:#fff}.dialogs-header{padding:18px 15px;border-bottom:1px solid #eef2f7;font-weight:800;display:flex;justify-content:space-between;align-items:center;font-size:1.05rem;color:#273b60}.dialogs-header button{background:#4c6ef5;border:0;width:36px;height:36px;border-radius:50%;color:white;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}.dialogs{overflow-y:auto;flex:1}.dialog{padding:14px 15px;cursor:pointer;border-bottom:1px solid #f0f0f0;transition:.2s;display:flex;align-items:center;gap:12px}.dialog:hover{background:#f8f9fa}.dialog.active{background:#e7f0ff;border-left:4px solid #4c6ef5}.dialog-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;flex-shrink:0;background-size:cover;background-position:center;overflow:hidden}.dialog-info{flex:1;min-width:0}.dialog-name{font-weight:800;color:#25324b;margin-bottom:4px}.dialog-preview{font-size:.82rem;color:#7b879b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dialog-badge{background:#ff6b6b;color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;padding:3px 7px}.chat-window{flex:1;display:flex;flex-direction:column;background:#fff}.chat-header{padding:15px 20px;border-bottom:1px solid #eef2f7;background:white;display:flex;align-items:center;gap:15px}.chat-avatar{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#667eea,#764ba2);background-size:cover;background-position:center;overflow:hidden}.chat-user-info{flex:1}.chat-username{font-weight:800;font-size:1.1rem;color:#25324b}.chat-role{font-size:.85rem;color:#7b879b;margin-top:3px}.role-badge{padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:800;display:inline-block}.role-Учитель,.role-Преподаватель{background:#ffe0e0;color:#d32f2f}.role-Ученик{background:#e0f0ff;color:#1976d2}.role-Администратор,.role-Директор,.role-Администрация{background:#fff3e0;color:#f57c00}.role-Родитель{background:#e8f5e9;color:#388e3c}.messages{flex:1;padding:20px;overflow-y:auto;background:#f5f7fa}.message-wrapper{display:flex;margin-bottom:16px}.message-wrapper.me{justify-content:flex-end}.message-wrapper.other{justify-content:flex-start}.message{max-width:68%;padding:12px 16px;border-radius:18px;word-wrap:break-word;box-shadow:0 1px 3px rgba(0,0,0,.08)}.me-message{background:linear-gradient(135deg,#4c6ef5,#3b5de7);color:#fff;border-bottom-right-radius:4px}.other-message{background:white;border:1px solid #e8e8e8;color:#25324b;border-bottom-left-radius:4px}.message-text{line-height:1.45;font-size:.95rem}.message-footer{display:flex;justify-content:flex-end;gap:6px;font-size:.7rem;margin-top:6px;opacity:.8}.input{display:flex;border-top:1px solid #eef2f7;background:white;padding:12px}.input input{flex:1;padding:12px 15px;border:1px solid #e0e7f2;border-radius:25px;outline:none;font-size:.95rem;margin-right:10px;font-family:inherit}.input button{width:44px;height:44px;border-radius:50%;border:0;background:#4c6ef5;color:#fff;cursor:pointer}.no-dialog{flex:1;display:flex;align-items:center;justify-content:center;color:#7b879b;text-align:center;font-weight:700}.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.4)}.modal-content{background:white;margin:7% auto;padding:25px;border-radius:16px;width:520px;box-shadow:0 10px 30px rgba(0,0,0,.2);max-width:92vw}.modal-content h3{margin-bottom:16px;color:#25324b}.modal-content input,.modal-content textarea{width:100%;padding:12px;margin-bottom:14px;border:1px solid #ddd;border-radius:10px;font-family:inherit}.modal-content textarea{min-height:120px}.modal-buttons{display:flex;justify-content:flex-end;gap:10px}.btn-primary,.btn-cancel{border:0;border-radius:10px;padding:10px 18px;font-weight:800;cursor:pointer}.btn-primary{background:#4c6ef5;color:#fff}.btn-cancel{background:#f0f0f0;color:#555}@media(max-width:900px){.chat{height:auto;min-height:70vh;flex-direction:column}.dialogs-panel{width:100%;max-height:260px}.modal-content{margin:12% auto}}
+@media(max-width:900px){.main{display:block}.sidebar{width:100%}.grid{grid-template-columns:1fr}.menu{flex-wrap:wrap}.header-content{flex-wrap:wrap}}
+
+/* LKADMIN LAYOUT FIX */
+.header .dropdown, .nav .dropdown, #header-placeholder .dropdown, .menu .dropdown { list-style: none !important; }
+.header .dropdown li, .nav .dropdown li, #header-placeholder .dropdown li, .menu .dropdown li { list-style: none !important; }
+.header .dropdown li::marker, .nav .dropdown li::marker, #header-placeholder .dropdown li::marker, .menu .dropdown li::marker { content: '' !important; }
+@media (min-width: 1201px) {
+  .main { display: block; position: relative; background: #f5f7fa; }
+  .sidebar { position: absolute; left: 0; top: 0; bottom: 0; min-height: 100%; }
+  .content { width: 90%; max-width: 1200px; margin: 0 auto; padding: 25px 0; }
+}
+
+
+/* PROFILE EDITOR + PAGINATION */
+.profile-preview-row{display:flex;align-items:center;gap:16px;padding:14px;border:2px solid #e8ecff;border-radius:16px;background:#f8faff;margin-bottom:16px}
+.profile-preview-circle{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#667eea,#764ba2);background-size:cover;background-position:center;overflow:hidden;flex-shrink:0}
+.profile-preview-name{font-weight:800;color:#25324b;font-size:1.05rem}.profile-preview-role{color:#75829b;font-weight:700;margin-top:4px}.profile-photo-actions{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 16px}.profile-photo-btn{display:inline-flex;align-items:center;gap:8px;border:2px solid #4c6ef5;background:#4c6ef5;color:#fff;border-radius:12px;padding:10px 14px;font-family:inherit;font-weight:800;cursor:pointer}.profile-photo-btn:hover{background:#3b5de7;border-color:#3b5de7}.profile-photo-remove{background:transparent;color:#ff6b6b;border-color:#ffc2c2}.profile-photo-remove:hover{background:#fff0f0;color:#e55555}.avatar-colors{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.avatar-color-option{width:36px;height:36px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:.2s}.avatar-color-option:hover{transform:scale(1.08)}.avatar-color-option.active{border-color:#25324b}.crop-modal-content{width:min(760px,94vw)}.crop-help{color:#68758c;font-weight:600;margin-bottom:12px;line-height:1.45}.crop-area{max-height:360px;overflow:hidden;border-radius:14px;background:#f1f4fb}.crop-area img{display:block;max-width:100%}.cropper-preview-box{display:flex;gap:22px;align-items:center;margin:14px 0 18px;flex-wrap:wrap}.cropper-preview-wrap{text-align:center}.cropper-preview-wrap label{display:block;font-size:.82rem;color:#777;font-weight:800;margin-bottom:7px}.cropper-preview-sm,.cropper-preview-lg{border-radius:50%;overflow:hidden;border:3px solid #e0e5f7;background:#fff}.cropper-preview-sm{width:56px;height:56px}.cropper-preview-lg{width:112px;height:112px}.pagination{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:18px;padding-top:14px;border-top:1px dashed #dfe7f7}.page-btn{min-width:38px;height:38px;border:2px solid #e0e7f2;background:#fff;color:#315b93;border-radius:11px;font-weight:800;font-family:inherit;cursor:pointer;transition:.2s;padding:0 12px}.page-btn:hover{border-color:#4c6ef5;transform:translateY(-1px)}.page-btn.active{background:#4c6ef5;color:#fff;border-color:#4c6ef5}.page-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.page-info{font-weight:800;color:#68758c;padding:0 6px}.posts-count{font-size:.86rem;color:#68758c;font-weight:700;margin-bottom:10px}.user-avatar.has-photo,.dialog-avatar.has-photo,.chat-avatar.has-photo{background-size:cover!important;background-position:center!important}
+
+.pin-row{display:none;margin:12px 0 4px;padding:12px 14px;border:2px solid #d7e5ff;background:#f5f9ff;border-radius:14px;font-weight:800;color:#315b93}.pin-row.active{display:flex;align-items:center;gap:10px}.pin-row input{width:18px;height:18px}.post.pinned{border:3px solid #4c6ef5;background:#f8fbff;box-shadow:0 6px 20px rgba(76,110,245,.16)}.pin-badge{background:#4c6ef5;color:#fff}.pin-action{border:0;border-radius:10px;background:#eaf1ff;color:#315b93;padding:8px 10px;font-weight:800;cursor:pointer;margin-right:8px}.pin-action:hover{background:#dbe8ff}.post-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+
+/* ==========================================================
+   ЛК: единое анимированное градиентное поле страницы
+   Градиент взят из обычных страниц сайта:
+   linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0)
+   Логика: вся страница — общий градиент, а контентная область
+   накрывает его светлым блоком как "вырез".
+   ========================================================== */
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMove 8s ease infinite !important;
+}
+
+.header,
+.nav,
+.sidebar,
+.footer,
+#header-placeholder,
+#footer-placeholder {
+    background: transparent !important;
+    background-image: none !important;
+    animation: none !important;
+    border: 0 !important;
+}
+
+.nav {
+    box-shadow: none !important;
+    margin-top: 25px;
+}
+
+.menu {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.main {
+    background: transparent !important;
+}
+
+.content {
+    background: #f5f7fa !important;
+}
+
+.footer {
+    margin-top: 0 !important;
+}
+
+body.no-effects {
+    animation: none !important;
+    background: #3a5fa0 !important;
+}
+
+body.no-effects .header,
+body.no-effects .nav,
+body.no-effects .sidebar,
+body.no-effects .footer {
+    background: transparent !important;
+    background-image: none !important;
+    animation: none !important;
+}
+
+body.dark-theme {
+    background: linear-gradient(270deg, #0f3b47, #1a2b5e, #0f3b47) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMove 8s ease infinite !important;
+}
+
+body.dark-theme .header,
+body.dark-theme .nav,
+body.dark-theme .sidebar,
+body.dark-theme .footer {
+    background: transparent !important;
+    background-image: none !important;
+    animation: none !important;
+}
+
+body.blue-theme {
+    background: linear-gradient(270deg, #1e88e5, #1565c0, #1e88e5) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMove 8s ease infinite !important;
+}
+
+body.blue-theme .header,
+body.blue-theme .nav,
+body.blue-theme .sidebar,
+body.blue-theme .footer {
+    background: transparent !important;
+    background-image: none !important;
+    animation: none !important;
+}
+
+
+
+/* ==========================================================
+   LK: единое анимированное градиентное поле сайта
+   Анимация и цвета взяты из обычных header/footer:
+   linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0)
+   ========================================================== */
+@keyframes lkUnifiedGradientMove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    background: #eef2f7 !important;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(270deg, #2ea3d0, #3a5fa0, #2ea3d0);
+    background-size: 400% 400%;
+    animation: lkUnifiedGradientMove 8s ease infinite;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+#header-placeholder,
+#footer-placeholder,
+.header,
+.nav,
+.sidebar,
+.footer {
+    background: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+}
+
+.header,
+.footer,
+.sidebar {
+    animation: none !important;
+}
+
+.nav {
+    margin-top: 25px;
+    box-shadow: none !important;
+}
+
+.menu {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.menu > li > a {
+    color: #fff !important;
+}
+
+.menu > li > a:hover {
+    background: rgba(255,255,255,0.16) !important;
+    color: #fff !important;
+}
+
+.main {
+    background: transparent !important;
+}
+
+.content {
+    background: #f5f7fa !important;
+}
+
+.footer {
+    margin-top: 0 !important;
+}
+
+body.dark-theme::before {
+    background: linear-gradient(270deg, #0f3b47, #1a2b5e, #0f3b47);
+    background-size: 400% 400%;
+    animation: lkUnifiedGradientMove 8s ease infinite;
+}
+
+body.blue-theme::before {
+    background: linear-gradient(270deg, #1e88e5, #1565c0, #1e88e5);
+    background-size: 400% 400%;
+    animation: lkUnifiedGradientMove 8s ease infinite;
+}
+
+body.no-effects::before {
+    background: #2c3e50;
+    animation: none;
+}
+
+body.dark-theme.no-effects::before {
+    background: #0d1b2a;
+    animation: none;
+}
+
+body.blue-theme.no-effects::before {
+    background: #1565c0;
+    animation: none;
+}
+
+body.dark-theme .content {
+    background: #121212 !important;
+}
+
+body.blue-theme .content {
+    background: #d4eafc !important;
+}
+
+
+/* ===== LK: единый компактный header только для личных кабинетов ===== */
+#header-placeholder .header {
+    padding: 20px 0 !important;
+    min-height: auto !important;
+}
+#header-placeholder .header-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 15px !important;
+    position: relative !important;
+}
+#header-placeholder .logo {
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: block !important;
+    font-size: inherit !important;
+}
+#header-placeholder .logo img {
+    width: 80px !important;
+    height: auto !important;
+    display: block !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    object-fit: contain !important;
+}
+#header-placeholder .title {
+    flex: 1 !important;
+    margin-left: 20px !important;
+}
+#header-placeholder .title h1 {
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+}
+#header-placeholder .title p {
+    font-size: 0.875rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+}
+#header-placeholder .header-icons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    position: relative !important;
+}
+#header-placeholder .user-block,
+#header-placeholder .user-block.active,
+#header-placeholder .user-block:focus,
+#header-placeholder .user-block:focus-visible {
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+#header-placeholder .user-block:hover {
+    background: rgba(255,255,255,0.15) !important;
+}
+#header-placeholder .user-avatar {
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    border: 2px solid rgba(255,255,255,0.5) !important;
+}
+#header-placeholder .nav {
+    display: none !important;
+}
+
+/* Teacher journal/schedule blocks inside lkadmin */
+.teacher-panel{display:none}
+.teacher-topline{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.teacher-page-title{font-weight:800;font-size:1.45rem;color:#26355d}
+.teacher-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.teacher-btn{height:42px;border:0;border-radius:12px;background:#4c6ef5;color:#fff;padding:0 18px;font-weight:800;font-family:inherit;cursor:pointer;display:inline-flex;gap:8px;align-items:center;justify-content:center;transition:.2s}
+.teacher-btn:hover{background:#3b5de7;transform:translateY(-1px);box-shadow:0 6px 16px rgba(76,110,245,.25)}
+.teacher-btn.ghost{background:#fff;color:#4c6ef5;border:2px solid #4c6ef5}
+.teacher-loader{display:none;align-items:center;gap:8px;color:#4c6ef5;font-weight:800;margin-bottom:14px}
+.teacher-loader.active{display:flex}
+.teacher-card{background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.12);border:2px solid #e8ecff;padding:22px;margin-bottom:18px}
+.teacher-card h3{color:#2a4e87;margin-bottom:16px;display:flex;gap:10px;align-items:center}
+.teacher-empty{text-align:center;color:#8894aa;padding:36px 20px}
+.teacher-table-wrap{overflow:auto;border-radius:14px;border:1px solid #e5ebf7}
+.teacher-table{width:100%;border-collapse:collapse;background:#fff;min-width:720px}
+.teacher-table th{background:#f3f7ff;color:#4b6fb4;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;padding:13px;text-align:left}
+.teacher-table td{padding:13px;border-top:1px solid #edf1f8;vertical-align:top;font-size:.9rem}
+.teacher-chip{background:#f3f7ff;border:1px solid #dfe8fb;color:#2f6ebd;padding:9px 12px;border-radius:999px;font-weight:800;font-size:.86rem}
+.teacher-mini-chip{background:#f6f9ff;border:1px solid #e6edfb;border-radius:999px;padding:7px 10px;font-weight:800;color:#26355d;font-size:.82rem}
+.teacher-list{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.teacher-item{display:flex;gap:9px;align-items:center;padding:9px 10px;background:#f6f9ff;border:1px solid #e6edfb;border-radius:12px;font-weight:800;color:#26355d}
+.teacher-journal-toolbar{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:14px;border:1px solid #e2e9fb;background:#f8fbff;border-radius:16px}
+.teacher-journal-toolbar label{display:block;font-weight:800;color:#4e6188;font-size:.88rem}
+.teacher-journal-select{min-width:240px;font-weight:800}
+.teacher-journal-summary{display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.teacher-journal-stat{background:#f3f7ff;border:1px solid #dfe8fb;border-radius:16px;padding:14px}
+.teacher-journal-stat span{display:block;color:#68758f;font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.teacher-journal-stat b{font-size:1.35rem;color:#12306b}
+.teacher-subject-grid,.teacher-real-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.teacher-subject-card,.teacher-real-card{border:1px solid #dfe8fb;border-radius:16px;background:#fff;box-shadow:0 4px 14px rgba(34,70,130,.07);padding:16px;position:relative;overflow:hidden}
+.teacher-subject-card{cursor:pointer}
+.teacher-subject-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(34,70,130,.12)}
+.teacher-subject-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#4c6ef5,#2ea3d0)}
+.teacher-subject-title,.teacher-real-title{font-size:1.05rem;font-weight:900;color:#12306b;margin-bottom:8px;padding-left:4px}
+.teacher-subject-meta,.teacher-mini-list{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.teacher-note{margin-top:12px;color:#8490a8;font-size:.85rem;line-height:1.45}
+.teacher-lesson-card{border:1px solid #e5ebf7;border-radius:16px;overflow:hidden;background:#fff;margin-bottom:16px;box-shadow:0 4px 15px rgba(44,78,140,.07)}
+.teacher-lesson-head{background:linear-gradient(135deg,#4c6ef5,#3b5de7);color:#fff;padding:14px 16px;font-weight:800}
+.teacher-lesson-body{padding:14px 16px;color:#667085}
+.teacher-subject-detail{margin-top:16px;border:1px solid #dfe8fb;border-radius:18px;background:#fff;box-shadow:0 4px 14px rgba(34,70,130,.07);overflow:hidden}
+.teacher-subject-detail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:#f3f7ff;border-bottom:1px solid #dfe8fb}
+.teacher-subject-detail-title{font-weight:900;color:#12306b}
+.teacher-subject-detail-body{padding:16px}
+.teacher-mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.teacher-mini-stat{background:#f8fbff;border:1px solid #e4ecfb;border-radius:14px;padding:12px;font-weight:800}
+.teacher-mini-stat span{display:block;color:#68758f;font-size:.78rem;text-transform:uppercase;margin-bottom:4px}
+.teacher-avg-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;background:#20c997}
+.teacher-avg-dot.warn{background:#fcc419}.teacher-avg-dot.bad{background:#ff922b}
+@media(max-width:700px){.teacher-journal-summary{grid-template-columns:1fr}.teacher-journal-select{width:100%;min-width:0}.teacher-journal-toolbar{align-items:stretch}.teacher-journal-toolbar .teacher-btn{width:100%}}
+
+/* ===== ЕДИНОЕ ОФОРМЛЕНИЕ СООБЩЕНИЙ ДЛЯ ВСЕХ ЛК ===== */
+.chat{display:flex;height:75vh;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.1);border:0}
+.dialogs-panel{width:280px;border-right:1px solid #eee;display:flex;flex-direction:column;background:#fff}
+.dialogs-header{padding:20px 15px;border-bottom:1px solid #eee;font-weight:700;display:flex;justify-content:space-between;align-items:center;font-size:1.1rem;color:#333}
+.dialogs-header button{background:#4c6ef5;border:none;width:35px;height:35px;border-radius:50%;color:#fff;font-size:1rem;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;padding:0}
+.dialogs-header button:hover{background:#3b5de7;transform:scale(1.05)}
+.dialogs{overflow-y:auto;flex:1;background:#fff}
+.dialog{padding:15px;cursor:pointer;border-bottom:1px solid #f0f0f0;transition:.2s;display:flex;align-items:center;gap:12px;min-height:76px}
+.dialog:hover{background:#f8f9fa}.dialog.active{background:#e7f0ff;border-left:3px solid #4c6ef5}
+.dialog-avatar,.chat-avatar,.message-avatar{border-radius:50%;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex-shrink:0;overflow:hidden;background-size:cover!important;background-position:center!important}
+.dialog-avatar{width:45px;height:45px;font-size:1.1rem}.chat-avatar{width:50px;height:50px;font-size:1.3rem}.message-avatar{width:34px;height:34px;font-size:.85rem;align-self:flex-end;margin-bottom:2px}
+.dialog-avatar img,.chat-avatar img,.message-avatar img{width:100%;height:100%;object-fit:cover}.dialog-avatar.has-photo,.chat-avatar.has-photo,.message-avatar.has-photo{color:transparent!important;background-repeat:no-repeat!important}
+.dialog-info{flex:1;min-width:0}.dialog-name-row{display:flex;align-items:center;gap:8px;min-width:0;margin-bottom:4px}.dialog-name{font-weight:700;font-size:.95rem;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dialog-login{font-size:.72rem;color:#9aa3b2;font-weight:700;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dialog-preview{font-size:.8rem;color:#888;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dialog-badge{background:#ff6b6b;color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;padding:3px 7px;flex-shrink:0}.dialog-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px}
+.chat-window{flex:1;display:flex;flex-direction:column;background:#fff}.chat-header{padding:15px 20px;border-bottom:1px solid #eee;background:#fff;display:flex;align-items:center;gap:15px}.chat-user-info{flex:1;min-width:0}.chat-username{font-weight:700;font-size:1.1rem;color:#333;margin-bottom:3px}.chat-role{font-size:.85rem;color:#888;display:flex;align-items:center;gap:7px;flex-wrap:wrap}.chat-login{font-size:.8rem;color:#9aa3b2;font-weight:700}.role-badge{padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:700;display:inline-flex;align-items:center;line-height:1.45;white-space:nowrap}.role-Учитель,.role-Преподаватель{background:#ffe0e0;color:#d32f2f}.role-Ученик{background:#e0f0ff;color:#1976d2}.role-Администратор,.role-Директор,.role-Администрация{background:#fff3e0;color:#f57c00}.role-Родитель{background:#e8f5e9;color:#388e3c}.role-Пользователь{background:#eef1f6;color:#607086}
+.messages{flex:1;padding:20px;overflow-y:auto;background:#f5f6fa}.message-wrapper{display:flex;margin-bottom:18px;gap:10px;align-items:flex-end}.message-wrapper.me{justify-content:flex-end}.message-wrapper.other{justify-content:flex-start}.message-stack{display:flex;flex-direction:column;max-width:68%}.message-sender{display:flex;align-items:center;gap:7px;margin:0 0 5px 2px;font-size:.78rem;color:#7b879b;font-weight:800}.message-wrapper.me .message-sender{justify-content:flex-end;margin-right:2px}.message{max-width:100%;padding:12px 16px;border-radius:18px;position:relative;word-wrap:break-word;box-shadow:0 1px 3px rgba(0,0,0,.08)}.me-message{background:linear-gradient(135deg,#4c6ef5,#3b5de7);color:#fff;border-bottom-right-radius:4px}.other-message{background:#fff;border:1px solid #e8e8e8;color:#25324b;border-bottom-left-radius:4px}.message-text{margin-bottom:6px;line-height:1.5;font-size:.95rem}.message-footer{display:flex;align-items:center;justify-content:flex-end;gap:5px;font-size:.7rem}.me-message .message-footer{color:rgba(255,255,255,.85)}.other-message .message-footer{color:#999}.message-status{display:flex;align-items:center;gap:1px}.status-check{font-size:.65rem}.me-message .status-check.sent{color:rgba(255,255,255,.5)}.me-message .status-check.read{color:#4fc3f7}.input{display:flex;border-top:1px solid #eee;background:#fff;padding:10px}.input input{flex:1;padding:12px 15px;border:1px solid #e0e0e0;border-radius:25px;outline:none;font-size:.95rem;margin-right:10px;transition:.2s;font-family:'Raleway',sans-serif}.input input:focus{border-color:#4c6ef5}.input button{min-width:44px;height:44px;border-radius:50%;border:0;background:#4c6ef5;color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0 14px}.system-message,.no-dialog{text-align:center;margin:20px 0;color:#999;font-size:.85rem;font-weight:700}
+body.dark-theme .chat,body.dark-theme .dialogs-panel,body.dark-theme .chat-window,body.dark-theme .chat-header,body.dark-theme .input{background:#1e1e1e;border-color:#333}body.dark-theme .dialogs-header{color:#e0e0e0;border-color:#333}body.dark-theme .dialog{border-color:#333}body.dark-theme .dialog:hover{background:#252535}body.dark-theme .dialog.active{background:#252f4a}body.dark-theme .dialog-name,body.dark-theme .chat-username{color:#e0e0e0}body.dark-theme .messages{background:#121212}body.dark-theme .other-message{background:#1e1e1e;border-color:#333;color:#e0e0e0}body.dark-theme .input input{background:#252525;color:#eee;border-color:#3a3a5e}
+@media(max-width:768px){.chat{height:auto;min-height:72vh}.dialogs-panel{width:100px}.dialog-info{display:none}.message-stack{max-width:78%}}
+
+
+
+/* ===== FINAL UNIFIED MESSAGES UI (same on lk/lkadmin/lkteacher) ===== */
+.chat{display:flex !important;height:75vh !important;background:#fff !important;border-radius:16px !important;overflow:hidden !important;box-shadow:0 5px 15px rgba(0,0,0,.1) !important;border:0 !important}
+.dialogs-panel{width:280px !important;border-right:1px solid #eee !important;display:flex !important;flex-direction:column !important;background:#fff !important}
+.dialogs-header{padding:20px 15px !important;border-bottom:1px solid #eee !important;font-weight:700 !important;display:flex !important;justify-content:space-between !important;align-items:center !important;font-size:1.1rem !important;color:#333 !important}
+.dialogs-header button{background:#4c6ef5 !important;border:none !important;width:35px !important;height:35px !important;border-radius:50% !important;color:#fff !important;font-size:1rem !important;cursor:pointer !important;transition:.2s !important;display:flex !important;align-items:center !important;justify-content:center !important;padding:0 !important}
+.dialogs-header button:hover{background:#3b5de7 !important;transform:scale(1.05) !important}
+.dialogs{overflow-y:auto !important;flex:1 !important;background:#fff !important}
+.dialog{padding:15px !important;cursor:pointer !important;border-bottom:1px solid #f0f0f0 !important;transition:.2s !important;display:flex !important;align-items:center !important;gap:12px !important;min-height:76px !important}
+.dialog:hover{background:#f8f9fa !important}.dialog.active{background:#e7f0ff !important;border-left:3px solid #4c6ef5 !important}
+.dialog-avatar,.chat-avatar,.message-avatar{border-radius:50% !important;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%) !important;display:flex !important;align-items:center !important;justify-content:center !important;color:#fff !important;font-weight:800 !important;flex-shrink:0 !important;overflow:hidden !important;background-size:cover !important;background-position:center !important}
+.dialog-avatar{width:45px !important;height:45px !important;font-size:1.1rem !important}.chat-avatar{width:50px !important;height:50px !important;font-size:1.3rem !important}.message-avatar{width:34px !important;height:34px !important;font-size:.85rem !important;align-self:flex-end !important;margin-bottom:2px !important}
+.dialog-avatar img,.chat-avatar img,.message-avatar img{width:100% !important;height:100% !important;object-fit:cover !important}.dialog-avatar.has-photo,.chat-avatar.has-photo,.message-avatar.has-photo{color:transparent !important;background-repeat:no-repeat !important}
+.dialog-info{flex:1 !important;min-width:0 !important}.dialog-name-row{display:flex !important;align-items:center !important;gap:8px !important;min-width:0 !important;margin-bottom:4px !important}.dialog-name{font-weight:700 !important;font-size:.95rem !important;color:#333 !important;overflow:hidden !important;text-overflow:ellipsis !important;white-space:nowrap !important}.dialog-login{font-size:.72rem !important;color:#9aa3b2 !important;font-weight:700 !important;margin-top:2px !important;overflow:hidden !important;text-overflow:ellipsis !important;white-space:nowrap !important}.dialog-preview{font-size:.8rem !important;color:#888 !important;overflow:hidden !important;text-overflow:ellipsis !important;white-space:nowrap !important}.dialog-badge{background:#ff6b6b !important;color:#fff !important;border-radius:999px !important;font-size:.72rem !important;font-weight:800 !important;padding:3px 7px !important;flex-shrink:0 !important}.dialog-meta{display:flex !important;align-items:center !important;gap:6px !important;flex-wrap:wrap !important;margin-bottom:3px !important}
+.chat-window{flex:1 !important;display:flex !important;flex-direction:column !important;background:#fff !important}.chat-header{padding:15px 20px !important;border-bottom:1px solid #eee !important;background:#fff !important;display:flex !important;align-items:center !important;gap:15px !important}.chat-user-info{flex:1 !important;min-width:0 !important}.chat-username{font-weight:700 !important;font-size:1.1rem !important;color:#333 !important;margin-bottom:3px !important}.chat-role{font-size:.85rem !important;color:#888 !important;display:flex !important;align-items:center !important;gap:7px !important;flex-wrap:wrap !important}.chat-login{font-size:.8rem !important;color:#9aa3b2 !important;font-weight:700 !important}.role-badge{padding:2px 10px !important;border-radius:12px !important;font-size:.75rem !important;font-weight:700 !important;display:inline-flex !important;align-items:center !important;line-height:1.45 !important;white-space:nowrap !important}.role-Учитель,.role-Преподаватель{background:#ffe0e0 !important;color:#d32f2f !important}.role-Ученик{background:#e0f0ff !important;color:#1976d2 !important}.role-Администратор,.role-Директор,.role-Администрация{background:#fff3e0 !important;color:#f57c00 !important}.role-Родитель{background:#e8f5e9 !important;color:#388e3c !important}.role-Пользователь{background:#eef1f6 !important;color:#607086 !important}
+.messages{flex:1 !important;padding:20px !important;overflow-y:auto !important;background:#f5f6fa !important}.message-wrapper{display:flex !important;margin-bottom:18px !important;gap:10px !important;align-items:flex-end !important}.message-wrapper.me{justify-content:flex-end !important}.message-wrapper.other{justify-content:flex-start !important}.message-stack{display:flex !important;flex-direction:column !important;max-width:68% !important}.message-sender{display:flex !important;align-items:center !important;gap:7px !important;margin:0 0 5px 2px !important;font-size:.78rem !important;color:#7b879b !important;font-weight:800 !important}.message-wrapper.me .message-sender{justify-content:flex-end !important;margin-right:2px !important}.message{max-width:100% !important;padding:12px 16px !important;border-radius:18px !important;position:relative !important;word-wrap:break-word !important;box-shadow:0 1px 3px rgba(0,0,0,.08) !important}.me-message{background:linear-gradient(135deg,#4c6ef5,#3b5de7) !important;color:#fff !important;border-bottom-right-radius:4px !important}.other-message{background:#fff !important;border:1px solid #e8e8e8 !important;color:#25324b !important;border-bottom-left-radius:4px !important}.message-text{margin-bottom:6px !important;line-height:1.5 !important;font-size:.95rem !important}.message-footer{display:flex !important;align-items:center !important;justify-content:flex-end !important;gap:5px !important;font-size:.7rem !important}.me-message .message-footer{color:rgba(255,255,255,.85) !important}.other-message .message-footer{color:#999 !important}.message-status{display:flex !important;align-items:center !important;gap:1px !important}.status-check{font-size:.65rem !important}.me-message .status-check.sent{color:rgba(255,255,255,.5) !important}.me-message .status-check.read{color:#4fc3f7 !important}
+.input{display:flex !important;border-top:1px solid #eee !important;background:#fff !important;padding:10px !important;align-items:center !important}.input input{flex:1 !important;padding:12px 15px !important;border:1px solid #e0e0e0 !important;border-radius:25px !important;outline:none !important;font-size:.95rem !important;margin-right:10px !important;transition:.2s !important;font-family:'Raleway',sans-serif !important;height:auto !important}.input input:focus{border-color:#4c6ef5 !important}.input button{width:44px !important;min-width:44px !important;height:44px !important;border-radius:50% !important;border:0 !important;background:#4c6ef5 !important;color:#fff !important;cursor:pointer !important;display:inline-flex !important;align-items:center !important;justify-content:center !important;padding:0 !important;font-size:1rem !important}.input button:hover{background:#3b5de7 !important;transform:scale(1.04) !important}
+.system-message,.no-dialog{text-align:center !important;margin:20px 0 !important;color:#999 !important;font-size:.85rem !important;font-weight:700 !important}
+body.dark-theme .chat,body.dark-theme .dialogs-panel,body.dark-theme .chat-window,body.dark-theme .chat-header,body.dark-theme .input{background:#1e1e1e !important;border-color:#333 !important}body.dark-theme .dialogs-header{color:#e0e0e0 !important;border-color:#333 !important}body.dark-theme .dialog{border-color:#333 !important}body.dark-theme .dialog:hover{background:#252535 !important}body.dark-theme .dialog.active{background:#252f4a !important}body.dark-theme .dialog-name,body.dark-theme .chat-username{color:#e0e0e0 !important}body.dark-theme .messages{background:#121212 !important}body.dark-theme .other-message{background:#1e1e1e !important;border-color:#333 !important;color:#e0e0e0 !important}body.dark-theme .input input{background:#252525 !important;color:#eee !important;border-color:#3a3a5e !important}
+@media(max-width:768px){.chat{height:auto !important;min-height:72vh !important}.dialogs-panel{width:100px !important}.dialog-info{display:none !important}.message-stack{max-width:78% !important}}
+
+/* ===== ADMIN WHITE WORKSPACE: gradient only in header/footer/navigation ===== */
+body,
+body.dark-theme,
+body.blue-theme,
+body.no-effects{
+  background:#fff !important;
+  background-image:none !important;
+  animation:none !important;
+}
+body::before,
+body.dark-theme::before,
+body.blue-theme::before{
+  display:none !important;
+  content:none !important;
+}
+.main,
+.content,
+#adminPanelContent,
+#messagesPanel,
+#teacherJournalPanel,
+#teacherSchedulePanel,
+.grid,
+.card,
+.admin-hero,
+.post,
+.modal-content,
+.chat,
+.dialogs-panel,
+.chat-window,
+.chat-header,
+.input,
+.dialogs{
+  background:#fff !important;
+  background-image:none !important;
+}
+.messages{
+  background:#f5f6fa !important;
+}
+.header,
+.nav,
+.sidebar,
+.footer,
+#header-placeholder,
+#footer-placeholder{
+  background:linear-gradient(270deg,#2ea3d0,#3a5fa0,#2ea3d0) !important;
+  background-size:400% 400% !important;
+  animation:lkUnifiedGradientMove 8s ease infinite !important;
+}
+.nav .menu > li > a{
+  color:#fff !important;
+}
+.nav .menu > li > a:hover,
+.nav .menu > li > a.active{
+  background:rgba(255,255,255,.18) !important;
+  color:#fff !important;
+}
+.admin-hero h2{
+  background:#fff !important;
+  background-image:none !important;
+  color:#25324b !important;
+  border-bottom:1px solid #eef2f7 !important;
+}
+.main{
+  background:#fff !important;
+  background-image:none !important;
+}
+.content,
+#adminPanelContent,
+#messagesPanel,
+#teacherJournalPanel,
+#teacherSchedulePanel{
+  background:#fff !important;
+  background-image:none !important;
+}
+.submit{
+  background:linear-gradient(135deg,#2ea3d0,#3a5fa0) !important;
+  background-image:linear-gradient(135deg,#2ea3d0,#3a5fa0) !important;
+}
+.me-message{
+  background:#4c6ef5 !important;
+  background-image:none !important;
+}
+
+/* ===== LKADMIN: gradient only in header, navigation and footer ===== */
+body,
+body.dark-theme,
+body.blue-theme,
+body.no-effects{
+  position:relative !important;
+  background:#fff !important;
+  background-image:none !important;
+  animation:none !important;
+  overflow-x:hidden !important;
+}
+body::before{
+  display:none !important;
+  content:none !important;
+}
+body.dark-theme::before{
+  display:none !important;
+  content:none !important;
+}
+body.blue-theme::before{
+  display:none !important;
+  content:none !important;
+}
+body.no-effects::before{
+  display:none !important;
+  content:none !important;
+}
+body > *{
+  position:relative !important;
+  z-index:1 !important;
+}
+#header-placeholder,
+#footer-placeholder,
+.header,
+.nav,
+.sidebar,
+.footer{
+  background:linear-gradient(270deg,#2ea3d0,#3a5fa0,#2ea3d0) !important;
+  background-size:400% 400% !important;
+  animation:lkUnifiedGradientMove 8s ease infinite !important;
+  border:0 !important;
+}
+body.dark-theme #header-placeholder,
+body.dark-theme #footer-placeholder,
+body.dark-theme .header,
+body.dark-theme .nav,
+body.dark-theme .sidebar,
+body.dark-theme .footer{
+  background:linear-gradient(270deg,#0f3b47,#1a2b5e,#0f3b47) !important;
+  background-size:400% 400% !important;
+}
+body.blue-theme #header-placeholder,
+body.blue-theme #footer-placeholder,
+body.blue-theme .header,
+body.blue-theme .nav,
+body.blue-theme .sidebar,
+body.blue-theme .footer{
+  background:linear-gradient(270deg,#1e88e5,#1565c0,#1e88e5) !important;
+  background-size:400% 400% !important;
+}
+body.no-effects #header-placeholder,
+body.no-effects #footer-placeholder,
+body.no-effects .header,
+body.no-effects .nav,
+body.no-effects .sidebar,
+body.no-effects .footer{
+  background:#2c3e50 !important;
+  animation:none !important;
+}
+.nav{
+  margin-top:25px !important;
+  box-shadow:none !important;
+}
+.menu{
+  background:transparent !important;
+  box-shadow:none !important;
+}
+.nav .menu > li > a,
+.menu > li > a{
+  color:#fff !important;
+}
+.nav .menu > li > a:hover,
+.nav .menu > li > a.active,
+.menu > li > a:hover,
+.menu > li > a.active{
+  background:rgba(255,255,255,.16) !important;
+  color:#fff !important;
+}
+#adminPanelContent,
+#messagesPanel,
+#teacherJournalPanel,
+#teacherSchedulePanel{
+  background:#fff !important;
+  background-image:none !important;
+}
+.main{
+  background:#fff !important;
+  background-image:none !important;
+}
+.content,
+#adminPanelContent,
+#messagesPanel,
+#teacherJournalPanel,
+#teacherSchedulePanel{
+  background:#fff !important;
+  background-image:none !important;
+}
+.footer{
+  margin-top:0 !important;
+}
+
+/* ===== MESSAGE ATTACHMENTS + CLEAR DIALOG ===== */
+.message-attach-btn,.message-clear-btn{width:44px!important;min-width:44px!important;height:44px!important;border-radius:50%!important;border:0!important;background:#eef4ff!important;color:#4c6ef5!important;cursor:pointer!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;font-size:1rem!important;margin-right:8px!important}.message-attach-btn:hover,.message-clear-btn:hover{background:#dfe9ff!important}.message-clear-btn{margin-left:auto!important;margin-right:0!important;background:#fff0f0!important;color:#e03131!important}.message-attach-preview{display:none;gap:7px;flex-wrap:wrap;padding:8px 12px;border-top:1px solid #eef2f7;background:#fff}.message-attach-preview.active{display:flex}.message-file-pill{display:inline-flex;align-items:center;gap:7px;max-width:230px;border:1px solid #dfe8fb;background:#f6f9ff;color:#315b93;border-radius:999px;padding:7px 10px;font-size:.82rem;font-weight:800}.message-file-pill span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.message-file-pill button{border:0;background:transparent;color:#e03131;font-weight:900;cursor:pointer}.message-attachments{display:flex;flex-direction:column;gap:8px;margin:8px 0}.message-attachment-card{display:flex;align-items:center;gap:10px;border:1px solid rgba(76,110,245,.25);background:rgba(255,255,255,.16);border-radius:13px;padding:9px 10px;color:inherit}.other-message .message-attachment-card{background:#f6f9ff;color:#26355d}.message-attachment-icon{width:34px;height:34px;border-radius:10px;background:#edf4ff;color:#4c6ef5;display:flex;align-items:center;justify-content:center;flex-shrink:0}.message-attachment-info{min-width:0;flex:1}.message-attachment-name{font-weight:800;font-size:.86rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.message-attachment-size{font-size:.72rem;opacity:.75;margin-top:2px}.message-attachment-actions{display:flex;gap:6px;flex-wrap:wrap}.message-attachment-actions a{border:1px solid #dfe8fb;background:#fff;color:#315b93;text-decoration:none;border-radius:9px;padding:6px 8px;font-size:.76rem;font-weight:800}.me-message .message-attachment-actions a{background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.35)}
+
+
+/* ===== ACCESSIBILITY SETTINGS FOR LKADMIN ===== */
+html.font-size-1 { font-size: 16px; }
+html.font-size-2 { font-size: 18px; }
+html.font-size-3 { font-size: 20px; }
+html.font-size-4 { font-size: 22px; }
+body.images-grayscale img { filter: grayscale(100%); }
+body.images-hide img { visibility: hidden !important; }
+body.images-hide .logo img,
+body.images-hide #header-placeholder .logo img { visibility: visible !important; }
+body.no-effects *,
+body.no-effects *::before,
+body.no-effects *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+body.dark-theme .accessibility-panel {
+  background:#1e1e1e !important;
+  color:#e0e0e0 !important;
+}
+body.blue-theme .accessibility-panel {
+  background:#e3f2fd !important;
+  color:#0d47a1 !important;
+}
+body.dark-theme .option-btn { background:#252525 !important; color:#e0e0e0 !important; border-color:#3a3a5e !important; }
+body.blue-theme .option-btn { background:#bbdefb !important; color:#0d47a1 !important; border-color:#64b5f6 !important; }
+body.dark-theme .option-btn.active,
+body.blue-theme .option-btn.active { background:#2ea3d0 !important; color:#fff !important; border-color:#2ea3d0 !important; }
+
+
+
+/* FIX: окно специальных возможностей должно быть поверх содержимого личного кабинета */
+#header-placeholder {
+    position: relative !important;
+    z-index: 10000 !important;
+}
+
+#header-placeholder .header,
+#header-placeholder .header-content,
+#header-placeholder .header-icons {
+    overflow: visible !important;
+}
+
+#header-placeholder .accessibility-panel {
+    z-index: 10001 !important;
+}
+
+
+/* FIX: корректные цвета элементов личного кабинета в тёмной и синей темах */
+body.dark-theme .journal-toolbar,
+body.dark-theme .journal-summary,
+body.dark-theme .journal-stat,
+body.dark-theme .subject-card,
+body.dark-theme .subject-detail-panel,
+body.dark-theme .subject-detail-head,
+body.dark-theme .subject-detail-body,
+body.dark-theme .teacher-item,
+body.dark-theme .teacher-empty,
+body.dark-theme .lesson-card,
+body.dark-theme .lesson-body,
+body.dark-theme .panel,
+body.dark-theme .card,
+body.dark-theme .table-wrap,
+body.dark-theme .empty {
+    background: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #e6e6e6 !important;
+}
+body.dark-theme .journal-toolbar *,
+body.dark-theme .journal-summary *,
+body.dark-theme .journal-stat *,
+body.dark-theme .subject-card *,
+body.dark-theme .subject-detail-panel *,
+body.dark-theme .teacher-item *,
+body.dark-theme .lesson-card *,
+body.dark-theme .panel *,
+body.dark-theme .card * {
+    color: #e6e6e6 !important;
+}
+body.dark-theme .journal-select,
+body.dark-theme select,
+body.dark-theme .input,
+body.dark-theme textarea {
+    background: #151515 !important;
+    color: #ffffff !important;
+    border-color: #3a3a5e !important;
+}
+body.dark-theme .chip,
+body.dark-theme .mini-chip,
+body.dark-theme .badge,
+body.dark-theme .subject-date-card,
+body.dark-theme .workload-pill {
+    background: #252535 !important;
+    border-color: #3a3a5e !important;
+    color: #dbe6ff !important;
+}
+
+body.dark-theme #tab-messages .chat,
+body.dark-theme #tab-messages .dialogs-panel,
+body.dark-theme #tab-messages .dialogs,
+body.dark-theme #tab-messages .chat-window,
+body.dark-theme #tab-messages .chat-header,
+body.dark-theme #tab-messages .messages,
+body.dark-theme #tab-messages #noDialog,
+body.dark-theme #tab-messages .input {
+    background: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #e6e6e6 !important;
+}
+body.dark-theme #tab-messages .messages {
+    background: #121212 !important;
+}
+body.dark-theme #tab-messages .dialogs-header,
+body.dark-theme #tab-messages .dialog {
+    background: #1e1e1e !important;
+    border-color: #333 !important;
+    color: #e6e6e6 !important;
+}
+body.dark-theme #tab-messages .dialog:hover,
+body.dark-theme #tab-messages .dialog.active {
+    background: #252f4a !important;
+}
+body.dark-theme #tab-messages .dialog-name,
+body.dark-theme #tab-messages .dialog-preview,
+body.dark-theme #tab-messages .dialog-login,
+body.dark-theme #tab-messages .chat-username,
+body.dark-theme #tab-messages .chat-role,
+body.dark-theme #tab-messages .chat-login,
+body.dark-theme #tab-messages .message-sender,
+body.dark-theme #tab-messages #noDialog,
+body.dark-theme #tab-messages #noDialog * {
+    color: #e6e6e6 !important;
+}
+body.dark-theme #tab-messages .other-message {
+    background: #252525 !important;
+    border-color: #444 !important;
+    color: #f0f0f0 !important;
+}
+body.dark-theme #tab-messages .input input,
+body.dark-theme #tab-messages #msgInput {
+    background: #151515 !important;
+    color: #ffffff !important;
+    border-color: #3a3a5e !important;
+}
+body.dark-theme #tab-messages .input input::placeholder,
+body.dark-theme #tab-messages #msgInput::placeholder {
+    color: #aeb6c8 !important;
+}
+
+body.blue-theme .journal-toolbar,
+body.blue-theme .journal-summary,
+body.blue-theme .journal-stat,
+body.blue-theme .subject-card,
+body.blue-theme .subject-detail-panel,
+body.blue-theme .subject-detail-head,
+body.blue-theme .subject-detail-body,
+body.blue-theme .teacher-item,
+body.blue-theme .teacher-empty,
+body.blue-theme .lesson-card,
+body.blue-theme .lesson-body,
+body.blue-theme .panel,
+body.blue-theme .card,
+body.blue-theme .table-wrap,
+body.blue-theme .empty {
+    background: #e3f2fd !important;
+    border-color: #90caf9 !important;
+    color: #0d47a1 !important;
+}
+body.blue-theme .journal-toolbar *,
+body.blue-theme .journal-summary *,
+body.blue-theme .journal-stat *,
+body.blue-theme .subject-card *,
+body.blue-theme .subject-detail-panel *,
+body.blue-theme .teacher-item *,
+body.blue-theme .lesson-card *,
+body.blue-theme .panel *,
+body.blue-theme .card * {
+    color: #0d47a1 !important;
+}
+body.blue-theme .journal-select,
+body.blue-theme select,
+body.blue-theme .input,
+body.blue-theme textarea {
+    background: #ffffff !important;
+    color: #0d47a1 !important;
+    border-color: #64b5f6 !important;
+}
+body.blue-theme .chip,
+body.blue-theme .mini-chip,
+body.blue-theme .badge,
+body.blue-theme .subject-date-card,
+body.blue-theme .workload-pill {
+    background: #bbdefb !important;
+    border-color: #64b5f6 !important;
+    color: #0d47a1 !important;
+}
+
+body.blue-theme #tab-messages .chat,
+body.blue-theme #tab-messages .dialogs-panel,
+body.blue-theme #tab-messages .dialogs,
+body.blue-theme #tab-messages .chat-window,
+body.blue-theme #tab-messages .chat-header,
+body.blue-theme #tab-messages .messages,
+body.blue-theme #tab-messages #noDialog,
+body.blue-theme #tab-messages .input,
+body.blue-theme #tab-messages .dialogs-header,
+body.blue-theme #tab-messages .dialog {
+    background: #e3f2fd !important;
+    border-color: #90caf9 !important;
+    color: #0d47a1 !important;
+}
+body.blue-theme #tab-messages .messages {
+    background: #bbdefb !important;
+}
+body.blue-theme #tab-messages .dialog:hover,
+body.blue-theme #tab-messages .dialog.active {
+    background: #90caf9 !important;
+}
+body.blue-theme #tab-messages .dialog-name,
+body.blue-theme #tab-messages .dialog-preview,
+body.blue-theme #tab-messages .dialog-login,
+body.blue-theme #tab-messages .chat-username,
+body.blue-theme #tab-messages .chat-role,
+body.blue-theme #tab-messages .chat-login,
+body.blue-theme #tab-messages .message-sender,
+body.blue-theme #tab-messages #noDialog,
+body.blue-theme #tab-messages #noDialog * {
+    color: #0d47a1 !important;
+}
+body.blue-theme #tab-messages .other-message {
+    background: #ffffff !important;
+    border-color: #64b5f6 !important;
+    color: #0d47a1 !important;
+}
+body.blue-theme #tab-messages .input input,
+body.blue-theme #tab-messages #msgInput {
+    background: #ffffff !important;
+    color: #0d47a1 !important;
+    border-color: #64b5f6 !important;
+}
+body.blue-theme #tab-messages .input input::placeholder,
+body.blue-theme #tab-messages #msgInput::placeholder {
+    color: #3f6fa8 !important;
+}
+
+/* FINAL schedule admin button color fix */
+.submit{background:linear-gradient(135deg,#2ea3d0,#3a5fa0)!important;background-image:linear-gradient(135deg,#2ea3d0,#3a5fa0)!important;box-shadow:0 8px 20px rgba(46,93,160,.22)!important;}
+.submit:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(46,93,160,.28)!important;}
+
+
+
+
+/* ===== ЕДИНЫЙ РЕДАКТОР ПРОФИЛЯ / АВАТАРКИ: оформление как в lk.html ===== */
+#profileModal,
+#photoCropModal {
+    display: none;
+    position: fixed !important;
+    z-index: 1000 !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto !important;
+    background: rgba(0,0,0,0.4) !important;
+    animation: fadeIn 0.2s;
+    padding: 0 !important;
+    align-items: initial !important;
+    justify-content: initial !important;
+}
+#profileModal[style*="block"],
+#photoCropModal[style*="block"] {
+    display: block !important;
+}
+#profileModal .modal-content,
+#photoCropModal .modal-content {
+    background: white !important;
+    margin: 5% auto !important;
+    padding: 25px !important;
+    border-radius: 16px !important;
+    width: 520px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+    animation: slideIn 0.3s !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    position: relative !important;
+    transform: none !important;
+}
+#photoCropModal .modal-content.crop-modal-content,
+#photoCropModal .modal-content {
+    width: min(760px, 94vw) !important;
+}
+#profileModal .modal-content h3,
+#photoCropModal .modal-content h3 {
+    margin-bottom: 20px !important;
+    font-size: 1.2rem !important;
+    color: #333 !important;
+}
+#profileModal input,
+#profileModal textarea,
+#profileModal select,
+#photoCropModal input,
+#photoCropModal textarea,
+#photoCropModal select {
+    width: 100% !important;
+    padding: 12px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    font-family: inherit !important;
+    font-size: 0.95rem !important;
+    transition: 0.2s !important;
+    background: #fff !important;
+    color: #25324b !important;
+}
+#profileModal input[type="file"],
+#photoCropModal input[type="file"] { padding: 8px !important; }
+#profileModal .modal-buttons,
+#photoCropModal .modal-buttons {
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 10px !important;
+    margin-top: 10px !important;
+}
+#profileModal .modal-buttons button,
+#photoCropModal .modal-buttons button {
+    padding: 10px 20px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    transition: 0.2s !important;
+    font-family: 'Raleway', sans-serif !important;
+    width: auto !important;
+    height: auto !important;
+}
+#profileModal .btn-primary,
+#photoCropModal .btn-primary {
+    background: #4c6ef5 !important;
+    color: white !important;
+}
+#profileModal .btn-primary:hover,
+#photoCropModal .btn-primary:hover { background: #3b5de7 !important; }
+#profileModal .btn-cancel,
+#photoCropModal .btn-cancel {
+    background: #f0f0f0 !important;
+    color: #666 !important;
+}
+#profileModal .btn-cancel:hover,
+#photoCropModal .btn-cancel:hover { background: #e0e0e0 !important; }
+#profileModal .profile-preview-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    background: #f8f9ff !important;
+    border-radius: 14px !important;
+    padding: 14px 18px !important;
+    margin-bottom: 18px !important;
+    border: 1.5px solid #e8ecff !important;
+}
+#profileModal .profile-preview-circle {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 2rem !important;
+    flex-shrink: 0 !important;
+    border: 3px solid rgba(255,255,255,0.6) !important;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12) !important;
+    transition: all 0.25s !important;
+    overflow: hidden !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+#profileModal .profile-preview-circle img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+#profileModal .profile-preview-name {
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+    color: #222 !important;
+    margin-bottom: 2px !important;
+}
+#profileModal .profile-preview-role {
+    font-size: 0.8rem !important;
+    color: #888 !important;
+    font-weight: 600 !important;
+}
+#profileModal .profile-photo-actions {
+    display: flex !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+    margin: 14px 0 18px !important;
+}
+#profileModal .profile-photo-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+    border: 2px solid #4c6ef5 !important;
+    background: #4c6ef5 !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    cursor: pointer !important;
+    transition: 0.2s !important;
+    font-family: 'Raleway', sans-serif !important;
+    width: auto !important;
+    height: auto !important;
+}
+#profileModal .profile-photo-btn:hover {
+    background: #3b5de7 !important;
+    border-color: #3b5de7 !important;
+    transform: translateY(-1px) !important;
+}
+#profileModal .profile-photo-remove {
+    background: transparent !important;
+    color: #ff6b6b !important;
+    border-color: #ffb8b8 !important;
+}
+#profileModal .profile-photo-remove:hover {
+    background: #fff0f0 !important;
+    color: #e55555 !important;
+    border-color: #ff8f8f !important;
+}
+#profileModal .avatar-colors {
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+    margin-bottom: 15px !important;
+}
+#profileModal .avatar-color-option {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    border: 3px solid transparent !important;
+    transition: all 0.2s !important;
+}
+#profileModal .avatar-color-option:hover { transform: scale(1.1) !important; }
+#profileModal .avatar-color-option.active { border-color: #333 !important; }
+#photoCropModal .crop-area {
+    width: 100% !important;
+    max-height: 430px !important;
+    background: #f5f7fa !important;
+    border: 2px dashed #d8def7 !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    margin: 12px 0 18px !important;
+}
+#photoCropModal .crop-area img {
+    display: block !important;
+    max-width: 100% !important;
+    max-height: 430px !important;
+}
+#photoCropModal .crop-help {
+    color: #777 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 12px !important;
+}
+#photoCropModal .cropper-preview-box {
+    display: flex !important;
+    gap: 22px !important;
+    align-items: center !important;
+    margin: 14px 0 18px !important;
+    flex-wrap: wrap !important;
+}
+#photoCropModal .cropper-preview-wrap { text-align: center !important; }
+#photoCropModal .cropper-preview-wrap label {
+    display: block !important;
+    font-size: 0.82rem !important;
+    color: #777 !important;
+    font-weight: 700 !important;
+    margin-bottom: 7px !important;
+}
+#photoCropModal .cropper-preview-sm,
+#photoCropModal .cropper-preview-lg {
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    border: 3px solid #e0e5f7 !important;
+    background: #fff !important;
+}
+#photoCropModal .cropper-preview-sm { width: 56px !important; height: 56px !important; }
+#photoCropModal .cropper-preview-lg { width: 112px !important; height: 112px !important; }
+body.dark-theme #profileModal .modal-content,
+body.dark-theme #photoCropModal .modal-content { background: #2a2a2a !important; color: #e0e0e0 !important; }
+body.dark-theme #profileModal .modal-content h3,
+body.dark-theme #photoCropModal .modal-content h3,
+body.dark-theme #profileModal .profile-preview-name { color: #e0e0e0 !important; }
+body.dark-theme #profileModal .profile-preview-row { background: #252535 !important; border-color: #3a3a5e !important; }
+body.dark-theme #profileModal input,
+body.dark-theme #profileModal select,
+body.dark-theme #photoCropModal input,
+body.dark-theme #photoCropModal select { background: #252525 !important; color: #e0e0e0 !important; border-color: #3a3a5e !important; }
+body.dark-theme #photoCropModal .crop-area { background: #1e1e1e !important; border-color: #3a3a5e !important; }
+body.dark-theme #photoCropModal .crop-help,
+body.dark-theme #photoCropModal .cropper-preview-wrap label { color: #aaa !important; }
+body.dark-theme #photoCropModal .cropper-preview-sm,
+body.dark-theme #photoCropModal .cropper-preview-lg { background: #252525 !important; border-color: #3a3a5e !important; }
+body.dark-theme #profileModal .profile-photo-remove:hover { background: rgba(255,107,107,0.12) !important; }
+
+
+
+/* ===== FINAL FIX LKADMIN PROFILE MODAL HEADER =====
+   Шапка сайта больше не перекрывает окно настроек профиля/обрезки фото.
+   Лишняя панель cropper была удалена из разметки. */
+#header-placeholder {
+    position: relative !important;
+    z-index: 900 !important;
+}
+#header-placeholder .accessibility-panel,
+.accessibility-panel.active {
+    z-index: 30000 !important;
+}
+#profileModal,
+#photoCropModal,
+#newMessageModal,
+#adminPhotoLightbox {
+    z-index: 20000 !important;
+}
+#profileModal .modal-content,
+#photoCropModal .modal-content {
+    position: relative !important;
+    z-index: 20001 !important;
+}
+#profileModal .modal-content h3 {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 0 20px 0 !important;
+    font-size: 1.2rem !important;
+    font-weight: 800 !important;
+    color: #333 !important;
+}
+body.dark-theme #profileModal .modal-content h3 {
+    color: #e0e0e0 !important;
+}
+
+
+
+/* ===== FIX: окно нового сообщения строго по центру экрана ===== */
+#newMessageModal {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 24px !important;
+    background: rgba(0, 0, 0, 0.40) !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: auto !important;
+    z-index: 25000 !important;
+}
+#newMessageModal[style*="block"] {
+    display: flex !important;
+}
+#newMessageModal .modal-content {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+    width: 520px !important;
+    max-width: min(92vw, 520px) !important;
+    max-height: calc(100vh - 48px) !important;
+    overflow-y: auto !important;
+    z-index: 25001 !important;
+}
+@media (max-width: 900px) {
+    #newMessageModal .modal-content {
+        margin: 0 !important;
+        width: 520px !important;
+        max-width: calc(100vw - 32px) !important;
+    }
+}
+
+
+
+/* FIX: рабочая область Cropper как в lk.html */
+#photoCropModal .crop-area {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 430px !important;
+  background: #f5f7fa !important;
+  border: 2px dashed #d8def7 !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  margin: 12px 0 18px !important;
+}
+#photoCropModal .crop-area img {
+  display: block !important;
+  max-width: 100% !important;
+  max-height: 430px !important;
+}
+#photoCropModal .cropper-container {
+  max-width: 100% !important;
+}
+#photoCropModal .cropper-view-box,
+#photoCropModal .cropper-face {
+  border-radius: 50% !important;
+}
+
+
+
+/* ===== FIX: Cropper аватарки в lkadmin как в lk.html ===== */
+#photoCropModal {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  padding: 24px !important;
+  background: rgba(0,0,0,.4) !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: auto !important;
+}
+#photoCropModal[style*="block"] { display: flex !important; }
+#photoCropModal .modal-content.crop-modal-content {
+  width: min(760px, 94vw) !important;
+  max-width: min(760px, 94vw) !important;
+  margin: 0 !important;
+  max-height: calc(100vh - 48px) !important;
+  overflow-y: auto !important;
+}
+#photoCropModal .crop-area {
+  width: 100% !important;
+  max-height: 430px !important;
+  background: #f5f7fa !important;
+  border: 2px dashed #d8def7 !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  margin: 12px 0 18px !important;
+}
+#photoCropModal .crop-area img {
+  display: block !important;
+  max-width: 100% !important;
+  max-height: 430px !important;
+}
+#photoCropModal .cropper-container { max-width: 100% !important; }
+#photoCropModal .cropper-view-box,
+#photoCropModal .cropper-face { border-radius: 50% !important; }
+
+
+/* ===== FINAL FIX: не даём CSS картинки ломать внутренние изображения Cropper ===== */
+#photoCropModal .cropper-container img,
+#photoCropModal .cropper-wrap-box img,
+#photoCropModal .cropper-canvas img,
+#photoCropModal .cropper-drag-box img,
+#photoCropModal .cropper-crop-box img,
+#photoCropModal .cropper-view-box img {
+  max-width: none !important;
+  max-height: none !important;
+}
+#photoCropModal .cropper-container { max-width: none !important; }
+#photoCropModal .cropper-view-box,
+#photoCropModal .cropper-face { border-radius: 50% !important; }
+
+
+
+/* ===== LKADMIN PROFILE PHOTO FIX: cropper exactly like lk.html ===== */
+#photoCropModal .crop-area {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 350px !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  background: #f1f4fb !important;
+  border: 2px dashed #d8def7 !important;
+  margin: 15px 0 !important;
+}
+#photoCropModal .crop-area > img#cropperImage {
+  display: block !important;
+  max-width: 100% !important;
+}
+#photoCropModal .cropper-container {
+  margin: 15px 0 !important;
+  max-height: 350px !important;
+  max-width: 100% !important;
+}
+#photoCropModal .cropper-container img,
+#photoCropModal .cropper-canvas img,
+#photoCropModal .cropper-wrap-box img,
+#photoCropModal .cropper-drag-box img,
+#photoCropModal .cropper-crop-box img,
+#photoCropModal .cropper-view-box img {
+  max-width: none !important;
+  max-height: none !important;
+}
+#photoCropModal .cropper-crop-box,
+#photoCropModal .cropper-view-box,
+#photoCropModal .cropper-face,
+#photoCropModal .cropper-dashed,
+#photoCropModal .cropper-center,
+#photoCropModal .cropper-line,
+#photoCropModal .cropper-point {
+  display: block !important;
+  visibility: visible !important;
+}
+#photoCropModal .cropper-view-box,
+#photoCropModal .cropper-face {
+  border-radius: 50% !important;
+}
+#photoCropModal .cropper-face {
+  opacity: .12 !important;
+}
+#photoCropModal .cropper-view-box {
+  outline: 2px solid #4c6ef5 !important;
+  outline-color: rgba(76,110,245,.9) !important;
+}
+
+
+
+/* ===== FINAL OVERRIDE: рабочая обрезка профиля lkadmin без поломки Cropper =====
+   Важно: Cropper добавляет класc cropper-hidden исходной картинке.
+   Нельзя принудительно оставлять display:block для #cropperImage после инициализации,
+   иначе вместо области обрезки видна обычная картинка. */
+#photoCropModal .crop-area {
+  width: 100% !important;
+  max-height: 430px !important;
+  background: #f5f7fa !important;
+  border: 2px dashed #d8def7 !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  margin: 12px 0 18px !important;
+}
+#photoCropModal .crop-area > img#cropperImage:not(.cropper-hidden) {
+  display: block !important;
+  max-width: 100% !important;
+  max-height: 430px !important;
+}
+#photoCropModal .crop-area > img#cropperImage.cropper-hidden {
+  display: none !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+#photoCropModal .cropper-container {
+  margin: 0 !important;
+  max-width: 100% !important;
+  max-height: 430px !important;
+}
+#photoCropModal .cropper-container img,
+#photoCropModal .cropper-canvas img,
+#photoCropModal .cropper-wrap-box img,
+#photoCropModal .cropper-drag-box img,
+#photoCropModal .cropper-crop-box img,
+#photoCropModal .cropper-view-box img {
+  max-width: none !important;
+  max-height: none !important;
+}
+#photoCropModal .cropper-crop-box,
+#photoCropModal .cropper-view-box,
+#photoCropModal .cropper-face,
+#photoCropModal .cropper-dashed,
+#photoCropModal .cropper-center,
+#photoCropModal .cropper-line,
+#photoCropModal .cropper-point {
+  display: block !important;
+  visibility: visible !important;
+}
+#photoCropModal .cropper-view-box,
+#photoCropModal .cropper-face {
+  border-radius: 50% !important;
+}
+#photoCropModal .cropper-face { opacity: .14 !important; }
+#photoCropModal .cropper-view-box {
+  outline: 2px solid rgba(76,110,245,.95) !important;
+}
+
+</style>
+</head>
+<div id="adminPhotoLightbox" class="modal" onclick="if(event.target===this)this.style.display='none'">
+  <span class="close" onclick="document.getElementById('adminPhotoLightbox').style.display='none'">×</span>
+  <img id="adminPhotoLightboxImg" style="max-width:90vw;max-height:85vh;border-radius:16px;display:block;margin:6vh auto;">
+</div>
+
+<script>
+window.openAdminPhoto = function(src) {
+  document.getElementById('adminPhotoLightboxImg').src = src;
+  document.getElementById('adminPhotoLightbox').style.display = 'block';
+};
+</script>
+<body>
+<div id="header-placeholder"></div>
+
+<div class="main">
+  <aside class="sidebar">
+    <h3>Навигация</h3>
+    <button class="active" data-tab="admin"><i class="fa-solid fa-rotate"></i> Обновление сайта</button>
+    <button data-tab="messages"><i class="fa-solid fa-comments"></i> Сообщения</button>
+  </aside>
+  <main class="content">
+    <div id="adminPanelContent">
+    <section class="admin-hero"><h2>Админская панель</h2><p>Добавляйте записи на страницы новостей, объявлений и галереи, меняйте расписание и загружайте документы.</p></section>
+    <section class="grid">
+      <form class="card" id="postForm">
+        <h3><i class="fa-solid fa-pen-to-square"></i> Новая запись</h3>
+        <label for="page">Куда добавить</label>
+        <select id="page" name="page"><option value="news">Новости</option><option value="gallery">Галерея</option><option value="warnings">Объявления</option><option value="schedule">Расписание</option><option value="information">Документы</option></select>
+        <div id="postFields">
+          <label id="titleLabel" for="title">Заголовок новости</label><input class="input" id="title" name="title" placeholder="Введите заголовок">
+          <div id="contentBlock" class="content-block">
+            <label id="contentLabel" for="content">Текст новости</label>
+            <div class="editor-toolbar"><button type="button" class="tool-btn" data-cmd="bold"><b>Ж</b></button><button type="button" class="tool-btn" data-cmd="italic"><i>К</i></button><button type="button" class="tool-btn" data-cmd="insertUnorderedList"><i class="fa-solid fa-list-ul"></i></button><button type="button" class="tool-btn" id="clearText">Очистить</button></div>
+            <textarea id="content" name="content" placeholder="Наберите текст публикации..."></textarea>
+          </div>
+          <label id="fileLabel" for="files">Фотографии к новости</label><div class="file-picker"><input id="files" name="files" type="file" multiple accept="image/*"><label class="file-picker-btn" for="files"><i class="fa-solid fa-cloud-arrow-up"></i> Выбрать файлы</label><span class="file-picker-name" id="fileChosen">Файл не выбран</span></div><div class="file-note" id="fileNote">Можно выбрать несколько фотографий.</div><label class="pin-row" id="pinRow"><input type="checkbox" id="pinPost"> <span><i class="fa-solid fa-thumbtack"></i> Закрепить объявление выше остальных</span></label>
+        </div>
+        <div id="scheduleFields" style="display:none">
+          <label for="className">Класс</label><select id="className"><option>2 класс</option><option>3 класс</option><option>4 класс</option><option>5 класс</option><option>6 класс</option><option>7 класс</option><option>8 класс</option><option>9 класс</option><option>10 класс</option><option>11 класс</option></select>
+          <label for="day">День</label><select id="day"><option value="Пн">Понедельник</option><option value="Вт">Вторник</option><option value="Ср">Среда</option><option value="Чт">Четверг</option><option value="Пт">Пятница</option></select>
+          <label for="lessonNumber">Урок</label><select id="lessonNumber"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+          <label for="subject">Новый предмет</label><input class="input" id="subject" placeholder="Например: Математика">
+          <label for="room">Кабинет</label><select id="room"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option value="">Отсутствует</option></select>
+        </div>
+        <button class="submit" type="submit"><i class="fa-solid fa-plus"></i> Добавить на сайт</button><div class="status" id="status"></div>
+      </form>
+      <section class="card"><h3><i class="fa-solid fa-clock-rotate-left"></i> Добавленные записи</h3><div id="posts" class="posts"></div></section>
+    </section>
+    </div>
+    <section id="teacherJournalPanel" class="teacher-panel">
+      <div class="teacher-topline">
+        <div class="teacher-page-title">Журнал учителя</div>
+        <button class="teacher-btn" type="button" onclick="refreshAdminTeacherData()"><i class="fa-solid fa-rotate"></i> Проверить снова</button>
+      </div>
+      <div class="teacher-loader" id="teacherLoader"><i class="fa-solid fa-spinner fa-spin"></i> Загрузка данных из СГО...</div>
+      <div class="teacher-card">
+        <h3><i class="fa-solid fa-book-open-reader"></i> Журнал по классам</h3>
+        <div class="teacher-journal-toolbar">
+          <label for="teacherJournalClassSelect">Выберите класс</label>
+          <select class="input teacher-journal-select" id="teacherJournalClassSelect" onchange="renderAdminSelectedJournalClass()">
+            <option value="">Классы пока не загружены</option>
+          </select>
+          <button class="teacher-btn ghost" type="button" onclick="renderAdminSelectedJournalClass()"><i class="fa-solid fa-eye"></i> Показать</button>
+        </div>
+        <div class="teacher-journal-summary" id="teacherJournalClassSummary"></div>
+        <div class="teacher-empty" id="teacherSubjectGroupsBox">Данные предметных групп пока не получены.</div>
+        <div id="teacherSubjectCardDetail"></div>
+      </div>
+      <div class="teacher-card">
+        <h3><i class="fa-solid fa-school"></i> Список классов</h3>
+        <div class="teacher-empty" id="teacherClassesBox">Классы пока не получены.</div>
+      </div>
+      <div class="teacher-card">
+        <h3><i class="fa-solid fa-users-line"></i> Педагогический состав</h3>
+        <div class="teacher-empty" id="teacherStaffBox">Педагогический состав пока не получен.</div>
+      </div>
+      <div class="teacher-card">
+        <h3><i class="fa-solid fa-table-list"></i> Структурированный журнал</h3>
+        <div class="teacher-empty" id="teacherJournalBox">Структурированный журнал не найден.</div>
+      </div>
+    </section>
+    <section id="messagesPanel" style="display:none">
+      <div class="chat">
+        <div class="dialogs-panel">
+          <div class="dialogs-header"><span>Диалоги</span><button id="newMsgBtn" type="button" onclick="openNewMsgModal()" title="Новое сообщение">+</button></div>
+          <div class="dialogs" id="dialogs"></div>
+        </div>
+        <div class="chat-window">
+          <div class="chat-header" id="chatHeader" style="display:none;">
+            <div class="chat-avatar" id="chatAvatar">?</div>
+            <div class="chat-user-info">
+              <div class="chat-username" id="chatUsername">Выберите диалог</div>
+              <div class="chat-role" id="chatRole">Роль не определена</div>
+            </div>
+          </div>
+          <div class="messages" id="messages"></div>
+          <div class="input" id="inputArea" style="display:none;">
+            <input type="text" id="msgInput" placeholder="Напишите сообщение...">
+            <button type="button" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+          <div id="noDialog" style="flex:1;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#bbb;">
+            <i class="fa-solid fa-comments" style="font-size:5rem;margin-bottom:20px;"></i>
+            <p style="font-size:1.2rem;">Выберите диалог</p>
+            <p style="font-size:0.9rem;margin-top:5px;">или начните новый</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<div id="newMessageModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fa-solid fa-pen-to-square"></i> Новое сообщение</h3>
+    <input type="text" id="recipientLogin" placeholder="Логин получателя *" required>
+    <textarea id="newMessageText" rows="4" placeholder="Текст сообщения..." required></textarea>
+    <div class="modal-buttons">
+      <button type="button" class="btn-cancel" onclick="closeNewMsgModal()">Отмена</button>
+      <button type="button" class="btn-primary" onclick="sendNewMessage()"><i class="fa-solid fa-paper-plane"></i> Отправить</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="profileModal">
+  <div class="modal-content">
+    <h3><i class="fa-solid fa-user-gear"></i> Настройки профиля</h3>
+
+    <div class="profile-preview-row">
+        <div id="profileAvatarPreview" class="profile-preview-circle"></div>
+        <div class="profile-preview-info">
+            <div class="profile-preview-name" id="profilePreviewName"></div>
+            <div class="profile-preview-role" id="profilePreviewRoleLabel"></div>
+        </div>
+    </div>
+
+    <input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+    <div class="profile-photo-actions">
+      <button type="button" class="profile-photo-btn" id="uploadProfilePhotoBtn"><i class="fa-solid fa-camera"></i> Загрузить фото</button>
+      <button type="button" class="profile-photo-btn profile-photo-remove" id="removeProfilePhotoBtn"><i class="fa-solid fa-trash"></i> Удалить фото</button>
+    </div>
+
+    <label style="font-weight:600;font-size:0.9rem;display:block;margin-bottom:8px;">Цвет профиля</label>
+    <div class="avatar-colors" id="avatarColors"></div>
+
+    <label style="font-weight:600;font-size:0.9rem;display:block;margin:14px 0 6px;">Роль</label>
+    <select id="profileRole">
+      <option value="Ученик">Ученик</option>
+      <option value="Учитель">Учитель</option>
+      <option value="Администратор">Администратор</option>
+      <option value="Директор">Директор</option>
+      <option value="Родитель">Родитель</option>
+    </select>
+    <label style="font-weight:600;font-size:0.9rem;display:block;margin:10px 0 6px;">Полное имя</label>
+    <input type="text" id="profileFullName" placeholder="Иван Иванов">
+    <div class="modal-buttons">
+      <button class="btn-cancel" onclick="closeProfileModal()">Отмена</button>
+      <button class="btn-primary" onclick="saveProfile()"><i class="fa-solid fa-save"></i> Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="photoCropModal">
+  <div class="modal-content crop-modal-content">
+    <h3><i class="fa-solid fa-crop-simple"></i> Обрезка фото профиля</h3>
+    <p class="crop-help">Выберите область, которая будет отображаться в миниатюре профиля. Формат миниатюры — круглый.</p>
+    <div class="crop-area"><img id="cropperImage" alt="Фото для обрезки"></div>
+    <div class="cropper-preview-box">
+      <div class="cropper-preview-wrap"><label>Миниатюра</label><div class="cropper-preview-sm"></div></div>
+
+
+      <div class="cropper-preview-wrap"><label>Крупный вид</label><div class="cropper-preview-lg"></div></div>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-cancel" type="button" onclick="closePhotoCropModal()">Отмена</button>
+      <button class="btn-primary" type="button" onclick="applyCroppedPhoto()"><i class="fa-solid fa-check"></i> Выбрать миниатюру</button>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="header.js"></script>
+
+<script>
+(function(){
+  function applyLkAdminHeaderMode(){
+    var ph=document.getElementById('header-placeholder');
+    if(!ph) return;
+    var nav=ph.querySelector('.nav');
+    if(nav) nav.remove();
+    var accessibilityBtn=document.getElementById('accessibilityBtn');
+    if(accessibilityBtn && !document.getElementById('lkHomeBtn')){
+      var home=document.createElement('a');
+      home.id='lkHomeBtn';
+      home.className='lk-home-btn';
+      home.href='index.html';
+      home.title='На главную';
+      home.setAttribute('aria-label','На главную');
+      home.innerHTML='<i class="fa-solid fa-house"></i>';
+      accessibilityBtn.insertAdjacentElement('afterend',home);
+    }
+    if(!document.getElementById('lkAdminHeaderHomeStyles')){
+      var st=document.createElement('style');
+      st.id='lkAdminHeaderHomeStyles';
+      st.textContent='.lk-home-btn{display:inline-flex;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:1.25rem;line-height:1;cursor:pointer;transition:color .2s,transform .2s}.lk-home-btn:hover{color:#ffd966;transform:translateY(-1px)}#header-placeholder .nav{display:none!important}';
+      document.head.appendChild(st);
+    }
+  }
+  window.applyLkAdminHeaderMode=applyLkAdminHeaderMode;
+  document.addEventListener('DOMContentLoaded',function(){
+    applyLkAdminHeaderMode();
+    setTimeout(applyLkAdminHeaderMode,100);
+    setTimeout(applyLkAdminHeaderMode,500);
+  });
+  var obs=new MutationObserver(applyLkAdminHeaderMode);
+  document.addEventListener('DOMContentLoaded',function(){ var ph=document.getElementById('header-placeholder'); if(ph) obs.observe(ph,{childList:true,subtree:true}); });
+})();
+</script>
+
+
+<script>
+(function () {
+  /* ACCESSIBILITY SETTINGS FOR LKADMIN SCRIPT */
+  'use strict';
+
+  var settings = {
+    theme: localStorage.getItem('a11y_theme') || 'original',
+    fontSize: localStorage.getItem('a11y_fontSize') || '1',
+    noEffects: localStorage.getItem('a11y_noEffects') === 'true',
+    imageMode: localStorage.getItem('a11y_imageMode') || 'original'
+  };
+
+  function saveSettings() {
+    localStorage.setItem('a11y_theme', settings.theme);
+    localStorage.setItem('a11y_fontSize', settings.fontSize);
+    localStorage.setItem('a11y_noEffects', String(settings.noEffects));
+    localStorage.setItem('a11y_imageMode', settings.imageMode);
+  }
+
+  function updatePanelState() {
+    document.querySelectorAll('[data-group="theme"] .option-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.value === settings.theme);
+    });
+    document.querySelectorAll('[data-group="fontSize"] .option-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.value === settings.fontSize);
+    });
+    document.querySelectorAll('[data-group="imageMode"] .option-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.value === settings.imageMode);
+    });
+    var noEffectsCheckbox = document.getElementById('noEffectsCheckbox');
+    if (noEffectsCheckbox) noEffectsCheckbox.checked = settings.noEffects;
+  }
+
+  window.applySettings = function () {
+    document.body.classList.remove('dark-theme', 'blue-theme');
+    if (settings.theme === 'dark') document.body.classList.add('dark-theme');
+    if (settings.theme === 'blue') document.body.classList.add('blue-theme');
+
+    document.documentElement.classList.remove('font-size-1', 'font-size-2', 'font-size-3', 'font-size-4');
+    document.documentElement.classList.add('font-size-' + settings.fontSize);
+
+    document.body.classList.toggle('no-effects', settings.noEffects);
+    document.body.classList.remove('images-grayscale', 'images-hide');
+    if (settings.imageMode === 'grayscale') document.body.classList.add('images-grayscale');
+    if (settings.imageMode === 'hide') document.body.classList.add('images-hide');
+
+    updatePanelState();
+  };
+
+  document.addEventListener('click', function (event) {
+    var btn = event.target.closest('.option-btn');
+    if (!btn) return;
+    var group = btn.closest('[data-group]');
+    if (!group) return;
+    var groupName = group.dataset.group;
+    if (groupName === 'theme') settings.theme = btn.dataset.value || 'original';
+    if (groupName === 'fontSize') settings.fontSize = btn.dataset.value || '1';
+    if (groupName === 'imageMode') settings.imageMode = btn.dataset.value || 'original';
+    saveSettings();
+    window.applySettings();
+  });
+
+  document.addEventListener('change', function (event) {
+    if (event.target && event.target.id === 'noEffectsCheckbox') {
+      settings.noEffects = event.target.checked;
+      saveSettings();
+      window.applySettings();
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    window.applySettings();
+  });
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+<script>
+(function () {
+  'use strict';
+  function rolePage(role) {
+    var r = String(role || '').trim().toLowerCase();
+    if (r === '\u0443\u0447\u0435\u043d\u0438\u043a' || r === '\u0440\u043e\u0434\u0438\u0442\u0435\u043b\u044c') return 'lk.html';
+    if (r === '\u0443\u0447\u0438\u0442\u0435\u043b\u044c' || r === '\u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c') return 'lkteacher.html';
+    if (r === '\u0434\u0438\u0440\u0435\u043a\u0442\u043e\u0440' || r === '\u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440' || r === '\u0430\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f') return 'lkadmin.html';
+    if (r === '\u0433\u043e\u0441\u0442\u044c') return 'index.html';
+    return 'login.html';
+  }
+  var currentRolePage = rolePage(localStorage.getItem('role') || '');
+  if (localStorage.getItem('auth') !== 'true' || !localStorage.getItem('login')) {
+    window.location.replace(currentRolePage === 'index.html' ? 'index.html' : 'login.html');
+    return;
+  }
+  if (currentRolePage !== 'lkadmin.html') {
+    window.location.replace(currentRolePage);
+    return;
+  }
+  var STORAGE_POSTS = 'school_admin_posts_v2';
+  var STORAGE_SCHEDULE = 'school_schedule_overrides_v2';
+  function adminProfileStorageKey(login) { return 'lkadmin_profile_' + String(login || '').trim().toLowerCase(); }
+  function readAdminStoredProfile(login) { try { return JSON.parse(localStorage.getItem(adminProfileStorageKey(login)) || '{}') || {}; } catch (e) { return {}; } }
+  function writeAdminStoredProfile(user) { if (!user || !user.login) return; localStorage.setItem(adminProfileStorageKey(user.login), JSON.stringify(user)); }
+  function getUser() {
+    var rawUser = {};
+    try { rawUser = JSON.parse(localStorage.getItem('user') || '{}') || {}; } catch (e) {}
+    var sessionLogin = localStorage.getItem('login') || rawUser.login || '';
+    var stored = readAdminStoredProfile(sessionLogin);
+    if (rawUser.login && rawUser.login !== sessionLogin) rawUser = {};
+    var merged = Object.assign({}, rawUser, stored);
+    return {
+      login: sessionLogin,
+      full_name: merged.full_name || localStorage.getItem('full_name') || sessionLogin || 'Администратор',
+      role: merged.role || localStorage.getItem('role') || 'Администратор',
+      email: merged.email || localStorage.getItem('email') || '',
+      school: merged.school || localStorage.getItem('school') || '',
+      profile_photo: (merged.profile_photo !== undefined ? merged.profile_photo : (localStorage.getItem('profile_photo') || '')) || '',
+      avatar_color: merged.avatar_color || localStorage.getItem('avatar_color') || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    };
+  }
+  function saveUser(user) {
+    var sessionLogin = localStorage.getItem('login') || user.login || '';
+    user = Object.assign({}, getUser(), user || {}, { login: sessionLogin });
+    localStorage.setItem('user', JSON.stringify(user));
+    writeAdminStoredProfile(user);
+    localStorage.setItem('auth', 'true');
+    localStorage.setItem('login', sessionLogin);
+    localStorage.setItem('full_name', user.full_name || sessionLogin || '');
+    localStorage.setItem('role', user.role || 'Администратор');
+    localStorage.setItem('email', user.email || '');
+    localStorage.setItem('school', user.school || '');
+    if (user.profile_photo !== undefined) localStorage.setItem('profile_photo', user.profile_photo || '');
+    if (user.avatar_color !== undefined) localStorage.setItem('avatar_color', user.avatar_color || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)');
+  }
+  async function persistAdminProfileToServer(user, clearPhoto) {
+    user = Object.assign({}, getUser(), user || {});
+    if (!user.login) return;
+    try {
+      await apiJson('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          login: user.login,
+          password: localStorage.getItem('password') || sessionStorage.getItem('password') || '',
+          role: user.role || 'Администратор',
+          email: user.email || '',
+          school: user.school || '',
+          full_name: user.full_name || user.login,
+          avatar_color: user.avatar_color || '',
+          profile_photo: user.profile_photo || '',
+          profile_photo_clear: !!clearPhoto
+        })
+      });
+    } catch (e) {
+      console.warn('Не удалось сохранить профиль администратора на сервере', e);
+    }
+  }
+  function initProfile() { var user = getUser(); saveUser(user); var nameEl = document.getElementById('userName'); var roleEl = document.getElementById('userRole'); var avatarEl = document.getElementById('userAvatar'); if (nameEl) nameEl.textContent = user.full_name || user.login || 'Администратор'; if (roleEl) roleEl.textContent = user.role || 'Администратор'; if (typeof setProfileAvatar === 'function') setProfileAvatar(avatarEl, user.full_name || user.login || 'А', user.avatar_color, user.profile_photo); else if (avatarEl) { if (user.profile_photo) { avatarEl.style.backgroundImage = 'url("' + user.profile_photo + '")'; avatarEl.textContent = ''; } else { avatarEl.style.background = user.avatar_color; avatarEl.textContent = (user.full_name || user.login || 'А').trim().charAt(0).toUpperCase(); } } var userBlock = document.getElementById('userBlock'); if (userBlock) userBlock.onclick = function (event) { if (event) { event.preventDefault(); event.stopPropagation(); } if (typeof window.openProfileModal === 'function') window.openProfileModal(); return false; }; if (typeof bindHeaderProfileClick === 'function') bindHeaderProfileClick(); var logoutBtn = document.getElementById('logoutBtn'); if (logoutBtn) logoutBtn.onclick = function () { localStorage.removeItem('auth'); localStorage.removeItem('password'); sessionStorage.removeItem('password'); window.location.href = 'login.html'; }; }
+  function roots() { var result = []; if (window.location.protocol === 'http:' || window.location.protocol === 'https:') { if (window.location.port === '5000') result.push(window.location.origin); result.push(window.location.protocol + '//' + (window.location.hostname || '127.0.0.1') + ':5000'); } result.push('http://127.0.0.1:5000'); result.push('http://localhost:5000'); return Array.from(new Set(result)); }
+  async function apiFetch(path, options) { var lastError = null; var list = roots(); for (var i = 0; i < list.length; i++) { try { return await fetch(list[i] + path, options || {}); } catch (error) { lastError = error; } } throw lastError || new Error('server.py не отвечает'); }
+  function esc(value) { return String(value || '').replace(/[&<>"']/g, function (char) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[char]; }); }
+  function fmt(value) { var date = new Date(value); return Number.isNaN(date.getTime()) ? (value || '') : date.toLocaleString('ru-RU'); }
+  function readStorage(key, fallback) { try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch (e) { return fallback; } }
+  function writeStorage(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
+  function fileData(file) { return new Promise(function (resolve, reject) { var reader = new FileReader(); reader.onload = function () { resolve({ path: reader.result, name: file.name, type: file.type || '' }); }; reader.onerror = function () { reject(reader.error); }; reader.readAsDataURL(file); }); }
+  function getLocalPosts(page) { return readStorage(STORAGE_POSTS, []).filter(function (post) { return post.page === page; }).sort(function (a, b) { return (Number(b.pinned || 0) - Number(a.pinned || 0)) || ((b.id || 0) - (a.id || 0)); }); }
+  function addLocalPost(post) { var posts = readStorage(STORAGE_POSTS, []); posts.push(post); writeStorage(STORAGE_POSTS, posts); }
+  function deleteLocalPost(id) { var posts = readStorage(STORAGE_POSTS, []).filter(function (post) { return String(post.id) !== String(id); }); writeStorage(STORAGE_POSTS, posts); }
+  function toggleLocalPostPin(id, pinned) { var posts = readStorage(STORAGE_POSTS, []).map(function (post) { if (String(post.id) === String(id) && post.page === 'warnings') post.pinned = pinned ? 1 : 0; return post; }); writeStorage(STORAGE_POSTS, posts); }
+  function getLocalSchedule() { return readStorage(STORAGE_SCHEDULE, []); }
+  function upsertSchedule(row) { var rows = getLocalSchedule().filter(function (item) { return !(item.class_name === row.class_name && item.day === row.day && String(item.lesson_number) === String(row.lesson_number)); }); rows.push(row); writeStorage(STORAGE_SCHEDULE, rows); }
+  function deleteLocalSchedule(row) { var rows = getLocalSchedule().filter(function (item) { return !(String(item.id || '') === String(row.id || '') || (item.class_name === row.class_name && item.day === row.day && String(item.lesson_number) === String(row.lesson_number))); }); writeStorage(STORAGE_SCHEDULE, rows); }
+  var pageSelect = document.getElementById('page'); var form = document.getElementById('postForm'); var status = document.getElementById('status'); var postsEl = document.getElementById('posts'); var content = document.getElementById('content'); var title = document.getElementById('title'); var files = document.getElementById('files'); var postFields = document.getElementById('postFields'); var scheduleFields = document.getElementById('scheduleFields'); var contentBlock = document.getElementById('contentBlock'); var fileChosen = document.getElementById('fileChosen');
+  var ITEMS_PER_PAGE = 3; var currentListPage = 1; var currentListTotal = 0;
+  var config = { news: ['Заголовок новости', 'Текст новости', 'Фотографии к новости', 'image/*', true, 'Можно выбрать несколько фотографий.'], gallery: ['Описание фотографии', 'Описание', 'Фото для галереи', 'image/*', true, 'Фото будут отображаться первыми в gallery.html.'], warnings: ['Заголовок объявления', 'Текст объявления', 'Фото к объявлению', 'image/*', false, 'Заголовок будет выводиться жирным шрифтом.'], information: ['Название документа', 'Описание документа', 'Документ', '.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt', false, 'Документ попадёт в блок «Документы» на total.html.'] };
+  function setMode(page) { currentListPage = 1; var pinRowEl = document.getElementById('pinRow'); var pinInputEl = document.getElementById('pinPost'); if (pinRowEl) pinRowEl.classList.toggle('active', page === 'warnings'); if (pinInputEl && page !== 'warnings') pinInputEl.checked = false; if (page === 'schedule') { postFields.style.display = 'none'; scheduleFields.style.display = 'block'; loadSchedule(); return; } postFields.style.display = 'block'; scheduleFields.style.display = 'none'; var current = config[page] || config.news; var hideDescription = (page === 'gallery' || page === 'information'); document.getElementById('titleLabel').textContent = current[0]; if (contentBlock) contentBlock.classList.toggle('is-hidden', hideDescription); if (!hideDescription) document.getElementById('contentLabel').textContent = current[1]; else content.value = ''; document.getElementById('fileLabel').textContent = current[2]; files.accept = current[3]; files.multiple = current[4]; if (fileChosen) fileChosen.textContent = 'Файл не выбран'; document.getElementById('fileNote').textContent = current[5]; loadPosts(); }
+  function renderPagination(total, type) {
+    currentListTotal = total || 0;
+    var totalPages = Math.max(1, Math.ceil(currentListTotal / ITEMS_PER_PAGE));
+    if (currentListPage > totalPages) currentListPage = totalPages;
+    if (currentListPage < 1) currentListPage = 1;
+    if (totalPages <= 1) return '';
+    var html = '<div class="pagination">';
+    html += '<button class="page-btn" data-page-nav="prev" ' + (currentListPage === 1 ? 'disabled' : '') + '><i class="fa-solid fa-chevron-left"></i></button>';
+    for (var i = 1; i <= totalPages; i++) html += '<button class="page-btn ' + (i === currentListPage ? 'active' : '') + '" data-page-nav="' + i + '">' + i + '</button>';
+    html += '<button class="page-btn" data-page-nav="next" ' + (currentListPage === totalPages ? 'disabled' : '') + '><i class="fa-solid fa-chevron-right"></i></button>';
+    html += '<span class="page-info">' + currentListPage + ' / ' + totalPages + '</span></div>';
+    return html;
+  }
+  function pageSlice(items) {
+    var totalPages = Math.max(1, Math.ceil((items || []).length / ITEMS_PER_PAGE));
+    if (currentListPage > totalPages) currentListPage = totalPages;
+    if (currentListPage < 1) currentListPage = 1;
+    var start = (currentListPage - 1) * ITEMS_PER_PAGE;
+    return (items || []).slice(start, start + ITEMS_PER_PAGE);
+  }
+  function renderPosts(posts) {
+    posts = (posts || []).sort(function (a, b) { return (Number(b.pinned || 0) - Number(a.pinned || 0)) || ((b.id || 0) - (a.id || 0)); });
+    if (!posts.length) { postsEl.innerHTML = '<p>Записей пока нет.</p>'; return; }
+    var visiblePosts = pageSlice(posts);
+    postsEl.innerHTML = visiblePosts.map(function (post) {
+      var postFiles = post.files || [];
+      var filesHtml = postFiles.map(function (file) { var imageHtml = String(file.type || '').startsWith('image/') ? '<img class="preview" src="' + esc(file.path) + '" alt="">' : ''; return '<div><a href="' + esc(file.path) + '" target="_blank"><i class="fa-solid fa-paperclip"></i> ' + esc(file.name || 'Файл') + '</a></div>' + imageHtml; }).join('');
+      var pinned = Number(post.pinned || 0) === 1;
+      var pinButton = post.page === 'warnings' ? '<button class="pin-action" data-pin-id="' + esc(post.id) + '" data-pin-state="' + (pinned ? '0' : '1') + '"><i class="fa-solid fa-thumbtack"></i> ' + (pinned ? 'Открепить' : 'Закрепить') + '</button>' : '';
+      var badgeClass = pinned ? 'badge pin-badge' : 'badge';
+      var badgeText = (pinned ? 'Закреплено · ' : '') + post.page + ' · ' + fmt(post.created_at);
+      return '<article class="post ' + (pinned ? 'pinned' : '') + '"><div class="post-top"><span class="' + badgeClass + '">' + esc(badgeText) + '</span><div class="post-actions">' + pinButton + '<button class="delete" data-id="' + esc(post.id) + '">Удалить</button></div></div><h4>' + esc(post.title) + '</h4><p>' + esc(post.content) + '</p>' + filesHtml + '</article>';
+    }).join('') + renderPagination(posts.length, 'posts');
+  }
+  async function loadPosts() { postsEl.innerHTML = '<p>Загрузка...</p>'; try { var response = await apiFetch('/api/admin/posts?page=' + encodeURIComponent(pageSelect.value)); var data = await response.json().catch(function () { return {}; }); if (!response.ok || !data.success) throw new Error(data.error || 'Ошибка загрузки'); renderPosts(data.posts || []); } catch (error) { var posts = getLocalPosts(pageSelect.value); renderPosts(posts); if (!posts.length) postsEl.innerHTML = '<p>' + esc(error.message) + '</p>'; } }
+  function renderSchedule(rows) {
+    rows = rows || [];
+    if (!rows.length) { postsEl.innerHTML = '<p>Замен пока нет.</p>'; return; }
+    var visibleRows = pageSlice(rows);
+    postsEl.innerHTML = visibleRows.map(function (row) {
+      var key = [row.class_name, row.day, row.lesson_number].map(function (v) { return encodeURIComponent(String(v || '')); }).join('|'); var roomText = row.room ? ('каб.' + String(row.room).replace(/^каб\.?\s*/i, '')) : ''; var roomHtml = roomText ? '<p><b>Кабинет:</b> ' + esc(roomText) + '</p>' : ''; return '<article class="post"><div class="post-top"><span class="badge">' + esc(row.class_name) + ' · ' + esc(row.day) + ' · ' + esc(row.lesson_number) + ' урок</span><button class="delete delete-schedule" data-id="' + esc(row.id || '') + '" data-class="' + esc(row.class_name) + '" data-day="' + esc(row.day) + '" data-lesson="' + esc(row.lesson_number) + '" data-sub-index="' + esc(row.sub_index || 0) + '" data-key="' + esc(key) + '">Удалить</button></div><h4>' + esc(row.subject || '---') + '</h4>' + roomHtml + '<p>Обновлено: ' + esc(fmt(row.updated_at)) + '</p></article>';
+    }).join('') + renderPagination(rows.length, 'schedule');
+  }
+  async function loadSchedule() { postsEl.innerHTML = '<p>Загрузка замен...</p>'; try { var response = await apiFetch('/api/admin/schedule'); var data = await response.json().catch(function () { return {}; }); if (!response.ok || !data.success) throw new Error(data.error || 'Ошибка загрузки'); renderSchedule(data.overrides || []); } catch (error) { var rows = getLocalSchedule(); renderSchedule(rows); if (!rows.length) postsEl.innerHTML = '<p>' + esc(error.message) + '</p>'; } }
+  document.querySelectorAll('.sidebar button[data-page]').forEach(function (button) { button.onclick = function () { document.querySelectorAll('.sidebar button').forEach(function (item) { item.classList.remove('active'); }); button.classList.add('active'); showAdminPanel(); pageSelect.value = button.dataset.page; setMode(button.dataset.page); }; });
+  var adminButton = document.querySelector('.sidebar button[data-tab="admin"]');
+  if (adminButton) adminButton.onclick = function () { document.querySelectorAll('.sidebar button').forEach(function (item) { item.classList.remove('active'); }); adminButton.classList.add('active'); showAdminPanel(); pageSelect.value = pageSelect.value || 'news'; setMode(pageSelect.value); };
+  pageSelect.onchange = function () { var button = document.querySelector('.sidebar button[data-page="' + pageSelect.value + '"]'); if (button) button.click(); else setMode(pageSelect.value); };
+  document.querySelectorAll('.tool-btn[data-cmd]').forEach(function (button) { button.onclick = function () { var start = content.selectionStart; var end = content.selectionEnd; var selected = content.value.slice(start, end); var replacement = selected; if (button.dataset.cmd === 'bold') replacement = '**' + (selected || 'жирный текст') + '**'; if (button.dataset.cmd === 'italic') replacement = '_' + (selected || 'курсив') + '_'; if (button.dataset.cmd === 'insertUnorderedList') replacement = selected ? selected.split('\n').map(function (line) { return '• ' + line; }).join('\n') : '• пункт списка'; content.setRangeText(replacement, start, end, 'end'); content.focus(); }; });
+  document.getElementById('clearText').onclick = function () { content.value = ''; };
+  if (files && fileChosen) files.addEventListener('change', function () { var list = Array.from(files.files || []); if (!list.length) { fileChosen.textContent = 'Файл не выбран'; return; } fileChosen.textContent = list.length === 1 ? list[0].name : ('Выбрано файлов: ' + list.length); });
+  postsEl.onclick = async function (event) {
+    var pageNav = event.target.closest('[data-page-nav]');
+    if (pageNav) {
+      var nav = pageNav.dataset.pageNav;
+      var totalPages = Math.max(1, Math.ceil(currentListTotal / ITEMS_PER_PAGE));
+      if (nav === 'prev') currentListPage--;
+      else if (nav === 'next') currentListPage++;
+      else currentListPage = parseInt(nav, 10) || 1;
+      if (currentListPage < 1) currentListPage = 1;
+      if (currentListPage > totalPages) currentListPage = totalPages;
+      if (pageSelect.value === 'schedule') await loadSchedule(); else await loadPosts();
+      return;
+    }
+    var pinButton = event.target.closest('[data-pin-id]');
+    if (pinButton) {
+      var pinId = pinButton.dataset.pinId;
+      var nextPinned = pinButton.dataset.pinState === '1';
+      toggleLocalPostPin(pinId, nextPinned);
+      try {
+        var pr = await apiFetch('/api/admin/posts/' + encodeURIComponent(pinId) + '/pin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pinned: nextPinned }) });
+        var pd = await pr.json().catch(function () { return {}; });
+        if (!pr.ok || !pd.success) throw new Error(pd.error || 'Сервер не изменил закрепление');
+        status.className = 'status ok';
+        status.textContent = nextPinned ? 'Объявление закреплено.' : 'Объявление откреплено.';
+      } catch (e) {
+        status.className = 'status ok';
+        status.textContent = 'Закрепление изменено локально. Для общей публикации запустите обновлённый server.py.';
+      }
+      await loadPosts();
+      return;
+    }
+    var scheduleButton = event.target.closest('.delete-schedule');
+    if (scheduleButton) {
+      if (!confirm('Отменить замену предмета?')) return;
+      var row = { id: scheduleButton.dataset.id || '', class_name: scheduleButton.dataset.class || '', day: scheduleButton.dataset.day || '', lesson_number: scheduleButton.dataset.lesson || '', sub_index: scheduleButton.dataset.subIndex || '0' };
+      deleteLocalSchedule(row);
+      try {
+        var url = '/api/admin/schedule?class_name=' + encodeURIComponent(row.class_name) + '&day=' + encodeURIComponent(row.day) + '&lesson_number=' + encodeURIComponent(row.lesson_number) + '&sub_index=' + encodeURIComponent(row.sub_index || '0');
+        if (row.id) url = '/api/admin/schedule/' + encodeURIComponent(row.id);
+        var response = await apiFetch(url, { method: 'DELETE' });
+        var data = await response.json().catch(function () { return {}; });
+        if (!response.ok || !data.success) throw new Error(data.error || 'Сервер не удалил замену');
+        status.className = 'status ok';
+        status.textContent = 'Замена предмета удалена.';
+      } catch (e) {
+        status.className = 'status ok';
+        status.textContent = 'Замена удалена локально. Если она снова появится, перезапустите server.py с обновлённым кодом.';
+      }
+      await loadSchedule();
+      return;
+    }
+    var button = event.target.closest('.delete');
+    if (!button || !confirm('Удалить запись?')) return;
+    try { await apiFetch('/api/admin/posts/' + button.dataset.id, { method: 'DELETE' }); } catch (e) { deleteLocalPost(button.dataset.id); }
+    loadPosts();
+  };
+  form.onsubmit = async function (event) { event.preventDefault(); status.className = 'status'; status.textContent = 'Сохраняем...'; try { var local = false; if (pageSelect.value === 'schedule') { var subjectRaw = document.getElementById('subject').value; var subjectValue = subjectRaw.trim(); var roomValue = document.getElementById('room').value.trim(); var lessonValue = String(document.getElementById('lessonNumber').value || '').trim(); if (!lessonValue) throw new Error('Выберите номер урока. Пустым может быть предмет, но не номер урока.'); if (!subjectValue || subjectValue === '---') { subjectValue = ''; roomValue = ''; } var row = { class_name: document.getElementById('className').value, day: document.getElementById('day').value, lesson_number: lessonValue, sub_index: 0, subject: subjectValue, room: roomValue, updated_at: new Date().toISOString() }; try { var sr = await apiFetch('/api/admin/schedule', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(row) }); var sd = await sr.json().catch(function () { return {}; }); if (!sr.ok || !sd.success) throw new Error(sd.error || 'Ошибка сохранения'); } catch (e) { upsertSchedule(row); local = true; } } else { var page = pageSelect.value; var postTitle = title.value.trim() || (page === 'gallery' ? 'Фотография' : ''); if (!postTitle) throw new Error('Введите заголовок или название'); var fd = new FormData(); fd.append('page', page); fd.append('title', postTitle); fd.append('content', (page === 'gallery' || page === 'information') ? '' : content.value); fd.append('author', getUser().full_name || 'Администратор'); fd.append('pinned', (page === 'warnings' && document.getElementById('pinPost') && document.getElementById('pinPost').checked) ? '1' : '0'); Array.from(files.files).forEach(function (file) { fd.append('files', file); }); try { var pr = await apiFetch('/api/admin/posts', { method: 'POST', body: fd }); var pd = await pr.json().catch(function () { return {}; }); if (!pr.ok || !pd.success) throw new Error(pd.error || 'Ошибка сохранения'); } catch (e) { addLocalPost({ id: Date.now(), page: page, title: postTitle, content: (page === 'gallery' || page === 'information') ? '' : content.value, author: getUser().full_name || 'Администратор', files: await Promise.all(Array.from(files.files).map(fileData)), likes: 0, pinned: (page === 'warnings' && document.getElementById('pinPost') && document.getElementById('pinPost').checked) ? 1 : 0, created_at: new Date().toISOString() }); local = true; } } status.className = 'status ok'; status.textContent = local ? 'Сохранено локально. Для общей публикации запустите server.py.' : 'Сохранено и опубликовано.'; var savedPage = pageSelect.value || 'news'; form.reset(); pageSelect.value = savedPage; setMode(savedPage); } catch (error) { status.className = 'status err'; status.textContent = error.message || 'Не удалось сохранить запись.'; } };
+
+
+  var avatarColorsFull = [
+    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+    'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+    'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)',
+    'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
+    'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+    'linear-gradient(135deg, #2af598 0%, #009efd 100%)'
+  ];
+  var profilePhotoDraft = getUser().profile_photo || '';
+  var profileColorDraft = getUser().avatar_color || '';
+  var cropper = null;
+  var objectUrlForCrop = null;
+  function profileDefaultColor(name) { var h = 0; name = String(name || 'Администратор'); for (var i = 0; i < name.length; i++) h = name.charCodeAt(i) + ((h << 5) - h); return avatarColorsFull[Math.abs(h) % avatarColorsFull.length]; }
+  function setProfileAvatar(el, name, color, photo) {
+    if (!el) return;
+    if (photo) {
+      el.classList.add('has-photo');
+      el.style.removeProperty('background');
+      el.style.setProperty('background-image', 'url("' + photo + '")', 'important');
+      el.style.setProperty('background-size', 'cover', 'important');
+      el.style.setProperty('background-position', 'center', 'important');
+      el.style.setProperty('background-color', 'transparent', 'important');
+      el.textContent = '';
+    }
+    else {
+      el.classList.remove('has-photo');
+      el.style.removeProperty('background-image');
+      el.style.removeProperty('background-size');
+      el.style.removeProperty('background-position');
+      el.style.removeProperty('background-color');
+      el.style.setProperty('background', color || profileDefaultColor(name), 'important');
+      el.textContent = initials(name || 'А');
+    }
+  }
+  function refreshHeaderProfile() {
+    var user = getUser();
+    var display = user.full_name || user.login || 'Администратор';
+    var nameEl = document.getElementById('userName'); var roleEl = document.getElementById('userRole'); var avatarEl = document.getElementById('userAvatar');
+    if (nameEl) nameEl.textContent = display; if (roleEl) roleEl.textContent = user.role || 'Администратор'; setProfileAvatar(avatarEl, display, user.avatar_color, user.profile_photo);
+  }
+  function updateProfilePreview() {
+    var fullName = (document.getElementById('profileFullName') || {}).value || getUser().full_name || getUser().login || 'Администратор';
+    var role = (document.getElementById('profileRole') || {}).value || getUser().role || 'Администратор';
+    var color = profileColorDraft || profileDefaultColor(fullName);
+    setProfileAvatar(document.getElementById('profileAvatarPreview'), fullName, color, profilePhotoDraft);
+    var n = document.getElementById('profilePreviewName'); var r = document.getElementById('profilePreviewRoleLabel');
+    if (n) n.textContent = fullName; if (r) r.textContent = role;
+    var removeBtn = document.getElementById('removeProfilePhotoBtn'); if (removeBtn) removeBtn.style.display = profilePhotoDraft ? 'inline-flex' : 'none';
+  }
+  function initAvatarColorPicker() {
+    var container = document.getElementById('avatarColors'); if (!container) return; container.innerHTML = '';
+    avatarColorsFull.forEach(function (color) { var option = document.createElement('div'); option.className = 'avatar-color-option'; option.style.background = color; option.dataset.color = color; if (color === profileColorDraft) option.classList.add('active'); option.onclick = function () { document.querySelectorAll('.avatar-color-option').forEach(function (o) { o.classList.remove('active'); }); option.classList.add('active'); profileColorDraft = color; var user = getUser(); user.avatar_color = color; saveUser(user); localStorage.setItem('avatar_color', color); persistAdminProfileToServer(user, false); updateProfilePreview(); refreshHeaderProfile(); if (messageUserCache) messageUserCache.set(user.login, normalizeMessageUser(user.login, user)); refreshVisibleAvatarsForLogin(user.login); }; container.appendChild(option); });
+  }
+  function initProfilePhotoControls() {
+    var input = document.getElementById('profilePhotoInput'); var uploadBtn = document.getElementById('uploadProfilePhotoBtn'); var removeBtn = document.getElementById('removeProfilePhotoBtn');
+    if (uploadBtn && input) uploadBtn.onclick = function () { input.click(); };
+    if (input) input.onchange = function (event) { var file = event.target.files && event.target.files[0]; if (!file) return; if (!file.type.startsWith('image/')) { alert('Выберите файл изображения'); input.value = ''; return; } if (file.size > 8 * 1024 * 1024) { alert('Размер фото не должен превышать 8 МБ'); input.value = ''; return; } openPhotoCropModal(file); input.value = ''; };
+    if (removeBtn) removeBtn.onclick = function () { profilePhotoDraft = ''; var user = getUser(); user.profile_photo = ''; saveUser(user); localStorage.removeItem('profile_photo'); persistAdminProfileToServer(user, true); updateProfilePreview(); refreshHeaderProfile(); if (messageUserCache) messageUserCache.set(user.login, normalizeMessageUser(user.login, user)); refreshVisibleAvatarsForLogin(user.login); };
+  }
+  function openPhotoCropModal(file) {
+    var modal = document.getElementById('photoCropModal');
+    var image = document.getElementById('cropperImage');
+    if (!modal || !image) return;
+    if (cropper) { cropper.destroy(); cropper = null; }
+    if (objectUrlForCrop) { URL.revokeObjectURL(objectUrlForCrop); objectUrlForCrop = null; }
+    if (typeof Cropper === 'undefined') {
+      alert('Модуль обрезки фото не загрузился. Проверьте подключение cropper.min.js.');
+      return;
+    }
+
+    objectUrlForCrop = URL.createObjectURL(file);
+    image.onload = function () {
+      image.onload = null;
+      // Даём браузеру полностью показать модальное окно, затем создаём Cropper.
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          if (cropper) { cropper.destroy(); cropper = null; }
+          cropper = new Cropper(image, {
+            aspectRatio: 1,
+            viewMode: 1,
+            dragMode: 'move',
+            autoCropArea: 0.9,
+            background: false,
+            responsive: true,
+            restore: false,
+            checkOrientation: true,
+            preview: '#photoCropModal .cropper-preview-sm, #photoCropModal .cropper-preview-lg',
+            ready: function () {
+              try {
+                var container = cropper.getContainerData();
+                var size = Math.round(Math.min(container.width, container.height) * 0.72);
+                cropper.setCropBoxData({
+                  width: size,
+                  height: size,
+                  left: (container.width - size) / 2,
+                  top: (container.height - size) / 2
+                });
+                cropper.crop();
+              } catch (e) {}
+            }
+          });
+        });
+      });
+    };
+    image.onerror = function () {
+      image.onerror = null;
+      alert('Не удалось загрузить выбранное изображение для обрезки.');
+      closePhotoCropModal();
+    };
+    modal.style.display = 'block';
+    image.classList.remove('cropper-hidden');
+    image.removeAttribute('src');
+    image.src = objectUrlForCrop;
+  }
+  window.closePhotoCropModal = function () { var modal = document.getElementById('photoCropModal'); if (modal) modal.style.display = 'none'; if (cropper) { cropper.destroy(); cropper = null; } if (objectUrlForCrop) { URL.revokeObjectURL(objectUrlForCrop); objectUrlForCrop = null; } };
+  window.applyCroppedPhoto = function () { if (!cropper) return; var canvas = cropper.getCroppedCanvas({ width: 360, height: 360, imageSmoothingEnabled: true, imageSmoothingQuality: 'high' }); if (!canvas) return; profilePhotoDraft = canvas.toDataURL('image/jpeg', 0.88); var user = getUser(); user.profile_photo = profilePhotoDraft; saveUser(user); localStorage.setItem('profile_photo', profilePhotoDraft); persistAdminProfileToServer(user, false); updateProfilePreview(); refreshHeaderProfile(); if (messageUserCache) messageUserCache.set(user.login, normalizeMessageUser(user.login, user)); refreshVisibleAvatarsForLogin(user.login); closePhotoCropModal(); };
+  window.openProfileModal = function () { var user = getUser(); profilePhotoDraft = user.profile_photo || ''; profileColorDraft = user.avatar_color || profileDefaultColor(user.full_name || user.login || 'Администратор'); var roleEl = document.getElementById('profileRole'); var nameEl = document.getElementById('profileFullName'); if (roleEl) roleEl.value = user.role || 'Администратор'; if (nameEl) { nameEl.value = user.full_name || user.login || 'Администратор'; nameEl.oninput = updateProfilePreview; } if (roleEl) roleEl.onchange = updateProfilePreview; initAvatarColorPicker(); initProfilePhotoControls(); updateProfilePreview(); var modal = document.getElementById('profileModal'); if (modal) { modal.style.display = 'block';  } };
+  window.closeProfileModal = function () { var modal = document.getElementById('profileModal'); if (modal) { modal.style.display = 'none';  } };
+
+  function bindHeaderProfileClick() {
+    document.querySelectorAll('#userBlock, .user-block').forEach(function(block){
+      if (block.dataset.profileClickBound === '1') return;
+      block.dataset.profileClickBound = '1';
+      if (block.tagName === 'A') block.setAttribute('href', 'javascript:void(0)');
+      block.addEventListener('click', function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+        if (typeof window.openProfileModal === 'function') window.openProfileModal();
+        return false;
+      }, true);
+    });
+  }
+  window.bindHeaderProfileClick = bindHeaderProfileClick;
+  bindHeaderProfileClick();
+  setTimeout(bindHeaderProfileClick, 0);
+  setTimeout(bindHeaderProfileClick, 300);
+  window.saveProfile = async function () {
+    var current = getUser();
+    var role = (document.getElementById('profileRole') || {}).value || current.role || 'Администратор';
+    var fullName = ((document.getElementById('profileFullName') || {}).value || '').trim() || current.login || 'Администратор';
+    var finalColor = profileColorDraft || profileDefaultColor(fullName);
+    var updated = Object.assign({}, current, { role: role, full_name: fullName, avatar_color: finalColor, profile_photo: profilePhotoDraft || '' });
+    saveUser(updated); refreshHeaderProfile();
+    if (messageUserCache) {
+      messageUserCache.set(updated.login, normalizeMessageUser(updated.login, updated));
+      messageLoginAliases.forEach(function(alias){ if (alias) messageUserCache.set(alias, normalizeMessageUser(alias, Object.assign({}, updated, {login: alias}))); });
+    }
+    refreshVisibleAvatarsForLogin(updated.login);
+    try {
+      var saved = await apiJson('/api/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ login: updated.login, password: localStorage.getItem('password') || sessionStorage.getItem('password') || '', role: role, email: updated.email || '', school: updated.school || '', full_name: fullName, avatar_color: finalColor, profile_photo: profilePhotoDraft || '', profile_photo_clear: !profilePhotoDraft && !!current.profile_photo }) });
+      if (saved.user) {
+        var savedUser = Object.assign({}, updated, saved.user, {
+          avatar_color: finalColor || updated.avatar_color || saved.user.avatar_color,
+          profile_photo: (saved.user.profile_photo !== undefined && saved.user.profile_photo !== '') ? saved.user.profile_photo : (updated.profile_photo || '')
+        });
+        saveUser(savedUser);
+        updated = savedUser;
+      }
+      if (messageUserCache) { messageUserCache.clear(); messageUserCache.set(updated.login, normalizeMessageUser(updated.login, updated)); }
+      refreshHeaderProfile();
+      refreshVisibleAvatarsForLogin(updated.login);
+      saveUser(Object.assign({}, getUser(), { avatar_color: finalColor, profile_photo: profilePhotoDraft || '' }));
+      refreshHeaderProfile();
+      refreshVisibleAvatarsForLogin(updated.login);
+      if (typeof loadMessages === 'function') await loadMessages();
+      closeProfileModal(); alert('Профиль успешно сохранён!');
+    } catch (e) { closeProfileModal(); alert('Профиль сохранён локально. Сервер не ответил: ' + e.message); }
+  };
+
+  var currentPartner = null;
+  var allMessages = [];
+  var dialogsMap = new Map();
+  var messagesInitialized = false;
+  var messageLoginAliases = [];
+
+  var messageUserCache = new Map();
+  function chatRoleClass(role){ return 'role-' + String(role || 'Пользователь').replace(/\s+/g, '-'); }
+  function roleBadgeHtml(role){ var r = role || 'Пользователь'; return '<span class="role-badge ' + chatRoleClass(r) + '">' + esc(r) + '</span>'; }
+  function ownMessageProfile(login) {
+    var local = getUser();
+    var own = Object.assign({ login: currentLogin(), role: 'Администратор', full_name: currentLogin(), avatar_color: avatarColor(currentLogin()), profile_photo: '' }, local || {});
+    own.login = login || own.login || currentLogin();
+    own.full_name = own.full_name || own.login || 'Администратор';
+    own.role = own.role || 'Администратор';
+    own.avatar_color = own.avatar_color || avatarColor(own.full_name || own.login);
+    own.profile_photo = own.profile_photo || localStorage.getItem('profile_photo') || '';
+    return own;
+  }
+  function normalizeMessageUser(login, user) {
+    login = String(login || (user && user.login) || '').trim();
+    var base = { login: login, full_name: login, role: 'Пользователь', avatar_color: avatarColor(login), profile_photo: '' };
+    var result = Object.assign(base, user || {});
+    result.login = login || result.login;
+    if (isOwnMessageLogin(result.login)) {
+      result = Object.assign(result, ownMessageProfile(result.login));
+    }
+    result.full_name = result.full_name || result.login;
+    result.role = result.role || 'Пользователь';
+    result.avatar_color = result.avatar_color || avatarColor(result.full_name || result.login);
+    result.profile_photo = result.profile_photo || '';
+    return result;
+  }
+  async function getMessageUser(login){
+    login = String(login || '').trim();
+    if (!login) return {login:'', full_name:'', role:'Пользователь', avatar_color:avatarColor(''), profile_photo:''};
+    if (messageUserCache.has(login)) return normalizeMessageUser(login, messageUserCache.get(login));
+    var user = normalizeMessageUser(login, null);
+    try {
+      var data = await apiJson('/api/user_info?login=' + encodeURIComponent(login));
+      if (data.success && data.user) user = normalizeMessageUser(login, Object.assign(user, data.user));
+    } catch(e) { console.warn('Не удалось получить сведения пользователя', login, e); }
+    messageUserCache.set(login, user);
+    return user;
+  }
+  function displayNameFor(login){ var u = normalizeMessageUser(login, messageUserCache.get(login)); return (u && (u.full_name || u.login)) || login; }
+  function roleFor(login){ var u = normalizeMessageUser(login, messageUserCache.get(login)); return (u && u.role) || 'Пользователь'; }
+  function userPhoto(login){ var u = normalizeMessageUser(login, messageUserCache.get(login)); return (u && u.profile_photo) || ''; }
+  function userColor(login){ var u = normalizeMessageUser(login, messageUserCache.get(login)); return (u && u.avatar_color) || avatarColor(login); }
+  function mergeMessageUsers(users){
+    if (!Array.isArray(users)) return;
+    users.forEach(function(user){
+      if (!user || !user.login) return;
+      var login = String(user.login).trim();
+      if (!login) return;
+      var existing = messageUserCache.get(login) || {login:login, full_name:login, role:'Пользователь', avatar_color:avatarColor(login), profile_photo:''};
+      messageUserCache.set(login, normalizeMessageUser(login, Object.assign(existing, user)));
+    });
+  }
+  async function preloadMessageUsers(){
+    var users = new Set([currentLogin()]);
+    messageLoginAliases.forEach(function(login){ if (login) users.add(login); });
+    allMessages.forEach(function(m){ if(m.sender) users.add(m.sender); if(m.recipient) users.add(m.recipient); });
+    await Promise.all(Array.from(users).map(getMessageUser));
+  }
+  function avatarHtml(login, cls){
+    var name = displayNameFor(login);
+    var photo = userPhoto(login);
+    if (photo) return '<div class="' + cls + ' has-photo" data-login="' + esc(login) + '"><img src="' + esc(photo) + '" alt=""></div>';
+    return '<div class="' + cls + '" data-login="' + esc(login) + '" style="background:' + esc(userColor(login)) + ' !important;">' + esc(initials(name || login)) + '</div>';
+  }
+
+  function currentLogin() { return localStorage.getItem('login') || getUser().login || 'admin'; }
+  function isOwnMessageLogin(login) { login = String(login || ''); return login === currentLogin() || messageLoginAliases.indexOf(login) !== -1; }
+  function initials(name) { return String(name || '?').trim().charAt(0).toUpperCase() || '?'; }
+  function avatarColor(name) { var colors = ['linear-gradient(135deg,#667eea,#764ba2)','linear-gradient(135deg,#4facfe,#00f2fe)','linear-gradient(135deg,#43e97b,#38f9d7)','linear-gradient(135deg,#fa709a,#fee140)','linear-gradient(135deg,#f093fb,#f5576c)']; var h = 0; name = String(name || ''); for (var i = 0; i < name.length; i++) h = name.charCodeAt(i) + ((h << 5) - h); return colors[Math.abs(h) % colors.length]; }
+  function setAvatar(el, name, color, photo) { if (!el) return; if (photo) { el.classList.add('has-photo'); el.style.removeProperty('background'); el.style.setProperty('background-image', 'url("' + photo + '")', 'important'); el.style.setProperty('background-size', 'cover', 'important'); el.style.setProperty('background-position', 'center', 'important'); el.style.setProperty('background-color', 'transparent', 'important'); el.textContent = ''; } else { el.classList.remove('has-photo'); el.style.removeProperty('background-image'); el.style.removeProperty('background-size'); el.style.removeProperty('background-position'); el.style.removeProperty('background-color'); el.style.setProperty('background', color || avatarColor(name), 'important'); el.textContent = initials(name); } }
+  function refreshVisibleAvatarsForLogin(login) {
+    login = String(login || currentLogin() || '').trim();
+    if (!login) return;
+    var user = normalizeMessageUser(login, messageUserCache && messageUserCache.get(login));
+    if (isOwnMessageLogin(login)) user = ownMessageProfile(login);
+    document.querySelectorAll('[data-login="' + CSS.escape(login) + '"]').forEach(function(el){ setAvatar(el, user.full_name || user.login, user.avatar_color, user.profile_photo); });
+    if (isOwnMessageLogin(login)) setProfileAvatar(document.getElementById('userAvatar'), user.full_name || user.login, user.avatar_color, user.profile_photo);
+  }
+  async function apiJson(path, options) { var response = await apiFetch(path, options || {}); var data = await response.json().catch(function () { return {}; }); if (!response.ok || data.success === false) throw new Error(data.error || 'Ошибка запроса'); return data; }
+  async function syncCurrentUserFromServer() {
+    var login = currentLogin();
+    if (!login) return;
+    try {
+      var data = await apiJson('/api/user_info?login=' + encodeURIComponent(login));
+      if (!data.success || !data.user) return;
+      var current = getUser();
+      var merged = Object.assign({}, current, data.user, {
+        login: data.user.login || current.login || login,
+        avatar_color: current.avatar_color || data.user.avatar_color || avatarColor(login),
+        profile_photo: (current.profile_photo !== undefined && current.profile_photo !== '') ? current.profile_photo : ((data.user.profile_photo !== undefined && data.user.profile_photo !== '') ? data.user.profile_photo : '')
+      });
+      saveUser(merged);
+      if (messageUserCache) {
+        messageUserCache.set(login, Object.assign({login:login, full_name:login, role:'Администратор', avatar_color:avatarColor(login), profile_photo:''}, merged));
+      }
+      refreshHeaderProfile();
+      refreshVisibleAvatarsForLogin(login);
+    } catch (e) {
+      console.warn('Не удалось синхронизировать профиль администратора', e);
+    }
+  }
+  var adminTeacherState = { data: null, journalClassMap: {}, subjectById: {} };
+  function teacherEl(id) { return document.getElementById(id); }
+  window.teacherEl = teacherEl;
+  function initTeacherDates() {
+    var start = teacherEl('teacherDateStart'); var end = teacherEl('teacherDateEnd');
+    if (!start || !end || start.value || end.value) return;
+    var now = new Date(); var day = now.getDay() || 7;
+    var monday = new Date(now); monday.setDate(now.getDate() - day + 1);
+    var sunday = new Date(monday); sunday.setDate(monday.getDate() + 13);
+    start.value = monday.toISOString().slice(0, 10);
+    end.value = sunday.toISOString().slice(0, 10);
+  }
+  function adminTeacherPayload(extra) {
+    var user = getUser();
+    return Object.assign({
+      login: user.login || localStorage.getItem('login') || '',
+      password: sessionStorage.getItem('password') || localStorage.getItem('password') || '',
+      role: user.role || localStorage.getItem('role') || 'Администратор',
+      school: user.school || localStorage.getItem('school') || 'МКОУ Буерак-Поповская СШ',
+      start: (teacherEl('teacherDateStart') || {}).value || '',
+      end: (teacherEl('teacherDateEnd') || {}).value || ''
+    }, extra || {});
+  }
+  async function postTeacherApi(path, payload) {
+    return apiJson(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload || {}) });
+  }
+  window.refreshAdminTeacherData = async function () {
+    initTeacherDates();
+    var loader = teacherEl('teacherLoader'); var scheduleLoader = teacherEl('teacherScheduleLoader');
+    if (loader) loader.classList.add('active');
+    if (scheduleLoader) scheduleLoader.classList.add('active');
+    try {
+      var data = await postTeacherApi('/api/lkteacher/dashboard', adminTeacherPayload());
+      adminTeacherState.data = data || {};
+      renderAdminTeacherData(data || {});
+    } catch (e) {
+      renderAdminTeacherError(e.message || 'Не удалось загрузить данные СГО');
+    } finally {
+      if (loader) loader.classList.remove('active');
+      if (scheduleLoader) scheduleLoader.classList.remove('active');
+    }
+  };
+  function normalizeTeacherText(value) {
+    if (value == null) return '';
+    if (typeof value === 'string' || typeof value === 'number') return String(value).trim();
+    if (typeof value === 'object') return String(value.label || value.name || value.fullName || value.title || value.value || '').trim();
+    return String(value).trim();
+  }
+  function teacherNamesFromGroup(group) {
+    var raw = group && (group.teachers || group.teacher_names || group.teacherNames) || [];
+    var names = [];
+    if (Array.isArray(raw)) raw.forEach(function (t) { var name = normalizeTeacherText(t); if (name && names.indexOf(name) === -1) names.push(name); });
+    else { var one = normalizeTeacherText(raw); if (one) names.push(one); }
+    var single = normalizeTeacherText(group && (group.teacher || group.teacherName));
+    if (single && names.indexOf(single) === -1) names.push(single);
+    return names;
+  }
+  function normalizeSubjectGroup(group) {
+    return {
+      id: normalizeTeacherText(group && (group.id || group.sgId || group.subjectGroupId)),
+      subject: normalizeTeacherText(group && (group.subject || group.subjectName || group.name || group.fullName)) || 'Без названия',
+      className: normalizeTeacherText(group && (group.className || group.class_name || group.class || group.grade)) || 'Без класса',
+      teachers: teacherNamesFromGroup(group || {})
+    };
+  }
+  function teacherClassSort(a, b) {
+    var na = parseInt((String(a).match(/\d+/) || ['999'])[0], 10);
+    var nb = parseInt((String(b).match(/\d+/) || ['999'])[0], 10);
+    if (na !== nb) return na - nb;
+    return String(a).localeCompare(String(b), 'ru');
+  }
+  function buildTeacherClassSubjectMap(subjectGroups) {
+    var map = {};
+    (subjectGroups || []).map(normalizeSubjectGroup).forEach(function (g) {
+      if (!map[g.className]) map[g.className] = {};
+      if (!map[g.className][g.subject]) map[g.className][g.subject] = { subject: g.subject, className: g.className, ids: [], teachers: [] };
+      if (g.id && map[g.className][g.subject].ids.indexOf(g.id) === -1) map[g.className][g.subject].ids.push(g.id);
+      g.teachers.forEach(function (t) { if (t && map[g.className][g.subject].teachers.indexOf(t) === -1) map[g.className][g.subject].teachers.push(t); });
+    });
+    return map;
+  }
+  window.renderAdminSelectedJournalClass = function () {
+    var sgBox = teacherEl('teacherSubjectGroupsBox'); var summary = teacherEl('teacherJournalClassSummary'); var select = teacherEl('teacherJournalClassSelect');
+    if (!sgBox || !select) return;
+    var map = adminTeacherState.journalClassMap || {};
+    var className = select.value;
+    var subjects = Object.values(map[className] || {}).sort(function (a, b) { return a.subject.localeCompare(b.subject, 'ru'); });
+    if (!className || !subjects.length) {
+      sgBox.innerHTML = '<div class="teacher-empty">Выберите класс, чтобы увидеть предметы и преподавателей.</div>';
+      if (summary) summary.innerHTML = '';
+      return;
+    }
+    var teacherCount = new Set(subjects.flatMap(function (s) { return s.teachers || []; })).size;
+    var groupCount = subjects.reduce(function (n, s) { return n + ((s.ids || []).length); }, 0);
+    if (summary) summary.innerHTML = '<div class="teacher-journal-stat"><span>Класс</span><b>' + esc(className) + '</b></div>'
+      + '<div class="teacher-journal-stat"><span>Предметов</span><b>' + esc(subjects.length) + '</b></div>'
+      + '<div class="teacher-journal-stat"><span>Преподавателей</span><b>' + esc(teacherCount || '—') + '</b></div>';
+    sgBox.innerHTML = '<div class="teacher-subject-grid">' + subjects.map(function (s) {
+      var teachers = (s.teachers && s.teachers.length)
+        ? '<div class="teacher-list">' + s.teachers.map(function (t) { return '<div class="teacher-item"><i class="fa-solid fa-user-tie"></i><span>' + esc(t) + '</span></div>'; }).join('') + '</div>'
+        : '<div class="teacher-empty">Преподаватель в ответе СГО не указан</div>';
+      var ids = s.ids && s.ids.length ? '<div class="teacher-subject-meta"><span class="teacher-chip">Групп: ' + esc(s.ids.length) + '</span><span class="teacher-chip">ID: ' + esc(s.ids.slice(0, 3).join(', ')) + (s.ids.length > 3 ? '...' : '') + '</span></div>' : '';
+      var mainId = s.ids && s.ids.length ? s.ids[0] : '';
+      if (mainId) adminTeacherState.subjectById[String(mainId)] = { subject: s.subject, className: s.className };
+      return '<div class="teacher-subject-card" onclick="openAdminTeacherSubjectCard(\'' + esc(mainId) + '\')"><div class="teacher-subject-title">' + esc(s.subject) + '</div>' + ids + '<b>Ведёт предмет:</b>' + teachers + '<div class="teacher-note">Нажмите, чтобы открыть расписание, список учеников и средние оценки.</div></div>';
+    }).join('') + '</div><div class="teacher-note">Всего субъект-групп по выбранному классу: ' + esc(groupCount) + '.</div>';
+  };
+  function renderAdminClassesAndStaff(subjectGroups) {
+    var classesBox = teacherEl('teacherClassesBox'); var staffBox = teacherEl('teacherStaffBox');
+    var classMap = {}; var staffMap = {};
+    (subjectGroups || []).map(normalizeSubjectGroup).forEach(function (g) {
+      if (!classMap[g.className]) classMap[g.className] = { className: g.className, subjects: {}, teachers: {}, groups: 0 };
+      classMap[g.className].subjects[g.subject] = true; classMap[g.className].groups += 1;
+      g.teachers.forEach(function (t) { classMap[g.className].teachers[t] = true; if (!staffMap[t]) staffMap[t] = { name: t, subjects: {}, classes: {}, groups: 0 }; staffMap[t].subjects[g.subject] = true; staffMap[t].classes[g.className] = true; staffMap[t].groups += 1; });
+    });
+    var classes = Object.values(classMap).sort(function (a, b) { return teacherClassSort(a.className, b.className); });
+    var staff = Object.values(staffMap).sort(function (a, b) { return a.name.localeCompare(b.name, 'ru'); });
+    if (classesBox) classesBox.innerHTML = classes.length ? '<div class="teacher-real-grid">' + classes.map(function (c) {
+      var subjects = Object.keys(c.subjects).sort().map(function (s) { return '<span class="teacher-mini-chip">' + esc(s) + '</span>'; }).join('');
+      var teachers = Object.keys(c.teachers).sort().map(function (t) { return '<span class="teacher-mini-chip"><i class="fa-solid fa-user-tie"></i> ' + esc(t) + '</span>'; }).join('');
+      return '<div class="teacher-real-card"><div class="teacher-real-title">' + esc(c.className) + '</div><div class="teacher-note">Субъект-групп: <b>' + esc(c.groups) + '</b></div><div class="teacher-mini-list">' + subjects + '</div><div class="teacher-mini-list">' + (teachers || '<span class="teacher-note">Преподаватели не указаны</span>') + '</div></div>';
+    }).join('') + '</div>' : '<div class="teacher-empty">Список классов не найден. Нужен успешный ответ /webapi/subjectgroups.</div>';
+    if (staffBox) staffBox.innerHTML = staff.length ? '<div class="teacher-real-grid">' + staff.map(function (t) {
+      var subjects = Object.keys(t.subjects).sort().map(function (s) { return '<span class="teacher-mini-chip">' + esc(s) + '</span>'; }).join('');
+      var classes = Object.keys(t.classes).sort(teacherClassSort).map(function (c) { return '<span class="teacher-mini-chip">' + esc(c) + '</span>'; }).join('');
+      return '<div class="teacher-real-card"><div class="teacher-real-title">' + esc(t.name || 'Преподаватель') + '</div><div class="teacher-note">Ведёт групп: <b>' + esc(t.groups) + '</b></div><div class="teacher-mini-list">' + subjects + '</div><div class="teacher-mini-list">' + classes + '</div></div>';
+    }).join('') + '</div>' : '<div class="teacher-empty">Педагогический состав не найден в текущем JSON.</div>';
+  }
+  function renderAdminJournal(data, subjectGroups) {
+    var groups = Array.isArray(subjectGroups) ? subjectGroups : [];
+    var select = teacherEl('teacherJournalClassSelect'); var summary = teacherEl('teacherJournalClassSummary'); var sgBox = teacherEl('teacherSubjectGroupsBox'); var jBox = teacherEl('teacherJournalBox');
+    if (groups.length) {
+      var map = buildTeacherClassSubjectMap(groups); adminTeacherState.journalClassMap = map;
+      var classes = Object.keys(map).sort(teacherClassSort);
+      if (select) { var previous = select.value; select.innerHTML = classes.map(function (c) { return '<option value="' + esc(c) + '">' + esc(c) + '</option>'; }).join(''); select.value = classes.indexOf(previous) !== -1 ? previous : (classes[0] || ''); }
+      window.renderAdminSelectedJournalClass();
+    } else {
+      adminTeacherState.journalClassMap = {};
+      if (select) select.innerHTML = '<option value="">Нет данных</option>';
+      if (summary) summary.innerHTML = '';
+      if (sgBox) sgBox.innerHTML = '<div class="teacher-empty">Данные предметных групп пока не получены.</div>';
+    }
+    if (!jBox) return;
+    if (data && data.journal && data.journal.found && Array.isArray(data.journal.rows)) {
+      jBox.innerHTML = '<div class="teacher-table-wrap"><table class="teacher-table"><thead><tr><th>Ученик</th><th>Предмет</th><th>Оценки</th></tr></thead><tbody>' + data.journal.rows.map(function (r) { return '<tr><td>' + esc(r.student || '—') + '</td><td>' + esc(r.subject || '—') + '</td><td>' + esc(r.marks || '—') + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    } else {
+      jBox.innerHTML = '<div class="teacher-empty">' + esc((data && data.parsed && data.parsed.journal && data.parsed.journal.message) || (data && data.journal && data.journal.message) || 'Структурированный журнал не найден. Сейчас доступен просмотр предметов и преподавателей по классам из /webapi/subjectgroups.') + '</div>';
+    }
+  }
+  function renderAdminTeacherSchedule(schedule) {
+    var box = teacherEl('teacherScheduleBox'); if (!box) return;
+    var days = Array.isArray(schedule) ? schedule : [];
+    if (!days.length) { box.innerHTML = '<div class="teacher-card teacher-empty"><i class="fa-solid fa-calendar-xmark" style="font-size:2.4rem;display:block;margin-bottom:12px"></i>Расписание не найдено через проверенные teacher endpoint-ы.</div>'; return; }
+    box.innerHTML = days.map(function (day) {
+      var lessons = Array.isArray(day.lessons) ? day.lessons : [];
+      return '<div class="teacher-lesson-card"><div class="teacher-lesson-head">' + esc(day.date || 'День') + (day.weekday ? ' · ' + esc(day.weekday) : '') + '</div><div class="teacher-lesson-body">'
+        + (lessons.length ? lessons.map(function (l, i) { return '<div style="padding:10px 0;border-bottom:1px solid #edf1f8"><b>' + esc(l.number || i + 1) + '. ' + esc(l.subject || 'Предмет') + '</b><br><span>' + esc(l.class_name || '') + (l.room ? ' · кабинет ' + esc(l.room) : '') + (l.time ? ' · ' + esc(l.time) : '') + '</span>' + (l.theme ? '<div class="teacher-note">Тема: ' + esc(l.theme) + '</div>' : '') + '</div>'; }).join('') : 'Уроков нет')
+        + '</div></div>';
+    }).join('');
+  }
+  window.openAdminTeacherSubjectCard = async function (sgId) {
+    var meta = (adminTeacherState.subjectById || {})[String(sgId)] || {};
+    var box = teacherEl('teacherSubjectCardDetail'); if (!box) return;
+    if (!sgId) { box.innerHTML = '<div class="teacher-subject-detail"><div class="teacher-subject-detail-body teacher-empty">У этой карточки нет subjectGroupId.</div></div>'; return; }
+    box.innerHTML = '<div class="teacher-subject-detail"><div class="teacher-subject-detail-head"><div class="teacher-subject-detail-title">' + esc(meta.className || '') + ' · ' + esc(meta.subject || '') + '</div><button class="teacher-btn ghost" type="button" onclick="teacherEl(\'teacherSubjectCardDetail\').innerHTML=\'\'">Закрыть</button></div><div class="teacher-subject-detail-body"><div class="teacher-empty">Загрузка реальных данных из СГО...</div></div></div>';
+    try {
+      var d = await postTeacherApi('/api/lkteacher/subjectcard', adminTeacherPayload({ sgId: sgId, subjectGroupId: sgId }));
+      if (!d || d.success === false) throw new Error((d && d.error) || 'СГО не вернул данные по предмету');
+      renderAdminSubjectCardDetail(d, meta.subject || '', meta.className || '');
+    } catch (e) {
+      box.innerHTML = '<div class="teacher-subject-detail"><div class="teacher-subject-detail-head"><div class="teacher-subject-detail-title">' + esc(meta.className || '') + ' · ' + esc(meta.subject || '') + '</div><button class="teacher-btn ghost" type="button" onclick="teacherEl(\'teacherSubjectCardDetail\').innerHTML=\'\'">Закрыть</button></div><div class="teacher-subject-detail-body"><div class="teacher-empty" style="color:#b71c1c">' + esc(e.message) + '</div></div></div>';
+    }
+  };
+  function teacherAvgClass(avg) { var n = Number(avg); if (!Number.isFinite(n)) return ''; if (n < 3) return 'bad'; if (n < 4) return 'warn'; return ''; }
+  function teacherFormatDate(value) { var m = String(value || '').match(/\d{4}-\d{2}-\d{2}/); if (!m) return '—'; var p = m[0].split('-'); return p[2] + '.' + p[1] + '.' + p[0]; }
+  function renderAdminSubjectCardDetail(d, fallbackSubject, fallbackClass) {
+    var box = teacherEl('teacherSubjectCardDetail'); if (!box) return;
+    var info = d.subject || {}; var titleText = (info.subject || fallbackSubject || 'Предмет') + (info.class_name || fallbackClass ? ' (' + (info.class_name || fallbackClass) + ')' : '');
+    var schedule = Array.isArray(d.schedule) ? d.schedule : []; var students = Array.isArray(d.students) ? d.students : []; var averages = Array.isArray(d.averages) ? d.averages : []; var avgMap = {};
+    averages.forEach(function (a) { avgMap[String(a.studentId)] = a.average; });
+    var scheduleRows = schedule.map(function (l, i) {
+      var time = l.time ? ((l.time.start || '') + (l.time.end ? '-' + l.time.end : '')) : '';
+      var room = l.room && (l.room.name || l.room.title) ? (l.room.name || l.room.title) : '';
+      var theme = l.lesson && (l.lesson.name || l.lesson.title) ? (l.lesson.name || l.lesson.title) : '—';
+      return '<tr><td>' + esc(i + 1) + '</td><td>' + esc(teacherFormatDate(l.day)) + '</td><td>' + esc(time || '—') + '</td><td>' + esc(l.number || '—') + '</td><td>' + esc(room || info.room || '—') + '</td><td>' + esc(theme) + '</td></tr>';
+    }).join('') || '<tr><td colspan="6" class="teacher-empty">Расписание по этой предметной группе не найдено за выбранный период.</td></tr>';
+    var studentRows = students.map(function (st, i) {
+      var avg = avgMap[String(st.id)]; var avgText = avg === undefined || avg === null || avg === '' ? '—' : Number(avg).toFixed(2).replace('.', ',');
+      return '<tr><td>' + esc(i + 1) + '. ' + esc(st.fullName || st.name || '—') + '</td><td><span class="teacher-avg-dot ' + teacherAvgClass(avg) + '"></span><b>' + esc(avgText) + '</b></td></tr>';
+    }).join('') || '<tr><td colspan="2" class="teacher-empty">Список учеников не найден в ответе журнала СГО.</td></tr>';
+    box.innerHTML = '<div class="teacher-subject-detail"><div class="teacher-subject-detail-head"><div class="teacher-subject-detail-title">' + esc(titleText) + '</div><button class="teacher-btn ghost" type="button" onclick="teacherEl(\'teacherSubjectCardDetail\').innerHTML=\'\'">Закрыть</button></div><div class="teacher-subject-detail-body">'
+      + '<div class="teacher-mini-grid"><div class="teacher-mini-stat"><span>subjectGroupId</span>' + esc(d.sgId || '') + '</div><div class="teacher-mini-stat"><span>Уроков</span>' + esc(schedule.length) + '</div><div class="teacher-mini-stat"><span>Ученики</span>' + esc(students.length) + '</div><div class="teacher-mini-stat"><span>Кабинет</span>' + esc(info.room || '—') + '</div></div>'
+      + '<h3><i class="fa-solid fa-calendar-days"></i> Расписание</h3><div class="teacher-table-wrap"><table class="teacher-table"><thead><tr><th>№</th><th>Дата</th><th>Время</th><th>Урок</th><th>Кабинет</th><th>Тема</th></tr></thead><tbody>' + scheduleRows + '</tbody></table></div>'
+      + '<h3 style="margin-top:18px"><i class="fa-solid fa-users"></i> Ученики и средняя оценка</h3><div class="teacher-table-wrap"><table class="teacher-table"><thead><tr><th>Ученик</th><th>Средняя оценка</th></tr></thead><tbody>' + studentRows + '</tbody></table></div>'
+      + (d.journal_message ? '<div class="teacher-note">' + esc(d.journal_message) + '</div>' : '') + '</div></div>';
+  }
+  function renderAdminTeacherData(data) {
+    var subjectGroups = Array.isArray(data.subjectgroups) ? data.subjectgroups : [];
+    renderAdminJournal(data, subjectGroups);
+    renderAdminClassesAndStaff(subjectGroups);
+    renderAdminTeacherSchedule(data.schedule);
+  }
+  function renderAdminTeacherError(message) {
+    var text = esc(message || 'Не удалось загрузить данные СГО');
+    var jBox = teacherEl('teacherJournalBox'); var sBox = teacherEl('teacherScheduleBox');
+    if (jBox) jBox.innerHTML = '<div class="teacher-empty" style="color:#b71c1c">' + text + '</div>';
+    if (sBox) sBox.innerHTML = '<div class="teacher-card teacher-empty" style="color:#b71c1c">' + text + '</div>';
+  }
+  function hideTeacherPanels() { var journal = teacherEl('teacherJournalPanel'); var schedule = teacherEl('teacherSchedulePanel'); if (journal) journal.style.display = 'none'; if (schedule) schedule.style.display = 'none'; }
+  function showAdminPanel() { var admin = document.getElementById('adminPanelContent'); var messages = document.getElementById('messagesPanel'); if (admin) admin.style.display = ''; if (messages) messages.style.display = 'none'; hideTeacherPanels(); if (window.messagesInterval) clearInterval(window.messagesInterval); }
+  function showMessagesPanel() { var admin = document.getElementById('adminPanelContent'); var messages = document.getElementById('messagesPanel'); if (admin) admin.style.display = 'none'; if (messages) messages.style.display = ''; hideTeacherPanels(); if (!messagesInitialized) { loadMessages(); messagesInitialized = true; } else loadMessages(); if (window.messagesInterval) clearInterval(window.messagesInterval); window.messagesInterval = setInterval(function () { var panel = document.getElementById('messagesPanel'); if (panel && panel.style.display !== 'none') loadMessages(); }, 5000); }
+  function showTeacherPanel(kind) {
+    var admin = document.getElementById('adminPanelContent'); var messages = document.getElementById('messagesPanel'); var journal = teacherEl('teacherJournalPanel'); var schedule = teacherEl('teacherSchedulePanel');
+    if (admin) admin.style.display = 'none'; if (messages) messages.style.display = 'none';
+    if (journal) journal.style.display = kind === 'journal' ? 'block' : 'none';
+    if (schedule) schedule.style.display = kind === 'schedule' ? 'block' : 'none';
+    if (window.messagesInterval) clearInterval(window.messagesInterval);
+    initTeacherDates();
+    if (!adminTeacherState.data) window.refreshAdminTeacherData();
+    else renderAdminTeacherData(adminTeacherState.data);
+  }
+  function messageTime(timestamp) {
+    var date = new Date(String(timestamp || '').replace(' ', 'T') + '+03:00');
+    if (Number.isNaN(date.getTime())) return timestamp || '';
+    var now = new Date(); var mskOffset = 3 * 60; var localOffset = now.getTimezoneOffset(); var offsetDiff = mskOffset + localOffset;
+    var mskDate = new Date(date.getTime() + offsetDiff * 60 * 1000); var mskNow = new Date(now.getTime() + offsetDiff * 60 * 1000);
+    var today = new Date(mskNow.getFullYear(), mskNow.getMonth(), mskNow.getDate());
+    var msgDate = new Date(mskDate.getFullYear(), mskDate.getMonth(), mskDate.getDate());
+    var hours = String(mskDate.getHours()).padStart(2, '0'); var minutes = String(mskDate.getMinutes()).padStart(2, '0');
+    if (msgDate.getTime() === today.getTime()) return hours + ':' + minutes;
+    var yesterday = new Date(today); yesterday.setDate(yesterday.getDate() - 1);
+    if (msgDate.getTime() === yesterday.getTime()) return 'Вчера ' + hours + ':' + minutes;
+    var day = String(mskDate.getDate()).padStart(2, '0'); var month = String(mskDate.getMonth() + 1).padStart(2, '0');
+    if (mskDate.getFullYear() === mskNow.getFullYear()) return day + '.' + month + ' ' + hours + ':' + minutes;
+    return day + '.' + month + '.' + mskDate.getFullYear() + ' ' + hours + ':' + minutes;
+  }
+  async function loadMessages() {
+    var dialogs = document.getElementById('dialogs');
+    if (dialogs && !allMessages.length) dialogs.innerHTML = '<div style="padding:25px;text-align:center;color:#8996ad">Загрузка...</div>';
+    try {
+      var data = await apiJson('/api/messages?login=' + encodeURIComponent(currentLogin()));
+      allMessages = Array.isArray(data.data) ? data.data : [];
+      messageLoginAliases = Array.isArray(data.login_aliases) ? data.login_aliases : [currentLogin()];
+      window.messageLoginAliases = messageLoginAliases;
+      if (messageLoginAliases.indexOf(currentLogin()) === -1) messageLoginAliases.unshift(currentLogin());
+      window.messageLoginAliases = messageLoginAliases;
+      mergeMessageUsers(data.users);
+      await preloadMessageUsers();
+      buildDialogs();
+      if (currentPartner && dialogsMap.has(currentPartner)) {
+        await selectDialog(currentPartner, true);
+      } else if (currentPartner) {
+        currentPartner = null;
+      }
+    } catch (e) {
+      if (dialogs) dialogs.innerHTML = '<div style="padding:25px;color:#c92a2a">Не удалось загрузить сообщения: ' + esc(e.message) + '</div>';
+      console.error('lkadmin messages load failed', e);
+    }
+  }
+  window.reloadMessagesPanel = loadMessages;
+  function partnerFromMessage(m) { return isOwnMessageLogin(m.sender) ? m.recipient : m.sender; }
+  function buildDialogs() {
+    var box = document.getElementById('dialogs');
+    if (!box) return;
+    dialogsMap.clear();
+    allMessages.forEach(function (m) {
+      var partner = partnerFromMessage(m);
+      if (!partner) return;
+      if (!dialogsMap.has(partner)) dialogsMap.set(partner, []);
+      dialogsMap.get(partner).push(m);
+    });
+    if (!dialogsMap.size) {
+      box.innerHTML = '<div style="padding:30px;color:#999;text-align:center;"><i class="fa-solid fa-inbox" style="font-size:2rem;display:block;margin-bottom:10px;"></i>Нет сообщений</div>';
+      document.getElementById('inputArea').style.display = 'none';
+      document.getElementById('noDialog').style.display = 'flex';
+      document.getElementById('chatHeader').style.display = 'none';
+      currentPartner = null;
+      return;
+    }
+    var rows = Array.from(dialogsMap.entries()).sort(function (a,b) {
+      return String((b[1][b[1].length-1] || {}).timestamp || '').localeCompare(String((a[1][a[1].length-1] || {}).timestamp || ''));
+    });
+    box.innerHTML = '';
+    rows.forEach(function (entry) {
+      var partner = entry[0], list = entry[1], last = list[list.length-1] || {};
+      var user = messageUserCache.get(partner) || {login:partner, full_name:partner, role:'Пользователь'};
+      var display = user.full_name || partner;
+      var unread = list.filter(function (m) { return m.sender === partner && String(m.read || 0) === '0'; }).length;
+      var previewText = (isOwnMessageLogin(last.sender) ? 'Вы: ' : '') + ((last.text || '').length > 45 ? (last.text || '').substring(0,45) + '...' : (last.text || ''));
+      var div = document.createElement('div');
+      div.className = 'dialog' + (partner === currentPartner ? ' active' : '');
+      div.dataset.partner = partner;
+      div.innerHTML = avatarHtml(partner, 'dialog-avatar') + '<div class="dialog-info"><div class="dialog-name-row"><div class="dialog-name">' + esc(display) + '</div>' + roleBadgeHtml(user.role) + '</div>' + (display !== partner ? '<div class="dialog-login">@' + esc(partner) + '</div>' : '') + '<div class="dialog-preview">' + esc(previewText) + '</div></div>' + (unread ? '<span class="dialog-badge">' + unread + '</span>' : '');
+      div.onclick = function () { selectDialog(partner); };
+      box.appendChild(div);
+    });
+  }
+  window.selectDialog = async function (partner, keepList) {
+    currentPartner = partner; window.currentChatPartner = partner; window.setupMessageTools && window.setupMessageTools(); window.showClearDialogButton && window.showClearDialogButton(true);
+    var inputArea = document.getElementById('inputArea'); if (inputArea) inputArea.style.display = 'flex';
+    var noDialog = document.getElementById('noDialog'); if (noDialog) noDialog.style.display = 'none';
+    var header = document.getElementById('chatHeader'); if (header) header.style.display = 'flex';
+    await loadPartnerInfo(partner);
+    if (!keepList) buildDialogs();
+    renderMessages(partner);
+    markMessagesAsRead(partner);
+  };
+  function renderMessages(partner) {
+    var box = document.getElementById('messages');
+    if (!box) return;
+    if (window.resetMessageSelection) window.resetMessageSelection();
+    var list = (dialogsMap.get(partner) || []).slice().sort(function (a, b) {
+      return String(a.timestamp || '').localeCompare(String(b.timestamp || ''));
+    });
+    if (!list.length) { box.innerHTML = '<div class="no-dialog"><div>Сообщений пока нет</div></div>'; return; }
+    box.innerHTML = '';
+    var lastDate = null;
+    list.forEach(function (m) {
+      var msgDate = new Date(String(m.timestamp || '').replace(' ', 'T') + '+03:00');
+      var dateStr = Number.isNaN(msgDate.getTime()) ? '' : msgDate.toLocaleDateString('ru-RU', { day:'numeric', month:'long', year:'numeric' });
+      if (dateStr && dateStr !== lastDate) {
+        var dateDiv = document.createElement('div');
+        dateDiv.className = 'system-message';
+        dateDiv.textContent = dateStr;
+        box.appendChild(dateDiv);
+        lastDate = dateStr;
+      }
+      var mine = isOwnMessageLogin(m.sender);
+      var author = mine ? (m.sender || currentLogin()) : partner;
+      var display = displayNameFor(author);
+      var wrapper = document.createElement('div');
+      wrapper.className = 'message-wrapper ' + (mine ? 'me' : 'other');
+      wrapper.innerHTML = (!mine ? avatarHtml(author, 'message-avatar') : '') + '<div class="message-stack"><div class="message-sender"><span>' + esc(display) + '</span>' + roleBadgeHtml(roleFor(author)) + '</div><div class="message ' + (mine ? 'me-message' : 'other-message') + '"><div class="message-text">' + esc(m.text || '') + '</div><div class="message-footer"><span class="message-time">' + esc(messageTime(m.timestamp)) + '</span>' + (mine ? '<span class="message-status">' + (String(m.read || 0) === '1' ? '<i class="fa-solid fa-check status-check read"></i><i class="fa-solid fa-check status-check read" style="margin-left:-5px;"></i>' : '<i class="fa-solid fa-check status-check sent"></i>') + '</span>' : '') + '</div></div></div>' + (mine ? avatarHtml(author, 'message-avatar') : '');
+      var att = window.renderMessageAttachments ? window.renderMessageAttachments(m) : null; var bubble = wrapper.querySelector('.message'); var footer = wrapper.querySelector('.message-footer'); if(att && bubble) bubble.insertBefore(att, footer || null); if (window.decorateMessageForDelete) window.decorateMessageForDelete(wrapper, m);
+      box.appendChild(wrapper);
+    });
+    box.scrollTop = box.scrollHeight;
+  }
+  async function loadPartnerInfo(login) {
+    try {
+      var u = await getMessageUser(login);
+      var display = u.full_name || login;
+      var username = document.getElementById('chatUsername'); if (username) username.textContent = display;
+      var role = document.getElementById('chatRole'); if (role) role.innerHTML = roleBadgeHtml(u.role) + (display !== login ? '<span class="chat-login">@' + esc(login) + '</span>' : '');
+      setAvatar(document.getElementById('chatAvatar'), display, u.avatar_color, u.profile_photo);
+    } catch (e) {
+      var usernameFallback = document.getElementById('chatUsername'); if (usernameFallback) usernameFallback.textContent = login;
+      var roleFallback = document.getElementById('chatRole'); if (roleFallback) roleFallback.innerHTML = roleBadgeHtml('Пользователь');
+      setAvatar(document.getElementById('chatAvatar'), login);
+    }
+  }
+  async function markMessagesAsRead(partner) {
+    try {
+      await apiFetch('/api/mark_read', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ login: currentLogin(), partner: partner, login_aliases: messageLoginAliases }) });
+    } catch(e) {}
+  }
+  window.sendMessage = async function () { var input = document.getElementById('msgInput'); var text = input ? input.value.trim() : ''; var attachments = window.collectMessageAttachments ? await window.collectMessageAttachments() : []; if ((!text && !attachments.length) || !currentPartner || input.dataset.sending === 'true') return; input.dataset.sending = 'true'; try { await apiJson('/api/send', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ sender: currentLogin(), recipient: currentPartner, text: text, attachments: attachments, sender_profile: ownMessageProfile(currentLogin()) }) }); input.value = ''; window.clearMessageAttachments && window.clearMessageAttachments(); await loadMessages(); renderMessages(currentPartner); } catch(e) { alert('Ошибка отправки: ' + e.message); } finally { input.dataset.sending = 'false'; } };
+  window.openNewMsgModal = function () { document.getElementById('newMessageModal').style.display = 'block'; document.getElementById('recipientLogin').focus(); };
+  window.closeNewMsgModal = function () { document.getElementById('newMessageModal').style.display = 'none'; document.getElementById('recipientLogin').value = ''; document.getElementById('newMessageText').value = ''; };
+  window.sendNewMessage = async function () { var recipient = document.getElementById('recipientLogin').value.trim(); var text = document.getElementById('newMessageText').value.trim(); if (!recipient || !text) { alert('Введите логин и текст'); return; } try { await apiJson('/api/send', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ sender: currentLogin(), recipient: recipient, text: text, sender_profile: ownMessageProfile(currentLogin()) }) }); closeNewMsgModal(); currentPartner = recipient; document.getElementById('inputArea').style.display = 'flex'; document.getElementById('noDialog').style.display = 'none'; document.getElementById('chatHeader').style.display = 'flex'; await loadPartnerInfo(recipient); await loadMessages(); showMessagesPanel(); } catch(e) { alert('Не удалось отправить: ' + e.message); } };
+  var msgButton = document.querySelector('.sidebar button[data-tab="messages"]');
+  if (msgButton) msgButton.onclick = function () { document.querySelectorAll('.sidebar button').forEach(function (item) { item.classList.remove('active'); }); msgButton.classList.add('active'); showMessagesPanel(); };
+  var msgInput = document.getElementById('msgInput');
+  if (msgInput) msgInput.addEventListener('keydown', function (event) { if (event.key === 'Enter') { event.preventDefault(); sendMessage(); } });
+  var msgSendButton = document.querySelector('#inputArea button');
+  if (msgSendButton) msgSendButton.addEventListener('click', function (event) { event.preventDefault(); sendMessage(); });
+  var journalButton = document.querySelector('.sidebar button[data-tab="journal"]');
+  if (journalButton) journalButton.onclick = function () { document.querySelectorAll('.sidebar button').forEach(function (item) { item.classList.remove('active'); }); journalButton.classList.add('active'); showTeacherPanel('journal'); };
+
+
+
+
+  function handleHeaderProfileClick(event) {
+    var block = event.target && event.target.closest && event.target.closest('#userBlock, .user-block');
+    if (!block) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+    if (typeof window.openProfileModal === 'function') {
+      window.openProfileModal();
+    } else {
+      setTimeout(function(){ if (typeof window.openProfileModal === 'function') window.openProfileModal(); }, 50);
+    }
+    return false;
+  }
+  document.addEventListener('click', handleHeaderProfileClick, true);
+  var profileHeaderObserver = new MutationObserver(function(){ if (typeof bindHeaderProfileClick === 'function') bindHeaderProfileClick(); });
+  if (document.body) profileHeaderObserver.observe(document.body, { childList:true, subtree:true });
+
+  document.addEventListener('click', function(event){
+    var block = event.target.closest && event.target.closest('#userBlock, .user-block');
+    if (block && typeof window.openProfileModal === 'function') {
+      event.preventDefault();
+      event.stopPropagation();
+      if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+      window.openProfileModal();
+    }
+  });
+
+  window.addEventListener('click', function(event) { var newMsg = document.getElementById('newMessageModal'); var profile = document.getElementById('profileModal'); var crop = document.getElementById('photoCropModal'); if (event.target === newMsg) closeNewMsgModal(); if (event.target === profile) closeProfileModal(); if (event.target === crop) closePhotoCropModal(); });
+  initProfile();
+  syncCurrentUserFromServer().then(function () {
+    var panel = document.getElementById('messagesPanel');
+    if (panel && panel.style.display !== 'none') loadMessages();
+  });
+  initTeacherDates(); setMode('news');
+})();
+</script>
+
+<script>
+(function(){
+  const allowedExt = ['pdf','prd','doc','docx','xls','xlsx','jpg','jpeg','png','gif','webp','bmp','svg'];
+  window.__messageAttachFiles = window.__messageAttachFiles || [];
+  window.messageAttachmentsForPreview = function(){ return window.__messageAttachFiles || []; };
+  function escapeHtml(v){ return String(v == null ? '' : v).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function fmtSize(n){ n=Number(n||0); if(!n) return ''; if(n<1024) return n+' Б'; if(n<1048576) return Math.round(n/1024)+' КБ'; return (n/1048576).toFixed(1)+' МБ'; }
+  function iconFor(name,type){ const ext=String(name||'').split('.').pop().toLowerCase(); if(String(type||'').startsWith('image/')) return 'fa-file-image'; if(ext==='pdf'||ext==='prd') return 'fa-file-pdf'; if(ext==='doc'||ext==='docx') return 'fa-file-word'; if(ext==='xls'||ext==='xlsx') return 'fa-file-excel'; return 'fa-file'; }
+  function messageApiUrl(path){ var base = (typeof roots === 'function' && roots()[0]) ? roots()[0] : ((location.protocol === 'http:' || location.protocol === 'https:') ? (location.port === '5000' ? location.origin : location.protocol + '//' + (location.hostname || '127.0.0.1') + ':5000') : 'http://127.0.0.1:5000'); return base.replace(/\/$/, '') + path; }
+  const selectedMessageIds = new Set();
+  function ensureDeleteStyles(){ if(document.getElementById('messageDeleteStyles')) return; const style=document.createElement('style'); style.id='messageDeleteStyles'; style.textContent='.message-wrapper{position:relative}.message-select-btn{position:absolute;top:-7px;width:26px;height:26px;border-radius:50%;border:1px solid #dfe8fb;background:#fff;color:#91a0b8;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;opacity:.35;transition:.2s;z-index:2}.message-wrapper.me .message-select-btn{right:46px}.message-wrapper.other .message-select-btn{left:46px}.message-wrapper:hover .message-select-btn,.message-wrapper.selected .message-select-btn{opacity:1}.message-wrapper.selected .message-select-btn{background:#4c6ef5;color:#fff;border-color:#4c6ef5}.message-selected-count{font-size:.72rem;font-weight:900;margin-left:3px}'; document.head.appendChild(style); }
+  function selectedIdsArray(){ return Array.from(selectedMessageIds); }
+  window.resetMessageSelection=function(){ selectedMessageIds.clear(); document.querySelectorAll('.message-wrapper.selected').forEach(function(el){ el.classList.remove('selected'); }); window.updateMessageSelectionTools && window.updateMessageSelectionTools(); };
+  window.updateMessageSelectionTools=function(){ const header=document.getElementById('chatHeader'); if(!header) return; let btn=document.getElementById('deleteSelectedMessagesBtn'); if(!btn){ btn=document.createElement('button'); btn.type='button'; btn.id='deleteSelectedMessagesBtn'; btn.className='message-clear-btn'; btn.title='Удалить выбранные сообщения'; btn.innerHTML='<i class="fa-solid fa-trash-can"></i><span class="message-selected-count"></span>'; btn.onclick=window.deleteSelectedMessages; header.appendChild(btn); } const count=selectedMessageIds.size; btn.style.display=count?'inline-flex':'none'; const label=btn.querySelector('.message-selected-count'); if(label) label.textContent=count?String(count):''; };
+  window.decorateMessageForDelete=function(wrapper,msg){ if(!wrapper || !msg || !msg.id) return; ensureDeleteStyles(); wrapper.dataset.messageId=msg.id; const btn=document.createElement('button'); btn.type='button'; btn.className='message-select-btn'; btn.title='Выбрать сообщение'; btn.innerHTML='<i class="fa-regular fa-square"></i>'; btn.onclick=function(event){ event.stopPropagation(); const id=String(msg.id); if(selectedMessageIds.has(id)){ selectedMessageIds.delete(id); wrapper.classList.remove('selected'); btn.innerHTML='<i class="fa-regular fa-square"></i>'; } else { selectedMessageIds.add(id); wrapper.classList.add('selected'); btn.innerHTML='<i class="fa-solid fa-check"></i>'; } window.updateMessageSelectionTools(); }; wrapper.appendChild(btn); };
+  window.deleteSelectedMessages=async function(){ const ids=selectedIdsArray(); if(!ids.length) return; if(!confirm('Удалить выбранные сообщения?')) return; try{ const res=await fetch(messageApiUrl('/api/messages/delete'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({login:localStorage.getItem('login')||'',ids:ids,login_aliases:window.messageLoginAliases||undefined})}); const data=await res.json(); if(!data.success) throw new Error(data.error||'Ошибка удаления'); window.resetMessageSelection(); if(typeof loadMessages==='function') await loadMessages(); }catch(e){ alert('Не удалось удалить сообщения: '+e.message); } };
+  window.showNoDialogState=function(){ window.currentChatPartner=''; try{ currentPartner=null; }catch(e){} window.resetMessageSelection && window.resetMessageSelection(); const header=document.getElementById('chatHeader'); if(header) header.style.display='none'; const input=document.getElementById('inputArea'); if(input) input.style.display='none'; const messages=document.getElementById('messages'); if(messages) messages.innerHTML=''; const empty=document.getElementById('noDialog'); if(empty) empty.style.display='flex'; window.showClearDialogButton && window.showClearDialogButton(false); };
+  function updateAttachPreview(){
+    const box=document.getElementById('messageAttachPreview'); if(!box) return;
+    const files=window.__messageAttachFiles||[];
+    box.classList.toggle('active', files.length>0);
+    box.innerHTML = files.map((f,i)=>'<span class="message-file-pill"><i class="fa-solid '+iconFor(f.name,f.type)+'"></i><span>'+escapeHtml(f.name)+'</span><button type="button" title="Убрать" onclick="window.removeMessageAttach('+i+')">×</button></span>').join('');
+  }
+  window.removeMessageAttach=function(i){ window.__messageAttachFiles.splice(i,1); updateAttachPreview(); };
+  window.clearMessageAttachments=function(){ window.__messageAttachFiles=[]; const input=document.getElementById('messageFileInput'); if(input) input.value=''; updateAttachPreview(); };
+  window.collectMessageAttachments=function(){
+    const files=(window.__messageAttachFiles||[]).slice(0,3);
+    return Promise.all(files.map(file => new Promise((resolve,reject)=>{ const reader=new FileReader(); reader.onload=()=>resolve({name:file.name,type:file.type||'application/octet-stream',size:file.size||0,data:reader.result}); reader.onerror=reject; reader.readAsDataURL(file); })));
+  };
+  window.renderMessageAttachments=function(msg){
+    let attachments = msg && msg.attachments;
+    if(!Array.isArray(attachments)) { try { attachments = JSON.parse((msg && msg.attachments_json) || '[]'); } catch(e){ attachments=[]; } }
+    if(!Array.isArray(attachments) || !attachments.length) return null;
+    const wrap=document.createElement('div'); wrap.className='message-attachments';
+    attachments.forEach((att,idx)=>{
+      const name=att && (att.name || att.filename) || 'Файл'; const type=att && att.type || '';
+      const msgId = msg.id || msg.message_id || msg.mid;
+      const openUrl = msgId ? messageApiUrl(`/api/message_attachment/${msgId}/${idx}`) : (att.data || '#');
+      const downUrl = msgId ? messageApiUrl(`/api/message_attachment/${msgId}/${idx}?download=1`) : (att.data || '#');
+      const card=document.createElement('div'); card.className='message-attachment-card';
+      card.innerHTML='<div class="message-attachment-icon"><i class="fa-solid '+iconFor(name,type)+'"></i></div><div class="message-attachment-info"><div class="message-attachment-name">'+escapeHtml(name)+'</div><div class="message-attachment-size">'+escapeHtml(fmtSize(att.size))+'</div></div><div class="message-attachment-actions"><a href="'+openUrl+'" target="_blank" rel="noopener">Открыть</a><a href="'+downUrl+'" download>Скачать</a></div>';
+      wrap.appendChild(card);
+    });
+    return wrap;
+  };
+  window.setupMessageTools=function(){
+    const input=document.getElementById('msgInput'); const area=document.getElementById('inputArea');
+    if(input && area && !document.getElementById('messageFileInput')){
+      const file=document.createElement('input'); file.type='file'; file.id='messageFileInput'; file.multiple=true; file.accept='.pdf,.prd,.doc,.docx,.xls,.xlsx,image/*'; file.style.display='none';
+      const btn=document.createElement('button'); btn.type='button'; btn.className='message-attach-btn'; btn.title='Прикрепить файлы'; btn.innerHTML='<i class="fa-solid fa-paperclip"></i>'; btn.onclick=()=>file.click();
+      area.insertBefore(btn,input); area.appendChild(file);
+      file.onchange=function(){ const chosen=Array.from(file.files||[]); const valid=[]; for(const f of chosen){ const ext=String(f.name||'').split('.').pop().toLowerCase(); if(!allowedExt.includes(ext) && !String(f.type||'').startsWith('image/')){ alert('Формат файла не разрешён: '+f.name); continue; } valid.push(f); } if(valid.length>3){ alert('К сообщению можно прикрепить не более 3 файлов.'); } window.__messageAttachFiles=valid.slice(0,3); updateAttachPreview(); };
+      const preview=document.createElement('div'); preview.id='messageAttachPreview'; preview.className='message-attach-preview'; area.parentNode.insertBefore(preview, area);
+    }
+    const header=document.getElementById('chatHeader');
+    if(header && !document.getElementById('clearDialogBtn')){
+      const clear=document.createElement('button'); clear.type='button'; clear.id='clearDialogBtn'; clear.className='message-clear-btn'; clear.title='Очистить историю диалога'; clear.style.display='none'; clear.innerHTML='<i class="fa-solid fa-trash"></i>';
+      clear.onclick=async function(){ const partner=window.currentChatPartner; const login=localStorage.getItem('login')||''; if(!partner) return; if(!confirm('Вы уверены, что хотите очистить историю этого диалога?')) return; try{ const res=await fetch(messageApiUrl('/api/clear_messages'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({login:login,partner:partner,login_aliases:window.messageLoginAliases||undefined})}); const data=await res.json(); if(!data.success) throw new Error(data.error||'Ошибка очистки'); window.clearMessageAttachments(); if(typeof loadMessages==='function') await loadMessages(); window.showNoDialogState && window.showNoDialogState(); }catch(e){ alert('Не удалось очистить переписку: '+e.message); } };
+      header.appendChild(clear);
+    }
+  };
+  window.showClearDialogButton=function(show){ const b=document.getElementById('clearDialogBtn'); if(b) b.style.display=show?'inline-flex':'none'; };
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(function(){ window.setupMessageTools(); if(!window.currentChatPartner) window.showNoDialogState(); },50));
+  setTimeout(function(){ window.setupMessageTools(); if(!window.currentChatPartner) window.showNoDialogState(); },300);
+})();
+</script>
+
+<script>
+(function(){
+  const selectedIds = new Set();
+  function deleteApiUrl(path){ var base = (typeof roots === 'function' && roots()[0]) ? roots()[0] : ((location.protocol === 'http:' || location.protocol === 'https:') ? (location.port === '5000' ? location.origin : location.protocol + '//' + (location.hostname || '127.0.0.1') + ':5000') : 'http://127.0.0.1:5000'); return base.replace(/\/$/, '') + path; }
+  function visibleIds(){ return Array.from(document.querySelectorAll('#messages .message-wrapper[data-message-id]')).map(el=>String(el.dataset.messageId)).filter(Boolean); }
+  function ensureDeleteUiStyles(){
+    if(document.getElementById('messageUnifiedDeleteStyles')) return;
+    const style=document.createElement('style');
+    style.id='messageUnifiedDeleteStyles';
+    style.textContent='.message-wrapper{position:relative}.message-select-btn{position:absolute;top:-7px;width:26px;height:26px;border-radius:50%;border:1px solid #dfe8fb;background:#fff;color:#91a0b8;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;opacity:.35;transition:.2s;z-index:2}.message-wrapper.me .message-select-btn{right:46px}.message-wrapper.other .message-select-btn{left:46px}.message-wrapper:hover .message-select-btn,.message-wrapper.selected .message-select-btn{opacity:1}.message-select-all-btn{height:34px;border:1px solid #dfe8fb;background:#f7f9ff;color:#315b93;border-radius:17px;padding:0 12px;font-size:.78rem;font-weight:900;cursor:pointer;margin-left:auto;white-space:nowrap}.message-select-all-btn:hover{background:#eef4ff}.message-wrapper.selected .message-select-btn{background:#4c6ef5;color:#fff;border-color:#4c6ef5}.message-selected-count{font-size:.72rem;font-weight:900;margin-left:3px}';
+    document.head.appendChild(style);
+  }
+  function syncSelectionDom(){
+    document.querySelectorAll('#messages .message-wrapper[data-message-id]').forEach(el=>{
+      const selected=selectedIds.has(String(el.dataset.messageId));
+      el.classList.toggle('selected', selected);
+      const btn=el.querySelector('.message-select-btn');
+      if(btn) btn.innerHTML=selected?'<i class="fa-solid fa-check"></i>':'<i class="fa-regular fa-square"></i>';
+    });
+  }
+  function ensureDeleteControls(){
+    const header=document.getElementById('chatHeader');
+    if(!header) return;
+    ensureDeleteUiStyles();
+    const clear=document.getElementById('clearDialogBtn');
+    if(clear) clear.remove();
+    let deleteBtn=document.getElementById('deleteSelectedMessagesBtn');
+    if(!deleteBtn){
+      deleteBtn=document.createElement('button');
+      deleteBtn.type='button';
+      deleteBtn.id='deleteSelectedMessagesBtn';
+      deleteBtn.className='message-clear-btn';
+      deleteBtn.title='Удалить выбранные сообщения';
+      deleteBtn.innerHTML='<i class="fa-solid fa-trash-can"></i><span class="message-selected-count"></span>';
+      deleteBtn.onclick=window.deleteSelectedMessages;
+      header.appendChild(deleteBtn);
+    }
+    let allBtn=document.getElementById('selectAllMessagesBtn');
+    if(!allBtn){
+      allBtn=document.createElement('button');
+      allBtn.type='button';
+      allBtn.id='selectAllMessagesBtn';
+      allBtn.className='message-select-all-btn';
+      allBtn.textContent='Выделить всё';
+      allBtn.onclick=window.selectAllMessagesForDelete;
+      header.appendChild(allBtn);
+    }
+    const count=selectedIds.size;
+    const total=visibleIds().length;
+    deleteBtn.style.display=count?'inline-flex':'none';
+    allBtn.style.display=count && count<total?'inline-flex':'none';
+    const label=deleteBtn.querySelector('.message-selected-count');
+    if(label) label.textContent=count?String(count):'';
+  }
+  window.resetMessageSelection=function(){ selectedIds.clear(); syncSelectionDom(); ensureDeleteControls(); };
+  window.updateMessageSelectionTools=ensureDeleteControls;
+  window.selectAllMessagesForDelete=function(){ visibleIds().forEach(id=>selectedIds.add(id)); syncSelectionDom(); ensureDeleteControls(); };
+  window.decorateMessageForDelete=function(wrapper,msg){
+    if(!wrapper || !msg || !msg.id) return;
+    ensureDeleteUiStyles();
+    wrapper.dataset.messageId=msg.id;
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='message-select-btn';
+    btn.title='Выбрать сообщение';
+    btn.innerHTML='<i class="fa-regular fa-square"></i>';
+    btn.onclick=function(event){
+      event.stopPropagation();
+      const id=String(msg.id);
+      if(selectedIds.has(id)) selectedIds.delete(id); else selectedIds.add(id);
+      syncSelectionDom();
+      ensureDeleteControls();
+    };
+    wrapper.appendChild(btn);
+    syncSelectionDom();
+  };
+  window.deleteSelectedMessages=async function(){
+    const ids=Array.from(selectedIds);
+    if(!ids.length) return;
+    const allSelected=ids.length===visibleIds().length;
+    if(!confirm(allSelected?'Удалить всю переписку?':'Удалить выбранные сообщения?')) return;
+    try{
+      const login=localStorage.getItem('login')||'';
+      const res=await fetch(deleteApiUrl('/api/messages/delete'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({login:login,ids:ids,login_aliases:window.messageLoginAliases||[login]})});
+      const data=await res.json();
+      if(!data.success || Number(data.deleted||0)===0) throw new Error(data.error||'Сообщения не были удалены');
+      ids.forEach(id=>document.querySelectorAll('#messages .message-wrapper[data-message-id]').forEach(el=>{ if(String(el.dataset.messageId)===String(id)) el.remove(); }));
+      window.resetMessageSelection();
+      if(typeof loadMessages==='function') await loadMessages(); else if(typeof window.reloadMessagesPanel==='function') await window.reloadMessagesPanel();
+      if(allSelected || (window.currentChatPartner && typeof dialogsMap!=='undefined' && !dialogsMap.has(window.currentChatPartner))) window.showNoDialogState && window.showNoDialogState();
+    }catch(e){ alert('Не удалось удалить сообщения: '+e.message); }
+  };
+  const previousSetup=window.setupMessageTools;
+  window.setupMessageTools=function(){ if(typeof previousSetup==='function') previousSetup(); ensureDeleteControls(); };
+  window.showClearDialogButton=function(){ ensureDeleteControls(); };
+})();
+</script>
+<script src="a11y.js"></script></body>
+</html>

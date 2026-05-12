@@ -1,0 +1,168 @@
+--- server.py
++++ server_sgo_strict_v3.py
+@@ -1869,28 +1869,34 @@
+     except Exception:
+         return None
+ 
+-def sgo_request_json(sess, method, path, params=None):
++def sgo_request_json(sess, method, path, params=None, timeout=6):
++    # Короткий timeout + печать каждого запроса: больше нет "вечной" загрузки без причины.
+     url = sgo_abs(path)
+     params = params or {}
+     errors = []
++    started = time.time()
+     try:
+         if method == 'POST':
+             attempts = (
+-                lambda: sess.post(url, json=params, timeout=20, allow_redirects=True),
+-                lambda: sess.post(url, data=params, timeout=20, allow_redirects=True),
+-                lambda: sess.post(url, params=params, timeout=20, allow_redirects=True),
++                ('json', lambda: sess.post(url, json=params, timeout=timeout, allow_redirects=True)),
++                ('form', lambda: sess.post(url, data=params, timeout=timeout, allow_redirects=True)),
++                ('query', lambda: sess.post(url, params=params, timeout=timeout, allow_redirects=True)),
+             )
+         else:
+-            attempts = (lambda: sess.get(url, params=params, timeout=20, allow_redirects=True),)
+-        for do in attempts:
++            attempts = (('query', lambda: sess.get(url, params=params, timeout=timeout, allow_redirects=True)),)
++        for mode, do in attempts:
+             resp = do()
++            elapsed = round(time.time() - started, 2)
+             data = _json_or_none(resp)
++            print(f'SGO {method} {url} mode={mode} params={params} -> HTTP {resp.status_code} in {elapsed}s')
+             if resp.status_code == 200 and data is not None:
+                 return data, None
+             errors.append(f'HTTP {resp.status_code}: {(resp.text or "")[:120]}')
+-        return None, f'{method} {url} -> ' + ' | '.join(errors)
++        return None, f'{method} {url} {params} -> ' + ' | '.join(errors)
+     except Exception as e:
+-        return None, f'{method} {url} -> {e}'
++        elapsed = round(time.time() - started, 2)
++        print(f'SGO {method} {url} params={params} -> {type(e).__name__}: {e} in {elapsed}s')
++        return None, f'{method} {url} {params} -> {type(e).__name__}: {e}'
+ 
+ def discover_sgo_journal_endpoints(sess):
+     endpoints, debug = set(), []
+@@ -2290,9 +2296,11 @@
+             'full_name':  str(sg.get('fullName') or subject_name or '').strip(),
+         }
+ 
+-        sid_key = str(subj.get('id') or sgid)
++        # ВАЖНО: для /webapi/journals нужен subjectGroupId (sg), а не subject.id.
++        sid_key = sgid
+         if subject_name and sid_key not in subjects_d:
+-            subjects_d[sid_key] = subject_name
++            label = str(sg.get('fullName') or subject_name).strip()
++            subjects_d[sid_key] = label
+ 
+         cid_key = str(cls.get('id') or class_name)
+         if class_name and cid_key not in classes_d:
+@@ -3178,7 +3186,14 @@
+                     _sg_map_cache[login_val] = sg_map
+ 
+             # ── 2. Получаем расписание /webapi/classmeetings ──
+-            cm_data, cm_debug = fetch_sgo_classmeetings(sess, start, end)
++            teacher_id = ''
++            for info in sg_map.values():
++                tids = info.get('teacher_ids') or []
++                if tids:
++                    teacher_id = tids[0]
++                    break
++            all_debug.append(f'teacher_id from subjectgroups = {teacher_id or "EMPTY"}')
++            cm_data, cm_debug = fetch_sgo_classmeetings(sess, start, end, teacher_id=teacher_id)
+             all_debug.extend(cm_debug)
+ 
+             result = []
+@@ -3186,32 +3201,21 @@
+                 result = parse_classmeetings_schedule(cm_data, sg_map, start, end)
+                 all_debug.append(f'parse_classmeetings_schedule -> {sum(len(d["lessons"]) for d in result)} уроков в {len(result)} днях')
+ 
+-            # ── 3. Fallback: старый перебор через teacher_direct_fetch ──
++            await safe_teacher_close(ns)
++
+             if not result:
+-                payloads, debug2 = teacher_direct_fetch(ns, 'schedule', start=start, end=end)
+-                all_debug.extend(debug2[:20])
+-                for payload in payloads:
+-                    result = extract_schedule_from_payload(payload)
+-                    if result:
+-                        break
+-
+-            await safe_teacher_close(ns)
+-
+-            if not result:
+-                result = local_teacher_schedule(login_val, school, start, end)
+-                note = ('Данные загружены из локальной SQLite-базы school.db — СГО не вернул расписание через /webapi/classmeetings.'
+-                        if result else 'Расписание не найдено ни через /webapi/classmeetings, ни в локальной базе.')
+-            else:
+-                note = ''
+-            return jsonify({'success': True, 'data': result, 'school': school, 'note': note, 'debug': all_debug[:30]})
++                return jsonify({
++                    'success': False,
++                    'error': 'СГО не вернул расписание через /webapi/classmeetings. Локальная SQLite отключена, чтобы не маскировать проблему.',
++                    'school': school,
++                    'debug': all_debug[:80]
++                }), 502
++            return jsonify({'success': True, 'data': result, 'school': school, 'note': '', 'debug': all_debug[:80]})
+         except Exception as e:
+             traceback.print_exc()
+             if ns is not None:
+                 await safe_teacher_close(ns)
+-            fallback = local_teacher_schedule(login_val, school, start, end)
+-            if fallback:
+-                return jsonify({'success': True, 'data': fallback, 'school': school, 'note': 'СГО недоступен. Показаны данные из локальной SQLite-базы school.db.', 'debug': [str(e)]})
+-            return jsonify({'success': False, 'error': str(e), 'school': school}), 500
++            return jsonify({'success': False, 'error': str(e), 'school': school, 'debug': [traceback.format_exc()]}), 500
+     return run_async(_fetch())
+ 
+ @app.route('/api/teacher/journal', methods=['GET', 'POST', 'OPTIONS'])
+@@ -3279,30 +3283,16 @@
+                     all_debug.append(f'Журнал найден: sg={sgid}, студентов={len(structured.get("students",[]))}, колонок={len(structured.get("columns",[]))}')
+                     break
+ 
+-            # ── 4. Fallback на старый перебор эндпоинтов ──
+-            if not merged:
+-                payloads, debug2 = teacher_known_fetch(ns, 'journal', start=start, end=end, class_name=class_name, subject=subject_filter, term_id=term_id)
+-                all_debug.extend(debug2[:20])
+-                classes_map = {}; subjects_map = {}
+-                for payload in payloads:
+-                    structured = extract_journal_structured(payload, class_name, subject_filter, start, end)
+-                    if structured and (structured.get('students') or structured.get('dates')):
+-                        merged = structured
+-                        break
+-                    extracted = extract_journal_from_payload(payload, class_name, subject_filter)
+-                    if extracted and extracted.get('students'):
+-                        merged = extracted
+-                        break
+-
+             await safe_teacher_close(ns)
+ 
+             if not merged or not merged.get('students'):
+-                merged = local_teacher_journal(login_val, school, start, end, class_name, subject_filter)
+-                note = ('Данные загружены из локальной SQLite-базы school.db — /webapi/journals не вернул оценки.'
+-                        if merged.get('students')
+-                        else 'Оценки не найдены ни в /webapi/journals, ни в локальной базе. Убедитесь, что выбран правильный предмет и период.')
+-            else:
+-                note = ''
++                return jsonify({
++                    'success': False,
++                    'error': 'СГО не вернул оценки через /webapi/journals. Локальная SQLite отключена, чтобы не маскировать проблему.',
++                    'school': school,
++                    'debug': all_debug[:120]
++                }), 502
++            note = ''
+ 
+             # Добавляем названия классов из sg_map если они не распарсились
+             if merged and not merged.get('class_label') and sg_map:
+@@ -3330,10 +3320,7 @@
+             traceback.print_exc()
+             if ns is not None:
+                 await safe_teacher_close(ns)
+-            fallback = local_teacher_journal(login_val, school, start, end, class_name, subject_filter)
+-            if fallback.get('students'):
+-                return jsonify({'success': True, 'data': {'students': fallback['students'], 'dates': fallback['dates'], 'columns': fallback.get('columns', []), 'grid': fallback['grid'], 'class_label': fallback.get('class_label', ''), 'subject_label': fallback.get('subject_label', '')}, 'classes': fallback.get('classes', []), 'subjects': fallback.get('subjects', []), 'school': school, 'note': 'СГО недоступен или вернул ошибку. Показаны данные из локальной SQLite-базы school.db.', 'debug': [str(e)]})
+-            return jsonify({'success': False, 'error': str(e), 'school': school}), 500
++            return jsonify({'success': False, 'error': str(e), 'school': school, 'debug': [traceback.format_exc()]}), 500
+     return run_async(_fetch())
+ 
+ if __name__ == "__main__":
