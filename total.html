@@ -1182,6 +1182,7 @@ body.blue-theme .copyable-contact.copied{
 }
 
 </style>
+    <script src="api-config.js"></script>
 </head>
 
 <body>
@@ -1702,6 +1703,7 @@ body.blue-theme .copyable-contact.copied{
 
             // Авторизация
             const API_URL = (() => {
+                if (window.getSchoolApiBase) return window.getSchoolApiBase();
                 if (window.location.protocol.startsWith('http')) {
                     const host = window.location.hostname || '127.0.0.1';
                     return `${window.location.protocol}//${host}:5000`;
@@ -1873,6 +1875,7 @@ body.blue-theme .copyable-contact.copied{
     const STORAGE_POSTS = 'school_admin_posts_v2';
     function apiRoots() {
         const roots = [];
+            if (window.getSchoolApiBase) roots.push(window.getSchoolApiBase());
         if (location.protocol === 'http:' || location.protocol === 'https:') {
             if (location.port === '5000') roots.push(location.origin);
             roots.push(`${location.protocol}//${location.hostname || '127.0.0.1'}:5000`);
