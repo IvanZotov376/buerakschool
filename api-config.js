@@ -1,6 +1,4 @@
-м// Единая настройка адреса Flask/Render API для GitHub Pages.
-// Если адрес Render другой, поменяйте RENDER_API_URL ниже или выполните в консоли:
-// localStorage.setItem('api_url', 'https://ВАШ-СЕРВИС.onrender.com')
+
 (function () {
   'use strict';
 
