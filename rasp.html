@@ -1369,6 +1369,7 @@ body.schedule-editing .lesson-subrow > .schedule-edit-pen {
 }
 
 </style>
+    <script src="api-config.js"></script>
 </head>
 <body>
 <!-- Хедер -->
@@ -1622,6 +1623,7 @@ body.schedule-editing .lesson-subrow > .schedule-edit-pen {
 
             // Авторизация
             const API_URL = (() => {
+                if (window.getSchoolApiBase) return window.getSchoolApiBase();
                 if (window.location.protocol.startsWith('http')) {
                     const host = window.location.hostname || '127.0.0.1';
                     return `${window.location.protocol}//${host}:5000`;
@@ -1736,7 +1738,7 @@ body.schedule-editing .lesson-subrow > .schedule-edit-pen {
 </script>
 
 <script>
-(function(){window.schoolAdminApiFetch=window.schoolAdminApiFetch||async function(path,opt={}){const a=[];if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');let last;for(const r of [...new Set(a)]){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')};window.schoolAdminEsc=window.schoolAdminEsc||function(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))};window.schoolAdminLocalPosts=window.schoolAdminLocalPosts||function(page){try{return (JSON.parse(localStorage.getItem('school_admin_posts_v2'))||[]).filter(p=>p.page===page).sort((a,b)=>(b.id||0)-(a.id||0))}catch(e){return []}}})();
+(function(){window.schoolAdminApiFetch=window.schoolAdminApiFetch||async function(path,opt={}){const a=[];if(window.getSchoolApiBase)a.push(window.getSchoolApiBase());if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');let last;for(const r of [...new Set(a)]){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')};window.schoolAdminEsc=window.schoolAdminEsc||function(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))};window.schoolAdminLocalPosts=window.schoolAdminLocalPosts||function(page){try{return (JSON.parse(localStorage.getItem('school_admin_posts_v2'))||[]).filter(p=>p.page===page).sort((a,b)=>(b.id||0)-(a.id||0))}catch(e){return []}}})();
 </script>
 
 
@@ -1790,7 +1792,7 @@ body.schedule-editing .lesson-subrow > .schedule-edit-pen {
 
     function esc(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
     function norm(v){return String(v||'').replace(/\s+/g,' ').trim().toLowerCase()}
-    function roots(){const a=[];if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');return [...new Set(a)]}
+    function roots(){const a=[];if(window.getSchoolApiBase)a.push(window.getSchoolApiBase());if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');return [...new Set(a)]}
     async function apiFetch(path,opt={}){let last;for(const r of roots()){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')}
     function isAdminUser(){const role=norm(localStorage.getItem('role'));return ['администратор','директор','администрация'].includes(role)}
     function rowLessonNumber(row){const num=row.closest('.lesson-row')?.querySelector('.lesson-num')?.textContent||'';return (num.match(/\d+/)||[''])[0]}
@@ -1831,7 +1833,7 @@ body.schedule-editing .lesson-subrow > .schedule-edit-pen {
 <script id="school-admin-unified-loader">
 (function(){
 const STORAGE_POSTS='school_admin_posts_v2', STORAGE_SCHEDULE='school_schedule_overrides_v2';
-function roots(){const a=[];if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');return [...new Set(a)]}
+function roots(){const a=[];if(window.getSchoolApiBase)a.push(window.getSchoolApiBase());if(location.protocol==='http:'||location.protocol==='https:'){if(location.port==='5000')a.push(location.origin);a.push(`${location.protocol}//${location.hostname||'127.0.0.1'}:5000`)}a.push('http://127.0.0.1:5000','http://localhost:5000');return [...new Set(a)]}
 async function apiFetch(path,opt={}){let last;for(const r of roots()){try{return await fetch(r+path,opt)}catch(e){last=e}}throw last||new Error('fetch failed')}
 function esc(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function fmt(v){const d=new Date(v);return Number.isNaN(d.getTime())?(v||''):d.toLocaleDateString('ru-RU')}
