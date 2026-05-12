@@ -30,6 +30,7 @@
         body.dark-theme{background:#121212;color:#e0e0e0}body.dark-theme .section-title,body.dark-theme .menu-block h3{color:#e0e0e0}body.dark-theme .intro,body.dark-theme .menu-block{background:#1e1e1e}body.dark-theme .doc-item,body.dark-theme .empty-state{background:#2a2a2a;border-color:#333}body.dark-theme .doc-link{color:#e0e0e0}body.dark-theme .doc-link i,body.dark-theme .menu-note{color:#4facfe}body.dark-theme .doc-item:hover{background:#4facfe;color:#121212;border-color:#4facfe}body.dark-theme .doc-item:hover .doc-link,body.dark-theme .doc-item:hover .doc-link i{color:#121212}
         body.blue-theme{background:#e3f2fd;color:#0d47a1}body.blue-theme .intro,body.blue-theme .menu-block{background:#bbdefb}body.blue-theme .section-title,body.blue-theme .menu-block h3{color:#0d47a1}body.blue-theme .doc-item,body.blue-theme .empty-state{background:#bbdefb;border-color:#90caf9}body.blue-theme .doc-link{color:#0d47a1}body.blue-theme .doc-link i{color:#1565c0}body.blue-theme .doc-item:hover{background:#1565c0;color:white;border-color:#1565c0}body.blue-theme .doc-item:hover .doc-link,body.blue-theme .doc-item:hover .doc-link i{color:white}
     </style>
+    <script src="api-config.js"></script>
 </head>
 <body>
 <div id="header-placeholder"></div>
@@ -97,6 +98,7 @@ function renderFoodFiles(files){
 
 function apiRoots(){
     const roots = [];
+            if (window.getSchoolApiBase) roots.push(window.getSchoolApiBase());
     if(window.location.protocol === 'http:' || window.location.protocol === 'https:'){
         if(window.location.port === '5000') roots.push(window.location.origin);
         roots.push(`${window.location.protocol}//${window.location.hostname || '127.0.0.1'}:5000`);
