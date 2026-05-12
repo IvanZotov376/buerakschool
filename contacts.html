@@ -1367,6 +1367,7 @@ body.blue-theme .warning-block {
         }
 
 </style>
+    <script src="api-config.js"></script>
 </head>
 
 <body>
@@ -1541,6 +1542,7 @@ body.blue-theme .warning-block {
 
             // Авторизация
             const API_URL = (() => {
+                if (window.getSchoolApiBase) return window.getSchoolApiBase();
                 if (window.location.protocol.startsWith('http')) {
                     const host = window.location.hostname || '127.0.0.1';
                     return `${window.location.protocol}//${host}:5000`;
@@ -1676,6 +1678,7 @@ body.blue-theme .warning-block {
     }
 
     const CONTACT_API_URL = (() => {
+        if (window.getSchoolApiBase) return window.getSchoolApiBase();
         // Если страница открыта с Flask (:5000), используем относительный путь.
         // Если HTML открыт как файл или с другого порта, отправляем запрос на Flask-сервер :5000.
         if (window.location.protocol.startsWith("http")) {
