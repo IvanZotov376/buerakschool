@@ -334,6 +334,7 @@
       padding-bottom: 2px;
     }
   </style>
+    <script src="api-config.js"></script>
 </head>
 <body>
 
@@ -567,6 +568,7 @@
     }
 
     function getApiBase() {
+      if (window.getSchoolApiBase) return window.getSchoolApiBase();
       const saved = localStorage.getItem('api_url');
       if (saved) return saved.replace(/\/$/, '');
       if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
