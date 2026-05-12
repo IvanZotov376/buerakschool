@@ -1570,6 +1570,7 @@
         }
 
     </style>
+    <script src="api-config.js"></script>
 </head>
 
 <body>
@@ -2269,6 +2270,7 @@
         // ==================== ПОСЛЕДНИЕ НОВОСТИ ====================
         function siteApiRoots() {
             const roots = [];
+            if (window.getSchoolApiBase) roots.push(window.getSchoolApiBase());
             if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
                 if (window.location.port === '5000') roots.push(window.location.origin);
                 roots.push(`${window.location.protocol}//${window.location.hostname || '127.0.0.1'}:5000`);
@@ -2520,6 +2522,7 @@
 
             // Авторизация
             const API_URL = (() => {
+                if (window.getSchoolApiBase) return window.getSchoolApiBase();
                 const saved = localStorage.getItem('api_url');
                 if (saved) return saved.replace(/\/$/, '');
                 // Если сайт открыт через Flask (http://127.0.0.1:5000/), используем тот же адрес.
@@ -2770,7 +2773,8 @@ body.dark-theme .profile-photo-remove:hover { background:rgba(255,107,107,.12); 
   let currentProfilePhoto = localStorage.getItem('profile_photo') || '';
   let cropper = null;
   let objectUrlForCrop = null;
-  function apiRoot(){ const saved=localStorage.getItem('api_url'); if(saved) return saved.replace(/\/$/,''); if(location.protocol==='http:'||location.protocol==='https:'){ if((location.port||'')==='5000') return location.origin; return `${location.protocol}//${location.hostname||'127.0.0.1'}:5000`; } return 'http://127.0.0.1:5000'; }
+  function apiRoot() {
+      if (window.getSchoolApiBase) return window.getSchoolApiBase(); const saved=localStorage.getItem('api_url'); if(saved) return saved.replace(/\/$/,''); if(location.protocol==='http:'||location.protocol==='https:'){ if((location.port||'')==='5000') return location.origin; return `${location.protocol}//${location.hostname||'127.0.0.1'}:5000`; } return 'http://127.0.0.1:5000'; }
   function getDefaultAvatarColor(name){ let hash=0; const source=String(name||'user'); for(let i=0;i<source.length;i++) hash=source.charCodeAt(i)+((hash<<5)-hash); return avatarColors[Math.abs(hash)%avatarColors.length]; }
   function getInitials(name){ return String(name||'?').trim().split(/\s+/).slice(0,2).map(p=>p[0]).join('').toUpperCase() || '?'; }
   function setAvatarElement(el,name,color,photo){ if(!el)return; if(photo){ el.classList.add('has-photo'); el.style.background='transparent'; el.style.backgroundImage=`url("${photo}")`; el.textContent=''; } else { el.classList.remove('has-photo'); el.style.backgroundImage=''; el.style.background=color||getDefaultAvatarColor(name); el.textContent=getInitials(name); } }
