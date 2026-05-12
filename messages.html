@@ -284,6 +284,7 @@
     .chat-avatar { width: 35px; height: 35px; font-size: 0.9rem; }
   }
 </style>
+    <script src="api-config.js"></script>
 </head>
 
 <body>
@@ -388,7 +389,7 @@
 </div>
 
 <script>
-const API_URL = 'http://localhost:5000';
+const API_URL = window.getSchoolApiBase ? window.getSchoolApiBase() : 'https://buerakschool-api.onrender.com';
 
 const currentUser = localStorage.getItem("login");
 if (!currentUser) location.href = "login.html";
