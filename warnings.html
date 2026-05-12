@@ -728,6 +728,7 @@ body.dark-theme .admin-dynamic-card h2,body.dark-theme .admin-dynamic-card h3{co
 @media(max-width:768px){.admin-dynamic-images img{width:100%;height:auto;}.title-hero{padding:30px 24px;}}
 
 </style>
+    <script src="api-config.js"></script>
 </head>
 
 <body>
@@ -844,6 +845,7 @@ body.dark-theme .admin-dynamic-card h2,body.dark-theme .admin-dynamic-card h3{co
 
             // Авторизация
             const API_URL = (() => {
+                if (window.getSchoolApiBase) return window.getSchoolApiBase();
                 if (window.location.protocol.startsWith('http')) {
                     const host = window.location.hostname || '127.0.0.1';
                     return `${window.location.protocol}//${host}:5000`;
@@ -965,7 +967,7 @@ body.dark-theme .admin-dynamic-card h2,body.dark-theme .admin-dynamic-card h3{co
   const ITEMS_PER_PAGE = 3;
   let currentPage = 1;
   let allPosts = [];
-  function roots() { const list = []; if (location.protocol === 'http:' || location.protocol === 'https:') { if (location.port === '5000') list.push(location.origin); list.push(location.protocol + '//' + (location.hostname || '127.0.0.1') + ':5000'); } list.push('http://127.0.0.1:5000', 'http://localhost:5000'); return [...new Set(list)]; }
+  function roots() { const list = []; if (window.getSchoolApiBase) list.push(window.getSchoolApiBase()); if (location.protocol === 'http:' || location.protocol === 'https:') { if (location.port === '5000') list.push(location.origin); list.push(location.protocol + '//' + (location.hostname || '127.0.0.1') + ':5000'); } list.push('http://127.0.0.1:5000', 'http://localhost:5000'); return [...new Set(list)]; }
   async function apiFetch(path, options) { let lastError = null; for (const root of roots()) { try { return await fetch(root + path, options || {}); } catch (error) { lastError = error; } } throw lastError || new Error('server.py не отвечает'); }
   function esc(value) { return String(value || '').replace(/[&<>"']/g, function (char) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' })[char]; }); }
   function readLocalWarnings() { try { return (JSON.parse(localStorage.getItem('school_admin_posts_v2')) || []).filter(post => post.page === 'warnings'); } catch (error) { return []; } }
