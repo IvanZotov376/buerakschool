@@ -4,3 +4,4 @@ requests
 nest_asyncio
 netschoolapi
 typing_extensions
+gunicorn
