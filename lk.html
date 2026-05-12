@@ -3204,7 +3204,6 @@ body.blue-theme .student-profile-loading{
 }
 
 </style>
-    <script src="api-config.js"></script>
 </head>
 <body>
 
@@ -3724,7 +3723,6 @@ function initLK() {
     // Если страница открыта через http(s), берём тот же хост и порт 5000.
     // Если открыта как обычный file:// файл, используем локальный сервер.
     const API_URL = (() => {
-                if (window.getSchoolApiBase) return window.getSchoolApiBase();
         const saved = localStorage.getItem('api_url');
         if (saved) return saved.replace(/\/$/, '');
         if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
@@ -5552,7 +5550,7 @@ async function sendMessage() {
   function escapeHtml(v){ return String(v == null ? '' : v).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   function fmtSize(n){ n=Number(n||0); if(!n) return ''; if(n<1024) return n+' Б'; if(n<1048576) return Math.round(n/1024)+' КБ'; return (n/1048576).toFixed(1)+' МБ'; }
   function iconFor(name,type){ const ext=String(name||'').split('.').pop().toLowerCase(); if(String(type||'').startsWith('image/')) return 'fa-file-image'; if(ext==='pdf'||ext==='prd') return 'fa-file-pdf'; if(ext==='doc'||ext==='docx') return 'fa-file-word'; if(ext==='xls'||ext==='xlsx') return 'fa-file-excel'; return 'fa-file'; }
-  function messageApiUrl(path){ const base = (window.getSchoolApiBase ? window.getSchoolApiBase() : ((typeof API_URL !== 'undefined' && API_URL) ? API_URL : 'http://127.0.0.1:5000')); return base.replace(/\/$/, '') + path; }
+  function messageApiUrl(path){ const base = (typeof API_URL !== 'undefined' && API_URL) ? API_URL : ((location.protocol === 'http:' || location.protocol === 'https:') ? (location.port === '5000' ? location.origin : location.protocol + '//' + (location.hostname || '127.0.0.1') + ':5000') : 'http://127.0.0.1:5000'); return base.replace(/\/$/, '') + path; }
   const selectedMessageIds = new Set();
   function ensureDeleteStyles(){ if(document.getElementById('messageDeleteStyles')) return; const style=document.createElement('style'); style.id='messageDeleteStyles'; style.textContent='.message-wrapper{position:relative}.message-select-btn{position:absolute;top:-7px;width:26px;height:26px;border-radius:50%;border:1px solid #dfe8fb;background:#fff;color:#91a0b8;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;opacity:.35;transition:.2s;z-index:2}.message-wrapper.me .message-select-btn{right:46px}.message-wrapper.other .message-select-btn{left:46px}.message-wrapper:hover .message-select-btn,.message-wrapper.selected .message-select-btn{opacity:1}.message-wrapper.selected .message-select-btn{background:#4c6ef5;color:#fff;border-color:#4c6ef5}.message-selected-count{font-size:.72rem;font-weight:900;margin-left:3px}'; document.head.appendChild(style); }
   function selectedIdsArray(){ return Array.from(selectedMessageIds); }
@@ -5614,7 +5612,7 @@ async function sendMessage() {
 <script>
 (function(){
   const selectedIds = new Set();
-  function deleteApiUrl(path){ const base = (window.getSchoolApiBase ? window.getSchoolApiBase() : ((typeof API_URL !== 'undefined' && API_URL) ? API_URL : 'http://127.0.0.1:5000')); return base.replace(/\/$/, '') + path; }
+  function deleteApiUrl(path){ const base = (typeof API_URL !== 'undefined' && API_URL) ? API_URL : ((location.protocol === 'http:' || location.protocol === 'https:') ? (location.port === '5000' ? location.origin : location.protocol + '//' + (location.hostname || '127.0.0.1') + ':5000') : 'http://127.0.0.1:5000'); return base.replace(/\/$/, '') + path; }
   function visibleIds(){ return Array.from(document.querySelectorAll('#messages .message-wrapper[data-message-id]')).map(el=>String(el.dataset.messageId)).filter(Boolean); }
   function ensureDeleteUiStyles(){
     if(document.getElementById('messageUnifiedDeleteStyles')) return;
