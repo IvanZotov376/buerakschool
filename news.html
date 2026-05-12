@@ -752,6 +752,7 @@
 .admin-dynamic-list{max-width:1100px;margin:0 auto 30px;display:flex;flex-direction:column;gap:20px}.admin-dynamic-card{background:#fff;border-radius:18px;box-shadow:0 4px 14px rgba(0,0,0,.1);padding:22px}.admin-dynamic-card h2,.admin-dynamic-card h3{font-weight:800;color:#2c3e50;margin-bottom:10px}.admin-dynamic-card p{line-height:1.65;white-space:pre-wrap}.admin-dynamic-images{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.admin-dynamic-images img{width:220px;height:150px;object-fit:cover;border-radius:14px}body.dark-theme .admin-dynamic-card{background:#1e1e1e;color:#e0e0e0}body.dark-theme .admin-dynamic-card h2,body.dark-theme .admin-dynamic-card h3{color:#fff}
 
 </style>
+    <script src="api-config.js"></script>
 </head>
 
 <body>
@@ -884,6 +885,7 @@
 
             // Авторизация
             const API_URL = (() => {
+                if (window.getSchoolApiBase) return window.getSchoolApiBase();
                 if (window.location.protocol.startsWith('http')) {
                     const host = window.location.hostname || '127.0.0.1';
                     return `${window.location.protocol}//${host}:5000`;
@@ -1003,6 +1005,7 @@
         const STORAGE_POSTS = 'school_admin_posts_v2';
         const API_URLS = (() => {
             const urls = [];
+                if (window.getSchoolApiBase) urls.push(window.getSchoolApiBase());
             if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
                 if (window.location.port === '5000') urls.push(window.location.origin);
                 urls.push(`${window.location.protocol}//${window.location.hostname || '127.0.0.1'}:5000`);
