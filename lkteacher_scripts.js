@@ -226,7 +226,8 @@
   let cropper = null;
   let objectUrlForCrop = null;
 
-  function apiRoot(){
+  function apiRoot() {
+      if (window.getSchoolApiBase) return window.getSchoolApiBase();
     const saved = localStorage.getItem('api_url');
     if (saved) return saved.replace(/\/$/, '');
     if (location.protocol === 'http:' || location.protocol === 'https:') {
@@ -335,6 +336,7 @@
   
 
    const API_URL = (() => {
+                if (window.getSchoolApiBase) return window.getSchoolApiBase();
   const saved = localStorage.getItem('api_url');
   if (saved) return saved.replace(/\/$/, '');
   if (location.protocol === 'http:' || location.protocol === 'https:') {
@@ -1291,8 +1293,8 @@ refreshTeacherData();
     attachments.forEach((att,idx)=>{
       const name=att && (att.name || att.filename) || 'Файл'; const type=att && att.type || '';
       const msgId = msg.id || msg.message_id || msg.mid;
-      const openUrl = msgId ? `/api/message_attachment/${msgId}/${idx}` : (att.data || '#');
-      const downUrl = msgId ? `/api/message_attachment/${msgId}/${idx}?download=1` : (att.data || '#');
+      const openUrl = msgId ? (window.schoolApiUrl ? window.schoolApiUrl(`/api/message_attachment/${msgId}/${idx}`) : `${API_URL}/api/message_attachment/${msgId}/${idx}`) : (att.data || '#');
+      const downUrl = msgId ? (window.schoolApiUrl ? window.schoolApiUrl(`/api/message_attachment/${msgId}/${idx}?download=1`) : `${API_URL}/api/message_attachment/${msgId}/${idx}?download=1`) : (att.data || '#');
       const card=document.createElement('div'); card.className='message-attachment-card';
       card.innerHTML='<div class="message-attachment-icon"><i class="fa-solid '+iconFor(name,type)+'"></i></div><div class="message-attachment-info"><div class="message-attachment-name">'+escapeHtml(name)+'</div><div class="message-attachment-size">'+escapeHtml(fmtSize(att.size))+'</div></div><div class="message-attachment-actions"><a href="'+openUrl+'" target="_blank" rel="noopener">Открыть</a><a href="'+downUrl+'" download>Скачать</a></div>';
       wrap.appendChild(card);
@@ -1311,7 +1313,7 @@ refreshTeacherData();
     const header=document.getElementById('chatHeader');
     if(header && !document.getElementById('clearDialogBtn')){
       const clear=document.createElement('button'); clear.type='button'; clear.id='clearDialogBtn'; clear.className='message-clear-btn'; clear.title='Очистить историю диалога'; clear.style.display='none'; clear.innerHTML='<i class="fa-solid fa-trash"></i>';
-      clear.onclick=async function(){ const partner=window.currentChatPartner; const login=localStorage.getItem('login')||''; if(!partner) return; if(!confirm('Вы уверены, что хотите очистить историю этого диалога?')) return; try{ const res=await fetch('/api/clear_messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({login:login,partner:partner,login_aliases:window.messageLoginAliases||undefined})}); const data=await res.json(); if(!data.success) throw new Error(data.error||'Ошибка очистки'); window.clearMessageAttachments(); if(typeof loadMessages==='function') await loadMessages(); const box=document.getElementById('messages'); if(box) box.innerHTML='<div class="no-dialog"><div>История диалога очищена</div></div>'; }catch(e){ alert('Не удалось очистить переписку: '+e.message); } };
+      clear.onclick=async function(){ const partner=window.currentChatPartner; const login=localStorage.getItem('login')||''; if(!partner) return; if(!confirm('Вы уверены, что хотите очистить историю этого диалога?')) return; try{ const res=await fetch((window.schoolApiUrl ? window.schoolApiUrl('/api/clear_messages') : (API_URL + '/api/clear_messages')),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({login:login,partner:partner,login_aliases:window.messageLoginAliases||undefined})}); const data=await res.json(); if(!data.success) throw new Error(data.error||'Ошибка очистки'); window.clearMessageAttachments(); if(typeof loadMessages==='function') await loadMessages(); const box=document.getElementById('messages'); if(box) box.innerHTML='<div class="no-dialog"><div>История диалога очищена</div></div>'; }catch(e){ alert('Не удалось очистить переписку: '+e.message); } };
       header.appendChild(clear);
     }
   };
